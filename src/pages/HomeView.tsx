@@ -47,18 +47,25 @@ const FILTER_TABS: { id: 'ALL' | ProdiId; label: string }[] = [
   { id: 'ALL', label: 'Semua Paket' },
   { id: 'teknik-mesin', label: 'Teknik Mesin SMK' },
   { id: 'dkv', label: 'DKV SMK' },
+  { id: 'tata-boga', label: 'Tata Boga SMK' },
+  { id: 'akuntansi', label: 'Akuntansi SMK' },
+  { id: 'smk-vokasi', label: 'SMK Vokasi' },
   { id: 'pgsd', label: 'PGSD' },
   { id: 'matematika', label: 'Matematika' },
   { id: 'bahasa-indonesia', label: 'Bahasa Indonesia' },
+  { id: 'bahasa-inggris', label: 'Bahasa Inggris' },
   { id: 'ipa', label: 'IPA / IPAS' },
-  { id: 'smk-vokasi', label: 'SMK Vokasi' },
+  { id: 'ips', label: 'IPS Terpadu' },
+  { id: 'pjok', label: 'PJOK' },
+  { id: 'ppkn', label: 'PPKn' },
+  { id: 'pai', label: 'PAI' },
   { id: 'umum', label: 'Pedagogi Umum' },
 ];
 
 const FAQ_ITEMS = [
   {
     q: 'Apakah soal antar Program Studi (Prodi) terpisah dan tidak tercampur?',
-    a: 'Ya. Seluruh bank soal telah diaudit dan diklasifikasi ketat per Prodi. Memilih Teknik Mesin SMK hanya menampilkan PCK Teknik Mesin dan Pedagogi Umum murni tanpa menyisipkan soal IPA SMP, DKV, PGSD, Matematika, atau Bahasa Indonesia agar persiapan Anda tetap fokus dan bebas ambiguitas.',
+    a: 'Ya. Seluruh bank soal telah diaudit kesesuaiannya dengan Juknis UKPPPG 2026 dan diklasifikasi ketat per 15 Prodi. Memilih DKV, Tata Boga, Teknik Mesin, PGSD, IPA, IPS, atau Prodi lain hanya menampilkan PCK Prodi tersebut dan Pedagogi Umum selaras agar latihan bebas ambiguitas.',
   },
   {
     q: 'Apakah semua paket gratis tanpa kode akses atau biaya langganan?',
@@ -66,7 +73,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Mengapa pada paket tertentu tersedia opsi Simulasi Acak?',
-    a: 'Untuk Prodi dengan bank soal di atas 1 paket (seperti Teknik Mesin dengan 102 PCK murni, DKV dengan 60 PCK, atau PGSD dengan 61 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah Anda kerjakan atau masih keliru, mengunci cakupan 17 subkompetensi kisi-kisi, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah.',
+    a: 'Untuk Prodi dengan bank soal besar (seperti Teknik Mesin 102 PCK, PGSD 80 PCK, DKV 79 PCK, IPA 72 PCK, Matematika 62 PCK, dan B. Indonesia 58 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah dikerjakan atau masih keliru, mengunci cakupan 17 subkompetensi kisi-kisi, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah.',
   },
   {
     q: 'Bagaimana sistem penghitungan skor & poin pada hasil ujian?',
@@ -445,7 +452,7 @@ export function HomeView({
                   num: '01',
                   icon: Layers,
                   title: 'Pilih Prodi & paket',
-                  desc: 'Pilih paket Teknik Mesin SMK, DKV SMK, PGSD, Matematika, B. Indonesia, IPA, Vokasi, atau Umum tanpa perlu kode akses.',
+                  desc: 'Pilih salah satu dari 15 Prodi terisolasi (SMK Vokasi, PGSD, Mapel Umum/Agama, atau Pedagogi Umum) tanpa kode akses.',
                 },
                 {
                   num: '02',

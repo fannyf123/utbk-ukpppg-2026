@@ -1,11 +1,13 @@
 import ustExtracted from './ustExtracted.json';
 import arenaExtracted from './arenaExtracted.json';
+import fungsionalExtracted from './fungsionalExtracted.json';
 import { PU_KATEGORI_ADDITIONS } from './puKategoriAdditions';
 import { PCK_MESIN_PART_1 } from './pckMesinPart1';
 import { PCK_MESIN_PART_2 } from './pckMesinPart2';
 import { PCK_MESIN_EXTRA } from './pckMesinExtra';
 import { PCK_DKV_PART_1 } from './pckDkvPart1';
 import { PCK_DKV_PART_2 } from './pckDkvPart2';
+import { WEB_CURATED_EXTRAS } from './webCuratedExtras';
 import { questionMatchesProdi } from './prodiRegistry';
 import type {
   ExamQuestion,
@@ -16,12 +18,26 @@ import type {
 } from '../types/exam';
 
 const PU_KAT_PRODI_MAP: Record<string, QuestionProdiScope> = {
-  'pu-kat-01': ['teknik-mesin', 'dkv', 'smk-vokasi'], // guru SMK
-  'pu-kat-02': ['teknik-mesin', 'dkv', 'smk-vokasi', 'matematika', 'bahasa-indonesia', 'ipa'], // kelas XI
+  'pu-kat-01': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'], // guru SMK
+  'pu-kat-02': [
+    'teknik-mesin',
+    'dkv',
+    'tata-boga',
+    'akuntansi',
+    'smk-vokasi',
+    'matematika',
+    'bahasa-indonesia',
+    'bahasa-inggris',
+    'ipa',
+    'ips',
+    'pjok',
+    'ppkn',
+    'pai',
+  ], // kelas XI
   'pu-kat-06': ['teknik-mesin', 'smk-vokasi'], // hitungan teknik / praktik
   'pu-kat-09': ['teknik-mesin', 'smk-vokasi'], // bengkel praktik
-  'pu-kat-10': ['teknik-mesin', 'dkv', 'smk-vokasi'], // remaja SMK 15-18 tahun
-  'pu-kat-12': ['teknik-mesin', 'dkv', 'smk-vokasi'], // kelas vokasi
+  'pu-kat-10': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'], // remaja SMK 15-18 tahun
+  'pu-kat-12': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'], // kelas vokasi
   'pu-kat-13': ['teknik-mesin', 'smk-vokasi'], // DUDIKA bengkel industri
   'pu-kat-14': ['teknik-mesin'], // MGMP Teknik Mesin
   'pu-kat-17': ['teknik-mesin', 'smk-vokasi'], // bengkel atau kelas
@@ -52,10 +68,13 @@ const PU_KAT_BANK: ExamQuestion[] = PU_KATEGORI_ADDITIONS.map((q) => ({
 
 const UST_QUESTIONS = ustExtracted as ExamQuestion[];
 const ARENA_QUESTIONS = arenaExtracted as ExamQuestion[];
+const FUNGSIONAL_QUESTIONS = fungsionalExtracted as ExamQuestion[];
 
 export const ALL_QUESTIONS: ExamQuestion[] = [
   ...PCK_MESIN_BANK,
   ...PCK_DKV_BANK,
+  ...WEB_CURATED_EXTRAS,
+  ...FUNGSIONAL_QUESTIONS,
   ...UST_QUESTIONS,
   ...ARENA_QUESTIONS,
   ...PU_KAT_BANK,

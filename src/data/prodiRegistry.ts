@@ -29,6 +29,33 @@ export const PRODI_CONFIGS: readonly ProdiConfig[] = [
       'Kompetensi keahlian Desain Komunikasi Visual SMK (Tata Letak, Tipografi, Warna RGB/CMYK, Pracetak Vektor-Bitmap, Fotografi/AV, Branding, Packaging, UI/UX, HKI & TeFa DKV) dipadukan Pedagogi Umum selaras.',
   },
   {
+    id: 'tata-boga',
+    label: 'Tata Boga & Kuliner (SMK)',
+    shortLabel: 'Tata Boga',
+    jenjang: 'SMK · Pariwisata & Kuliner',
+    pckBadge: 'PCK TATA BOGA SMK',
+    description:
+      'Higiene sanitasi & kontaminasi silang, teknik pengolahan dasar/pastry, manajemen suhu & keamanan pangan, food costing, gizi seimbang, serta asesmen praktik dapur.',
+  },
+  {
+    id: 'akuntansi',
+    label: 'Akuntansi & Keuangan Lembaga (SMK)',
+    shortLabel: 'Akuntansi',
+    jenjang: 'SMK · Bisnis & Manajemen',
+    pckBadge: 'PCK AKUNTANSI SMK',
+    description:
+      'Siklus akuntansi perusahaan jasa/dagang, jurnal penyesuaian, rekonsiliasi bank, kas kecil imprest, persediaan & HPP, pengendalian internal, serta pedagogi asesmen kasus keuangan.',
+  },
+  {
+    id: 'smk-vokasi',
+    label: 'SMK Vokasi Lainnya (Pemasaran · TKJ/RPL · TKR · Listrik)',
+    shortLabel: 'SMK Vokasi',
+    jenjang: 'SMK · Lintas Keahlian',
+    pckBadge: 'SJT KEJURUAN VOKASI',
+    description:
+      'Kasus terkurasi kejuruan Pemasaran, TKJ/RPL, Teknik Kendaraan Ringan (TKR), TITL Listrik, Animasi & APHP (terpisah bersih dari Mesin, DKV, Boga & Akuntansi).',
+  },
+  {
     id: 'pgsd',
     label: 'PGSD (Guru Kelas SD)',
     shortLabel: 'PGSD',
@@ -56,22 +83,58 @@ export const PRODI_CONFIGS: readonly ProdiConfig[] = [
       'Pembelajaran berbasis genre (Eksposisi, Argumentasi, Prosedur), menyimak/membaca/berbicara, sastra (Puisi, Cerpen, Drama), serta kebahasaan & EYD beserta Pedagogi Umum selaras.',
   },
   {
+    id: 'bahasa-inggris',
+    label: 'Bahasa Inggris (SMP / SMA / SMK)',
+    shortLabel: 'B. Inggris',
+    jenjang: 'SMP / SMA / SMK',
+    pckBadge: 'PCK BAHASA INGGRIS',
+    description:
+      'Communicative Language Teaching (CLT), Task-Based Learning, teks naratif/recount/eksposisi argumentatif, literasi reading-speaking inklusif, serta asesmen autentik bahasa Inggris.',
+  },
+  {
     id: 'ipa',
     label: 'IPA & IPAS (SMP / Terpadu)',
     shortLabel: 'IPA / IPAS',
     jenjang: 'SMP / Terpadu',
     pckBadge: 'PCK IPA TERPADU',
     description:
-      'Penyelidikan ilmiah & asesmen IPA/IPAS (perubahan wujud, kalor & suhu, gerak parabola, hukum Newton, gelombang, ekosistem, pernapasan/pencernaan) beserta Pedagogi Umum selaras.',
+      'Penyelidikan ilmiah & konsep fisika/biologi/kimia (fotosintesis Ingenhousz, Hukum Newton, Hooke, reaksi kimia, kalor, ekosistem, eksperimen lab) beserta Pedagogi Umum selaras.',
   },
   {
-    id: 'smk-vokasi',
-    label: 'SMK Vokasi Lainnya (TKJ/RPL · TKR · Listrik · Boga · Akuntansi)',
-    shortLabel: 'SMK Vokasi',
-    jenjang: 'SMK · Lintas Keahlian',
-    pckBadge: 'SJT KEJURUAN VOKASI',
+    id: 'ips',
+    label: 'IPS (Sejarah · Ekonomi · Geografi · Sosiologi)',
+    shortLabel: 'IPS',
+    jenjang: 'SMP / SMA',
+    pckBadge: 'PCK IPS TERPADU',
     description:
-      'Himpunan kasus kejuruan TKJ, RPL, Teknik Kendaraan Ringan (TKR), TITL Listrik, Tata Boga, Akuntansi, Animasi & APHP (terpisah dari Teknik Mesin & DKV) beserta Pedagogi Umum vokasional.',
+      'Berpikir diakronis-sinkronis & kritik sumber sejarah, vulkanisme & spasial geografi, simulasi keseimbangan pasar ekonomi, alih fungsi lahan & isu sosial masyarakat.',
+  },
+  {
+    id: 'pjok',
+    label: 'PJOK · Pendidikan Jasmani & Olahraga',
+    shortLabel: 'PJOK',
+    jenjang: 'SD / SMP / SMA / SMK',
+    pckBadge: 'PCK PJOK',
+    description:
+      'Perencanaan gerak motorik & karakter, modifikasi alat permainan bola, model sirkuit/TGfU, pencegahan & penanganan cedera ringan, serta pembelajaran PJOK inklusif.',
+  },
+  {
+    id: 'ppkn',
+    label: 'PPKn · Pendidikan Pancasila',
+    shortLabel: 'PPKn',
+    jenjang: 'SMP / SMA / SMK',
+    pckBadge: 'PCK PENDIDIKAN PANCASILA',
+    description:
+      'Implementasi nilai Pancasila, dialog Bhinneka Tunggal Ika, demokrasi musyawarah kelas, literasi fakta hukum & HAM di ruang digital, serta pembentukan karakter warga negara.',
+  },
+  {
+    id: 'pai',
+    label: 'PAI · Pendidikan Agama Islam',
+    shortLabel: 'PAI',
+    jenjang: 'SD / SMP / SMA / SMK',
+    pckBadge: 'PCK PAI',
+    description:
+      'Internalisasi nilai akhlak reflektif, moderasi beragama dalam keberagaman, tabayyun literasi digital, P5-P2RA, serta asesmen autentik sikap dan pemahaman kontekstual.',
   },
   {
     id: 'umum',

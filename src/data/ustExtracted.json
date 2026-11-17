@@ -25,7 +25,7 @@
   {
     "id": "ust-setuju-02",
     "bank": "PCK",
-    "topic": "SJT Vokasi · Tata Boga / Kuliner",
+    "topic": "PCK Tata Boga · Kuliner Dasar SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -41,7 +41,7 @@
     "answer": 1,
     "explanation": "Kunci B: Menyajikan materi melalui video, gambar, dan demonstrasi langsung; memberikan pilihan praktik atau simulasi; serta menyediakan kesempatan bagi murid untuk menunjukkan kompetensinya melalui demonstrasi, gambar, atau penjelasan lisan. (Topik: Desain Universal untuk Pembelajaran (DUP)).",
     "prodiScope": [
-      "smk-vokasi"
+      "tata-boga"
     ]
   },
   {
@@ -70,7 +70,7 @@
   {
     "id": "ust-setuju-04",
     "bank": "PCK",
-    "topic": "SJT Vokasi · Akuntansi SMK",
+    "topic": "PCK Akuntansi · Laporan Keuangan SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -86,7 +86,7 @@
     "answer": 2,
     "explanation": "Kunci C: Murid mengalami proses memahami, mengaplikasi, dan merefleksi sehingga mampu menghubungkan pengetahuan dengan konteks nyata. (Topik: Pengalaman Belajar Memahami, Mengaplikasi, dan Merefleksi).",
     "prodiScope": [
-      "smk-vokasi"
+      "akuntansi"
     ]
   },
   {
@@ -158,7 +158,7 @@
   {
     "id": "ust-setuju-08",
     "bank": "PCK",
-    "topic": "SJT Vokasi · Tata Boga / Pastry",
+    "topic": "PCK Tata Boga · Produksi Pastry SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -174,7 +174,7 @@
     "answer": 1,
     "explanation": "Kunci B: Menentukan tujuan dan hasil belajar yang diharapkan, menetapkan bukti asesmen yang menunjukkan ketercapaian tujuan, kemudian merancang pengalaman belajar. (Topik: Understanding by Design (UbD)).",
     "prodiScope": [
-      "smk-vokasi"
+      "tata-boga"
     ]
   },
   {
@@ -354,9 +354,16 @@
       "lintas-mapel",
       "teknik-mesin",
       "dkv",
+      "tata-boga",
+      "akuntansi",
       "smk-vokasi",
       "matematika",
-      "bahasa-indonesia"
+      "bahasa-indonesia",
+      "bahasa-inggris",
+      "ips",
+      "pjok",
+      "ppkn",
+      "pai"
     ]
   },
   {
@@ -2239,8 +2246,8 @@
   },
   {
     "id": "ust-yuli-sel-16",
-    "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "bank": "PCK",
+    "topic": "PCK PPKn · Kebinekaan & Pancasila",
     "source": "Pendalaman SEL Bu Yuli",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -2256,7 +2263,7 @@
     "answer": 1,
     "explanation": "Modul menjelaskan bahwa SEL dapat diterapkan secara rutin, terintegrasi dalam mata pelajaran, dan melalui budaya sekolah. Dalam kasus ini, kompetensi sosial emosional dikembangkan melalui aktivitas akademik berupa analisis kasus, diskusi, pengambilan perspektif, dan penyusunan rekomendasi. Oleh karena itu, jawabannya adalah B.",
     "prodiScope": [
-      "lintas-mapel"
+      "ppkn"
     ]
   },
   {

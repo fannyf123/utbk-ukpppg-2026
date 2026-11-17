@@ -32,9 +32,9 @@ function createSeededRng(seed: number) {
 }
 
 describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
-  it('memenuhi kapasitas di atas minimum 780 butir lengkap dengan ketiga bentuk soal BPPP', () => {
+  it('memenuhi kapasitas di atas minimum 1.200 butir lengkap dengan ketiga bentuk soal BPPP', () => {
     const summary = getBankSummary('ALL_ARCHIVE');
-    expect(summary.total).toBeGreaterThanOrEqual(780);
+    expect(summary.total).toBeGreaterThanOrEqual(1200);
     expect(summary.byType.PG).toBeGreaterThanOrEqual(450);
     expect(summary.byType.PGK_KATEGORI).toBeGreaterThanOrEqual(170);
     expect(summary.byType.PGK_MCMA).toBeGreaterThanOrEqual(125);
@@ -76,8 +76,10 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
     }
   });
 
-  it('menjamin isolasi prodi agar tidak terjadi kebocoran soal lintas jurusan yang tidak sinkron', () => {
-    // 6 Prodi penuh (termasuk DKV SMK) harus memiliki >= 50 PCK + >= 190 PU
+  it('menjamin isolasi prodi pada seluruh 15 Prodi agar tidak terjadi kebocoran soal lintas jurusan', () => {
+    expect(PRODI_CONFIGS.length).toBe(15);
+
+    // 6 Prodi penuh (termasuk DKV SMK & IPA) harus memiliki >= 50 PCK + >= 240 PU
     const fullProdis: ProdiId[] = [
       'teknik-mesin',
       'dkv',
@@ -88,12 +90,34 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
     ];
     for (const pid of fullProdis) {
       expect(getProdiPckBank(pid).length).toBeGreaterThanOrEqual(50);
-      expect(getProdiPuBank(pid).length).toBeGreaterThanOrEqual(190);
+      expect(getProdiPuBank(pid).length).toBeGreaterThanOrEqual(240);
     }
 
-    // DKV memiliki >= 60 PCK murni DKV, terpisah bersih dari Teknik Mesin & kejuruan non-DKV
+    // 8 Prodi baru & vokasi lainnya harus memiliki pool PCK terisolasi >= 24 + >= 240 PU
+    const extendedProdis: ProdiId[] = [
+      'tata-boga',
+      'akuntansi',
+      'smk-vokasi',
+      'bahasa-inggris',
+      'ips',
+      'pjok',
+      'ppkn',
+      'pai',
+    ];
+    for (const pid of extendedProdis) {
+      expect(getProdiPckBank(pid).length).toBeGreaterThanOrEqual(24);
+      expect(getProdiPuBank(pid).length).toBeGreaterThanOrEqual(240);
+    }
+
+    // IPA memiliki cakupan empiris PF.2/PF.3 Fisika/Biologi/Kimia >= 20 butir
+    const ipaPf23 = getProdiPckBank('ipa').filter(
+      (q) => q.subkompetensi === 'PF.2' || q.subkompetensi === 'PF.3'
+    );
+    expect(ipaPf23.length).toBeGreaterThanOrEqual(20);
+
+    // DKV memiliki >= 75 PCK murni DKV, terpisah bersih dari Teknik Mesin & kejuruan non-DKV
     const dkvPck = getProdiPckBank('dkv');
-    expect(dkvPck.length).toBeGreaterThanOrEqual(60);
+    expect(dkvPck.length).toBeGreaterThanOrEqual(75);
     const dkvPool = getProdiQuestions('dkv');
     expect(dkvPool.some((q) => q.id.startsWith('pck-gt-'))).toBe(false); // Teknik Mesin
     expect(dkvPool.some((q) => q.id === 'ust-setuju-02')).toBe(false); // Tata Boga
@@ -103,11 +127,15 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
     expect(dkvPool.some((q) => q.id === 'ust-dwi-ppdp-01')).toBe(true); // PPDP DKV
     expect(dkvPool.some((q) => q.id === 'pck-dkv-01')).toBe(true);
 
-    // SMK Vokasi Lainnya TIDAK boleh lagi mencampur soal DKV
-    const vokasiPool = getProdiQuestions('smk-vokasi');
-    expect(vokasiPool.some((q) => q.id.startsWith('ust-dwi-'))).toBe(false);
-    expect(vokasiPool.some((q) => q.id === 'ust-setuju-06')).toBe(false);
-    expect(vokasiPool.some((q) => q.id.startsWith('pck-dkv-'))).toBe(false);
+    // Seluruh Prodi SMK (Teknik Mesin, DKV, Tata Boga, Akuntansi, SMK Vokasi) tidak saling tumpang tindih PCK
+    const smkProdis: ProdiId[] = ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'];
+    for (let i = 0; i < smkProdis.length; i++) {
+      const idsA = new Set(getProdiPckBank(smkProdis[i]).map((q) => q.id));
+      for (let j = i + 1; j < smkProdis.length; j++) {
+        const idsB = getProdiPckBank(smkProdis[j]).map((q) => q.id);
+        expect(idsB.some((id) => idsA.has(id))).toBe(false);
+      }
+    }
 
     // Teknik Mesin TIDAK boleh kemasukan IPA SMP, DKV, B.Ind SMA, atau Paket 3 PGSD/4 Mat/5 B.Ind
     const mesinPool = getProdiQuestions('teknik-mesin');
@@ -128,13 +156,13 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
     // Umum Murni TIDAK boleh mengandung soal PCK
     expect(getProdiPckBank('umum').length).toBe(0);
     const umumPool = getProdiQuestions('umum');
-    expect(umumPool.length).toBeGreaterThanOrEqual(190);
+    expect(umumPool.length).toBeGreaterThanOrEqual(235);
     expect(umumPool.every((q) => q.prodiScope === 'UMUM')).toBe(true);
   });
 });
 
 describe('Randomizer & Simulasi Multi-Prodi', () => {
-  it('membangun Simulasi Resmi 80 soal (50 PCK + 30 PU, 150 menit) untuk seluruh 6 Prodi utama tanpa soal bocor', () => {
+  it('membangun Simulasi Resmi 80 soal (50 PCK + 30 PU) untuk 6 Prodi utama serta proporsional bersih untuk 8 Prodi lainnya', () => {
     const fullProdis: ProdiId[] = [
       'teknik-mesin',
       'dkv',
@@ -159,15 +187,29 @@ describe('Randomizer & Simulasi Multi-Prodi', () => {
       expect(ids.size).toBe(80);
     }
 
-    // Prodi SMK Vokasi & Umum Murni menyesuaikan proporsional dengan jujur
-    const vokasiCfg = PRODI_CONFIGS.find((p) => p.id === 'smk-vokasi')!;
-    const vokSession = createOfficialExamSession(
-      getProdiPckBank('smk-vokasi'),
-      getProdiPuBank('smk-vokasi'),
-      {},
-      { prodiId: vokasiCfg.id, prodiLabel: vokasiCfg.shortLabel, rng: createSeededRng(7) }
-    );
-    expect(vokSession.slots.length).toBe(getProdiPckBank('smk-vokasi').length + 30);
+    // Prodi proporsional & Umum Murni menyesuaikan jumlah soal secara jujur tanpa padding lintas prodi
+    const proportionalProdis: ProdiId[] = [
+      'smk-vokasi',
+      'tata-boga',
+      'akuntansi',
+      'bahasa-inggris',
+      'ips',
+      'pjok',
+      'ppkn',
+      'pai',
+    ];
+    for (const pid of proportionalProdis) {
+      const cfg = PRODI_CONFIGS.find((p) => p.id === pid)!;
+      const pck = getProdiPckBank(pid);
+      const sess = createOfficialExamSession(pck, getProdiPuBank(pid), {}, {
+        prodiId: cfg.id,
+        prodiLabel: cfg.shortLabel,
+        rng: createSeededRng(7),
+      });
+      expect(sess.slots.length).toBe(pck.length + 30);
+      expect(sess.slots.every((s) => questionMatchesProdi(s.question, pid))).toBe(true);
+      expect(new Set(sess.slots.map((s) => s.question.id)).size).toBe(sess.slots.length);
+    }
 
     const umumSession = createOfficialExamSession(
       getProdiPckBank('umum'),
@@ -310,8 +352,8 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
     expect(subSession.slots.every((s) => s.question.subkompetensi === 'P.6')).toBe(true);
   });
 
-  it('membangun seluruh 15 Paket Tryout SIAPPPG tanpa bayar, mengunci 17 subkompetensi pada paket resmi acak, dan memisahkan Teknik Mesin Paket A vs B', () => {
-    expect(PAKET_CATALOG.length).toBe(15);
+  it('membangun seluruh 22 Paket Tryout SIAPPPG tanpa bayar, mengunci 17 subkompetensi pada semua paket prodi resmi, dan memisahkan Teknik Mesin Paket A vs B', () => {
+    expect(PAKET_CATALOG.length).toBe(22);
     const allSubs = JUKNIS_SUBCOMPETENCIES.map((s) => s.code);
 
     for (const paket of PAKET_CATALOG) {
@@ -322,7 +364,7 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
           session.slots.every((s) => questionMatchesProdi(s.question, paket.prodiId))
         ).toBe(true);
       }
-      if (paket.kind === 'prodi-random' && paket.questionCount === 80) {
+      if (paket.kind === 'prodi-random') {
         const covered = new Set(session.slots.map((s) => s.question.subkompetensi));
         const missing = allSubs.filter((c) => !covered.has(c));
         expect(missing).toEqual([]);

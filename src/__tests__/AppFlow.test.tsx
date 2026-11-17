@@ -48,7 +48,7 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
     expect(screen.getByText(/HASIL TRY OUT .* Fanny/i)).toBeInTheDocument();
   });
 
-  it('menyaring katalog paket berdasarkan tab Prodi (PGSD) dan membuka detail PGSD 80 soal', () => {
+  it('menyaring katalog paket berdasarkan tab Prodi (PGSD, Tata Boga, IPS, DKV SMK) dan membuka detail DKV 80 soal', () => {
     render(<App />);
 
     fireEvent.click(screen.getByRole('tab', { name: 'PGSD' }));
@@ -59,12 +59,28 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
       screen.queryByText(/Teknik Mesin SMK · Simulasi Resmi Acak/i)
     ).not.toBeInTheDocument();
 
+    fireEvent.click(screen.getByRole('tab', { name: 'Tata Boga SMK' }));
+    expect(
+      screen.getByText(/Tata Boga · Simulasi Prodi Terisolasi/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/PGSD · Paket 3 Guru Kelas SD Lengkap/i)
+    ).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('tab', { name: 'IPS Terpadu' }));
+    expect(
+      screen.getByText(/IPS Terpadu · Simulasi Terisolasi/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/Tata Boga · Simulasi Prodi Terisolasi/i)
+    ).not.toBeInTheDocument();
+
     fireEvent.click(screen.getByRole('tab', { name: 'DKV SMK' }));
     expect(
       screen.getByText(/DKV · Simulasi Resmi Acak 80 Soal/i)
     ).toBeInTheDocument();
     expect(
-      screen.queryByText(/PGSD · Paket 3 Guru Kelas SD Lengkap/i)
+      screen.queryByText(/IPS Terpadu · Simulasi Terisolasi/i)
     ).not.toBeInTheDocument();
 
     fireEvent.click(

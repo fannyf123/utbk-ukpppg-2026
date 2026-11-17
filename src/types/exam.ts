@@ -5,11 +5,18 @@ export type Competency = 'Pedagogik' | 'Kepribadian' | 'Sosial' | 'Profesional';
 export type ProdiId =
   | 'teknik-mesin'
   | 'dkv'
+  | 'tata-boga'
+  | 'akuntansi'
+  | 'smk-vokasi'
   | 'pgsd'
   | 'matematika'
   | 'bahasa-indonesia'
+  | 'bahasa-inggris'
   | 'ipa'
-  | 'smk-vokasi'
+  | 'ips'
+  | 'pjok'
+  | 'ppkn'
+  | 'pai'
   | 'umum';
 
 export type QuestionProdiTag = ProdiId | 'lintas-mapel';

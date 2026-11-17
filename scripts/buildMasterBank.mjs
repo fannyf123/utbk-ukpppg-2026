@@ -148,7 +148,7 @@ const ARENA_PRODI_MAP = {
   'arena-paket-1-08': { prodis: ['bahasa-indonesia'] }, // paragraf deskripsi -> B.Ind
   'arena-paket-1-09': { prodis: ['ipa', 'pgsd'] }, // mamalia konsep hewan
   'arena-paket-1-10': { prodis: ['matematika'] }, // ulangan matematika growth mindset
-  'arena-paket-1-13': { prodis: ['lintas-mapel'] }, // ekonomi inflasi six facets
+  'arena-paket-1-13': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Ekonomi & Nilai' }, // ekonomi inflasi six facets
   'arena-paket-1-15': { prodis: ['ipa'], bank: 'PCK' }, // sistem peredaran darah + PCK media
   'arena-paket-1-16': { prodis: ['pgsd'] }, // guru kelas 5 literasi
   'arena-paket-1-17': { prodis: ['ipa'], bank: 'PCK' }, // gerak parabola UDL
@@ -188,12 +188,13 @@ const ARENA_PRODI_MAP = {
   'arena-paket-2-62': { prodis: ['ipa'], bank: 'PCK' }, // miskonsepsi benda berat jatuh lebih cepat
   'arena-paket-2-64': { prodis: ['pgsd', 'bahasa-indonesia'], bank: 'PCK' }, // literasi awal membaca nyaring
   'arena-paket-2-65': { prodis: ['matematika'], bank: 'PCK' }, // Skemp luas memakai rumus
-  'arena-paket-2-66': { prodis: ['lintas-mapel'], bank: 'PCK' }, // Guru Bahasa Inggris bermain peran
-  'arena-paket-2-67': { prodis: ['lintas-mapel'] }, // PJOK keterbatasan motorik
+  'arena-paket-2-66': { prodis: ['bahasa-inggris'], bank: 'PCK', topic: 'PCK Bahasa Inggris · CLT, Speaking & Teks' }, // Guru Bahasa Inggris bermain peran
+  'arena-paket-2-67': { prodis: ['pjok'], bank: 'PCK', topic: 'PCK PJOK · Inklusi & Permainan Bola' }, // PJOK keterbatasan motorik
   'arena-paket-2-68': { prodis: ['smk-vokasi'], bank: 'PCK', topic: 'Vokasi · Informatika & Berpikir Komputasional' }, // Informatika jadwal piket
+  'arena-paket-2-69': { prodis: ['ppkn'], bank: 'PCK', topic: 'PCK PPKn · Etika, Moral & Kewarganegaraan' }, // dilema menyontek pendidikan moral/PPKn
   'arena-paket-2-74': { prodis: ['ipa'], bank: 'PCK' }, // mengukur pH lakmus
   'arena-paket-2-75': { prodis: ['ipa', 'pgsd'], bank: 'PCK' }, // siklus air SOLO
-  'arena-paket-2-77': { prodis: ['dkv', 'smk-vokasi', 'umum'] }, // pelaku UMKM mitra kewirausahaan (Cocok utk semua/vokasi)
+  'arena-paket-2-77': { prodis: ['dkv', 'tata-boga', 'akuntansi', 'smk-vokasi', 'umum'] }, // pelaku UMKM mitra kewirausahaan (Cocok utk semua/vokasi)
   // Paket 3
   'arena-paket-3-01': { prodis: ['pgsd'] }, // Dimas kelas V
   'arena-paket-3-02': { prodis: ['lintas-mapel'] }, // Prakarya SMP
@@ -202,50 +203,50 @@ const ARENA_PRODI_MAP = {
   'arena-paket-3-08': { prodis: ['bahasa-indonesia'], bank: 'PCK' }, // Guru Bahasa Indonesia surat resmi
   'arena-paket-3-10': { prodis: ['lintas-mapel'] }, // kelas VII berkelahi
   'arena-paket-3-12': { prodis: ['ipa', 'umum'] }, // topik hemat energi autentik
-  'arena-paket-3-13': { prodis: ['lintas-mapel'] }, // Bu Indri IPS relokasi PKL
-  'arena-paket-3-14': { prodis: ['lintas-mapel'] }, // pelajaran peta digital
+  'arena-paket-3-13': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Sosiologi, Relokasi & Asesmen' }, // Bu Indri IPS relokasi PKL
+  'arena-paket-3-14': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Geografi & Peta Digital' }, // pelajaran peta digital
   'arena-paket-3-15': { prodis: ['ipa', 'teknik-mesin', 'umum'] }, // merakit jembatan stik es krim
   'arena-paket-3-16': { prodis: ['pgsd', 'ipa', 'teknik-mesin'] }, // observasi tuas & roda gigi bengkel sepeda
-  'arena-paket-3-17': { prodis: ['lintas-mapel'] }, // Guru Geografi tutupan lahan
+  'arena-paket-3-17': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Geografi & Tutupan Lahan' }, // Guru Geografi tutupan lahan
   'arena-paket-3-18': { prodis: ['pgsd', 'matematika'] }, // Guru kelas IV berhitung beragam
   'arena-paket-3-19': { prodis: ['ipa', 'pgsd'], bank: 'PCK' }, // Bu Santika IPA siklus hidup hewan
   'arena-paket-3-22': { prodis: ['pgsd', 'ipa'] }, // kelas IV bagian tumbuhan
-  'arena-paket-3-23': { prodis: ['lintas-mapel'] }, // Guru IPS Pembelajaran Mendalam
+  'arena-paket-3-23': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Pembelajaran Mendalam & TIK' }, // Guru IPS Pembelajaran Mendalam
   'arena-paket-3-25': { prodis: ['matematika', 'pgsd'] }, // Bu Sekar mengajar pecahan
   'arena-paket-3-27': { prodis: ['ipa'], bank: 'PCK' }, // gaya dan gerak miskonsepsi
   'arena-paket-3-30': { prodis: ['bahasa-indonesia', 'pgsd'] }, // menulis paragraf umpan balik
   'arena-paket-3-37': { prodis: ['matematika', 'pgsd'] }, // numerasi growth mindset
   'arena-paket-3-42': { prodis: ['ipa'], bank: 'PCK' }, // asesmen tentang gaya SOLO
   'arena-paket-3-43': { prodis: ['ipa'], bank: 'PCK' }, // sumber energi terbarukan
-  'arena-paket-3-44': { prodis: ['lintas-mapel'] }, // pertumbuhan penduduk (IPS/Geografi)
+  'arena-paket-3-44': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Kependudukan & Data Statistik' }, // pertumbuhan penduduk (IPS/Geografi)
   'arena-paket-3-45': { prodis: ['bahasa-indonesia'], bank: 'PCK' }, // Guru Bahasa Indonesia pidato persuasif
   'arena-paket-3-51': { prodis: ['pgsd', 'ipa'] }, // kelas VI rangkaian listrik sederhana
   'arena-paket-3-52': { prodis: ['matematika'] }, // bunga tunggal soal rutin
   'arena-paket-3-54': { prodis: ['lintas-mapel'] }, // Prakarya anyaman bambu CRT
   'arena-paket-3-57': { prodis: ['pgsd'] }, // kelas IV ADHD
-  'arena-paket-3-58': { prodis: ['lintas-mapel'] }, // Guru Bahasa Inggris simple past tense
+  'arena-paket-3-58': { prodis: ['bahasa-inggris'], bank: 'PCK', topic: 'PCK Bahasa Inggris · Growth Mindset & Grammar' }, // Guru Bahasa Inggris simple past tense
   'arena-paket-3-60': { prodis: ['pgsd'] }, // PPI kelas V
-  'arena-paket-3-61': { prodis: ['lintas-mapel'] }, // Ekonomi paylater
+  'arena-paket-3-61': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Ekonomi Konsumsi & Keuangan' }, // Ekonomi paylater
   'arena-paket-3-62': { prodis: ['lintas-mapel'] }, // SMP School Well-Being
   'arena-paket-3-63': { prodis: ['ipa'], bank: 'PCK' }, // projek penjernih air gaya belajar Kolb
-  'arena-paket-3-65': { prodis: ['lintas-mapel', 'matematika'] }, // skala peta 1:100.000
+  'arena-paket-3-65': { prodis: ['ips', 'matematika'], bank: 'PCK', topic: 'PCK IPS · Skala Peta & Numerasi' }, // skala peta 1:100.000
   'arena-paket-3-66': { prodis: ['pgsd', 'ipa'], bank: 'PCK' }, // Bu Meli IPAS kelas V pegunungan kopi
   'arena-paket-3-67': { prodis: ['ipa'], bank: 'PCK' }, // Bu Rina sistem pencernaan
   'arena-paket-3-68': { prodis: ['matematika'], bank: 'PCK' }, // Guru Matematika luas jajargenjang
-  'arena-paket-3-69': { prodis: ['lintas-mapel'] }, // lompat jauh olahraga
-  'arena-paket-3-70': { prodis: ['lintas-mapel'], bank: 'PCK' }, // sepak bola kelas VIII TGfU
+  'arena-paket-3-69': { prodis: ['pjok'], bank: 'PCK', topic: 'PCK PJOK · Growth Mindset & Atletik' }, // lompat jauh olahraga
+  'arena-paket-3-70': { prodis: ['pjok'], bank: 'PCK', topic: 'PCK PJOK · TGfU & Permainan Bola' }, // sepak bola kelas VIII TGfU
   'arena-paket-3-71': { prodis: ['bahasa-indonesia'], bank: 'PCK' }, // kalimat fakta vs opini
   'arena-paket-3-72': { prodis: ['matematika'], bank: 'PCK' }, // Guru Matematika PTK soal cerita
-  'arena-paket-3-74': { prodis: ['lintas-mapel'] }, // Guru IPS inflasi
+  'arena-paket-3-74': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Ekonomi & Inflasi Kontekstual' }, // Guru IPS inflasi
   'arena-paket-3-75': { prodis: ['ipa', 'pgsd'], bank: 'PCK' }, // rantai makanan SOLO
   'arena-paket-3-76': { prodis: ['ipa', 'pgsd'], bank: 'PCK' }, // Guru IPAS kesiapsiagaan bencana
   'arena-paket-3-77': { prodis: ['ipa'], bank: 'PCK' }, // percobaan cahaya kecambah
-  'arena-paket-3-78': { prodis: ['lintas-mapel'] }, // Geografi permukiman kumuh
+  'arena-paket-3-78': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Geografi & Masalah Perkotaan' }, // Geografi permukiman kumuh
   'arena-paket-3-80': { prodis: ['pgsd', 'bahasa-indonesia'], bank: 'PCK' }, // Guru kelas II menulis kalimat
   // Paket 4 no<=30
   'arena-paket-4-matematika-01': { prodis: ['ipa'] }, // IPAS SMP energi
   'arena-paket-4-matematika-02': { prodis: ['matematika'] }, // Bu Lestari Matematika VII
-  'arena-paket-4-matematika-03': { prodis: ['lintas-mapel'] }, // IPS Ekonomi SMA
+  'arena-paket-4-matematika-03': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Ekonomi SMA & Kontekstual' }, // IPS Ekonomi SMA
   'arena-paket-4-matematika-04': { prodis: ['pgsd', 'matematika'] }, // Bu Mira kelas V pecahan
   'arena-paket-4-matematika-05': { prodis: ['pgsd', 'ipa'] }, // siklus air kelas VI
   'arena-paket-4-matematika-06': { prodis: ['bahasa-indonesia'] }, // Bu Wati Bahasa Indonesia VIII
@@ -257,16 +258,16 @@ const ARENA_PRODI_MAP = {
   'arena-paket-4-matematika-12': { prodis: ['bahasa-indonesia'] }, // paragraf argumentasi kelas IX
   'arena-paket-4-matematika-15': { prodis: ['pgsd', 'ipa'] }, // IPAS kelas IV
   'arena-paket-4-matematika-16': { prodis: ['lintas-mapel'] }, // Di kelas VII SMP
-  'arena-paket-4-matematika-17': { prodis: ['lintas-mapel'] }, // MGMP Bahasa Inggris
+  'arena-paket-4-matematika-17': { prodis: ['bahasa-inggris'], bank: 'PCK', topic: 'PCK Bahasa Inggris · MGMP & Asesmen' }, // MGMP Bahasa Inggris
   'arena-paket-4-matematika-19': { prodis: ['bahasa-indonesia'] }, // Bu Nuri Bahasa Indonesia
-  'arena-paket-4-matematika-21': { prodis: ['lintas-mapel'] }, // Sosiologi SMA
+  'arena-paket-4-matematika-21': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Sosiologi & Konteks Masyarakat' }, // Sosiologi SMA
   'arena-paket-4-matematika-22': { prodis: ['pgsd', 'ipa'] }, // Bu Maya IPAS V sawah
   'arena-paket-4-matematika-23': { prodis: ['lintas-mapel'] }, // Seni Budaya SMP
   'arena-paket-4-matematika-24': { prodis: ['ipa'], bank: 'PCK' }, // Fisika gelombang simulasi
   'arena-paket-4-matematika-25': { prodis: ['ipa'], bank: 'PCK' }, // Biologi kelas X
   'arena-paket-4-matematika-26': { prodis: ['bahasa-indonesia'] }, // Bahasa Indonesia SMP
   'arena-paket-4-matematika-27': { prodis: ['ipa'], bank: 'PCK' }, // Bu Ratih IPA VIII
-  'arena-paket-4-matematika-28': { prodis: ['lintas-mapel'] }, // Sejarah XI
+  'arena-paket-4-matematika-28': { prodis: ['ips'], bank: 'PCK', topic: 'PCK IPS · Sejarah & Refleksi Guru' }, // Sejarah XI
   'arena-paket-4-matematika-29': { prodis: ['lintas-mapel'] }, // wali kelas VIII
   'arena-paket-4-matematika-30': { prodis: ['pgsd'] }, // Bu Wulan kelas IV SD
   // Paket 5 no<=30
@@ -287,7 +288,7 @@ const ARENA_PRODI_MAP = {
   'arena-paket-5-bahasa-indonesia-19': { prodis: ['lintas-mapel'] }, // kelas VIII
   'arena-paket-5-bahasa-indonesia-20': { prodis: ['lintas-mapel'] }, // kelas VII
   'arena-paket-5-bahasa-indonesia-23': { prodis: ['bahasa-indonesia', 'ipa'] }, // teks laporan percobaan VIII
-  'arena-paket-5-bahasa-indonesia-25': { prodis: ['lintas-mapel'] }, // PJOK kebugaran Kolb
+  'arena-paket-5-bahasa-indonesia-25': { prodis: ['pjok'], bank: 'PCK', topic: 'PCK PJOK · Kebugaran & Siklus Kolb' }, // PJOK kebugaran Kolb
   'arena-paket-5-bahasa-indonesia-27': { prodis: ['bahasa-indonesia', 'pgsd'] }, // literasi numerasi VII
   'arena-paket-5-bahasa-indonesia-28': { prodis: ['lintas-mapel'] }, // wali kelas VII
 };
@@ -479,13 +480,13 @@ for (const p of pakets) {
 const ustRaw = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/ustExtracted.json'), 'utf8'));
 const UST_SUB_TOPIC_MAP = {
   'ust-setuju-01': { prodiScope: ['teknik-mesin', 'smk-vokasi'], bank: 'PU', topic: 'PMA & Asesmen (Vokasi Mesin/TKR)' },
-  'ust-setuju-02': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Tata Boga / Kuliner' },
+  'ust-setuju-02': { prodiScope: ['tata-boga'], bank: 'PCK', topic: 'PCK Tata Boga · Kuliner Dasar SMK' },
   'ust-setuju-03': { prodiScope: ['teknik-mesin', 'smk-vokasi'], bank: 'PU', topic: 'PMA & Asesmen (Vokasi Mesin)' },
-  'ust-setuju-04': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Akuntansi SMK' },
+  'ust-setuju-04': { prodiScope: ['akuntansi'], bank: 'PCK', topic: 'PCK Akuntansi · Laporan Keuangan SMK' },
   'ust-setuju-05': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · TKJ / Jaringan' },
   'ust-setuju-06': { prodiScope: ['dkv'], bank: 'PCK', topic: 'PCK DKV · Teaching Factory & Kemitraan' },
   'ust-setuju-07': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Teknik Kendaraan Ringan' },
-  'ust-setuju-08': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Tata Boga / Pastry' },
+  'ust-setuju-08': { prodiScope: ['tata-boga'], bank: 'PCK', topic: 'PCK Tata Boga · Produksi Pastry SMK' },
   'ust-setuju-09': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · RPL / Pemrograman' },
   'ust-setuju-10': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · TITL / Listrik' },
   'ust-setuju-11': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Agribisnis (APHP)' },
@@ -493,7 +494,7 @@ const UST_SUB_TOPIC_MAP = {
   'ust-setuju-13': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Animasi SMK' },
   'ust-setuju-14': { prodiScope: ['teknik-mesin', 'smk-vokasi'], bank: 'PU', topic: 'PMA & Asesmen (Vokasi Mesin)' },
   'ust-setuju-15': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · TKJ / Jaringan' },
-  'ust-biya-01': { prodiScope: ['lintas-mapel', 'teknik-mesin', 'dkv', 'smk-vokasi', 'matematika', 'bahasa-indonesia'] }, // kelas XI
+  'ust-biya-01': { prodiScope: ['lintas-mapel', 'teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi', 'matematika', 'bahasa-indonesia', 'bahasa-inggris', 'ips', 'pjok', 'ppkn', 'pai'] }, // kelas XI
   'ust-gm-01': { prodiScope: ['pgsd'] }, // kelas V
   'ust-gm-03': { prodiScope: ['pgsd', 'ipa'] }, // IPAS kelas VI
   'ust-gm-04': { prodiScope: ['pgsd', 'matematika'] }, // pecahan kelas V
@@ -504,7 +505,7 @@ const UST_SUB_TOPIC_MAP = {
   'ust-hermar-ppdp-01': { prodiScope: ['pgsd', 'ipa'] }, // IPAS kelas IV
   'ust-hermar-ppdp-02': { prodiScope: ['pgsd', 'matematika'] }, // Matematika kelas III
   'ust-hermar-ppdp-04': { prodiScope: ['pgsd'] }, // kelas V
-  'ust-yuli-sel-16': { prodiScope: ['lintas-mapel'] }, // Pendidikan Pancasila
+  'ust-yuli-sel-16': { prodiScope: ['ppkn'], bank: 'PCK', topic: 'PCK PPKn · Kebinekaan & Pancasila' }, // Pendidikan Pancasila
   'ust-yuli-sel-20': { prodiScope: ['lintas-mapel', 'ipa', 'matematika', 'bahasa-indonesia'] }, // kelas VII
   'ust-desy-pma-08': { prodiScope: ['umum'] }, // poster anti-perundungan literasi media
   'ust-desy-pma-12': { prodiScope: ['umum'] }, // proyek debat gawai di sekolah
@@ -540,27 +541,39 @@ const ustConverted = ustRaw.map((item) => {
 const PRODI_LIST = [
   'teknik-mesin',
   'dkv',
+  'tata-boga',
+  'akuntansi',
+  'smk-vokasi',
   'pgsd',
   'matematika',
   'bahasa-indonesia',
+  'bahasa-inggris',
   'ipa',
-  'smk-vokasi',
+  'ips',
+  'pjok',
+  'ppkn',
+  'pai',
   'umum',
 ];
 
-// Include 102 PCK Teknik Mesin + 55 PCK DKV + 18 puKat counts
-const puKatIds = Array.from({ length: 18 }, (_, k) => `pu-kat-${String(k + 1).padStart(2, '0')}`);
 const PU_KAT_SCOPE = {
-  'pu-kat-01': ['teknik-mesin', 'dkv', 'smk-vokasi'],
+  'pu-kat-01': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'],
+  'pu-kat-02': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi', 'matematika', 'bahasa-indonesia', 'bahasa-inggris', 'ipa', 'ips', 'pjok', 'ppkn', 'pai'],
   'pu-kat-06': ['teknik-mesin', 'smk-vokasi'],
   'pu-kat-09': ['teknik-mesin', 'smk-vokasi'],
-  'pu-kat-10': ['teknik-mesin', 'dkv', 'smk-vokasi'], // usia remaja SMK
-  'pu-kat-12': ['teknik-mesin', 'dkv', 'smk-vokasi'],
+  'pu-kat-10': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'],
+  'pu-kat-12': ['teknik-mesin', 'dkv', 'tata-boga', 'akuntansi', 'smk-vokasi'],
   'pu-kat-13': ['teknik-mesin', 'smk-vokasi'],
-  'pu-kat-14': ['teknik-mesin'], // MGMP Teknik Mesin
-  'pu-kat-17': ['teknik-mesin', 'smk-vokasi'], // bengkel atau kelas
-  'pu-kat-18': ['teknik-mesin'], // membersihkan mesin setelah praktik
+  'pu-kat-14': ['teknik-mesin'],
+  'pu-kat-17': ['teknik-mesin', 'smk-vokasi'],
+  'pu-kat-18': ['teknik-mesin'],
 };
+const puKatIds = Array.from({ length: 18 }, (_, k) => `pu-kat-${String(k + 1).padStart(2, '0')}`);
+
+let fungsionalArr = [];
+try {
+  fungsionalArr = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/fungsionalExtracted.json'), 'utf8'));
+} catch {}
 
 function matchesProdi(prodiScope, target) {
   if (target === 'umum') return prodiScope === 'UMUM';
@@ -571,12 +584,13 @@ function matchesProdi(prodiScope, target) {
 const combinedVirtual = [
   ...arenaConverted,
   ...ustConverted,
+  ...fungsionalArr,
   ...Array.from({ length: 102 }, (_, i) => ({ id: `pck-mesin-${i}`, bank: 'PCK', prodiScope: ['teknik-mesin'] })),
   ...Array.from({ length: 55 }, (_, i) => ({ id: `pck-dkv-${i}`, bank: 'PCK', prodiScope: ['dkv'] })),
   ...puKatIds.map((id) => ({ id, bank: 'PU', prodiScope: PU_KAT_SCOPE[id] || 'UMUM' })),
 ];
 
-console.log(`Total unique questions processed: ${combinedVirtual.length} (arena=${arenaConverted.length}, ust=${ustConverted.length}, mesin=102, dkv=55, puKat=18)`);
+console.log(`Total unique questions processed: ${combinedVirtual.length} (arena=${arenaConverted.length}, ust=${ustConverted.length}, mesin=102, dkv=55, puKat=18, web=${fungsionalArr.length})`);
 console.log('\n=== PER-PRODI ELIGIBLE QUESTION POOLS ===');
 for (const pr of PRODI_LIST) {
   const pool = combinedVirtual.filter((q) => matchesProdi(q.prodiScope, pr));
