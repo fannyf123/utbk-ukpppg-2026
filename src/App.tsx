@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { BookOpen, Compass, Moon, Sun } from 'lucide-react';
 import { JuknisGuideModal } from './components/JuknisGuideModal';
+import { WorkshopStamp } from './components/TactilePrimitives';
 import { ALL_QUESTIONS, PCK_BANK, PU_BANK } from './data/questionBank';
 import { createDrillSession, createOfficialExamSession } from './engine/randomizer';
 import { gradeSession } from './engine/scoring';
@@ -42,14 +42,12 @@ export function App() {
   const [route, setRoute] = useState<ActiveRoute>('home');
   const [guideOpen, setGuideOpen] = useState(false);
 
-  // Terapkan tema & ukuran font ke root dokumen
   useEffect(() => {
     document.documentElement.dataset.theme = prefs.theme;
     document.documentElement.dataset.fontScale = prefs.fontScale;
     savePreferences(prefs);
   }, [prefs]);
 
-  // Sinkronkan activeSession ke localStorage otomatis setiap perubahan
   useEffect(() => {
     saveActiveSession(activeSession);
   }, [activeSession]);
@@ -156,31 +154,20 @@ export function App() {
     <div className="app-shell">
       <header className="topbar">
         <div className="topbar-inner">
-          <button
-            type="button"
-            className="brand-btn"
-            onClick={() => setRoute('home')}
-          >
-            <div className="brand-mark" aria-hidden="true">
-              <Compass size={20} />
-            </div>
+          <button type="button" className="brand-btn" onClick={() => setRoute('home')}>
+            <WorkshopStamp />
             <div>
-              <span className="brand-title">Tryout UTBK UKPPPG 2026</span>
-              <span className="brand-sub">Calon Guru Teknik Mesin SMK · Standar BPPP</span>
+              <span className="brand-title">UTBK UKPPPG 2026</span>
+              <span className="brand-sub">Teknik Mesin SMK · Standar BPPP</span>
             </div>
           </button>
 
           <div className="topbar-actions">
-            <button
-              type="button"
-              className="btn btn-sm btn-ghost"
-              onClick={() => setGuideOpen(true)}
-            >
-              <BookOpen size={15} />
+            <button type="button" className="btn btn-sm" onClick={() => setGuideOpen(true)}>
               Panduan Juknis
             </button>
 
-            <div className="icon-group" role="group" aria-label="Ukuran huruf">
+            <div className="font-group" role="group" aria-label="Ukuran huruf">
               {(['sm', 'md', 'lg'] as FontScale[]).map((sc) => (
                 <button
                   key={sc}
@@ -196,14 +183,11 @@ export function App() {
 
             <button
               type="button"
-              className="btn btn-sm btn-secondary"
-              aria-label={
-                prefs.theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'
-              }
+              className="btn btn-sm"
+              aria-label={prefs.theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
               onClick={handleToggleTheme}
             >
-              {prefs.theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
-              <span>{prefs.theme === 'light' ? 'Gelap' : 'Terang'}</span>
+              {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
             </button>
           </div>
         </div>

@@ -1,16 +1,5 @@
 import { useMemo, useState } from 'react';
-import {
-  ArrowRight,
-  BookOpen,
-  CheckSquare,
-  Clock,
-  Layers,
-  Play,
-  RotateCcw,
-  ShieldCheck,
-  SlidersHorizontal,
-  Trash2,
-} from 'lucide-react';
+import { RibbonMarquee, TapeStrip } from '../components/TactilePrimitives';
 import { getBankSummary, getBankTopics } from '../data/questionBank';
 import { evaluateQuestion } from '../engine/scoring';
 import type {
@@ -34,6 +23,66 @@ interface HomeViewProps {
   onResetProgress: () => void;
   onOpenGuide: () => void;
 }
+
+const QUICK_DRILLS: { num: string; label: string; config: DrillConfig }[] = [
+  {
+    num: '01',
+    label: 'Pemrograman CNC & Simulator',
+    config: {
+      bank: 'PCK',
+      topic: 'Pemrograman CNC & Simulator',
+      type: 'ALL',
+      count: 11,
+      instantFeedback: true,
+    },
+  },
+  {
+    num: '02',
+    label: 'Metrologi Presisi & Pengukuran',
+    config: {
+      bank: 'PCK',
+      topic: 'Metrologi Presisi & Pengukuran',
+      type: 'ALL',
+      count: 11,
+      instantFeedback: true,
+    },
+  },
+  {
+    num: '03',
+    label: 'K3LH & Teaching Factory',
+    config: {
+      bank: 'PCK',
+      topic: 'K3LH & Teaching Factory',
+      type: 'ALL',
+      count: 11,
+      instantFeedback: true,
+    },
+  },
+  {
+    num: '04',
+    label: 'Khusus PGK Kategori (Benar/Salah)',
+    config: {
+      bank: 'ALL',
+      topic: 'ALL',
+      type: 'PGK_KATEGORI',
+      count: 20,
+      instantFeedback: true,
+      customTitle: 'Drill PGK Kategori (Tabel Pernyataan)',
+    },
+  },
+  {
+    num: '05',
+    label: 'Khusus PGK MCMA (Multi Jawaban)',
+    config: {
+      bank: 'ALL',
+      topic: 'ALL',
+      type: 'PGK_MCMA',
+      count: 20,
+      instantFeedback: true,
+      customTitle: 'Drill PGK MCMA (Multi Jawaban)',
+    },
+  },
+];
 
 export function HomeView({
   activeSession,
@@ -75,392 +124,420 @@ export function HomeView({
     : 0;
 
   return (
-    <main className="main-container">
-      {activeSession && (
-        <section className="resume-banner" aria-label="Sesi tryout tersimpan">
-          <div>
-            <h2>Sesi Aktif Belum Dikumpulkan: {activeSession.title}</h2>
-            <p>
-              Progres tersimpan otomatis ({activeAnswered}/{activeSession.slots.length} soal terisi ·{' '}
-              {activeSession.flaggedIds.length} ditandai ragu-ragu).
-            </p>
-          </div>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button type="button" className="btn btn-primary" onClick={onResumeActive}>
-              <Play size={16} />
-              Lanjutkan Sesi
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={onDiscardActive}>
-              Buang Sesi
-            </button>
-          </div>
-        </section>
-      )}
-
-      <div className="home-grid">
-        {/* Panel Simulasi Resmi UTBK */}
-        <section className="panel hero-panel" aria-labelledby="hero-title">
-          <div className="hero-kicker">
-            <ShieldCheck size={16} />
-            <span>Simulasi Resmi Sesuai Juknis UKPPPG 2026</span>
-          </div>
-
-          <h1 id="hero-title" className="hero-title">
-            Tryout UTBK UKPPPG Calon Guru — Teknik Mesin SMK
-          </h1>
-
-          <p className="hero-desc">
-            Komposisi soal disusun acak setiap kali Anda memulai simulasi baru dengan algoritma{' '}
-            <em>prioritas tanpa pengulangan</em>: soal yang belum pernah dikerjakan dan soal yang
-            masih keliru dipanggil lebih dulu, disertai pengacakan posisi opsi dan pernyataan tabel.
-          </p>
-
-          <div className="spec-strip">
-            <div className="spec-item">
-              <span className="spec-val">50</span>
-              <span className="spec-label">PCK Teknik Mesin</span>
-            </div>
-            <div className="spec-item">
-              <span className="spec-val">30</span>
-              <span className="spec-label">Pedagogi Umum</span>
-            </div>
-            <div className="spec-item">
-              <span className="spec-val">150&apos;</span>
-              <span className="spec-label">Timer Hitung Mundur</span>
-            </div>
-            <div className="spec-item">
-              <span className="spec-val">{bankSummary.total}</span>
-              <span className="spec-label">Total Bank Soal</span>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.45rem',
-              fontSize: '0.86rem',
-              color: 'var(--ink-secondary)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-              <CheckSquare size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span>
-                Mencakup seluruh 3 bentuk soal Juknis: <strong>PG ({bankSummary.byType.PG})</strong>,{' '}
-                <strong>PGK Kategori ({bankSummary.byType.PGK_KATEGORI})</strong>, dan{' '}
-                <strong>PGK MCMA ({bankSummary.byType.PGK_MCMA})</strong>.
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-              <Clock size={16} style={{ color: 'var(--color-primary)', flexShrink: 0 }} />
-              <span>
-                Auto-save lokal di browser—aman jika ter-refresh tanpa memutus sisa waktu mundur.
-              </span>
-            </div>
-          </div>
-
-          <label className="check-row">
-            <input
-              type="checkbox"
-              checked={mixOrder}
-              onChange={(e) => setMixOrder(e.target.checked)}
-            />
-            <span>Acak campur urutan nomor PCK &amp; Pedagogi Umum dalam 1–80</span>
-          </label>
-
-          <div className="hero-cta-row">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg"
-              onClick={() => onStartOfficial(mixOrder)}
-            >
-              <Play size={18} />
-              Mulai Simulasi Resmi (80 Soal)
-            </button>
-            <button type="button" className="btn btn-secondary btn-lg" onClick={onOpenGuide}>
-              <BookOpen size={17} />
-              Kisi-Kisi &amp; Tata Tertib
-            </button>
-          </div>
-        </section>
-
-        {/* Panel Mode Drill Terfokus */}
-        <section className="panel" aria-labelledby="drill-title">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.3rem' }}>
-            <SlidersHorizontal size={18} style={{ color: 'var(--color-primary)' }} />
-            <h2 id="drill-title" className="section-heading" style={{ margin: 0 }}>
-              Mode Drill Topik &amp; Bentuk Soal
-            </h2>
-          </div>
-          <p className="section-sub">
-            Latih kelemahan spesifik seperti PGK Kategori/MCMA, Metrologi, CNC, PMA Vokasi, atau SEL.
-          </p>
-
-          <div className="form-stack">
-            <div className="field-group">
-              <label>Rumpun Soal</label>
-              <div className="segmented-pills">
-                {(
-                  [
-                    ['ALL', `Semua (${bankSummary.total})`],
-                    ['PCK', `PCK Mesin (${bankSummary.pck})`],
-                    ['PU', `Pedagogi (${bankSummary.pu})`],
-                  ] as const
-                ).map(([val, label]) => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`pill-btn ${drillBank === val ? 'is-active' : ''}`}
-                    onClick={() => {
-                      setDrillBank(val);
-                      setDrillTopic('ALL');
-                    }}
-                  >
-                    {label}
-                  </button>
-                ))}
+    <main className="main-wrap">
+      {/* Seksi 1: Papan Kerja Utama (Warm Paper Desk + Tactile Ticket & Sticky Checklist) */}
+      <section className="desk-hero-band" aria-labelledby="hero-title">
+        <div className="container">
+          {activeSession && (
+            <div className="resume-strip" role="region" aria-label="Sesi tryout tersimpan">
+              <div>
+                <h2>Sesi Aktif Belum Dikumpulkan: {activeSession.title}</h2>
+                <p>
+                  Progres tersimpan otomatis ({activeAnswered}/{activeSession.slots.length} soal
+                  terisi · {activeSession.flaggedIds.length} ditandai ragu-ragu).
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <button type="button" className="btn btn-ink" onClick={onResumeActive}>
+                  Lanjutkan Sesi
+                </button>
+                <button type="button" className="btn" onClick={onDiscardActive}>
+                  Buang Sesi
+                </button>
               </div>
             </div>
+          )}
 
-            <div className="field-group">
-              <label htmlFor="topic-select">Topik Bahasan</label>
-              <select
-                id="topic-select"
-                className="select-input"
-                value={drillTopic}
-                onChange={(e) => setDrillTopic(e.target.value)}
-              >
-                <option value="ALL">Semua Topik dalam Rumpun Terpilih</option>
-                {availableTopics.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <div className="hero-layout">
+            <div className="hero-card grain-surface">
+              <TapeStrip kind="masking" label="Juknis 2026" />
 
-            <div className="field-group">
-              <label htmlFor="type-select">Bentuk Soal</label>
-              <select
-                id="type-select"
-                className="select-input"
-                value={drillType}
-                onChange={(e) => setDrillType(e.target.value as 'ALL' | QuestionType)}
-              >
-                <option value="ALL">Campuran (PG, PGK Kategori, PGK MCMA)</option>
-                <option value="PG">PG Sederhana Saja</option>
-                <option value="PGK_KATEGORI">PGK Kategori (Tabel Benar/Salah · Sesuai/Tidak)</option>
-                <option value="PGK_MCMA">PGK MCMA (Pilih Lebih Dari Satu)</option>
-              </select>
-            </div>
+              <div className="hero-subline">Bidang Studi Teknik Mesin SMK · Simulasi CBT</div>
+              <h1 id="hero-title" className="hero-headline">
+                Tryout UTBK UKPPPG Calon Guru 2026
+              </h1>
+              <p className="hero-lead">
+                Setiap mulai simulasi baru, sistem mengacak soal dari bank {bankSummary.total} butir
+                dengan prioritas soal yang belum dikerjakan atau masih salah, sekaligus mengacak
+                posisi opsi serta baris pernyataan tabel.
+              </p>
 
-            <div className="field-group">
-              <label>Jumlah Soal</label>
-              <div className="segmented-pills">
-                {[10, 20, 30, 50].map((num) => (
-                  <button
-                    key={num}
-                    type="button"
-                    className={`pill-btn ${drillCount === num ? 'is-active' : ''}`}
-                    onClick={() => setDrillCount(num)}
-                  >
-                    {num} Soal
-                  </button>
-                ))}
+              <div className="work-ticket" aria-label="Spesifikasi ujian resmi">
+                <div className="ticket-cell">
+                  <span className="ticket-num">50</span>
+                  <span className="ticket-lbl">PCK Mesin</span>
+                </div>
+                <div className="ticket-cell">
+                  <span className="ticket-num">30</span>
+                  <span className="ticket-lbl">Pedagogi</span>
+                </div>
+                <div className="ticket-cell">
+                  <span className="ticket-num">150&apos;</span>
+                  <span className="ticket-lbl">Durasi</span>
+                </div>
+                <div className="ticket-cell">
+                  <span className="ticket-num">{bankSummary.total}</span>
+                  <span className="ticket-lbl">Bank Soal</span>
+                </div>
               </div>
-            </div>
 
-            <label className="check-row">
-              <input
-                type="checkbox"
-                checked={instantFeedback}
-                onChange={(e) => setInstantFeedback(e.target.checked)}
-              />
-              <span>Mode Belajar (tampilkan tombol Cek Jawaban + Pembahasan per soal)</span>
-            </label>
-
-            <button
-              type="button"
-              className="btn btn-secondary btn-lg"
-              onClick={() =>
-                onStartDrill({
-                  bank: drillBank,
-                  topic: drillTopic,
-                  type: drillType,
-                  count: drillCount,
-                  instantFeedback,
-                })
-              }
-            >
-              <Layers size={17} />
-              Mulai Drill Acak Sekarang
-              <ArrowRight size={16} />
-            </button>
-          </div>
-        </section>
-      </div>
-
-      {/* Seksi Statistik Bank & Riwayat Percobaan */}
-      <div className="home-secondary">
-        <section className="panel" aria-labelledby="mastery-title">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem' }}>
-            <h2 id="mastery-title" className="section-heading">
-              Cakupan Bank Soal &amp; Penguasaan
-            </h2>
-            {seenCount > 0 && !confirmReset && (
-              <button
-                type="button"
-                className="btn btn-sm btn-ghost"
-                onClick={() => setConfirmReset(true)}
-              >
-                <RotateCcw size={14} />
-                Reset Progres
-              </button>
-            )}
-          </div>
-          <p className="section-sub">
-            Total bank memuat {bankSummary.pck} soal PCK Teknik Mesin dan {bankSummary.pu} soal Pedagogi Umum (sumber LPTK UST &amp; kisi-kisi Juknis 2026).
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-            <div>
-              <div className="bar-row-head">
-                <span>Soal Pernah Ditemui</span>
-                <span className="mono">
-                  {seenCount} / {bankSummary.total}
-                </span>
-              </div>
-              <div className="progress-track">
-                <div
-                  className="progress-fill"
-                  style={{ width: `${Math.round((seenCount / bankSummary.total) * 100)}%` }}
+              <label className="check-row">
+                <input
+                  type="checkbox"
+                  checked={mixOrder}
+                  onChange={(e) => setMixOrder(e.target.checked)}
                 />
-              </div>
-            </div>
+                <span>Acak campur urutan nomor PCK &amp; Pedagogi Umum (nomor 1 s.d. 80)</span>
+              </label>
 
-            <div>
-              <div className="bar-row-head">
-                <span>Terjawab Tepat Terakhir Kali</span>
-                <span className="mono">
-                  {masteredCount} / {bankSummary.total}
-                </span>
-              </div>
-              <div className="progress-track">
-                <div
-                  className="progress-fill is-success"
-                  style={{ width: `${Math.round((masteredCount / bankSummary.total) * 100)}%` }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {confirmReset && (
-            <div
-              style={{
-                marginTop: '0.9rem',
-                padding: '0.75rem',
-                borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'var(--color-danger-soft)',
-                border: '1px solid var(--color-danger-border)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '0.5rem',
-                flexWrap: 'wrap',
-              }}
-            >
-              <span style={{ fontSize: '0.84rem' }}>
-                Hapus seluruh riwayat skor &amp; status penguasaan lokal?
-              </span>
-              <div style={{ display: 'flex', gap: '0.45rem' }}>
+              <div className="cta-row">
                 <button
                   type="button"
-                  className="btn btn-sm btn-danger"
-                  onClick={() => {
-                    onResetProgress();
-                    setConfirmReset(false);
+                  className="btn btn-primary btn-lg"
+                  onClick={() => onStartOfficial(mixOrder)}
+                >
+                  Mulai Simulasi Resmi (80 Soal)
+                </button>
+                <button type="button" className="btn btn-lg" onClick={onOpenGuide}>
+                  Kisi-Kisi &amp; Tata Tertib
+                </button>
+              </div>
+            </div>
+
+            <div className="desk-right-stack">
+              <div className="sticky-note grain-surface">
+                <TapeStrip kind="clear" label="TUK UST" peelable />
+                <h2 className="sticky-heading">Checklist Ruang Ujian</h2>
+                <ul className="sticky-list">
+                  <li>Hadir di lokasi TUK maks. 60 menit sebelum mulai</li>
+                  <li>Bukan jeans/kaus, wajib bersepatu tertutup</li>
+                  <li>PG ({bankSummary.byType.PG}), PGK Kategori ({bankSummary.byType.PGK_KATEGORI}), MCMA ({bankSummary.byType.PGK_MCMA})</li>
+                  <li>Timer tersimpan otomatis jika halaman di-refresh</li>
+                </ul>
+                <p className="sticky-note-tip">Klik selotip transparan di atas untuk mengelupas.</p>
+              </div>
+
+              <div className="paper-card grain-surface" aria-labelledby="mastery-title">
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    marginBottom: '0.65rem',
                   }}
                 >
-                  <Trash2 size={14} />
-                  Ya, Hapus
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-secondary"
-                  onClick={() => setConfirmReset(false)}
-                >
-                  Batal
-                </button>
-              </div>
-            </div>
-          )}
-        </section>
+                  <h2
+                    id="mastery-title"
+                    style={{
+                      margin: 0,
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.05rem',
+                      fontWeight: 800,
+                    }}
+                  >
+                    Rekam Penguasaan Bank
+                  </h2>
+                  {seenCount > 0 && !confirmReset && (
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-ghost"
+                      onClick={() => setConfirmReset(true)}
+                    >
+                      Reset Progres
+                    </button>
+                  )}
+                </div>
 
-        <section className="panel" aria-labelledby="history-title">
-          <h2 id="history-title" className="section-heading">
-            Riwayat Hasil Tryout Terakhir
-          </h2>
-          <p className="section-sub">
-            Klik sesi yang memiliki detail tersimpan untuk meninjau kembali pembahasan &amp; subkompetensi.
-          </p>
-
-          {history.length === 0 ? (
-            <div
-              style={{
-                padding: '1.25rem',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'var(--bg-subtle)',
-                fontSize: '0.88rem',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              Belum ada riwayat pengerjaan selesai. Mulai Simulasi Resmi 80 Soal atau Mode Drill untuk melihat analitik pertama Anda.
-            </div>
-          ) : (
-            <div className="history-list">
-              {history.slice(0, 5).map((item) => {
-                const canInspect = item.slots && item.slots.length > 0;
-                return (
-                  <div key={item.id} className="history-row">
-                    <div className="history-meta">
-                      <span className="history-title">{item.title}</span>
-                      <span className="history-date">
-                        {new Date(item.completedAt).toLocaleString('id-ID', {
-                          dateStyle: 'medium',
-                          timeStyle: 'short',
-                        })}{' '}
-                        · {item.strictCorrectCount}/{item.totalQuestions} benar
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <div>
+                    <div className="bar-row-head">
+                      <span>Soal Pernah Ditemui</span>
+                      <span className="mono">
+                        {seenCount} / {bankSummary.total}
                       </span>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span
-                        className={`badge mono ${
-                          item.strictScore >= 75
-                            ? 'badge-success'
-                            : item.strictScore >= 55
-                              ? 'badge-accent'
-                              : 'badge-danger'
-                        }`}
-                      >
-                        Skor {item.strictScore}
-                      </span>
-                      {canInspect && (
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-secondary"
-                          onClick={() => onViewHistoryResult(item)}
-                        >
-                          Telaah
-                        </button>
-                      )}
+                    <div className="progress-track">
+                      <div
+                        className="progress-fill is-warn"
+                        style={{ width: `${Math.round((seenCount / bankSummary.total) * 100)}%` }}
+                      />
                     </div>
                   </div>
-                );
-              })}
+                  <div>
+                    <div className="bar-row-head">
+                      <span>Terjawab Tepat Terakhir Kali</span>
+                      <span className="mono">
+                        {masteredCount} / {bankSummary.total}
+                      </span>
+                    </div>
+                    <div className="progress-track">
+                      <div
+                        className="progress-fill"
+                        style={{
+                          width: `${Math.round((masteredCount / bankSummary.total) * 100)}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {confirmReset && (
+                  <div
+                    style={{
+                      marginTop: '0.85rem',
+                      padding: '0.7rem',
+                      borderRadius: 'var(--radius-sm)',
+                      backgroundColor: 'var(--accent-danger-soft)',
+                      border: '1.5px solid var(--border-ink)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '0.5rem',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <span style={{ fontSize: '0.84rem', fontWeight: 600 }}>
+                      Hapus seluruh riwayat lokal?
+                    </span>
+                    <div style={{ display: 'flex', gap: '0.45rem' }}>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-danger"
+                        onClick={() => {
+                          onResetProgress();
+                          setConfirmReset(false);
+                        }}
+                      >
+                        Ya, Hapus
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-sm"
+                        onClick={() => setConfirmReset(false)}
+                      >
+                        Batal
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-        </section>
-      </div>
+          </div>
+        </div>
+      </section>
+
+      <RibbonMarquee />
+
+      {/* Seksi 2: Meja Latihan & Riwayat di atas Mat Bengkel Gelap */}
+      <section className="workbench-band" aria-labelledby="drill-section-title">
+        <div className="container">
+          <div className="workbench-band-head">
+            <h2 id="drill-section-title">Meja Drill Topik &amp; Riwayat Tryout</h2>
+            <p>
+              Asah topik khusus Teknik Mesin, Pedagogi Umum (PMA/PPDP/SEL), atau latih ketelitian
+              pada soal tabel PGK Kategori dan PGK MCMA.
+            </p>
+          </div>
+
+          <div className="workbench-grid">
+            <div className="paper-card grain-surface">
+              <TapeStrip kind="print" label="Mode Drill" />
+
+              <div className="field-stack">
+                <div className="field-group">
+                  <label>Rumpun Soal</label>
+                  <div className="segmented-row">
+                    {(
+                      [
+                        ['ALL', `Semua (${bankSummary.total})`],
+                        ['PCK', `PCK Mesin (${bankSummary.pck})`],
+                        ['PU', `Pedagogi (${bankSummary.pu})`],
+                      ] as const
+                    ).map(([val, label]) => (
+                      <button
+                        key={val}
+                        type="button"
+                        className={`seg-btn ${drillBank === val ? 'is-active' : ''}`}
+                        onClick={() => {
+                          setDrillBank(val);
+                          setDrillTopic('ALL');
+                        }}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="field-group">
+                  <label htmlFor="topic-select">Topik Bahasan</label>
+                  <select
+                    id="topic-select"
+                    className="select-input"
+                    value={drillTopic}
+                    onChange={(e) => setDrillTopic(e.target.value)}
+                  >
+                    <option value="ALL">Semua Topik dalam Rumpun Terpilih</option>
+                    {availableTopics.map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="field-group">
+                  <label htmlFor="type-select">Bentuk Soal</label>
+                  <select
+                    id="type-select"
+                    className="select-input"
+                    value={drillType}
+                    onChange={(e) => setDrillType(e.target.value as 'ALL' | QuestionType)}
+                  >
+                    <option value="ALL">Campuran (PG, PGK Kategori, PGK MCMA)</option>
+                    <option value="PG">PG Sederhana Saja</option>
+                    <option value="PGK_KATEGORI">PGK Kategori (Tabel Pernyataan)</option>
+                    <option value="PGK_MCMA">PGK MCMA (Multi Jawaban)</option>
+                  </select>
+                </div>
+
+                <div className="field-group">
+                  <label>Jumlah Soal</label>
+                  <div className="segmented-row">
+                    {[10, 20, 30, 50].map((num) => (
+                      <button
+                        key={num}
+                        type="button"
+                        className={`seg-btn ${drillCount === num ? 'is-active' : ''}`}
+                        onClick={() => setDrillCount(num)}
+                      >
+                        {num} Soal
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <label className="check-row" style={{ marginBottom: '0.25rem' }}>
+                  <input
+                    type="checkbox"
+                    checked={instantFeedback}
+                    onChange={(e) => setInstantFeedback(e.target.checked)}
+                  />
+                  <span>Mode Belajar (Periksa jawaban + pembahasan langsung per soal)</span>
+                </label>
+
+                <button
+                  type="button"
+                  className="btn btn-ink btn-lg"
+                  onClick={() =>
+                    onStartDrill({
+                      bank: drillBank,
+                      topic: drillTopic,
+                      type: drillType,
+                      count: drillCount,
+                      instantFeedback,
+                    })
+                  }
+                >
+                  Mulai Drill Acak Sekarang
+                </button>
+              </div>
+
+              <div className="quick-topic-rows" aria-label="Pintasan drill cepat">
+                {QUICK_DRILLS.map((qd) => (
+                  <div key={qd.num} className="quick-topic-row">
+                    <div className="quick-topic-meta">
+                      <span className="quick-topic-num">{qd.num}</span>
+                      <span className="quick-topic-name">{qd.label}</span>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-sm"
+                      onClick={() => onStartDrill(qd.config)}
+                    >
+                      Latih
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="paper-card is-peach grain-surface" aria-labelledby="history-title">
+              <TapeStrip kind="masking" label="Arsip Skor" />
+
+              <h3
+                id="history-title"
+                style={{
+                  margin: '0 0 0.3rem',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.15rem',
+                  fontWeight: 800,
+                }}
+              >
+                Riwayat Hasil Tryout
+              </h3>
+              <p style={{ margin: '0 0 1rem', fontSize: '0.86rem', color: 'var(--ink-secondary)' }}>
+                Pilih sesi selesai untuk meninjau ulang pembahasan dan subkompetensi.
+              </p>
+
+              {history.length === 0 ? (
+                <div
+                  style={{
+                    padding: '1.15rem',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: 'var(--bg-surface)',
+                    border: '2px dashed var(--border-ink)',
+                    fontSize: '0.88rem',
+                    color: 'var(--ink-secondary)',
+                  }}
+                >
+                  Belum ada riwayat pengerjaan selesai. Mulai Simulasi Resmi 80 Soal atau pilih
+                  paket Drill untuk mencatat skor pertama Anda.
+                </div>
+              ) : (
+                <div className="history-list">
+                  {history.slice(0, 6).map((item) => {
+                    const canInspect = item.slots && item.slots.length > 0;
+                    const tone =
+                      item.strictScore >= 75
+                        ? 'is-good'
+                        : item.strictScore >= 55
+                          ? 'is-mid'
+                          : 'is-low';
+                    return (
+                      <div key={item.id} className="history-row">
+                        <div>
+                          <span className="history-title">{item.title}</span>
+                          <span className="history-date">
+                            {new Date(item.completedAt).toLocaleString('id-ID', {
+                              dateStyle: 'medium',
+                              timeStyle: 'short',
+                            })}{' '}
+                            · {item.strictCorrectCount}/{item.totalQuestions} benar
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                          <span className={`score-tag ${tone}`}>Skor {item.strictScore}</span>
+                          {canInspect && (
+                            <button
+                              type="button"
+                              className="btn btn-sm"
+                              onClick={() => onViewHistoryResult(item)}
+                            >
+                              Telaah
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

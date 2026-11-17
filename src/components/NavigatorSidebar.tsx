@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { X } from 'lucide-react';
 import { evaluateQuestion } from '../engine/scoring';
 import type { ExamSession } from '../types/exam';
 
@@ -45,19 +44,28 @@ export function NavigatorSidebar({
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <strong style={{ fontSize: '0.94rem', display: 'block' }}>Peta Nomor Soal</strong>
-          <span style={{ fontSize: '0.76rem', color: 'var(--ink-muted)' }}>
+          <strong
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.96rem',
+              fontWeight: 800,
+              display: 'block',
+            }}
+          >
+            Navigasi Soal
+          </strong>
+          <span className="mono" style={{ fontSize: '0.74rem', color: 'var(--ink-muted)' }}>
             {answeredCount}/{session.slots.length} selesai · {flaggedCount} ragu
           </span>
         </div>
         {onCloseMobile && (
           <button
             type="button"
-            className="btn btn-sm btn-ghost"
+            className="btn btn-sm"
             aria-label="Tutup peta soal"
             onClick={onCloseMobile}
           >
-            <X size={16} />
+            Tutup
           </button>
         )}
       </div>
@@ -133,32 +141,23 @@ export function NavigatorSidebar({
 
       <div className="nav-legend">
         <div>
-          <span
-            className="legend-dot"
-            style={{ backgroundColor: 'var(--color-success-soft)', border: '1px solid var(--color-success-border)' }}
-          />
-          Terisi lengkap
+          <span className="legend-dot" style={{ backgroundColor: 'var(--accent-sage)' }} />
+          Terisi
         </div>
         <div>
-          <span
-            className="legend-dot"
-            style={{ backgroundColor: 'var(--color-accent-soft)', border: '1px solid var(--color-accent)' }}
-          />
+          <span className="legend-dot" style={{ backgroundColor: 'var(--accent-yellow)' }} />
           Ragu-ragu
         </div>
         <div>
-          <span
-            className="legend-dot"
-            style={{ backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border-subtle)' }}
-          />
-          Belum selesai
+          <span className="legend-dot" style={{ backgroundColor: 'var(--bg-canvas)' }} />
+          Kosong
         </div>
         <div>
           <span
             className="legend-dot"
-            style={{ backgroundColor: 'transparent', border: '2px solid var(--color-primary)' }}
+            style={{ backgroundColor: 'transparent', borderColor: 'var(--accent-blue)' }}
           />
-          Aktif dibuka
+          Aktif
         </div>
       </div>
     </div>

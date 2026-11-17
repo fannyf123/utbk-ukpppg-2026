@@ -1,4 +1,3 @@
-import { CheckCircle2, HelpCircle, Info, XCircle } from 'lucide-react';
 import { JUKNIS_SUBCOMPETENCIES } from '../data/juknisReference';
 import { evaluateQuestion } from '../engine/scoring';
 import type { ExamQuestion, UserAnswer } from '../types/exam';
@@ -12,16 +11,15 @@ interface QuestionRendererProps {
   showFeedback: boolean;
   canRevealNow?: boolean;
   onChangeAnswer: (next: UserAnswer) => void;
-  onToggleFlag?: () => void;
   onRevealNow?: () => void;
 }
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-function formatTypeBadge(type: ExamQuestion['type']) {
-  if (type === 'PG') return 'PG Sederhana (1 Jawaban)';
-  if (type === 'PGK_KATEGORI') return 'PGK Kategori (Tabel Pernyataan)';
-  return 'PGK MCMA (Lebih dari 1 Benar)';
+function formatTypeLabel(type: ExamQuestion['type']) {
+  if (type === 'PG') return 'PG TUNGGAL';
+  if (type === 'PGK_KATEGORI') return 'PGK KATEGORI';
+  return 'PGK MCMA';
 }
 
 function getCorrectSummaryText(q: ExamQuestion): string {
@@ -47,7 +45,6 @@ export function QuestionRenderer({
   showFeedback,
   canRevealNow = false,
   onChangeAnswer,
-  onToggleFlag,
   onRevealNow,
 }: QuestionRendererProps) {
   const subMeta = JUKNIS_SUBCOMPETENCIES.find((s) => s.code === question.subkompetensi);
@@ -71,25 +68,21 @@ export function QuestionRenderer({
 
   return (
     <div>
-      <div className="question-meta-bar">
-        <div className="question-badges">
-          <span className="badge badge-primary mono">
+      <div className="q-header-line">
+        <div>
+          <span className="q-meta-index">
             Soal {index + 1} / {total}
           </span>
           <span
-            className={`badge ${question.bank === 'PCK' ? 'badge-primary' : 'badge-accent'}`}
+            className="q-meta-text"
+            title={subMeta ? `${subMeta.kompetensi}: ${subMeta.description}` : question.subkompetensi}
           >
-            {question.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'}
-          </span>
-          <span className="badge">{question.topic}</span>
-          <span
-            className="badge"
-            title={subMeta ? `${subMeta.kompetensi} — ${subMeta.description}` : question.subkompetensi}
-          >
-            {question.subkompetensi} · {question.kompetensi}
+            {question.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'} · {question.topic} ·{' '}
+            {question.subkompetensi}
+            {isFlagged ? ' · [Ragu-Ragu]' : ''}
           </span>
         </div>
-        <span className="badge">{formatTypeBadge(question.type)}</span>
+        <span className="q-format-tag">{formatTypeLabel(question.type)}</span>
       </div>
 
       <p className="question-stem">{question.prompt}</p>
@@ -148,11 +141,14 @@ export function QuestionRenderer({
 
       {question.type === 'PGK_MCMA' && answer.type === 'PGK_MCMA' && (
         <div>
-          <div className="mcma-hint">
+          <div className="instruction-strip">
             <span>
-              <strong>Pilihan Ganda Kompleks (MCMA):</strong> centang semua pernyataan/tindakan yang benar (minimal 2 opsi).
+              <strong>Pilihan Ganda Kompleks (MCMA):</strong> centang semua pernyataan yang tepat
+              (lebih dari satu jawaban benar).
             </span>
-            <span className="badge mono">Dipilih: {answer.selected.length}</span>
+            <span className="mono" style={{ fontWeight: 700 }}>
+              Dipilih: {answer.selected.length}
+            </span>
           </div>
           <div className="options-list" role="group" aria-label="Pilihan ganda kompleks">
             {question.options.map((optText, i) => {
@@ -185,15 +181,15 @@ export function QuestionRenderer({
 
       {question.type === 'PGK_KATEGORI' && answer.type === 'PGK_KATEGORI' && (
         <div>
-          <div className="mcma-hint">
+          <div className="instruction-strip">
             <span>
               <strong>PGK Kategori:</strong> tentukan{' '}
               <em>
                 {question.categories[0]} / {question.categories[1]}
               </em>{' '}
-              untuk setiap pernyataan.
+              untuk setiap pernyataan berikut.
             </span>
-            <span className="badge mono">
+            <span className="mono" style={{ fontWeight: 700 }}>
               Terisi: {answer.selections.filter((s) => s !== null).length}/{question.statements.length}
             </span>
           </div>
@@ -201,17 +197,18 @@ export function QuestionRenderer({
             {question.statements.map((st, rIdx) => {
               const picked = answer.selections[rIdx];
               return (
-                <div
-                  key={rIdx}
-                  className={`kat-row ${rIdx % 2 === 1 ? 'is-even' : ''}`}
-                >
+                <div key={rIdx} className={`kat-row ${rIdx % 2 === 1 ? 'is-even' : ''}`}>
                   <div className="kat-stmt-text">
-                    <span className="mono" style={{ fontWeight: 700, marginRight: '0.4rem' }}>
+                    <span className="mono" style={{ fontWeight: 700, marginRight: '0.45rem' }}>
                       {rIdx + 1}.
                     </span>
                     {st.text}
                   </div>
-                  <div className="kat-toggle-group" role="group" aria-label={`Pernyataan ${rIdx + 1}`}>
+                  <div
+                    className="kat-toggle-group"
+                    role="group"
+                    aria-label={`Pernyataan ${rIdx + 1}`}
+                  >
                     {([0, 1] as const).map((catIdx) => {
                       const isPicked = picked === catIdx;
                       const isRightChoice = st.answer === catIdx;
@@ -248,18 +245,17 @@ export function QuestionRenderer({
       )}
 
       {canRevealNow && !showFeedback && onRevealNow && (
-        <div style={{ marginTop: '1rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+        <div style={{ marginTop: '1.05rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-ink"
             disabled={!ev.isComplete}
             onClick={onRevealNow}
           >
-            <Info size={16} />
-            Periksa Jawaban &amp; Lihat Pembahasan
+            Periksa Jawaban
           </button>
           {!ev.isComplete && (
-            <span style={{ fontSize: '0.82rem', color: 'var(--ink-muted)', alignSelf: 'center' }}>
+            <span style={{ fontSize: '0.84rem', color: 'var(--ink-muted)', alignSelf: 'center' }}>
               {question.type === 'PGK_KATEGORI'
                 ? 'Lengkapi seluruh pernyataan terlebih dahulu.'
                 : 'Pilih jawaban untuk mengecek.'}
@@ -271,50 +267,28 @@ export function QuestionRenderer({
       {showFeedback && (
         <div className={`explanation-box ${ev.strictCorrect ? 'is-correct' : 'is-wrong'}`}>
           <div className="explanation-title">
-            {ev.strictCorrect ? (
-              <>
-                <CheckCircle2 size={18} />
-                <span>Jawaban Tepat</span>
-              </>
-            ) : (
-              <>
-                <XCircle size={18} />
-                <span>
-                  {ev.answered
-                    ? ev.partialRatio > 0
-                      ? `Kurang Tepat (Parsial ${Math.round(ev.partialRatio * 100)}% — Aturan BPPP mengharuskan seluruh bagian tepat)`
-                      : 'Belum Tepat'
-                    : 'Belum Dijawab'}
-                </span>
-              </>
-            )}
+            {ev.strictCorrect
+              ? 'Jawaban Tepat'
+              : ev.answered
+                ? ev.partialRatio > 0
+                  ? `Kurang Tepat (Parsial ${Math.round(ev.partialRatio * 100)}%, skor penuh mewajibkan seluruh bagian tepat)`
+                  : 'Belum Tepat'
+                : 'Belum Dijawab'}
           </div>
           <div className="correct-key-banner">
             <strong>Kunci Jawaban Tepat:</strong> {getCorrectSummaryText(question)}
           </div>
           <p className="explanation-text">{question.explanation}</p>
           <p
+            className="mono"
             style={{
               margin: '0.55rem 0 0',
-              fontSize: '0.78rem',
+              fontSize: '0.74rem',
               color: 'var(--ink-muted)',
             }}
           >
-            Sumber: {question.source} · Subkompetensi Juknis {question.subkompetensi}
+            Sumber: {question.source} · Subkompetensi {question.subkompetensi}
           </p>
-        </div>
-      )}
-
-      {onToggleFlag && !showFeedback && (
-        <div style={{ marginTop: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <button
-            type="button"
-            className={`btn btn-sm btn-accent ${isFlagged ? 'is-active' : ''}`}
-            onClick={onToggleFlag}
-          >
-            <HelpCircle size={15} />
-            {isFlagged ? 'Ditandai Ragu-Ragu (Klik untuk Hapus)' : 'Tandai Ragu-Ragu'}
-          </button>
         </div>
       )}
     </div>

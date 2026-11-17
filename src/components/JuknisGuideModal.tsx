@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { useEffect } from 'react';
 import { JUKNIS_EXAM_SPECS, JUKNIS_SUBCOMPETENCIES } from '../data/juknisReference';
 
 interface JuknisGuideModalProps {
@@ -7,6 +7,15 @@ interface JuknisGuideModalProps {
 }
 
 export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
@@ -17,16 +26,16 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
       aria-labelledby="juknis-modal-title"
       onClick={onClose}
     >
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box grain-surface" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h3 id="juknis-modal-title">Panduan &amp; Kisi-Kisi UTBK UKPPPG 2026</h3>
           <button
             type="button"
-            className="btn btn-sm btn-ghost"
+            className="btn btn-sm"
             aria-label="Tutup panduan"
             onClick={onClose}
           >
-            <X size={16} />
+            Tutup
           </button>
         </div>
 
@@ -63,7 +72,8 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
               key={f.type}
               style={{
                 padding: '0.55rem 0.75rem',
-                backgroundColor: 'var(--bg-subtle)',
+                backgroundColor: 'var(--bg-canvas)',
+                border: '1.5px solid var(--border-ink)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.86rem',
               }}
@@ -82,7 +92,7 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
               key={item.title}
               style={{
                 padding: '0.55rem 0.75rem',
-                border: '1px solid var(--border-subtle)',
+                border: '1.5px solid var(--border-rule)',
                 borderRadius: 'var(--radius-sm)',
                 fontSize: '0.86rem',
               }}

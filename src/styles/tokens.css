@@ -1,92 +1,98 @@
 :root {
-  /* Fonts */
+  /* Typography */
+  --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-cond: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
   --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
 
-  /* Surfaces (Warm Drafting Paper Light Theme) */
-  --bg-canvas: #f6f4ee;
-  --bg-surface: #ffffff;
-  --bg-subtle: #efece3;
-  --bg-inset: #e7e3d8;
-  --bg-overlay: rgba(20, 24, 33, 0.55);
+  /* Tactile Paper Texture (SVG noise adapted from Huggo template) */
+  --paper-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
 
-  /* Borders */
-  --border-subtle: #dbd7cb;
-  --border-strong: #b9b3a3;
+  /* Light Theme: Warm Tactile Workshop Desk */
+  --bg-canvas: #f4efe2;
+  --bg-surface: #fffaf0;
+  --bg-subtle: #ebe4d3;
+  --bg-inset: #dfd6c1;
+  --bg-mat: #173c28;
+  --bg-mat-surface: #fffaf0;
+  --bg-peach: #ffe3cc;
+  --bg-note: #fff176;
+  --bg-note-fold: #ebd439;
+  --bg-overlay: rgba(22, 40, 28, 0.62);
 
-  /* Ink */
-  --ink-primary: #161b26;
-  --ink-secondary: #434c5e;
-  --ink-muted: #5d667a;
-  --ink-on-accent: #ffffff;
+  /* Ink & Borders */
+  --ink: #16281c;
+  --ink-secondary: #324638;
+  --ink-muted: #526356;
+  --ink-on-dark: #fffaf0;
+  --border-ink: #16281c;
+  --border-rule: #cfc6b2;
 
-  /* Brand & Semantic Accents (Blueprint Navy-Teal + Workshop Brass + Status) */
-  --color-primary: #0f4c6e;
-  --color-primary-hover: #0b3a54;
-  --color-primary-soft: #e4f0f6;
-  --color-primary-border: #8ab8d0;
+  /* Core Brand Accents (Workshop Yellow, Lime Ribbon, Sage Done, Blueprint Vermilion) */
+  --accent-yellow: #ffd51f;
+  --accent-yellow-hover: #ffdf4d;
+  --accent-lime: #c9f227;
+  --accent-sage: #78c87c;
+  --accent-sage-soft: #e0f5e2;
+  --accent-sage-ink: #0f4421;
+  --accent-orange: #ff7a1a;
+  --accent-blue: #154c79;
+  --accent-blue-soft: #e2eff8;
+  --accent-danger: #c42b1c;
+  --accent-danger-soft: #fde8e5;
 
-  --color-accent: #a64b00;
-  --color-accent-soft: #fef2e4;
-  --color-accent-border: #e5a967;
-
-  --color-success: #116b43;
-  --color-success-soft: #e5f5ec;
-  --color-success-border: #72c29b;
-
-  --color-danger: #a81c1c;
-  --color-danger-soft: #fdeaea;
-  --color-danger-border: #e49797;
-
-  /* Layout & Rhythm */
+  /* Shadows & Geometry (Tactile Neo-Brutalist Hard Edges) */
+  --shadow-btn: 0 3px 0 var(--border-ink);
+  --shadow-btn-hover: 0 5px 0 var(--border-ink);
+  --shadow-card: 0 5px 0 var(--border-ink);
+  --shadow-paper: 0 14px 26px -12px rgba(22, 40, 28, 0.28);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
   --container-max: 1220px;
-  --header-height: 60px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px rgba(22, 27, 38, 0.06);
-  --shadow-md: 0 8px 24px rgba(22, 27, 38, 0.08);
-  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Typography scale */
+  /* Question Typography Scale */
   --question-text-size: 1.04rem;
   --option-text-size: 0.96rem;
 }
 
 [data-theme='dark'] {
-  --bg-canvas: #0f131a;
-  --bg-surface: #171c26;
-  --bg-subtle: #1f2633;
-  --bg-inset: #273041;
-  --bg-overlay: rgba(5, 8, 13, 0.72);
+  --bg-canvas: #121714;
+  --bg-surface: #1b221d;
+  --bg-subtle: #242e27;
+  --bg-inset: #2e3b32;
+  --bg-mat: #0c120e;
+  --bg-mat-surface: #1b221d;
+  --bg-peach: #2e241c;
+  --bg-note: #383318;
+  --bg-note-fold: #4f4820;
+  --bg-overlay: rgba(6, 10, 8, 0.78);
 
-  --border-subtle: #2b3547;
-  --border-strong: #414f69;
+  --ink: #f3efe2;
+  --ink-secondary: #cfd6ca;
+  --ink-muted: #9da89b;
+  --ink-on-dark: #f3efe2;
+  --border-ink: #92a695;
+  --border-rule: #344338;
 
-  --ink-primary: #eff3f8;
-  --ink-secondary: #c1cad9;
-  --ink-muted: #9aa6bd;
-  --ink-on-accent: #09111a;
+  --accent-yellow: #ffd51f;
+  --accent-yellow-hover: #ffe059;
+  --accent-lime: #c9f227;
+  --accent-sage: #4fb35e;
+  --accent-sage-soft: rgba(79, 179, 94, 0.18);
+  --accent-sage-ink: #a3ebad;
+  --accent-orange: #ff8c38;
+  --accent-blue: #60b3f0;
+  --accent-blue-soft: rgba(96, 179, 240, 0.16);
+  --accent-danger: #f47166;
+  --accent-danger-soft: rgba(244, 113, 102, 0.18);
 
-  --color-primary: #52b7e8;
-  --color-primary-hover: #74c7ef;
-  --color-primary-soft: rgba(82, 183, 232, 0.14);
-  --color-primary-border: rgba(82, 183, 232, 0.45);
-
-  --color-accent: #f3a63b;
-  --color-accent-soft: rgba(243, 166, 59, 0.14);
-  --color-accent-border: rgba(243, 166, 59, 0.45);
-
-  --color-success: #3bc482;
-  --color-success-soft: rgba(59, 196, 130, 0.14);
-  --color-success-border: rgba(59, 196, 130, 0.45);
-
-  --color-danger: #f27474;
-  --color-danger-soft: rgba(242, 116, 116, 0.14);
-  --color-danger-border: rgba(242, 116, 116, 0.45);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.38);
+  --shadow-btn: 0 3px 0 #050806;
+  --shadow-btn-hover: 0 5px 0 #050806;
+  --shadow-card: 0 5px 0 #050806;
+  --shadow-paper: 0 14px 28px -10px rgba(0, 0, 0, 0.55);
 }
 
 [data-font-scale='sm'] {
@@ -101,5 +107,5 @@
 
 [data-font-scale='lg'] {
   --question-text-size: 1.18rem;
-  --option-text-size: 1.06rem;
+  --option-text-size: 1.07rem;
 }

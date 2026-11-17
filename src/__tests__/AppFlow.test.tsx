@@ -2,27 +2,32 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from '../App';
 
-describe('UI Integration Flow', () => {
+describe('UI Integration Flow (Tactile Workshop)', () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.scrollTo = () => {};
   });
 
-  it('memulai Simulasi Resmi 80 soal, menjawab, menandai ragu, lalu menampilkan hasil diagnostik lengkap', () => {
+  it('memulai Simulasi Resmi 80 soal, menandai ragu, lalu menampilkan laporan diagnostik', () => {
     render(<App />);
 
-    expect(screen.getByText(/Tryout UTBK UKPPPG Calon Guru/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Tryout UTBK UKPPPG Calon Guru 2026/i)
+    ).toBeInTheDocument();
 
-    const startBtn = screen.getByRole('button', {
-      name: /Mulai Simulasi Resmi \(80 Soal\)/i,
-    });
-    fireEvent.click(startBtn);
+    // Uji interaksi selotip catatan (peelable tape)
+    const peelBtn = screen.getByRole('button', { name: /Kupas selotip catatan/i });
+    fireEvent.click(peelBtn);
+    expect(peelBtn).toHaveAttribute('aria-pressed', 'true');
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Mulai Simulasi Resmi \(80 Soal\)/i })
+    );
 
     expect(screen.getByText('Soal 1 / 80')).toBeInTheDocument();
     expect(screen.getByText('0/80 Terisi')).toBeInTheDocument();
 
-    const flagBtn = screen.getByRole('button', { name: /Tandai Ragu-Ragu/i });
-    fireEvent.click(flagBtn);
+    fireEvent.click(screen.getByRole('button', { name: /Tandai Ragu-Ragu/i }));
     expect(
       screen.getByRole('button', { name: /Ditandai Ragu-Ragu/i })
     ).toBeInTheDocument();
@@ -34,12 +39,14 @@ describe('UI Integration Flow', () => {
       screen.getByRole('button', { name: /Ya, Kumpulkan & Lihat Skor/i })
     );
 
-    expect(screen.getByText(/Laporan Diagnostik UTBK UKPPPG 2026/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Laporan Diagnostik UTBK UKPPPG 2026/i)
+    ).toBeInTheDocument();
     expect(screen.getByText('PCK Teknik Mesin SMK')).toBeInTheDocument();
     expect(screen.getByText('Pedagogi Umum (PU)')).toBeInTheDocument();
   });
 
-  it('mendukung Mode Drill PGK Kategori dengan cek jawaban & pembahasan langsung', () => {
+  it('mendukung Mode Drill PGK Kategori dengan tombol Periksa Jawaban langsung', () => {
     render(<App />);
 
     fireEvent.change(screen.getByLabelText('Bentuk Soal'), {
@@ -53,7 +60,6 @@ describe('UI Integration Flow', () => {
     const groups = screen.getAllByRole('group', { name: /Pernyataan \d+/i });
     expect(groups.length).toBeGreaterThanOrEqual(3);
 
-    // Sebelum semua baris diisi, tombol periksa jawaban belum aktif
     const checkBtn = screen.getByRole('button', { name: /Periksa Jawaban/i });
     expect(checkBtn).toBeDisabled();
 
