@@ -25,6 +25,7 @@ export interface PaketDef {
   badge: string;
   badgeTone: 'prodi' | 'umum' | 'arsip';
   recommendedLabel?: string;
+  recommendedFit?: string;
   title: string;
   subtitle: string;
   questionCount: number;
@@ -48,6 +49,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badge: 'Teknik Mesin SMK',
     badgeTone: 'prodi',
     recommendedLabel: 'Rekomendasi #1 · Prodi Anda',
+    recommendedFit: '17/17 Kisi-Kisi Juknis · 50 PCK Teknik Mesin + 30 PU',
     title: 'Teknik Mesin SMK · Simulasi Resmi Acak',
     subtitle:
       'Simulasi 80 soal terkalibrasi Juknis: 50 PCK Teknik Mesin murni (dari pool 106 butir) + 30 Pedagogi Umum selaras (394 butir), memprioritaskan soal belum dikerjakan.',
@@ -411,6 +413,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badge: 'Fokus Materi PPG',
     badgeTone: 'umum',
     recommendedLabel: 'Rekomendasi #2 · Catatan & MK PPG',
+    recommendedFit: 'Formatif · 5 Tokoh · 4 Aliran · Berpikir · Diferensiasi · VARK+',
     title: 'Fokus Catatan UKPPPG & Materi PPG · 80 Soal',
     subtitle:
       'Kurasi acak 80 soal yang difokuskan pada Asesmen Formatif, Tokoh (Ausubel, Piaget, Bruner, Gagne, Vygotsky), 4 Aliran Belajar, Berpikir Konkret-Deduktif-Induktif-Abstrak, Diferensiasi, Gaya Belajar (VARK, Audiovisual, Write), serta MK PPG (UbD, PM, CASEL, EMC2, Growth Mindset).',
@@ -454,6 +457,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badge: 'Umum Murni',
     badgeTone: 'umum',
     recommendedLabel: 'Rekomendasi #5 · MK PPG Umum Netral',
+    recommendedFit: 'MK PPG UST · CASEL, EMC2, Growth Mindset & 4 Kompetensi Guru',
     title: 'Pedagogi Umum Murni · Simulasi Penuh 80 Soal',
     subtitle:
       'Simulasi maraton 80 soal dalam 150 menit yang seluruhnya berisi Pedagogi Umum murni, Kepribadian, Sosial & Filosofi Pendidikan.',
@@ -475,6 +479,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badge: 'Lintas Konteks · Paket 1',
     badgeTone: 'arsip',
     recommendedLabel: 'Rekomendasi #3 · Tokoh & Teori Belajar',
+    recommendedFit: '17/17 Kisi-Kisi · Ausubel, Piaget, Bruner, Gagne & Vygotsky',
     title: 'Try Out Umum SIAPPPG · Paket 1',
     subtitle:
       'Paket pembuka SIAPPPG untuk mengenal bentuk soal dan ritme ujian (memakai ilustrasi kelas lintas mapel sebagai studi kasus pedagogik).',
@@ -516,6 +521,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badge: 'Lintas Konteks · Paket 3',
     badgeTone: 'arsip',
     recommendedLabel: 'Rekomendasi #4 · Formatif, 4 Aliran & PGK',
+    recommendedFit: '17/17 Kisi-Kisi · Asesmen Formatif, 4 Aliran & PGK Kompleks',
     title: 'Try Out Umum SIAPPPG · Paket 3',
     subtitle:
       'Paket bergaya simulasi dengan lebih banyak soal benar–salah berlapis dan pilihan ganda kompleks serta pembahasan lengkap tiap opsi.',

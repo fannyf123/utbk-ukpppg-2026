@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import {
   ArrowRight,
+  Award,
   BarChart3,
   BookOpen,
   Check,
@@ -9,6 +10,7 @@ import {
   FileText,
   Layers,
   Play,
+  ShieldCheck,
   SlidersHorizontal,
 } from 'lucide-react';
 import { ArenaLogoMark, HeroExamPreviewWidget } from '../components/ArenaVisuals';
@@ -146,69 +148,89 @@ export function HomeView({
 
   const renderPaketCard = (paket: PaketDef) => {
     const doneAttempt = history.find((h) => h.paketId === paket.id);
+    const isRecommended = Boolean(paket.recommendedLabel);
     return (
-      <article key={paket.id} className="kartu kartu-hover paket-card">
-        <div className="paket-card-badges">
-          <span className="chip chip-emerald">✓ Terbuka · Bebas akses</span>
-          <span className={`chip ${paket.badgeTone === 'arsip' ? 'chip-fox' : 'chip-navy'}`}>
-            {paket.badge}
-          </span>
-          {paket.recommendedLabel && (
-            <span className="chip chip-fox">★ {paket.recommendedLabel}</span>
-          )}
-        </div>
-
-        <div>
-          <h3 className="paket-card-title">{paket.title}</h3>
-          <p className="paket-card-desc" style={{ marginTop: '0.4rem' }}>
-            {paket.subtitle}
-          </p>
-        </div>
-
-        <div className="paket-meta-strip">
-          <div className="paket-meta-cell">
-            <span className="paket-meta-val tabular">{paket.questionCount}</span>
-            <span className="paket-meta-key">soal</span>
-          </div>
-          <div className="paket-meta-cell">
-            <span className="paket-meta-val tabular">{paket.durationMinutes}</span>
-            <span className="paket-meta-key">menit</span>
-          </div>
-          <div className="paket-meta-cell">
-            <span className="paket-meta-val">
-              <FileText size={15} style={{ display: 'inline' }} aria-hidden="true" />
+      <article
+        key={paket.id}
+        className={`kartu kartu-hover paket-card ${isRecommended ? 'is-recommended' : ''}`}
+      >
+        {isRecommended && (
+          <div className="paket-rec-ribbon">
+            <span className="paket-rec-title">
+              <Award size={14} aria-hidden="true" />
+              {paket.recommendedLabel}
             </span>
-            <span className="paket-meta-key">pembahasan</span>
-          </div>
-        </div>
-
-        <div>
-          <div className="paket-highlights-lbl">Materi antara lain</div>
-          <ul className="paket-highlights">
-            {paket.highlights.map((item) => (
-              <li key={item}>
-                <Check size={15} style={{ color: 'var(--fox-600)', flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {doneAttempt && (
-          <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--emerald-700)' }}>
-            Skor terakhir: {doneAttempt.scaleScore}/100 ({doneAttempt.strictCorrectCount}/{doneAttempt.totalQuestions} benar)
+            <span className="paket-rec-pill">Kisi-Kisi 2026</span>
           </div>
         )}
 
-        <div className="paket-card-foot">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => onOpenDetail(paket)}
-          >
-            <ArrowRight size={16} aria-hidden="true" />
-            Lihat detail &amp; mulai
-          </button>
+        <div className="paket-card-body">
+          <div className="paket-card-badges">
+            <span className="chip chip-emerald">✓ Terbuka · Bebas akses</span>
+            <span className={`chip ${paket.badgeTone === 'arsip' ? 'chip-fox' : 'chip-navy'}`}>
+              {paket.badge}
+            </span>
+          </div>
+
+          <div>
+            <h3 className="paket-card-title">{paket.title}</h3>
+            <p className="paket-card-desc" style={{ marginTop: '0.4rem' }}>
+              {paket.subtitle}
+            </p>
+          </div>
+
+          {isRecommended && paket.recommendedFit && (
+            <div className="paket-fit-callout">
+              <ShieldCheck size={15} style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true" />
+              <span>{paket.recommendedFit}</span>
+            </div>
+          )}
+
+          <div className="paket-meta-strip">
+            <div className="paket-meta-cell">
+              <span className="paket-meta-val tabular">{paket.questionCount}</span>
+              <span className="paket-meta-key">soal</span>
+            </div>
+            <div className="paket-meta-cell">
+              <span className="paket-meta-val tabular">{paket.durationMinutes}</span>
+              <span className="paket-meta-key">menit</span>
+            </div>
+            <div className="paket-meta-cell">
+              <span className="paket-meta-val">
+                <FileText size={15} style={{ display: 'inline' }} aria-hidden="true" />
+              </span>
+              <span className="paket-meta-key">pembahasan</span>
+            </div>
+          </div>
+
+          <div>
+            <div className="paket-highlights-lbl">Materi antara lain</div>
+            <ul className="paket-highlights">
+              {paket.highlights.map((item) => (
+                <li key={item}>
+                  <Check size={15} style={{ color: 'var(--fox-600)', flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {doneAttempt && (
+            <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--emerald-700)' }}>
+              Skor terakhir: {doneAttempt.scaleScore}/100 ({doneAttempt.strictCorrectCount}/{doneAttempt.totalQuestions} benar)
+            </div>
+          )}
+
+          <div className="paket-card-foot">
+            <button
+              type="button"
+              className={`btn ${isRecommended ? 'btn-accent' : 'btn-primary'}`}
+              onClick={() => onOpenDetail(paket)}
+            >
+              <ArrowRight size={16} aria-hidden="true" />
+              Lihat detail &amp; mulai
+            </button>
+          </div>
         </div>
       </article>
     );
