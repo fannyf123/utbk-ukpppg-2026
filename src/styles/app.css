@@ -1250,6 +1250,7 @@ a:focus-visible,
   margin: 0;
   font-size: 0.91rem;
   line-height: 1.62;
+  white-space: pre-line;
 }
 
 .question-footer {

@@ -1,4 +1,5 @@
 import ustExtracted from './ustExtracted.json';
+import arenaPuExtracted from './arenaPuExtracted.json';
 import { PU_KATEGORI_ADDITIONS } from './puKategoriAdditions';
 import { PCK_MESIN_PART_1 } from './pckMesinPart1';
 import { PCK_MESIN_PART_2 } from './pckMesinPart2';
@@ -6,6 +7,7 @@ import { PCK_MESIN_EXTRA } from './pckMesinExtra';
 import type { ExamQuestion, QuestionBank, QuestionType } from '../types/exam';
 
 const UST_PU_QUESTIONS = ustExtracted as ExamQuestion[];
+const ARENA_PU_QUESTIONS = arenaPuExtracted as ExamQuestion[];
 
 export const PCK_BANK: ExamQuestion[] = [
   ...PCK_MESIN_PART_1,
@@ -15,6 +17,7 @@ export const PCK_BANK: ExamQuestion[] = [
 
 export const PU_BANK: ExamQuestion[] = [
   ...UST_PU_QUESTIONS,
+  ...ARENA_PU_QUESTIONS,
   ...PU_KATEGORI_ADDITIONS,
 ];
 

@@ -20,11 +20,12 @@ function createSeededRng(seed: number) {
 describe('Bank Soal UTBK UKPPPG 2026 Integrity', () => {
   it('memenuhi kapasitas di atas minimum 2 simulasi penuh dan berisi ketiga bentuk soal resmi', () => {
     const summary = getBankSummary();
+    expect(summary.total).toBeGreaterThanOrEqual(640);
     expect(summary.pck).toBeGreaterThanOrEqual(100);
-    expect(summary.pu).toBeGreaterThanOrEqual(140);
-    expect(summary.byType.PG).toBeGreaterThan(100);
-    expect(summary.byType.PGK_KATEGORI).toBeGreaterThanOrEqual(35);
-    expect(summary.byType.PGK_MCMA).toBeGreaterThanOrEqual(35);
+    expect(summary.pu).toBeGreaterThanOrEqual(540);
+    expect(summary.byType.PG).toBeGreaterThanOrEqual(400);
+    expect(summary.byType.PGK_KATEGORI).toBeGreaterThanOrEqual(140);
+    expect(summary.byType.PGK_MCMA).toBeGreaterThanOrEqual(100);
   });
 
   it('tidak memiliki ID duplikat dan seluruh indeks jawaban sah sesuai bentuk soal', () => {
