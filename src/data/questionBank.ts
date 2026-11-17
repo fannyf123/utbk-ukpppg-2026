@@ -1,6 +1,7 @@
 import ustExtracted from './ustExtracted.json';
 import arenaExtracted from './arenaExtracted.json';
 import fungsionalExtracted from './fungsionalExtracted.json';
+import externalHarvested2026 from './externalHarvested2026.json';
 import { PU_KATEGORI_ADDITIONS } from './puKategoriAdditions';
 import { PCK_MESIN_PART_1 } from './pckMesinPart1';
 import { PCK_MESIN_PART_2 } from './pckMesinPart2';
@@ -8,6 +9,7 @@ import { PCK_MESIN_EXTRA } from './pckMesinExtra';
 import { PCK_DKV_PART_1 } from './pckDkvPart1';
 import { PCK_DKV_PART_2 } from './pckDkvPart2';
 import { WEB_CURATED_EXTRAS } from './webCuratedExtras';
+import { WEB_CURATED_EXTRAS_2026 } from './webCuratedExtras2026';
 import { questionMatchesProdi } from './prodiRegistry';
 import type {
   ExamQuestion,
@@ -69,11 +71,14 @@ const PU_KAT_BANK: ExamQuestion[] = PU_KATEGORI_ADDITIONS.map((q) => ({
 const UST_QUESTIONS = ustExtracted as ExamQuestion[];
 const ARENA_QUESTIONS = arenaExtracted as ExamQuestion[];
 const FUNGSIONAL_QUESTIONS = fungsionalExtracted as ExamQuestion[];
+const EXTERNAL_HARVESTED_QUESTIONS = externalHarvested2026 as ExamQuestion[];
 
 export const ALL_QUESTIONS: ExamQuestion[] = [
   ...PCK_MESIN_BANK,
   ...PCK_DKV_BANK,
   ...WEB_CURATED_EXTRAS,
+  ...WEB_CURATED_EXTRAS_2026,
+  ...EXTERNAL_HARVESTED_QUESTIONS,
   ...FUNGSIONAL_QUESTIONS,
   ...UST_QUESTIONS,
   ...ARENA_QUESTIONS,

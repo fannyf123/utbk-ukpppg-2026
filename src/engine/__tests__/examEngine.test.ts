@@ -162,21 +162,23 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
 });
 
 describe('Randomizer & Simulasi Multi-Prodi', () => {
-  it('membangun Simulasi Resmi 80 soal (50 PCK + 30 PU) untuk 6 Prodi utama serta proporsional bersih untuk 8 Prodi lainnya', () => {
-    const fullProdis: ProdiId[] = [
-      'teknik-mesin',
-      'dkv',
-      'pgsd',
-      'matematika',
-      'bahasa-indonesia',
-      'ipa',
-    ];
-    for (const pid of fullProdis) {
+  it('membangun Simulasi Resmi penuh 80 soal (50 PCK + 30 PU, 150 menit) untuk SELURUH 14 Prodi bidang studi plus Umum Murni 30 soal', () => {
+    const bidangStudiProdis: ProdiId[] = PRODI_CONFIGS.map((p) => p.id).filter(
+      (id): id is ProdiId => id !== 'umum'
+    );
+    expect(bidangStudiProdis.length).toBe(14);
+
+    for (const pid of bidangStudiProdis) {
+      const pckPool = getProdiPckBank(pid);
+      // Pastikan setiap Prodi memiliki cadangan > 50 soal agar randomizer selalu bervariasi antar-percobaan
+      expect(pckPool.length).toBeGreaterThanOrEqual(63);
+
+      const cfg = PRODI_CONFIGS.find((p) => p.id === pid)!;
       const session = createOfficialExamSession(
-        getProdiPckBank(pid),
+        pckPool,
         getProdiPuBank(pid),
         {},
-        { prodiId: pid, prodiLabel: pid, rng: createSeededRng(42) }
+        { prodiId: pid, prodiLabel: cfg.shortLabel, rng: createSeededRng(42) }
       );
       expect(session.slots.length).toBe(80);
       expect(session.durationSeconds).toBe(150 * 60);
@@ -185,30 +187,27 @@ describe('Randomizer & Simulasi Multi-Prodi', () => {
       expect(session.slots.every((s) => questionMatchesProdi(s.question, pid))).toBe(true);
       const ids = new Set(session.slots.map((s) => s.question.id));
       expect(ids.size).toBe(80);
-    }
 
-    // Prodi proporsional & Umum Murni menyesuaikan jumlah soal secara jujur tanpa padding lintas prodi
-    const proportionalProdis: ProdiId[] = [
-      'smk-vokasi',
-      'tata-boga',
-      'akuntansi',
-      'bahasa-inggris',
-      'ips',
-      'pjok',
-      'ppkn',
-      'pai',
-    ];
-    for (const pid of proportionalProdis) {
-      const cfg = PRODI_CONFIGS.find((p) => p.id === pid)!;
-      const pck = getProdiPckBank(pid);
-      const sess = createOfficialExamSession(pck, getProdiPuBank(pid), {}, {
-        prodiId: cfg.id,
-        prodiLabel: cfg.shortLabel,
-        rng: createSeededRng(7),
-      });
-      expect(sess.slots.length).toBe(pck.length + 30);
-      expect(sess.slots.every((s) => questionMatchesProdi(s.question, pid))).toBe(true);
-      expect(new Set(sess.slots.map((s) => s.question.id)).size).toBe(sess.slots.length);
+      // Verifikasi randomizer menghasilkan kombinasi/urutan berbeda saat tes baru dimulai dengan riwayat mastery
+      const mockMastery: Record<string, MasteryRecord> = {};
+      for (const s of session.slots.slice(0, 30)) {
+        mockMastery[s.question.id] = {
+          seenCount: 1,
+          correctCount: 1,
+          wrongCount: 0,
+          lastAttemptAt: 1000,
+          lastCorrect: true,
+        };
+      }
+      const nextSession = createOfficialExamSession(
+        pckPool,
+        getProdiPuBank(pid),
+        mockMastery,
+        { prodiId: pid, prodiLabel: cfg.shortLabel, rng: createSeededRng(99) }
+      );
+      const nextIds = new Set(nextSession.slots.map((s) => s.question.id));
+      const newFreshQuestions = [...nextIds].filter((id) => !ids.has(id));
+      expect(newFreshQuestions.length).toBeGreaterThanOrEqual(15);
     }
 
     const umumSession = createOfficialExamSession(

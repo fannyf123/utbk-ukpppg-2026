@@ -61,7 +61,7 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
 
     fireEvent.click(screen.getByRole('tab', { name: 'Tata Boga SMK' }));
     expect(
-      screen.getByText(/Tata Boga · Simulasi Prodi Terisolasi/i)
+      screen.getByText(/Tata Boga · Simulasi Resmi Acak 80 Soal/i)
     ).toBeInTheDocument();
     expect(
       screen.queryByText(/PGSD · Paket 3 Guru Kelas SD Lengkap/i)
@@ -69,10 +69,10 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
 
     fireEvent.click(screen.getByRole('tab', { name: 'IPS Terpadu' }));
     expect(
-      screen.getByText(/IPS Terpadu · Simulasi Terisolasi/i)
+      screen.getByText(/IPS Terpadu · Simulasi Resmi Acak 80 Soal/i)
     ).toBeInTheDocument();
     expect(
-      screen.queryByText(/Tata Boga · Simulasi Prodi Terisolasi/i)
+      screen.queryByText(/Tata Boga · Simulasi Resmi Acak 80 Soal/i)
     ).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('tab', { name: 'DKV SMK' }));
@@ -80,7 +80,7 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
       screen.getByText(/DKV · Simulasi Resmi Acak 80 Soal/i)
     ).toBeInTheDocument();
     expect(
-      screen.queryByText(/IPS Terpadu · Simulasi Terisolasi/i)
+      screen.queryByText(/IPS Terpadu · Simulasi Resmi Acak 80 Soal/i)
     ).not.toBeInTheDocument();
 
     fireEvent.click(

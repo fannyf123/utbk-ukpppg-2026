@@ -72,8 +72,8 @@ const FAQ_ITEMS = [
     a: `Ya, seluruh ${PAKET_CATALOG.length} paket simulasi maupun Studio Latihan Custom terbuka penuh secara gratis tanpa login, tanpa kode akses, dan tanpa batasan percobaan.`,
   },
   {
-    q: 'Mengapa pada paket tertentu tersedia opsi Simulasi Acak?',
-    a: 'Untuk Prodi dengan bank soal besar (seperti Teknik Mesin 102 PCK, PGSD 80 PCK, DKV 79 PCK, IPA 72 PCK, Matematika 62 PCK, dan B. Indonesia 58 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah dikerjakan atau masih keliru, mengunci cakupan 17 subkompetensi kisi-kisi, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah.',
+    q: 'Apakah setiap mulai tes untuk semua Prodi soalnya diacak agar tidak sama terus?',
+    a: 'Ya. Seluruh 14 Prodi bidang studi (masing-masing punya 63 sampai 163 soal PCK murni plus 380-484 Pedagogi Umum selaras) sekarang menjalankan Simulasi Acak penuh 80 soal (50 PCK + 30 PU · 150 menit). Sistem memprioritaskan soal yang belum pernah dikerjakan atau masih keliru, mengunci cakupan 17 subkompetensi Juknis 2026, sekaligus mengacak urutan opsi dan baris tabel Benar-Salah.',
   },
   {
     q: 'Bagaimana sistem penghitungan skor & poin pada hasil ujian?',
