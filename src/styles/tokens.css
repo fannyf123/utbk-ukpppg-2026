@@ -1,0 +1,105 @@
+:root {
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  /* Surfaces (Warm Drafting Paper Light Theme) */
+  --bg-canvas: #f6f4ee;
+  --bg-surface: #ffffff;
+  --bg-subtle: #efece3;
+  --bg-inset: #e7e3d8;
+  --bg-overlay: rgba(20, 24, 33, 0.55);
+
+  /* Borders */
+  --border-subtle: #dbd7cb;
+  --border-strong: #b9b3a3;
+
+  /* Ink */
+  --ink-primary: #161b26;
+  --ink-secondary: #434c5e;
+  --ink-muted: #5d667a;
+  --ink-on-accent: #ffffff;
+
+  /* Brand & Semantic Accents (Blueprint Navy-Teal + Workshop Brass + Status) */
+  --color-primary: #0f4c6e;
+  --color-primary-hover: #0b3a54;
+  --color-primary-soft: #e4f0f6;
+  --color-primary-border: #8ab8d0;
+
+  --color-accent: #a64b00;
+  --color-accent-soft: #fef2e4;
+  --color-accent-border: #e5a967;
+
+  --color-success: #116b43;
+  --color-success-soft: #e5f5ec;
+  --color-success-border: #72c29b;
+
+  --color-danger: #a81c1c;
+  --color-danger-soft: #fdeaea;
+  --color-danger-border: #e49797;
+
+  /* Layout & Rhythm */
+  --container-max: 1220px;
+  --header-height: 60px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(22, 27, 38, 0.06);
+  --shadow-md: 0 8px 24px rgba(22, 27, 38, 0.08);
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Typography scale */
+  --question-text-size: 1.04rem;
+  --option-text-size: 0.96rem;
+}
+
+[data-theme='dark'] {
+  --bg-canvas: #0f131a;
+  --bg-surface: #171c26;
+  --bg-subtle: #1f2633;
+  --bg-inset: #273041;
+  --bg-overlay: rgba(5, 8, 13, 0.72);
+
+  --border-subtle: #2b3547;
+  --border-strong: #414f69;
+
+  --ink-primary: #eff3f8;
+  --ink-secondary: #c1cad9;
+  --ink-muted: #9aa6bd;
+  --ink-on-accent: #09111a;
+
+  --color-primary: #52b7e8;
+  --color-primary-hover: #74c7ef;
+  --color-primary-soft: rgba(82, 183, 232, 0.14);
+  --color-primary-border: rgba(82, 183, 232, 0.45);
+
+  --color-accent: #f3a63b;
+  --color-accent-soft: rgba(243, 166, 59, 0.14);
+  --color-accent-border: rgba(243, 166, 59, 0.45);
+
+  --color-success: #3bc482;
+  --color-success-soft: rgba(59, 196, 130, 0.14);
+  --color-success-border: rgba(59, 196, 130, 0.45);
+
+  --color-danger: #f27474;
+  --color-danger-soft: rgba(242, 116, 116, 0.14);
+  --color-danger-border: rgba(242, 116, 116, 0.45);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.38);
+}
+
+[data-font-scale='sm'] {
+  --question-text-size: 0.94rem;
+  --option-text-size: 0.88rem;
+}
+
+[data-font-scale='md'] {
+  --question-text-size: 1.04rem;
+  --option-text-size: 0.96rem;
+}
+
+[data-font-scale='lg'] {
+  --question-text-size: 1.18rem;
+  --option-text-size: 1.06rem;
+}
