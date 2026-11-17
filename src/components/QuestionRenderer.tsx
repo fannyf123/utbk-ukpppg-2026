@@ -11,15 +11,16 @@ interface QuestionRendererProps {
   showFeedback: boolean;
   canRevealNow?: boolean;
   onChangeAnswer: (next: UserAnswer) => void;
+  onToggleFlag?: () => void;
   onRevealNow?: () => void;
 }
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-function formatTypeLabel(type: ExamQuestion['type']) {
-  if (type === 'PG') return 'PG TUNGGAL';
-  if (type === 'PGK_KATEGORI') return 'PGK KATEGORI';
-  return 'PGK MCMA';
+function formatTypeLabel(q: ExamQuestion) {
+  if (q.type === 'PG') return 'Pilihan Ganda · 5 poin';
+  if (q.type === 'PGK_KATEGORI') return `${q.categories[0]}/${q.categories[1]} · 1 pt/baris`;
+  return 'PGK MCMA · 5 poin';
 }
 
 function getCorrectSummaryText(q: ExamQuestion): string {
@@ -45,6 +46,7 @@ export function QuestionRenderer({
   showFeedback,
   canRevealNow = false,
   onChangeAnswer,
+  onToggleFlag,
   onRevealNow,
 }: QuestionRendererProps) {
   const subMeta = JUKNIS_SUBCOMPETENCIES.find((s) => s.code === question.subkompetensi);
@@ -69,20 +71,29 @@ export function QuestionRenderer({
   return (
     <div>
       <div className="q-header-line">
-        <div>
-          <span className="q-meta-index">
-            Soal {index + 1} / {total}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <span className="q-meta-index tabular">
+            Soal {index + 1} <span style={{ fontWeight: 500, fontSize: '0.88rem', color: 'var(--ink-500)' }}>dari {total}</span>
           </span>
+          <span className="chip chip-navy">{formatTypeLabel(question)}</span>
           <span
-            className="q-meta-text"
+            className="chip chip-fox"
             title={subMeta ? `${subMeta.kompetensi}: ${subMeta.description}` : question.subkompetensi}
           >
-            {question.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'} · {question.topic} ·{' '}
-            {question.subkompetensi}
-            {isFlagged ? ' · [Ragu-Ragu]' : ''}
+            {question.subkompetensi} · {question.topic}
           </span>
         </div>
-        <span className="q-format-tag">{formatTypeLabel(question.type)}</span>
+
+        {onToggleFlag && !showFeedback && (
+          <button
+            type="button"
+            className={`btn btn-sm btn-ghost flag-btn-toggle ${isFlagged ? 'is-flagged' : ''}`}
+            aria-pressed={isFlagged}
+            onClick={onToggleFlag}
+          >
+            {isFlagged ? 'Ditandai Ragu-ragu' : 'Ragu-ragu'}
+          </button>
+        )}
       </div>
 
       <p className="question-stem">{question.prompt}</p>
@@ -255,7 +266,7 @@ export function QuestionRenderer({
             Periksa Jawaban
           </button>
           {!ev.isComplete && (
-            <span style={{ fontSize: '0.84rem', color: 'var(--ink-muted)', alignSelf: 'center' }}>
+            <span style={{ fontSize: '0.84rem', color: 'var(--ink-500)', alignSelf: 'center' }}>
               {question.type === 'PGK_KATEGORI'
                 ? 'Lengkapi seluruh pernyataan terlebih dahulu.'
                 : 'Pilih jawaban untuk mengecek.'}
@@ -284,7 +295,7 @@ export function QuestionRenderer({
             style={{
               margin: '0.55rem 0 0',
               fontSize: '0.74rem',
-              color: 'var(--ink-muted)',
+              color: 'var(--ink-500)',
             }}
           >
             Sumber: {question.source} · Subkompetensi {question.subkompetensi}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Clock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, Send } from 'lucide-react';
+import { ArenaLogoMark } from '../components/ArenaVisuals';
 import { NavigatorSidebar } from '../components/NavigatorSidebar';
 import { QuestionRenderer } from '../components/QuestionRenderer';
 import { evaluateQuestion } from '../engine/scoring';
@@ -23,7 +24,7 @@ function formatCountdown(seconds: number): string {
   const mins = Math.floor((safe % 3600) / 60);
   const secs = safe % 60;
   const pad = (n: number) => String(n).padStart(2, '0');
-  return hrs > 0 ? `${pad(hrs)}:${pad(mins)}:${pad(secs)}` : `${pad(mins)}:${pad(secs)}`;
+  return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
 }
 
 export function ExamView({
@@ -99,7 +100,7 @@ export function ExamView({
     remainingSeconds <= 300
       ? 'is-critical'
       : remainingSeconds <= 900
-        ? 'is-warn'
+        ? 'is-warning'
         : '';
 
   const handleSetAnswer = (nextAns: UserAnswer) => {
@@ -144,32 +145,29 @@ export function ExamView({
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <header className="exam-toolbar">
+      <header className="exam-topbar">
         <div className="exam-progress-hairline" aria-hidden="true">
           <div className="exam-progress-fill" style={{ width: `${progressPct}%` }} />
         </div>
-        <div className="exam-toolbar-inner">
+        <div className="exam-topbar-inner">
           <div className="exam-cluster">
             <button
               type="button"
-              className="btn btn-sm btn-subtle"
+              className="brand-btn"
               onClick={onPauseExit}
-              title="Simpan progres sementara dan kembali ke beranda"
+              title="Simpan progres sementara dan kembali ke daftar paket"
+              aria-label="Kembali ke beranda"
             >
-              Beranda
+              <ArenaLogoMark size={30} />
+              <div>
+                <span style={{ display: 'block', fontSize: '0.88rem', fontWeight: 800, color: 'var(--ink-900)' }}>
+                  {session.title}
+                </span>
+                <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--ink-500)' }} className="tabular">
+                  {answeredCount} dari {session.slots.length} soal terjawab
+                </span>
+              </div>
             </button>
-            <div
-              className={`timer-box ${timerClass}`}
-              role="timer"
-              aria-live="off"
-              aria-label={`Sisa waktu ${formatCountdown(remainingSeconds)}`}
-            >
-              <Clock size={15} aria-hidden="true" />
-              <span>{formatCountdown(remainingSeconds)}</span>
-            </div>
-            <span className="score-pill is-good">
-              {answeredCount}/{session.slots.length} Terisi
-            </span>
           </div>
 
           <div className="exam-cluster">
@@ -189,16 +187,29 @@ export function ExamView({
 
             <button
               type="button"
-              className="btn btn-sm"
+              className="btn btn-sm btn-ghost"
               aria-label={theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
               onClick={onToggleTheme}
             >
               {theme === 'light' ? 'Gelap' : 'Terang'}
             </button>
 
+            <div
+              className={`timer-box tabular ${timerClass}`}
+              role="timer"
+              aria-live="off"
+              aria-label={`Sisa waktu ${formatCountdown(remainingSeconds)}`}
+            >
+              <Clock size={15} aria-hidden="true" />
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--ink-500)' }}>
+                SISA WAKTU
+              </span>
+              <span>{formatCountdown(remainingSeconds)}</span>
+            </div>
+
             <button
               type="button"
-              className="btn btn-sm mobile-only"
+              className="btn btn-sm btn-ghost mobile-only"
               onClick={() => setDrawerOpen(true)}
             >
               Peta ({answeredCount}/{session.slots.length})
@@ -206,10 +217,11 @@ export function ExamView({
 
             <button
               type="button"
-              className="btn btn-sm btn-signal"
+              className="btn btn-sm btn-accent"
               onClick={() => setConfirmOpen(true)}
             >
-              Kumpulkan
+              <Send size={14} aria-hidden="true" />
+              Selesai
             </button>
           </div>
         </div>
@@ -218,7 +230,7 @@ export function ExamView({
       <main className="exam-grid" style={{ flex: 1, width: '100%' }}>
         <section
           key={currentQuestion.id}
-          className="question-sheet view-enter"
+          className="kartu question-sheet view-enter"
           aria-label={`Soal nomor ${session.currentIndex + 1}`}
         >
           <QuestionRenderer
@@ -230,29 +242,20 @@ export function ExamView({
             showFeedback={isRevealed}
             canRevealNow={session.instantFeedback}
             onChangeAnswer={handleSetAnswer}
+            onToggleFlag={handleToggleFlag}
             onRevealNow={handleRevealNow}
           />
 
-          <div className="question-footer">
+          <div className="q-footer-nav">
             <button
               type="button"
-              className="btn"
+              className="btn btn-ghost"
               disabled={session.currentIndex === 0}
               onClick={() => handleJump(session.currentIndex - 1)}
             >
+              <ChevronLeft size={17} aria-hidden="true" />
               Sebelumnya
             </button>
-
-            {!isRevealed && (
-              <button
-                type="button"
-                className={`btn btn-flag ${isFlagged ? 'is-active' : ''}`}
-                aria-pressed={isFlagged}
-                onClick={handleToggleFlag}
-              >
-                {isFlagged ? 'Ditandai Ragu-Ragu' : 'Tandai Ragu-Ragu'}
-              </button>
-            )}
 
             {session.currentIndex < session.slots.length - 1 ? (
               <button
@@ -261,20 +264,22 @@ export function ExamView({
                 onClick={() => handleJump(session.currentIndex + 1)}
               >
                 Selanjutnya
+                <ChevronRight size={17} aria-hidden="true" />
               </button>
             ) : (
               <button
                 type="button"
-                className="btn btn-signal"
+                className="btn btn-accent"
                 onClick={() => setConfirmOpen(true)}
               >
+                <Send size={16} aria-hidden="true" />
                 Selesai &amp; Kumpulkan
               </button>
             )}
           </div>
         </section>
 
-        <aside className="nav-sidebar desktop-sidebar" aria-label="Navigasi nomor soal">
+        <aside className="kartu nav-sidebar-card desktop-only" aria-label="Navigasi nomor soal">
           <NavigatorSidebar session={session} onJump={handleJump} />
         </aside>
       </main>
@@ -305,56 +310,56 @@ export function ExamView({
           aria-labelledby="submit-modal-title"
           onClick={() => setConfirmOpen(false)}
         >
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-box" style={{ maxWidth: 480 }} onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3 id="submit-modal-title">Konfirmasi Pengumpulan Jawaban</h3>
+              <h3 id="submit-modal-title">Konfirmasi Selesai Try Out</h3>
             </div>
 
-            <div className="index-list" style={{ marginBottom: '1rem' }}>
-              <div className="history-row">
-                <span>Terisi Lengkap</span>
-                <span className="mono" style={{ fontWeight: 700 }}>{answeredCount}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid var(--ink-100)' }}>
+                <span>Terjawab lengkap</span>
+                <strong className="tabular">{answeredCount} soal</strong>
               </div>
-              <div className="history-row">
-                <span>Belum Selesai</span>
-                <span className="mono" style={{ fontWeight: 700 }}>{unansweredCount}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0', borderBottom: '1px solid var(--ink-100)' }}>
+                <span>Belum lengkap / kosong</span>
+                <strong className="tabular">{unansweredCount} soal</strong>
               </div>
-              <div className="history-row">
-                <span>Ditandai Ragu-Ragu</span>
-                <span className="mono" style={{ fontWeight: 700 }}>{session.flaggedIds.length}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0' }}>
+                <span>Ditandai Ragu-ragu</span>
+                <strong className="tabular">{session.flaggedIds.length} soal</strong>
               </div>
             </div>
 
             {unansweredCount > 0 && (
               <div
                 style={{
-                  padding: '0.75rem',
-                  borderRadius: 'var(--radius-sm)',
-                  backgroundColor: 'var(--status-warn-soft)',
-                  border: '1px solid var(--status-warn)',
+                  padding: '0.75rem 0.9rem',
+                  borderRadius: '0.7rem',
+                  backgroundColor: 'var(--sun-50)',
+                  border: '1px solid var(--sun-500)',
                   marginBottom: '1rem',
                   fontSize: '0.86rem',
+                  color: 'var(--ink-900)',
                 }}
               >
-                Masih ada <strong>{unansweredCount} soal</strong> belum terisi lengkap. Pastikan
-                seluruh baris tabel pada soal PGK Kategori sudah dipilih sebelum mengakhiri ujian.
+                Masih ada <strong>{unansweredCount} soal</strong> yang belum lengkap atau belum diisi.
               </div>
             )}
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.6rem', flexWrap: 'wrap' }}>
               <button
                 type="button"
-                className="btn"
+                className="btn btn-ghost"
                 onClick={() => setConfirmOpen(false)}
               >
-                Kembali Periksa Soal
+                Kembali Periksa
               </button>
               <button
                 type="button"
-                className="btn btn-signal"
+                className="btn btn-accent"
                 onClick={() => onSubmitExam(Date.now())}
               >
-                Ya, Kumpulkan &amp; Lihat Skor
+                Ya, Selesai &amp; Lihat Nilai
               </button>
             </div>
           </div>

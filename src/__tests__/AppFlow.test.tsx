@@ -2,79 +2,74 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from '../App';
 
-describe('UI Integration Flow (KALIBRASI Multi-Prodi Workstation)', () => {
+describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.scrollTo = () => {};
   });
 
-  it('memulai Simulasi Resmi 80 soal Teknik Mesin, menandai ragu, lalu menampilkan laporan diagnostik', () => {
+  it('membuka katalog SIAPPPG bebas bayar, masuk ke Detail Paket Teknik Mesin, mengerjakan ujian, dan menampilkan skor skala 100', () => {
     render(<App />);
 
     expect(
-      screen.getByText(/BIDANG STUDI TEKNIK MESIN \(SMK\) · JUKNIS UKPPPG 2026/i)
+      screen.getByRole('heading', { name: /Simulasi Try Out UTBK UKPPPG 2026/i })
     ).toBeInTheDocument();
 
-    const mixToggle = screen.getByRole('checkbox', {
-      name: /Acak campur urutan nomor PCK/i,
-    });
-    fireEvent.click(mixToggle);
-    expect(mixToggle).toBeChecked();
-
+    // Klik kartu pertama (Teknik Mesin SMK · Simulasi Resmi Acak)
     fireEvent.click(
-      screen.getByRole('button', { name: /Mulai Simulasi Resmi \(80 Soal\)/i })
+      screen.getAllByRole('button', { name: /Lihat detail & mulai/i })[0]
     );
 
-    expect(screen.getByText('Soal 1 / 80')).toBeInTheDocument();
-    expect(screen.getByText('0/80 Terisi')).toBeInTheDocument();
+    expect(screen.getByText(/Komposisi soal/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tata tertib pengerjaan/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /Tandai Ragu-Ragu/i }));
+    const nameInput = screen.getByLabelText(/Nama peserta \(opsional\)/i);
+    fireEvent.change(nameInput, { target: { value: 'Fanny' } });
+
+    fireEvent.click(screen.getByRole('button', { name: /Mulai try out/i }));
+
+    expect(screen.getByText(/Soal 1\b/i)).toBeInTheDocument();
+    expect(screen.getByText(/0 dari 80 soal terjawab/i)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /^Ragu-ragu$/i }));
     expect(
-      screen.getByRole('button', { name: /Ditandai Ragu-Ragu/i })
+      screen.getByRole('button', { name: /Ditandai Ragu-ragu/i })
     ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: /Kumpulkan/i }));
-    expect(screen.getByText(/Konfirmasi Pengumpulan Jawaban/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Selesai/i }));
+    expect(screen.getByText(/Konfirmasi Selesai Try Out/i)).toBeInTheDocument();
 
     fireEvent.click(
-      screen.getByRole('button', { name: /Ya, Kumpulkan & Lihat Skor/i })
+      screen.getByRole('button', { name: /Ya, Selesai & Lihat Nilai/i })
     );
 
-    expect(
-      screen.getByText(/LAPORAN DIAGNOSTIK UTBK UKPPPG 2026/i)
-    ).toBeInTheDocument();
-    expect(screen.getByText('SKOR KETAT BPPP')).toBeInTheDocument();
-    expect(screen.getByText('PCK Teknik Mesin')).toBeInTheDocument();
-    expect(screen.getByText('Pedagogi Umum (PU)')).toBeInTheDocument();
+    expect(screen.getByText(/Poin per 10 soal/i)).toBeInTheDocument();
+    expect(screen.getByText(/Capaian per kompetensi/i)).toBeInTheDocument();
+    expect(screen.getByText(/HASIL TRY OUT .* Fanny/i)).toBeInTheDocument();
   });
 
-  it('mengalihkan Prodi ke PGSD lalu sinkronisasi penuh bank, matriks, simulasi, dan laporan hasil PGSD', () => {
+  it('menyaring katalog paket berdasarkan tab Prodi (PGSD) dan membuka detail PGSD 80 soal', () => {
     render(<App />);
 
-    const prodiSelect = screen.getByLabelText('PRODI / BIDANG STUDI');
-    fireEvent.change(prodiSelect, { target: { value: 'pgsd' } });
-
+    fireEvent.click(screen.getByRole('tab', { name: 'PGSD' }));
     expect(
-      screen.getByText(/BIDANG STUDI PGSD \(GURU KELAS SD\) · JUKNIS UKPPPG 2026/i)
+      screen.getByText(/PGSD · Paket 3 Guru Kelas SD Lengkap/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/Peta Subkompetensi \(PGSD\)/i)).toBeInTheDocument();
+    expect(
+      screen.queryByText(/Teknik Mesin SMK · Simulasi Resmi Acak/i)
+    ).not.toBeInTheDocument();
 
     fireEvent.click(
-      screen.getByRole('button', { name: /Mulai Simulasi Resmi \(80 Soal\)/i })
+      screen.getAllByRole('button', { name: /Lihat detail & mulai/i })[0]
     );
-    expect(screen.getByText('Soal 1 / 80')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: /Kumpulkan/i }));
-    fireEvent.click(
-      screen.getByRole('button', { name: /Ya, Kumpulkan & Lihat Skor/i })
-    );
-    expect(screen.getAllByText('PCK PGSD').length).toBeGreaterThanOrEqual(1);
+    fireEvent.click(screen.getByRole('button', { name: /Mulai try out/i }));
+    expect(screen.getByText(/0 dari 80 soal terjawab/i)).toBeInTheDocument();
   });
 
-  it('mendukung Mode Drill PGK Kategori via tab Studio Drill dengan cek langsung', () => {
+  it('menguji Studio Drill Custom untuk PGK Kategori dengan cek jawaban langsung', () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: /Buka Studio Drill/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Studio Drill Custom/i }));
 
     fireEvent.change(screen.getByLabelText('Bentuk Soal'), {
       target: { value: 'PGK_KATEGORI' },
@@ -100,49 +95,18 @@ describe('UI Integration Flow (KALIBRASI Multi-Prodi Workstation)', () => {
     expect(screen.getByText(/Kunci Jawaban Tepat:/i)).toBeInTheDocument();
   });
 
-  it('mendukung Mode Drill PGK MCMA serta beralih lingkup bank arsip penuh', () => {
+  it('berpindah tab pada Kisi-Kisi resmi UKPPPG dan meluncurkan latihan langsung dari baris subkompetensi P.1', () => {
     render(<App />);
 
-    fireEvent.click(screen.getByRole('button', { name: /Buka Studio Drill/i }));
+    fireEvent.click(screen.getByRole('tab', { name: '2. Kepribadian' }));
+    expect(screen.getByText(/2\. Kompetensi Kepribadian/i)).toBeInTheDocument();
 
-    fireEvent.click(
-      screen.getByRole('button', { name: /Semua Prodi & Lintas Mapel/i })
-    );
-    expect(screen.getByText(/729 Butir/i)).toBeInTheDocument();
-
-    fireEvent.change(screen.getByLabelText('Bentuk Soal'), {
-      target: { value: 'PGK_MCMA' },
-    });
+    fireEvent.click(screen.getByRole('tab', { name: '1. Pedagogik' }));
+    fireEvent.click(screen.getAllByRole('button', { name: /Latih \(/i })[0]);
     fireEvent.click(
       screen.getByRole('button', { name: /Mulai Drill Acak Sekarang/i })
     );
 
-    expect(screen.getByText(/Dipilih: 0/i)).toBeInTheDocument();
-    const checkboxes = screen.getAllByRole('checkbox');
-    fireEvent.click(checkboxes[0]);
-    fireEvent.click(checkboxes[1]);
-    expect(screen.getByText(/Dipilih: 2/i)).toBeInTheDocument();
-  });
-
-  it('meluncurkan drill terfokus langsung dari sel Matriks Subkompetensi P.1 sesuai Prodi aktif', () => {
-    render(<App />);
-
-    fireEvent.change(screen.getByLabelText('PRODI / BIDANG STUDI'), {
-      target: { value: 'matematika' },
-    });
-
-    fireEvent.click(
-      screen.getByRole('button', { name: /Drill Subkompetensi P\.1/i })
-    );
-    expect(screen.getByText('Soal 1 / 15')).toBeInTheDocument();
-    expect(screen.getByText(/· P\.1$/)).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: /Kumpulkan/i }));
-    fireEvent.click(
-      screen.getByRole('button', { name: /Ya, Kumpulkan & Lihat Skor/i })
-    );
-    expect(
-      screen.getByRole('heading', { name: 'Drill P.1 · Matematika' })
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Soal 1\b/i)).toBeInTheDocument();
   });
 });

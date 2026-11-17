@@ -7,6 +7,7 @@ import type {
   QuestionBank,
   QuestionType,
   SubcompetencyScore,
+  TenBlockScore,
   UserAnswer,
 } from '../types/exam';
 
@@ -14,30 +15,67 @@ export interface QuestionEvaluation {
   answered: boolean;
   isComplete: boolean;
   strictCorrect: boolean;
-  /** Nilai 0..1: untuk PG 0|1, untuk PGK_KATEGORI proporsi baris benar, untuk PGK_MCMA Jaccard/akurasi diagnostik */
+  /** Nilai 0..1: untuk PG 0|1, untuk PGK_KATEGORI proporsi baris benar, untuk PGK_MCMA akurasi diagnostik */
   partialRatio: number;
+  rawEarned: number;
+  rawMax: number;
+}
+
+export function getQuestionMaxPoints(q: ExamQuestion): number {
+  if (q.type === 'PGK_KATEGORI') return q.statements.length;
+  return 5;
 }
 
 export function evaluateQuestion(
   question: ExamQuestion,
   userAnswer: UserAnswer | undefined
 ): QuestionEvaluation {
+  const rawMax = getQuestionMaxPoints(question);
+
   if (!userAnswer) {
-    return { answered: false, isComplete: false, strictCorrect: false, partialRatio: 0 };
+    return {
+      answered: false,
+      isComplete: false,
+      strictCorrect: false,
+      partialRatio: 0,
+      rawEarned: 0,
+      rawMax,
+    };
   }
 
   if (question.type === 'PG' && userAnswer.type === 'PG') {
     if (userAnswer.selected === null) {
-      return { answered: false, isComplete: false, strictCorrect: false, partialRatio: 0 };
+      return {
+        answered: false,
+        isComplete: false,
+        strictCorrect: false,
+        partialRatio: 0,
+        rawEarned: 0,
+        rawMax,
+      };
     }
     const ok = userAnswer.selected === question.answer;
-    return { answered: true, isComplete: true, strictCorrect: ok, partialRatio: ok ? 1 : 0 };
+    return {
+      answered: true,
+      isComplete: true,
+      strictCorrect: ok,
+      partialRatio: ok ? 1 : 0,
+      rawEarned: ok ? 5 : 0,
+      rawMax,
+    };
   }
 
   if (question.type === 'PGK_MCMA' && userAnswer.type === 'PGK_MCMA') {
     const chosen = Array.from(new Set(userAnswer.selected)).sort((a, b) => a - b);
     if (chosen.length === 0) {
-      return { answered: false, isComplete: false, strictCorrect: false, partialRatio: 0 };
+      return {
+        answered: false,
+        isComplete: false,
+        strictCorrect: false,
+        partialRatio: 0,
+        rawEarned: 0,
+        rawMax,
+      };
     }
     const expected = Array.from(new Set(question.answer)).sort((a, b) => a - b);
     const strictCorrect =
@@ -51,7 +89,6 @@ export function evaluateQuestion(
       if (expectedSet.has(c)) hits++;
       else falsePos++;
     }
-    // Skor diagnostik parsial memberi kredit proporsional tanpa hadiah tebak semua
     const raw = (hits - falsePos * 0.5) / expected.length;
     const partialRatio = strictCorrect ? 1 : Math.max(0, Math.min(0.95, raw));
     return {
@@ -59,6 +96,8 @@ export function evaluateQuestion(
       isComplete: chosen.length > 0,
       strictCorrect,
       partialRatio,
+      rawEarned: strictCorrect ? 5 : 0,
+      rawMax,
     };
   }
 
@@ -66,7 +105,14 @@ export function evaluateQuestion(
     const total = question.statements.length;
     const pickedCount = userAnswer.selections.filter((s) => s !== null).length;
     if (pickedCount === 0) {
-      return { answered: false, isComplete: false, strictCorrect: false, partialRatio: 0 };
+      return {
+        answered: false,
+        isComplete: false,
+        strictCorrect: false,
+        partialRatio: 0,
+        rawEarned: 0,
+        rawMax,
+      };
     }
     let correctRows = 0;
     for (let i = 0; i < total; i++) {
@@ -81,10 +127,19 @@ export function evaluateQuestion(
       isComplete,
       strictCorrect,
       partialRatio: total > 0 ? correctRows / total : 0,
+      rawEarned: correctRows,
+      rawMax,
     };
   }
 
-  return { answered: false, isComplete: false, strictCorrect: false, partialRatio: 0 };
+  return {
+    answered: false,
+    isComplete: false,
+    strictCorrect: false,
+    partialRatio: 0,
+    rawEarned: 0,
+    rawMax,
+  };
 }
 
 export function gradeSession(
@@ -104,23 +159,47 @@ export function gradeSession(
   >();
 
   let strictCorrectCount = 0;
+  let partialCorrectCount = 0;
+  let wrongCount = 0;
+  let unansweredCount = 0;
   let totalPartial = 0;
+  let pointsEarned = 0;
+  let maxPoints = 0;
   let pckCorrect = 0;
   let pckTotal = 0;
   let puCorrect = 0;
   let puTotal = 0;
   const missedIds: string[] = [];
 
-  for (const slot of session.slots) {
+  const tenBlockMap = new Map<number, { earned: number; max: number }>();
+
+  for (let i = 0; i < session.slots.length; i++) {
+    const slot = session.slots[i];
     const q = slot.question;
     const ev = evaluateQuestion(q, session.answers[q.id]);
 
     byType[q.type].total++;
+    pointsEarned += ev.rawEarned;
+    maxPoints += ev.rawMax;
+
+    const blockIdx = Math.floor(i / 10);
+    const blk = tenBlockMap.get(blockIdx) ?? { earned: 0, max: 0 };
+    blk.earned += ev.rawEarned;
+    blk.max += ev.rawMax;
+    tenBlockMap.set(blockIdx, blk);
+
     if (ev.strictCorrect) {
       byType[q.type].correct++;
       strictCorrectCount++;
     } else {
       missedIds.push(q.id);
+      if (!ev.answered) {
+        unansweredCount++;
+      } else if (ev.partialRatio > 0) {
+        partialCorrectCount++;
+      } else {
+        wrongCount++;
+      }
     }
 
     totalPartial += ev.partialRatio;
@@ -140,10 +219,14 @@ export function gradeSession(
       correct: 0,
       total: 0,
       earnedPoints: 0,
+      rawEarned: 0,
+      rawMax: 0,
     };
     existingSub.total++;
     if (ev.strictCorrect) existingSub.correct++;
     existingSub.earnedPoints += ev.partialRatio;
+    existingSub.rawEarned += ev.rawEarned;
+    existingSub.rawMax += ev.rawMax;
     subMap.set(subKey, existingSub);
 
     const existingTopic = topicMap.get(q.topic) ?? {
@@ -167,6 +250,18 @@ export function gradeSession(
   });
 
   const totalQuestions = session.slots.length;
+  const tenBlocks: TenBlockScore[] = Array.from(tenBlockMap.entries())
+    .sort((a, b) => a[0] - b[0])
+    .map(([bIdx, vals]) => {
+      const start = bIdx * 10 + 1;
+      const end = Math.min((bIdx + 1) * 10, totalQuestions);
+      return {
+        label: `Soal ${start}–${end}`,
+        earned: vals.earned,
+        max: vals.max,
+      };
+    });
+
   const elapsedSeconds = Math.max(
     1,
     Math.min(
@@ -178,19 +273,28 @@ export function gradeSession(
   return {
     id: session.id,
     mode: session.mode,
+    paketId: session.paketId,
     prodiId: session.prodiId,
     prodiLabel: session.prodiLabel,
+    participantName: session.participantName,
     title: session.title,
     completedAt,
     elapsedSeconds,
     totalQuestions,
     strictCorrectCount,
+    partialCorrectCount,
+    wrongCount,
+    unansweredCount,
     strictScore: totalQuestions > 0 ? Math.round((strictCorrectCount / totalQuestions) * 100) : 0,
     weightedScore: totalQuestions > 0 ? Math.round((totalPartial / totalQuestions) * 100) : 0,
+    pointsEarned,
+    maxPoints,
+    scaleScore: maxPoints > 0 ? Math.round((pointsEarned / maxPoints) * 100) : 0,
     pckCorrect,
     pckTotal,
     puCorrect,
     puTotal,
+    tenBlocks,
     byType,
     bySubcompetency,
     byTopic,

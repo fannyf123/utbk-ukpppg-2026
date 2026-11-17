@@ -1,0 +1,477 @@
+import {
+  ALL_QUESTIONS,
+  getProdiPckBank,
+  getProdiPuBank,
+  getProdiQuestions,
+} from './questionBank';
+import { getProdiConfig } from './prodiRegistry';
+import type { ExamQuestion, MasteryRecord, ProdiId } from '../types/exam';
+import {
+  buildShuffledSlot,
+  createInitialAnswer,
+  prioritizeQuestions,
+  shuffleArray,
+  type Rng,
+} from '../engine/randomizer';
+import type { ExamSession, UserAnswer } from '../types/exam';
+
+export type PaketGroup = 'bidang-studi' | 'pedagogi-umum';
+
+export interface PaketDef {
+  id: string;
+  group: PaketGroup;
+  prodiId: ProdiId;
+  badge: string;
+  badgeTone: 'prodi' | 'umum' | 'arsip';
+  title: string;
+  subtitle: string;
+  questionCount: number;
+  durationMinutes: number;
+  highlights: string[];
+  kind: 'prodi-random' | 'fixed-ids' | 'prodi-slice' | 'pu-random';
+  pckSliceOffset?: number;
+  puSliceOffset?: number;
+  pckQuota?: number;
+  puQuota?: number;
+  fixedPrefix?: string;
+}
+
+export const PAKET_CATALOG: readonly PaketDef[] = [
+  // === GROUP 1: BIDANG STUDI TERISOLASI KETAT PER PRODI ===
+  {
+    id: 'teknik-mesin-resmi',
+    group: 'bidang-studi',
+    prodiId: 'teknik-mesin',
+    badge: 'Teknik Mesin SMK',
+    badgeTone: 'prodi',
+    title: 'Teknik Mesin SMK · Simulasi Resmi Acak',
+    subtitle:
+      'Simulasi 80 soal terkalibrasi Juknis: 50 PCK Teknik Mesin murni + 30 Pedagogi Umum bebas soal jurusan lain, memprioritaskan soal belum dikerjakan.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Gambar Teknik, Proyeksi ISO & CAD Inventor',
+      'Pemesinan Bubut, Frais, Gerinda & CNC G-Code',
+      'Metrologi Mikrometer, Material Fe-Fe3C & Las SMAW',
+      'Pedagogi Umum murni, SEL, Growth Mindset & K3LH TeFa',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'teknik-mesin-paket-a',
+    group: 'bidang-studi',
+    prodiId: 'teknik-mesin',
+    badge: 'Teknik Mesin SMK',
+    badgeTone: 'prodi',
+    title: 'Teknik Mesin SMK · Paket Spesial A',
+    subtitle:
+      'Set khusus 50 soal PCK Teknik Mesin Bagian I (CAD, Bubut, Frais, CNC) dipadukan 30 Pedagogi Umum netral. Zero duplikasi dengan Paket B.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      '50 PCK Bagian 1: Proyeksi, Pemesinan, CNC Dasar',
+      '30 Pedagogi Umum netral bebas mapel non-Mesin',
+      'PG Tunggal, PGK Kategori (tabel), dan PGK MCMA',
+      'Cocok dikerjakan berpasangan sebelum Paket Spesial B',
+    ],
+    kind: 'prodi-slice',
+    pckSliceOffset: 0,
+    puSliceOffset: 0,
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'teknik-mesin-paket-b',
+    group: 'bidang-studi',
+    prodiId: 'teknik-mesin',
+    badge: 'Teknik Mesin SMK',
+    badgeTone: 'prodi',
+    title: 'Teknik Mesin SMK · Paket Spesial B',
+    subtitle:
+      'Set lanjutan 50 soal PCK Teknik Mesin Bagian II (Metrologi, Heat Treatment, Las, Elemen Mesin, K3LH) + 30 Pedagogi Umum terpisah dari Paket A.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      '50 PCK Bagian 2: Metrologi Presisi, Material & Pengelasan',
+      'Elemen Mesin, Pneumatik-Hidrolik & Teaching Factory',
+      '30 Pedagogi Umum blok kedua bebas pengulangan Paket A',
+      'Analisis lengkap per subkompetensi P.1 hingga PF.5',
+    ],
+    kind: 'prodi-slice',
+    pckSliceOffset: 50,
+    puSliceOffset: 30,
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'pgsd-lengkap',
+    group: 'bidang-studi',
+    prodiId: 'pgsd',
+    badge: 'PGSD',
+    badgeTone: 'prodi',
+    title: 'PGSD · Paket 3 Guru Kelas SD Lengkap',
+    subtitle:
+      'Paket bidang studi PGSD: 30 soal Pedagogi Umum konteks SD dan 50 soal PCK lintas mata pelajaran SD beserta pembahasan per opsi.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Pedagogi Umum SD: UbD, diferensiasi, TaRL, UDL, asesmen',
+      'Bahasa Indonesia & Matematika SD: literasi awal, pecahan',
+      'IPAS, Pendidikan Pancasila, PJOK & Seni SD',
+      'Kelas rendah, inklusi, perangkat ajar & PTK SD',
+    ],
+    kind: 'fixed-ids',
+    fixedPrefix: 'arena-paket-3-pgsd-',
+  },
+  {
+    id: 'pgsd-acak',
+    group: 'bidang-studi',
+    prodiId: 'pgsd',
+    badge: 'PGSD',
+    badgeTone: 'prodi',
+    title: 'PGSD · Simulasi Acak Multi-Bank',
+    subtitle:
+      'Acak 50 butir dari 61 soal PCK PGSD & perkembangan anak usia SD dipadukan 30 Pedagogi Umum bebas soal SMK/SMA.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Pool 61 PCK PGSD + 266 Pedagogi Umum selaras SD',
+      'Prioritas pintar soal belum dikerjakan / pernah keliru',
+      'Mencakup Piaget konkret, Erikson SD, literasi & numerasi',
+      'Pembahasan alasan tiap pilihan & pernyataan BS',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'matematika-resmi',
+    group: 'bidang-studi',
+    prodiId: 'matematika',
+    badge: 'Matematika',
+    badgeTone: 'prodi',
+    title: 'Matematika · Paket 4 Terkurasi Bebas Mapel Lain',
+    subtitle:
+      '50 PCK Matematika lengkap dengan hitungan + 30 Pedagogi Umum murni & konteks Matematika (bersih dari soal Biologi/IPA/Bahasa Inggris).',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Miskonsepsi fungsi, aljabar, pecahan, peluang & lingkaran',
+      'Teori belajar Van Hiele, Polya, Newman, Skemp & RME',
+      'Statistika, barisan, trigonometri, turunan & GeoGebra',
+      'Pedagogi Umum tersinkron tanpa soal mata pelajaran lain',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'bahasa-indonesia-resmi',
+    group: 'bidang-studi',
+    prodiId: 'bahasa-indonesia',
+    badge: 'Bahasa Indonesia',
+    badgeTone: 'prodi',
+    title: 'Bahasa Indonesia · Paket 5 Terkurasi',
+    subtitle:
+      '50 soal PCK Bahasa Indonesia + 30 Pedagogi Umum selaras (PMA, SEL bahasa, dan Pedagogi Umum netral) dengan bentuk soal diacak.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Pembelajaran berbasis genre: eksposisi, argumentasi, prosedur',
+      'Menyimak, membaca, berbicara, pidato & asesmen autentik',
+      'Sastra dan kebahasaan: puisi, cerpen, drama, EYD, kalimat efektif',
+      'Bebas dari materi hitung Teknik Mesin maupun IPA SMP',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'ipa-resmi',
+    group: 'bidang-studi',
+    prodiId: 'ipa',
+    badge: 'IPA / IPAS',
+    badgeTone: 'prodi',
+    title: 'IPA & IPAS Terpadu · Simulasi Resmi',
+    subtitle:
+      '50 PCK IPA & IPAS (kurasi bank UST IPA SMP + konsep Fisika, Biologi, Kimia) dipadukan 30 Pedagogi Umum netral bebas mapel non-sains.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Kalor & suhu, tekanan zat cair, pemantulan cahaya & parabola',
+      'Ekosistem mangrove, pernapasan, pencernaan & perubahan iklim',
+      'Model POE (Predict-Observe-Explain), inkuiri & laporan praktikum',
+      'Asesmen formatif, rubrik eksperimen & taksonomi SOLO sains',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'smk-vokasi',
+    group: 'bidang-studi',
+    prodiId: 'smk-vokasi',
+    badge: 'SMK Vokasi',
+    badgeTone: 'prodi',
+    title: 'SMK Vokasi Lintas Keahlian (DKV · TKJ · TKR · Boga)',
+    subtitle:
+      '17 kasus kejuruan terkurasi (setiap soal mencantumkan label keahlian jelas: DKV, TKJ/RPL, TKR, TITL, Tata Boga, Akuntansi) + 30 PU Vokasi.',
+    questionCount: 47,
+    durationMinutes: 88,
+    highlights: [
+      'Kasus PPDP & PMA nyata kelas X–XI SMK (DKV, TKJ, RPL)',
+      'SJT Teaching Factory & keselamatan bengkel TKR/TITL Listrik',
+      'Diferensiasi kejuruan Tata Boga, Akuntansi & Agribisnis',
+      'Proporsional 47 soal · 88 menit agar jumlah soal tetap jujur',
+    ],
+    kind: 'prodi-random',
+    pckQuota: 50,
+    puQuota: 30,
+  },
+
+  // === GROUP 2: PEDAGOGI UMUM & ARSIP UMUM ===
+  {
+    id: 'pu-murni-30',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Umum Murni',
+    badgeTone: 'umum',
+    title: 'Pedagogi Umum Murni · Latihan Cepat 30 Soal',
+    subtitle:
+      '30 soal Pedagogi Umum netral (porsi standar PU dalam UTBK) yang ditarik dari 196 butir murni bebas nama jurusan atau mata pelajaran spesifik.',
+    questionCount: 30,
+    durationMinutes: 56,
+    highlights: [
+      '100% bebas istilah teknik jurusan tertentu sehingga tidak ambigu',
+      'Teori belajar, UbD, Pembelajaran Mendalam, UDL & TaRL',
+      'SEL CASEL, EMC², Growth Mindset & Etika Profesi Guru',
+      'Ideal untuk pemanasan harian 56 menit sesuai standar Juknis',
+    ],
+    kind: 'pu-random',
+    puQuota: 30,
+  },
+  {
+    id: 'pu-murni-80',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Umum Murni',
+    badgeTone: 'umum',
+    title: 'Pedagogi Umum Murni · Simulasi Penuh 80 Soal',
+    subtitle:
+      'Simulasi maraton 80 soal dalam 150 menit yang seluruhnya berisi Pedagogi Umum murni, Kepribadian, Sosial & Filosofi Pendidikan.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Latihan ketahanan konsentrasi penuh 80 butir / 150 menit',
+      'Zero soal jurusan lain: aman untuk calon guru semua prodi',
+      'Lengkap PG Tunggal, PGK Kategori, dan PGK MCMA',
+      'Pemetaan detail capaian P.1–P.6, K.1–K.3, S.1–S.3 & PF',
+    ],
+    kind: 'pu-random',
+    puQuota: 80,
+  },
+  {
+    id: 'paket-1-umum',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Lintas Konteks · Paket 1',
+    badgeTone: 'arsip',
+    title: 'Try Out Umum SIAPPPG · Paket 1',
+    subtitle:
+      'Paket pembuka SIAPPPG untuk mengenal bentuk soal dan ritme ujian (memakai ilustrasi kelas lintas mapel sebagai studi kasus pedagogik).',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Teori belajar: Skinner, Bandura, Vygotsky, Piaget, Bruner',
+      'Asesmen formatif, rubrik, taksonomi Bloom dan SOLO',
+      'Pembelajaran Mendalam, diferensiasi, UDL, dan TaRL',
+      'Etika profesi, inklusi, dan pemikiran Ki Hadjar Dewantara',
+    ],
+    kind: 'fixed-ids',
+    fixedPrefix: 'arena-paket-1-',
+  },
+  {
+    id: 'paket-2-umum',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Lintas Konteks · Paket 2',
+    badgeTone: 'arsip',
+    title: 'Try Out Umum SIAPPPG · Paket 2',
+    subtitle:
+      'Paket lanjutan SIAPPPG dengan teori dan kasus berbeda dari Paket 1 (studi kasus lintas mapel sebagai latihan refleksi pedagogik).',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Pengondisian klasik, Thorndike, Erikson, Maslow, atribusi Weiner',
+      'Manajemen kelas, pembelajaran langsung, dan model kooperatif',
+      'Kualitas instrumen tes, umpan balik, dan numerasi',
+      'Literasi digital dan AI, coaching, supervisi, perlindungan murid',
+    ],
+    kind: 'fixed-ids',
+    fixedPrefix: 'arena-paket-2-',
+  },
+  {
+    id: 'paket-3-umum',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Lintas Konteks · Paket 3',
+    badgeTone: 'arsip',
+    title: 'Try Out Umum SIAPPPG · Paket 3',
+    subtitle:
+      'Paket bergaya simulasi dengan lebih banyak soal benar–salah berlapis dan pilihan ganda kompleks serta pembahasan lengkap tiap opsi.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Pembelajaran Mendalam, UDL, TaRL, dan diferensiasi kasus kelas',
+      'SEL, growth mindset, EMC², dan etika profesi guru',
+      'Taksonomi SOLO, Bloom, Marzano, dan asesmen autentik',
+      'Teori belajar: Dewey, Kolb, Schank, Habermas, Bruner, Ausubel',
+    ],
+    kind: 'fixed-ids',
+    fixedPrefix: 'arena-paket-3-',
+  },
+];
+
+export function getPaketById(id: string): PaketDef | undefined {
+  return PAKET_CATALOG.find((p) => p.id === id);
+}
+
+/**
+ * Mengembalikan daftar soal statis atau representatif untuk preview komposisi paket di halaman detail.
+ */
+export function resolvePaketQuestions(
+  paket: PaketDef,
+  mastery: Record<string, MasteryRecord> = {},
+  rng: Rng = Math.random
+): ExamQuestion[] {
+  if (paket.kind === 'fixed-ids' && paket.fixedPrefix) {
+    const prefix = paket.fixedPrefix;
+    return ALL_QUESTIONS.filter((q) => {
+      if (!q.id.startsWith(prefix)) return false;
+      const tail = q.id.slice(prefix.length);
+      return /^\d+$/.test(tail);
+    }).sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+  }
+
+  if (paket.kind === 'pu-random') {
+    const puBank = getProdiPuBank('umum');
+    const need = Math.min(paket.puQuota ?? 30, puBank.length);
+    return prioritizeQuestions(puBank, mastery, rng).slice(0, need);
+  }
+
+  const pckBank = getProdiPckBank(paket.prodiId);
+  const puBank = getProdiPuBank(paket.prodiId);
+  const pckQuota = Math.min(paket.pckQuota ?? 50, pckBank.length);
+  const puQuota = Math.min(paket.puQuota ?? 30, puBank.length);
+
+  if (paket.kind === 'prodi-slice') {
+    const pOff = paket.pckSliceOffset ?? 0;
+    const uOff = paket.puSliceOffset ?? 0;
+    const pckSlice = pckBank.slice(pOff, pOff + pckQuota);
+    if (pckSlice.length < pckQuota) {
+      const ids = new Set(pckSlice.map((q) => q.id));
+      pckSlice.push(...pckBank.filter((q) => !ids.has(q.id)).slice(0, pckQuota - pckSlice.length));
+    }
+    const puSlice = puBank.slice(uOff, uOff + puQuota);
+    if (puSlice.length < puQuota) {
+      const ids = new Set(puSlice.map((q) => q.id));
+      puSlice.push(...puBank.filter((q) => !ids.has(q.id)).slice(0, puQuota - puSlice.length));
+    }
+    return [...pckSlice, ...puSlice];
+  }
+
+  // prodi-random: prioritize unseen/weak + balance PG/Kategori/MCMA
+  const chosenPck = prioritizeQuestions(pckBank, mastery, rng).slice(0, pckQuota);
+  const chosenPu = prioritizeQuestions(puBank, mastery, rng).slice(0, puQuota);
+  return [...chosenPck, ...chosenPu];
+}
+
+export function createSessionFromPaket(
+  paket: PaketDef,
+  mastery: Record<string, MasteryRecord>,
+  options?: {
+    participantName?: string;
+    mixBanksOrder?: boolean;
+    now?: number;
+    rng?: Rng;
+  }
+): ExamSession {
+  const rng = options?.rng ?? Math.random;
+  const now = options?.now ?? Date.now();
+  const prodiCfg = getProdiConfig(paket.prodiId);
+
+  const selectedRaw = resolvePaketQuestions(paket, mastery, rng);
+  const ordered = options?.mixBanksOrder
+    ? shuffleArray(selectedRaw, rng)
+    : selectedRaw;
+
+  const shuffleOptions = paket.kind !== 'fixed-ids' || Boolean(options?.mixBanksOrder);
+  const slots = ordered.map((q) => buildShuffledSlot(q, rng, shuffleOptions));
+  const answers: Record<string, UserAnswer> = {};
+  for (const slot of slots) {
+    answers[slot.question.id] = createInitialAnswer(slot.question);
+  }
+
+  const durationSeconds = paket.durationMinutes * 60;
+  return {
+    id: `paket-${paket.id}-${now}-${Math.floor(rng() * 10000)}`,
+    mode: 'official',
+    paketId: paket.id,
+    prodiId: paket.prodiId,
+    prodiLabel: prodiCfg.shortLabel,
+    participantName: options?.participantName?.trim() || undefined,
+    title: paket.title,
+    instantFeedback: false,
+    createdAt: now,
+    durationSeconds,
+    endsAt: now + durationSeconds * 1000,
+    currentIndex: 0,
+    flaggedIds: [],
+    revealedIds: [],
+    slots,
+    answers,
+  };
+}
+
+export function getPaketStaticComposition(paket: PaketDef): {
+  pck: number;
+  pu: number;
+  byCompetency: Record<string, number>;
+  byType: Record<'PG' | 'PGK_KATEGORI' | 'PGK_MCMA', number>;
+  maxPoints: number;
+} {
+  // Deterministic preview using stable ordering
+  const previewQs = resolvePaketQuestions(paket, {}, () => 0.49);
+  const byCompetency: Record<string, number> = {
+    Pedagogik: 0,
+    Kepribadian: 0,
+    Sosial: 0,
+    Profesional: 0,
+  };
+  const byType = { PG: 0, PGK_KATEGORI: 0, PGK_MCMA: 0 };
+  let pck = 0;
+  let pu = 0;
+  let maxPoints = 0;
+  for (const q of previewQs) {
+    if (q.bank === 'PCK') pck++;
+    else pu++;
+    byCompetency[q.kompetensi] = (byCompetency[q.kompetensi] ?? 0) + 1;
+    byType[q.type]++;
+    maxPoints += q.type === 'PGK_KATEGORI' ? q.statements.length : 5;
+  }
+  return { pck, pu, byCompetency, byType, maxPoints };
+}
+
+export function getTotalAvailableUniqueQuestions(): number {
+  return ALL_QUESTIONS.length;
+}
+
+export function getAllProdiSummary() {
+  return {
+    totalQuestions: ALL_QUESTIONS.length,
+    totalPackets: PAKET_CATALOG.length,
+    mesinTotal: getProdiQuestions('teknik-mesin').length,
+  };
+}

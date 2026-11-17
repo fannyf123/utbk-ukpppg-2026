@@ -26,6 +26,7 @@ export function NavigatorSidebar({
       id: slot.question.id,
       bank: slot.question.bank,
       isComplete: ev.isComplete,
+      isPartial: ev.answered && !ev.isComplete,
       isFlagged,
     };
   });
@@ -38,30 +39,19 @@ export function NavigatorSidebar({
   });
 
   const answeredCount = statuses.filter((s) => s.isComplete).length;
+  const remainingCount = statuses.length - answeredCount;
   const flaggedCount = statuses.filter((s) => s.isFlagged).length;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', height: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div>
-          <strong
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.96rem',
-              fontWeight: 800,
-              display: 'block',
-            }}
-          >
-            Navigasi Soal
-          </strong>
-          <span className="mono" style={{ fontSize: '0.74rem', color: 'var(--ink-muted)' }}>
-            {answeredCount}/{session.slots.length} selesai · {flaggedCount} ragu
-          </span>
-        </div>
+        <strong style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--ink-900)' }}>
+          Navigasi soal
+        </strong>
         {onCloseMobile && (
           <button
             type="button"
-            className="btn btn-sm"
+            className="btn btn-sm btn-ghost"
             aria-label="Tutup peta soal"
             onClick={onCloseMobile}
           >
@@ -70,11 +60,26 @@ export function NavigatorSidebar({
         )}
       </div>
 
-      <div className="nav-filter-row" role="tablist" aria-label="Filter peta soal">
+      <div className="nav-kpi-row tabular">
+        <div className="nav-kpi-box">
+          <span className="nav-kpi-val">{answeredCount}</span>
+          <span className="nav-kpi-lbl">Terjawab</span>
+        </div>
+        <div className="nav-kpi-box">
+          <span className="nav-kpi-val">{remainingCount}</span>
+          <span className="nav-kpi-lbl">Belum</span>
+        </div>
+        <div className="nav-kpi-box">
+          <span className="nav-kpi-val">{flaggedCount}</span>
+          <span className="nav-kpi-lbl">Ragu-ragu</span>
+        </div>
+      </div>
+
+      <div className="nav-filter-row" role="tablist" aria-label="Filter navigasi soal">
         {(
           [
             ['all', 'Semua'],
-            ['unanswered', 'Kosong'],
+            ['unanswered', 'Belum'],
             ['flagged', 'Ragu'],
             ['answered', 'Terisi'],
           ] as [FilterTab, string][]
@@ -98,7 +103,7 @@ export function NavigatorSidebar({
             style={{
               gridColumn: '1 / -1',
               fontSize: '0.82rem',
-              color: 'var(--ink-muted)',
+              color: 'var(--ink-500)',
               padding: '0.85rem 0.25rem',
               textAlign: 'center',
             }}
@@ -108,7 +113,7 @@ export function NavigatorSidebar({
         ) : (
           visible.map((item) => {
             const cls = [
-              'nav-num-btn',
+              'nav-num-btn tabular',
               item.idx === session.currentIndex ? 'is-current' : '',
               item.isFlagged
                 ? 'is-flagged'
@@ -141,23 +146,20 @@ export function NavigatorSidebar({
 
       <div className="nav-legend">
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--status-success)' }} />
-          Terisi
+          <span className="legend-dot" style={{ backgroundColor: 'var(--ink-800)', borderColor: 'var(--ink-800)' }} />
+          Terjawab
         </div>
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--status-warn)' }} />
-          Ragu-ragu
+          <span className="legend-dot" style={{ borderStyle: 'dashed', backgroundColor: 'var(--surface)' }} />
+          Belum lengkap
         </div>
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--bg-surface)' }} />
+          <span className="legend-dot" style={{ backgroundColor: 'var(--surface)' }} />
           Kosong
         </div>
         <div>
-          <span
-            className="legend-dot"
-            style={{ backgroundColor: 'transparent', borderColor: 'var(--brand-primary)' }}
-          />
-          Aktif
+          <span className="legend-dot" style={{ backgroundColor: 'var(--sun-300)', borderColor: 'var(--sun-500)' }} />
+          Ragu-ragu
         </div>
       </div>
     </div>

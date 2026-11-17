@@ -79,8 +79,10 @@ export interface ShuffledSlot {
 export interface ExamSession {
   id: string;
   mode: SessionMode;
+  paketId?: string;
   prodiId?: ProdiId;
   prodiLabel?: string;
+  participantName?: string;
   title: string;
   instantFeedback: boolean;
   createdAt: number;
@@ -100,24 +102,41 @@ export interface SubcompetencyScore {
   correct: number;
   total: number;
   earnedPoints: number;
+  rawEarned: number;
+  rawMax: number;
+}
+
+export interface TenBlockScore {
+  label: string;
+  earned: number;
+  max: number;
 }
 
 export interface ExamResultSummary {
   id: string;
   mode: SessionMode;
+  paketId?: string;
   prodiId?: ProdiId;
   prodiLabel?: string;
+  participantName?: string;
   title: string;
   completedAt: number;
   elapsedSeconds: number;
   totalQuestions: number;
   strictCorrectCount: number;
-  strictScore: number; // 0-100
-  weightedScore: number; // 0-100 accounting for partial PGK credit for diagnostics
+  partialCorrectCount: number;
+  wrongCount: number;
+  unansweredCount: number;
+  strictScore: number; // 0-100 strict count percentage
+  weightedScore: number; // 0-100 partial diagnostic
+  pointsEarned: number;
+  maxPoints: number;
+  scaleScore: number; // 0-100 pointsEarned/maxPoints (SIAPPPG formula)
   pckCorrect: number;
   pckTotal: number;
   puCorrect: number;
   puTotal: number;
+  tenBlocks: TenBlockScore[];
   byType: Record<QuestionType, { correct: number; total: number }>;
   bySubcompetency: SubcompetencyScore[];
   byTopic: { topic: string; bank: QuestionBank; correct: number; total: number }[];

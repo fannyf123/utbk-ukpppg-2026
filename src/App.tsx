@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { JuknisGuideModal } from './components/JuknisGuideModal';
-import { CalibratorMark } from './components/PrecisionVisuals';
-import { PRODI_CONFIGS, getProdiConfig } from './data/prodiRegistry';
+import { StudioDrillModal } from './components/StudioDrillModal';
 import {
-  ALL_QUESTIONS,
-  getProdiPckBank,
-  getProdiPuBank,
-  getProdiQuestions,
-} from './data/questionBank';
-import { createDrillSession, createOfficialExamSession } from './engine/randomizer';
+  PAKET_CATALOG,
+  createSessionFromPaket,
+  getPaketById,
+  type PaketDef,
+} from './data/paketCatalog';
+import { getProdiConfig } from './data/prodiRegistry';
+import { ALL_QUESTIONS } from './data/questionBank';
+import { createDrillSession } from './engine/randomizer';
 import { gradeSession } from './engine/scoring';
 import {
   appendHistory,
@@ -24,7 +25,8 @@ import {
   type ThemeMode,
 } from './engine/storage';
 import { ExamView } from './pages/ExamView';
-import { HomeView, type WorkspaceTab } from './pages/HomeView';
+import { HomeView } from './pages/HomeView';
+import { PaketDetailView } from './pages/PaketDetailView';
 import { ResultView } from './pages/ResultView';
 import type {
   DrillConfig,
@@ -34,13 +36,7 @@ import type {
   ProdiId,
 } from './types/exam';
 
-type ActiveRoute = 'home' | 'exam' | 'result';
-
-const NAV_TABS: { id: WorkspaceTab; idx: string; label: string }[] = [
-  { id: 'overview', idx: '01', label: 'Ruang Uji' },
-  { id: 'studio', idx: '02', label: 'Studio Drill' },
-  { id: 'archive', idx: '03', label: 'Juknis & Arsip' },
-];
+type ActiveRoute = 'home' | 'detail' | 'exam' | 'result';
 
 export function App() {
   const [prefs, setPrefs] = useState(() => loadPreferences());
@@ -51,22 +47,15 @@ export function App() {
   const [mastery, setMastery] = useState<Record<string, MasteryRecord>>(() =>
     loadMastery()
   );
+  const [selectedPaket, setSelectedPaket] = useState<PaketDef>(PAKET_CATALOG[0]);
   const [currentResult, setCurrentResult] = useState<ExamResultSummary | null>(null);
   const [route, setRoute] = useState<ActiveRoute>('home');
-  const [homeTab, setHomeTab] = useState<WorkspaceTab>('overview');
   const [guideOpen, setGuideOpen] = useState(false);
-
-  const activeProdi = prefs.prodi;
-  const prodiConfig = useMemo(() => getProdiConfig(activeProdi), [activeProdi]);
-  const prodiQuestions = useMemo(() => getProdiQuestions(activeProdi), [activeProdi]);
-  const prodiSeenCount = useMemo(
-    () =>
-      prodiQuestions.filter((q) => {
-        const m = mastery[q.id];
-        return m && m.seenCount > 0;
-      }).length,
-    [prodiQuestions, mastery]
-  );
+  const [studioOpen, setStudioOpen] = useState(false);
+  const [studioPreset, setStudioPreset] = useState<{
+    prodi: ProdiId | 'ALL_ARCHIVE';
+    sub: string;
+  }>({ prodi: 'teknik-mesin', sub: 'ALL' });
 
   useEffect(() => {
     document.documentElement.dataset.theme = prefs.theme;
@@ -93,26 +82,29 @@ export function App() {
     setPrefs((prev) => ({ ...prev, prodi }));
   }, []);
 
-  const handleStartOfficial = useCallback(
-    (mixBanksOrder: boolean, targetProdi: ProdiId = activeProdi) => {
-      const cfg = getProdiConfig(targetProdi);
-      const pckBank = getProdiPckBank(targetProdi);
-      const puBank = getProdiPuBank(targetProdi);
-      const next = createOfficialExamSession(pckBank, puBank, mastery, {
-        mixBanksOrder,
-        prodiId: targetProdi,
-        prodiLabel: cfg.shortLabel,
+  const handleOpenDetail = useCallback((paket: PaketDef) => {
+    setSelectedPaket(paket);
+    setPrefs((prev) => ({ ...prev, prodi: paket.prodiId }));
+    setRoute('detail');
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  const handleStartPaket = useCallback(
+    (paket: PaketDef, participantName: string, mixOrder: boolean) => {
+      const next = createSessionFromPaket(paket, mastery, {
+        participantName,
+        mixBanksOrder: mixOrder,
       });
       setActiveSession(next);
       setRoute('exam');
       window.scrollTo({ top: 0 });
     },
-    [activeProdi, mastery]
+    [mastery]
   );
 
   const handleStartDrill = useCallback(
     (config: DrillConfig) => {
-      const prodiFilter = config.prodiFilter ?? activeProdi;
+      const prodiFilter = config.prodiFilter ?? prefs.prodi;
       const cfg =
         prodiFilter !== 'ALL_ARCHIVE' ? getProdiConfig(prodiFilter) : null;
       const next = createDrillSession(
@@ -126,7 +118,7 @@ export function App() {
       setRoute('exam');
       window.scrollTo({ top: 0 });
     },
-    [activeProdi, mastery]
+    [mastery, prefs.prodi]
   );
 
   const handleUpdateSession = useCallback(
@@ -152,6 +144,19 @@ export function App() {
     [activeSession]
   );
 
+  const handleRetryFromResult = useCallback(() => {
+    const matched = currentResult?.paketId
+      ? getPaketById(currentResult.paketId)
+      : undefined;
+    if (matched) {
+      setSelectedPaket(matched);
+      setRoute('detail');
+    } else {
+      setRoute('home');
+    }
+    window.scrollTo({ top: 0 });
+  }, [currentResult]);
+
   const handleDrillMissed = useCallback(
     (missedIds: string[]) => {
       handleStartDrill({
@@ -162,7 +167,7 @@ export function App() {
         count: missedIds.length,
         instantFeedback: true,
         onlyMissedIds: missedIds,
-        customTitle: `Drill Pemulihan (${missedIds.length} Soal Salah)`,
+        customTitle: `Latihan Ulang (${missedIds.length} Soal Belum Tepat)`,
       });
     },
     [handleStartDrill]
@@ -176,9 +181,45 @@ export function App() {
     setCurrentResult(null);
   }, []);
 
-  if (route === 'exam' && activeSession) {
-    return (
-      <>
+  return (
+    <>
+      {route === 'home' && (
+        <HomeView
+          activeProdi={prefs.prodi}
+          activeSession={activeSession}
+          history={history}
+          mastery={mastery}
+          theme={prefs.theme}
+          onToggleTheme={handleToggleTheme}
+          onSelectProdiTab={handleChangeProdi}
+          onOpenDetail={handleOpenDetail}
+          onOpenStudio={(prodi, sub) => {
+            setStudioPreset({ prodi: prodi ?? prefs.prodi, sub: sub ?? 'ALL' });
+            setStudioOpen(true);
+          }}
+          onOpenGuide={() => setGuideOpen(true)}
+          onResumeActive={() => setRoute('exam')}
+          onDiscardActive={() => setActiveSession(null)}
+          onViewHistoryResult={(res) => {
+            setCurrentResult(res);
+            setRoute('result');
+            window.scrollTo({ top: 0 });
+          }}
+          onResetProgress={handleResetProgress}
+        />
+      )}
+
+      {route === 'detail' && (
+        <PaketDetailView
+          paket={selectedPaket}
+          theme={prefs.theme}
+          onToggleTheme={handleToggleTheme}
+          onBack={() => setRoute('home')}
+          onStartPaket={handleStartPaket}
+        />
+      )}
+
+      {route === 'exam' && activeSession && (
         <ExamView
           session={activeSession}
           theme={prefs.theme}
@@ -189,208 +230,27 @@ export function App() {
           onSubmitExam={handleSubmitExam}
           onPauseExit={() => setRoute('home')}
         />
-        <JuknisGuideModal open={guideOpen} onClose={() => setGuideOpen(false)} />
-      </>
-    );
-  }
-
-  return (
-    <div className={route === 'home' ? 'workspace-shell' : ''}>
-      {route === 'home' ? (
-        <>
-          {/* Left Precision Command Rail (Desktop >= 960px) */}
-          <aside className="command-rail" aria-label="Navigasi utama">
-            <div>
-              <button
-                type="button"
-                className="rail-brand"
-                onClick={() => setHomeTab('overview')}
-              >
-                <CalibratorMark />
-                <div>
-                  <span className="rail-brand-title">KALIBRASI UTBK</span>
-                  <span className="rail-brand-sub">
-                    UKPPPG · {prodiConfig.shortLabel.toUpperCase()}
-                  </span>
-                </div>
-              </button>
-
-              <div className="rail-prodi-block">
-                <label htmlFor="prodi-select" className="rail-prodi-label">
-                  PRODI / BIDANG STUDI
-                </label>
-                <select
-                  id="prodi-select"
-                  className="rail-prodi-select"
-                  value={activeProdi}
-                  onChange={(e) => handleChangeProdi(e.target.value as ProdiId)}
-                >
-                  {PRODI_CONFIGS.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <nav className="rail-nav" role="tablist" aria-label="Menu workspace">
-                {NAV_TABS.map((t) => (
-                  <button
-                    key={t.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={homeTab === t.id}
-                    className={`rail-nav-btn ${homeTab === t.id ? 'is-active' : ''}`}
-                    onClick={() => setHomeTab(t.id)}
-                  >
-                    <span>{t.label}</span>
-                    <span className="rail-nav-idx">{t.idx}</span>
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            <div className="rail-footer">
-              <div className="rail-stat-line">
-                <span>TERCAKUP</span>
-                <span>
-                  {prodiSeenCount} / {prodiQuestions.length}
-                </span>
-              </div>
-
-              <div className="rail-controls-row">
-                <div className="font-group" role="group" aria-label="Ukuran huruf">
-                  {(['sm', 'md', 'lg'] as FontScale[]).map((sc) => (
-                    <button
-                      key={sc}
-                      type="button"
-                      className={prefs.fontScale === sc ? 'is-selected' : ''}
-                      onClick={() => handleChangeFontScale(sc)}
-                      aria-label={`Ukuran font ${sc}`}
-                    >
-                      {sc === 'sm' ? 'A-' : sc === 'md' ? 'A' : 'A+'}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  className="btn btn-sm"
-                  aria-label={prefs.theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
-                  onClick={handleToggleTheme}
-                >
-                  {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
-                </button>
-              </div>
-
-              <button
-                type="button"
-                className="btn btn-sm btn-subtle"
-                onClick={() => setGuideOpen(true)}
-              >
-                Panduan Juknis 2026
-              </button>
-            </div>
-          </aside>
-
-          {/* Mobile Sticky Top Navigation (< 960px) */}
-          <header className="mobile-nav-header">
-            <div className="mobile-header-top">
-              <button
-                type="button"
-                className="rail-brand"
-                onClick={() => setHomeTab('overview')}
-              >
-                <CalibratorMark size={24} />
-                <div>
-                  <span className="rail-brand-title">KALIBRASI UTBK</span>
-                </div>
-              </button>
-              <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-subtle"
-                  onClick={() => setGuideOpen(true)}
-                >
-                  Juknis
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-sm"
-                  aria-label={prefs.theme === 'light' ? 'Mode gelap mobile' : 'Mode terang mobile'}
-                  onClick={handleToggleTheme}
-                >
-                  {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
-                </button>
-              </div>
-            </div>
-
-            <div className="mobile-prodi-strip">
-              <label htmlFor="prodi-select-mobile">PRODI</label>
-              <select
-                id="prodi-select-mobile"
-                className="rail-prodi-select"
-                value={activeProdi}
-                onChange={(e) => handleChangeProdi(e.target.value as ProdiId)}
-              >
-                {PRODI_CONFIGS.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mobile-tabs" role="tablist" aria-label="Navigasi tab">
-              {NAV_TABS.map((t) => (
-                <button
-                  key={t.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={homeTab === t.id}
-                  className={`mobile-tab-btn ${homeTab === t.id ? 'is-active' : ''}`}
-                  onClick={() => setHomeTab(t.id)}
-                >
-                  {t.idx} {t.label}
-                </button>
-              ))}
-            </div>
-          </header>
-
-          <HomeView
-            activeTab={homeTab}
-            prodiId={activeProdi}
-            activeSession={activeSession}
-            history={history}
-            mastery={mastery}
-            onChangeTab={setHomeTab}
-            onStartOfficial={handleStartOfficial}
-            onStartDrill={handleStartDrill}
-            onResumeActive={() => setRoute('exam')}
-            onDiscardActive={() => setActiveSession(null)}
-            onViewHistoryResult={(res) => {
-              setCurrentResult(res);
-              setRoute('result');
-              window.scrollTo({ top: 0 });
-            }}
-            onResetProgress={handleResetProgress}
-          />
-        </>
-      ) : (
-        currentResult && (
-          <ResultView
-            result={currentResult}
-            onBackHome={() => setRoute('home')}
-            onStartNewOfficial={() =>
-              handleStartOfficial(false, currentResult.prodiId ?? activeProdi)
-            }
-            onDrillMissed={handleDrillMissed}
-          />
-        )
       )}
 
+      {route === 'result' && currentResult && (
+        <ResultView
+          result={currentResult}
+          onBackHome={() => setRoute('home')}
+          onRetrySame={handleRetryFromResult}
+          onDrillMissed={handleDrillMissed}
+        />
+      )}
+
+      <StudioDrillModal
+        open={studioOpen}
+        initialProdi={studioPreset.prodi}
+        initialSub={studioPreset.sub}
+        onClose={() => setStudioOpen(false)}
+        onStartDrill={handleStartDrill}
+      />
+
       <JuknisGuideModal open={guideOpen} onClose={() => setGuideOpen(false)} />
-    </div>
+    </>
   );
 }
 

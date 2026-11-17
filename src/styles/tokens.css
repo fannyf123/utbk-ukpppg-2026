@@ -1,92 +1,110 @@
 :root {
-  /* Type System: Industrial Precision + Calm Long-Reading Clarity */
-  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Light Theme: Precision Calibration Paper & Steel Cobalt */
-  --bg-canvas: #f5f4ef;
-  --bg-surface: #ffffff;
-  --bg-subtle: #eceae2;
-  --bg-inset: #e2dfd5;
-  --bg-rail: #f0eee7;
-  --bg-overlay: rgba(17, 22, 29, 0.58);
+  /* Exact SIAPPPG Navy + Warm Amber Palette */
+  --paper: #f5f7fb;
+  --surface: #ffffff;
+  --surface-alt: #f4f7fb;
+  --surface-hover: #eef3fa;
 
-  /* Ink & Structural Hairlines */
-  --ink: #11161d;
-  --ink-secondary: #434c59;
-  --ink-muted: #656e7c;
-  --border-line: #d4d0c5;
-  --border-strong: #11161d;
+  --ink-950: #081a34;
+  --ink-900: #0d2546;
+  --ink-800: #15305c;
+  --ink-700: #25416f;
+  --ink-600: #3d567f;
+  --ink-500: #586f94;
+  --ink-400: #6b7f9e;
+  --ink-300: #aebcd3;
+  --ink-200: #d3dcea;
+  --ink-100: #e7edf5;
+  --ink-50: #f4f7fb;
 
-  /* Precision Palette (Max 2 Core Hues + 1 Signal Accent) */
-  --brand-primary: #0f4c81;
-  --brand-primary-hover: #0a3861;
-  --brand-primary-soft: #e6f0f8;
+  --fox-50: #fff7ed;
+  --fox-100: #ffeacf;
+  --fox-200: #ffd4a1;
+  --fox-400: #ffa53c;
+  --fox-500: #f7921e;
+  --fox-600: #b85806;
+  --fox-700: #9a4704;
 
-  --signal-accent: #d94e1f;
-  --signal-accent-soft: #fcece6;
+  --sun-50: #fffbeb;
+  --sun-100: #fff3c7;
+  --sun-300: #ffd650;
+  --sun-500: #d99400;
 
-  --status-success: #146c43;
-  --status-success-soft: #e6f4ec;
-  --status-warn: #b86e00;
-  --status-warn-soft: #fef5e2;
-  --status-danger: #b42318;
-  --status-danger-soft: #fdeceb;
+  --emerald-50: #ecfdf5;
+  --emerald-200: #a7f3d0;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
 
-  /* Geometry & Motion Tokens */
-  --rail-width: 244px;
-  --container-max: 1180px;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --ease-precision: cubic-bezier(0.22, 1, 0.36, 1);
+  --rose-50: #fff1f2;
+  --rose-200: #fecdd3;
+  --rose-500: #e11d48;
+  --rose-700: #be123c;
+  --rose-800: #9f1239;
 
-  /* Exam Readability Scale */
-  --question-text-size: 1.05rem;
+  --shadow-card: 0 1px 2px rgba(13, 37, 70, 0.05), 0 1px 3px rgba(13, 37, 70, 0.04);
+  --shadow-lift: 0 4px 12px rgba(13, 37, 70, 0.06), 0 14px 30px -14px rgba(13, 37, 70, 0.16);
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --question-text-size: 1.03rem;
   --option-text-size: 0.96rem;
 }
 
 [data-theme='dark'] {
-  --bg-canvas: #0d1117;
-  --bg-surface: #141a23;
-  --bg-subtle: #1b222e;
-  --bg-inset: #242e3d;
-  --bg-rail: #10151c;
-  --bg-overlay: rgba(4, 7, 12, 0.78);
+  --paper: #0b1220;
+  --surface: #131d31;
+  --surface-alt: #18253e;
+  --surface-hover: #1e2e4c;
 
-  --ink: #eef1f6;
-  --ink-secondary: #c0c8d4;
-  --ink-muted: #8f99a8;
-  --border-line: #283242;
-  --border-strong: #53647d;
+  --ink-950: #f8fafc;
+  --ink-900: #edf2f8;
+  --ink-800: #5c9eff;
+  --ink-700: #7cb2ff;
+  --ink-600: #b8c7dc;
+  --ink-500: #93a6c2;
+  --ink-400: #7a8fad;
+  --ink-300: #364a6c;
+  --ink-200: #24334f;
+  --ink-100: #1b2840;
+  --ink-50: #162136;
 
-  --brand-primary: #57a6eb;
-  --brand-primary-hover: #7bb9f0;
-  --brand-primary-soft: rgba(87, 166, 235, 0.14);
+  --fox-50: rgba(247, 146, 30, 0.12);
+  --fox-100: rgba(247, 146, 30, 0.22);
+  --fox-200: rgba(247, 146, 30, 0.38);
+  --fox-600: #ffa53c;
+  --fox-700: #ffb661;
 
-  --signal-accent: #ff7043;
-  --signal-accent-soft: rgba(255, 112, 67, 0.15);
+  --sun-50: rgba(245, 158, 11, 0.14);
+  --sun-100: rgba(245, 158, 11, 0.24);
+  --sun-500: #fbbf24;
 
-  --status-success: #3fc27c;
-  --status-success-soft: rgba(63, 194, 124, 0.14);
-  --status-warn: #f0b232;
-  --status-warn-soft: rgba(240, 178, 50, 0.15);
-  --status-danger: #f46a5f;
-  --status-danger-soft: rgba(244, 106, 95, 0.15);
+  --emerald-50: rgba(16, 185, 129, 0.13);
+  --emerald-200: rgba(16, 185, 129, 0.35);
+  --emerald-600: #34d399;
+  --emerald-700: #6ee7b7;
+  --emerald-800: #a7f3d0;
+
+  --rose-50: rgba(244, 63, 94, 0.14);
+  --rose-200: rgba(244, 63, 94, 0.36);
+  --rose-500: #fb7185;
+  --rose-700: #fda4af;
+  --rose-800: #fecdd3;
 }
 
 [data-font-scale='sm'] {
-  --question-text-size: 0.95rem;
+  --question-text-size: 0.94rem;
   --option-text-size: 0.88rem;
 }
 
 [data-font-scale='md'] {
-  --question-text-size: 1.05rem;
+  --question-text-size: 1.03rem;
   --option-text-size: 0.96rem;
 }
 
 [data-font-scale='lg'] {
-  --question-text-size: 1.18rem;
-  --option-text-size: 1.07rem;
+  --question-text-size: 1.15rem;
+  --option-text-size: 1.04rem;
 }

@@ -31,7 +31,7 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
           <h3 id="juknis-modal-title">Panduan &amp; Kisi-Kisi UTBK UKPPPG 2026</h3>
           <button
             type="button"
-            className="btn btn-sm"
+            className="btn btn-sm btn-ghost"
             aria-label="Tutup panduan"
             onClick={onClose}
           >
@@ -39,7 +39,7 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
           </button>
         </div>
 
-        <p style={{ marginTop: 0, fontSize: '0.9rem', color: 'var(--ink-secondary)' }}>
+        <p style={{ marginTop: 0, fontSize: '0.9rem', color: 'var(--ink-600)' }}>
           Mengacu pada <strong>Petunjuk Teknis UKPPPG Bagi Calon Guru Tahun 2026</strong> (Hal. 7,
           Hal. 10–11, Hal. 34–35, dan Lampiran 4 Hal. 47).
         </p>
@@ -71,10 +71,10 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
             <div
               key={f.type}
               style={{
-                padding: '0.55rem 0.75rem',
-                backgroundColor: 'var(--bg-canvas)',
-                border: '1.5px solid var(--border-ink)',
-                borderRadius: 'var(--radius-sm)',
+                padding: '0.65rem 0.85rem',
+                backgroundColor: 'var(--surface-alt)',
+                border: '1px solid var(--ink-200)',
+                borderRadius: '0.75rem',
                 fontSize: '0.86rem',
               }}
             >
@@ -91,9 +91,9 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
             <div
               key={item.title}
               style={{
-                padding: '0.55rem 0.75rem',
-                border: '1.5px solid var(--border-rule)',
-                borderRadius: 'var(--radius-sm)',
+                padding: '0.65rem 0.85rem',
+                border: '1px solid var(--ink-200)',
+                borderRadius: '0.75rem',
                 fontSize: '0.86rem',
               }}
             >

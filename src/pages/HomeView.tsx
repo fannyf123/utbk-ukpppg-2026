@@ -1,198 +1,126 @@
 import { useMemo, useState } from 'react';
 import {
-  CompetencyMatrixPanel,
-  VernierScaleTelemetry,
-} from '../components/PrecisionVisuals';
-import { JUKNIS_EXAM_SPECS, JUKNIS_SUBCOMPETENCIES } from '../data/juknisReference';
-import { getProdiConfig } from '../data/prodiRegistry';
-import {
-  ALL_QUESTIONS,
-  getBankSummary,
-  getBankTopics,
-  getProdiQuestions,
-} from '../data/questionBank';
-import { filterDrillQuestions } from '../engine/randomizer';
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  Check,
+  ChevronDown,
+  Clock,
+  FileText,
+  Layers,
+  Play,
+  SlidersHorizontal,
+} from 'lucide-react';
+import { ArenaLogoMark, HeroExamPreviewWidget } from '../components/ArenaVisuals';
+import { KISI_GROUPS } from '../data/kisiKisiDetailed';
+import { PAKET_CATALOG, getTotalAvailableUniqueQuestions, type PaketDef } from '../data/paketCatalog';
+import { ALL_QUESTIONS } from '../data/questionBank';
+import { questionMatchesProdi } from '../data/prodiRegistry';
 import { evaluateQuestion } from '../engine/scoring';
+import type { ThemeMode } from '../engine/storage';
 import type {
-  DrillConfig,
+  Competency,
   ExamResultSummary,
   ExamSession,
   MasteryRecord,
   ProdiId,
-  QuestionBank,
-  QuestionType,
 } from '../types/exam';
 
-export type WorkspaceTab = 'overview' | 'studio' | 'archive';
-
 interface HomeViewProps {
-  activeTab: WorkspaceTab;
-  prodiId: ProdiId;
+  activeProdi: ProdiId;
   activeSession: ExamSession | null;
   history: ExamResultSummary[];
   mastery: Record<string, MasteryRecord>;
-  onChangeTab: (tab: WorkspaceTab) => void;
-  onStartOfficial: (mixBanksOrder: boolean) => void;
-  onStartDrill: (config: DrillConfig) => void;
+  theme: ThemeMode;
+  onToggleTheme: () => void;
+  onSelectProdiTab: (prodi: ProdiId) => void;
+  onOpenDetail: (paket: PaketDef) => void;
+  onOpenStudio: (prodi?: ProdiId | 'ALL_ARCHIVE', subCode?: string) => void;
+  onOpenGuide: () => void;
   onResumeActive: () => void;
   onDiscardActive: () => void;
   onViewHistoryResult: (result: ExamResultSummary) => void;
   onResetProgress: () => void;
 }
 
+const FILTER_TABS: { id: 'ALL' | ProdiId; label: string }[] = [
+  { id: 'ALL', label: 'Semua Paket' },
+  { id: 'teknik-mesin', label: 'Teknik Mesin SMK' },
+  { id: 'pgsd', label: 'PGSD' },
+  { id: 'matematika', label: 'Matematika' },
+  { id: 'bahasa-indonesia', label: 'Bahasa Indonesia' },
+  { id: 'ipa', label: 'IPA / IPAS' },
+  { id: 'smk-vokasi', label: 'SMK Vokasi' },
+  { id: 'umum', label: 'Pedagogi Umum' },
+];
+
+const FAQ_ITEMS = [
+  {
+    q: 'Apakah soal antar Program Studi (Prodi) terpisah dan tidak tercampur?',
+    a: 'Ya. Seluruh bank soal telah diaudit dan diklasifikasi ketat per Prodi. Memilih Teknik Mesin SMK hanya menampilkan PCK Teknik Mesin dan Pedagogi Umum murni tanpa menyisipkan soal IPA SMP, DKV, PGSD, Matematika, atau Bahasa Indonesia agar persiapan Anda tetap fokus dan bebas ambiguitas.',
+  },
+  {
+    q: 'Apakah semua paket gratis tanpa kode akses atau biaya langganan?',
+    a: 'Ya, seluruh 14 paket simulasi maupun Studio Latihan Custom terbuka penuh secara gratis tanpa login, tanpa kode akses, dan tanpa batasan percobaan.',
+  },
+  {
+    q: 'Mengapa pada paket tertentu tersedia opsi Simulasi Acak?',
+    a: 'Untuk Prodi dengan bank soal di atas 1 paket (misalnya Teknik Mesin dengan 102 PCK murni atau PGSD dengan 61 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah Anda kerjakan atau masih keliru, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah agar Anda benar-benar memahami konsep.',
+  },
+  {
+    q: 'Bagaimana sistem penghitungan skor & poin pada hasil ujian?',
+    a: 'Setiap Pilihan Ganda dan Pilihan Ganda Kompleks (MCMA) bernilai maksimal 5 poin bila benar penuh, sedangkan PGK Kategori / Benar–Salah memberikan 1 poin untuk setiap baris pernyataan yang tepat. Nilai akhir skala 100 dihitung dari rasio poin terhadap poin maksimal, disertai rincian capaian P.1–PF.5.',
+  },
+  {
+    q: 'Bagaimana jika halaman tertutup sebelum saya menekan Selesai?',
+    a: 'Seluruh jawaban, penanda Ragu-ragu, dan sisa waktu tersimpan otomatis di peramban (localStorage). Buka kembali halaman ini untuk melanjutkan dari soal terakhir.',
+  },
+];
+
 export function HomeView({
-  activeTab,
-  prodiId,
+  activeProdi,
   activeSession,
   history,
   mastery,
-  onChangeTab,
-  onStartOfficial,
-  onStartDrill,
+  theme,
+  onToggleTheme,
+  onSelectProdiTab,
+  onOpenDetail,
+  onOpenStudio,
+  onOpenGuide,
   onResumeActive,
   onDiscardActive,
   onViewHistoryResult,
   onResetProgress,
 }: HomeViewProps) {
-  const prodiConfig = useMemo(() => getProdiConfig(prodiId), [prodiId]);
-  const prodiQuestions = useMemo(() => getProdiQuestions(prodiId), [prodiId]);
-  const bankSummary = useMemo(() => getBankSummary(prodiId), [prodiId]);
-  const allArchiveTotal = ALL_QUESTIONS.length;
-
-  const [prevProdi, setPrevProdi] = useState<ProdiId>(prodiId);
-  const [mixOrder, setMixOrder] = useState(false);
-
-  const [drillScope, setDrillScope] = useState<'ACTIVE' | 'ALL_ARCHIVE'>('ACTIVE');
-  const [drillBank, setDrillBank] = useState<'ALL' | QuestionBank>('ALL');
-  const [drillTopic, setDrillTopic] = useState<string>('ALL');
-  const [drillSub, setDrillSub] = useState<string>('ALL');
-  const [drillType, setDrillType] = useState<'ALL' | QuestionType>('ALL');
-  const [drillCount, setDrillCount] = useState<number>(20);
-  const [instantFeedback, setInstantFeedback] = useState<boolean>(true);
+  const [prodiFilter, setProdiFilter] = useState<'ALL' | ProdiId>('ALL');
+  const [activeKisiTab, setActiveKisiTab] = useState<Competency>('Pedagogik');
   const [confirmReset, setConfirmReset] = useState(false);
 
-  if (prevProdi !== prodiId) {
-    setPrevProdi(prodiId);
-    setDrillTopic('ALL');
-    setDrillBank('ALL');
-  }
-
-  const effectiveScope: ProdiId | 'ALL_ARCHIVE' =
-    drillScope === 'ALL_ARCHIVE' ? 'ALL_ARCHIVE' : prodiId;
-
-  const studioSummary = useMemo(
-    () => getBankSummary(effectiveScope),
-    [effectiveScope]
-  );
-
-  const availableTopics = useMemo(
-    () => getBankTopics(drillBank, effectiveScope),
-    [drillBank, effectiveScope]
-  );
-
-  const matchingPool = useMemo(
+  const visibleBidangStudi = useMemo(
     () =>
-      filterDrillQuestions(ALL_QUESTIONS, {
-        prodiFilter: effectiveScope,
-        bank: drillBank,
-        topic: drillTopic,
-        subkompetensi: drillSub,
-        type: drillType,
-      }),
-    [effectiveScope, drillBank, drillTopic, drillSub, drillType]
+      PAKET_CATALOG.filter(
+        (p) =>
+          p.group === 'bidang-studi' &&
+          (prodiFilter === 'ALL' || p.prodiId === prodiFilter)
+      ),
+    [prodiFilter]
   );
 
-  const pckTarget = Math.min(50, bankSummary.pck);
-  const puTarget = Math.min(30, bankSummary.pu);
-  const officialTotal = pckTarget + puTarget;
-  const durationMinutes =
-    officialTotal === 80 ? 150 : Math.max(30, Math.round((officialTotal / 80) * 150));
-
-  const seenInProdi = useMemo(
+  const visibleUmum = useMemo(
     () =>
-      prodiQuestions.filter((q) => {
-        const m = mastery[q.id];
-        return m && m.seenCount > 0;
-      }).length,
-    [prodiQuestions, mastery]
+      PAKET_CATALOG.filter(
+        (p) =>
+          p.group === 'pedagogi-umum' &&
+          (prodiFilter === 'ALL' || prodiFilter === 'umum')
+      ),
+    [prodiFilter]
   );
 
-  // Build contextual topic shortcuts specifically tailored for active Prodi
-  const featuredShortcuts = useMemo<{ label: string; config: DrillConfig }[]>(() => {
-    const pckCounts = new Map<string, number>();
-    for (const q of prodiQuestions) {
-      if (q.bank === 'PCK') {
-        pckCounts.set(q.topic, (pckCounts.get(q.topic) ?? 0) + 1);
-      }
-    }
-    const topPckTopics: { label: string; config: DrillConfig }[] = Array.from(
-      pckCounts.entries()
-    )
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, pckCounts.size > 0 ? 5 : 0)
-      .map(([topicName]) => ({
-        label: topicName,
-        config: {
-          prodiFilter: prodiId,
-          bank: 'PCK',
-          topic: topicName,
-          type: 'ALL',
-          count: 15,
-          instantFeedback: true,
-        },
-      }));
-
-    if (topPckTopics.length === 0) {
-      // Pedagogi Umum Murni: surface top PU topics instead
-      const puCounts = new Map<string, number>();
-      for (const q of prodiQuestions) {
-        puCounts.set(q.topic, (puCounts.get(q.topic) ?? 0) + 1);
-      }
-      for (const [topicName] of Array.from(puCounts.entries())
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5)) {
-        topPckTopics.push({
-          label: topicName,
-          config: {
-            prodiFilter: prodiId,
-            bank: 'PU',
-            topic: topicName,
-            type: 'ALL',
-            count: 15,
-            instantFeedback: true,
-          },
-        });
-      }
-    }
-
-    return [
-      ...topPckTopics,
-      {
-        label: 'Khusus PGK Kategori (Tabel Benar/Salah)',
-        config: {
-          prodiFilter: prodiId,
-          bank: 'ALL' as const,
-          topic: 'ALL',
-          type: 'PGK_KATEGORI' as const,
-          count: 20,
-          instantFeedback: true,
-          customTitle: `Drill PGK Kategori · ${prodiConfig.shortLabel}`,
-        },
-      },
-      {
-        label: 'Khusus PGK MCMA (Multi Jawaban)',
-        config: {
-          prodiFilter: prodiId,
-          bank: 'ALL' as const,
-          topic: 'ALL',
-          type: 'PGK_MCMA' as const,
-          count: 20,
-          instantFeedback: true,
-          customTitle: `Drill PGK MCMA · ${prodiConfig.shortLabel}`,
-        },
-      },
-    ];
-  }, [prodiId, prodiConfig.shortLabel, prodiQuestions]);
+  const currentKisiGroup = useMemo(
+    () => KISI_GROUPS.find((g) => g.id === activeKisiTab) ?? KISI_GROUPS[0],
+    [activeKisiTab]
+  );
 
   const activeAnswered = activeSession
     ? activeSession.slots.filter((s) =>
@@ -200,443 +128,493 @@ export function HomeView({
       ).length
     : 0;
 
-  return (
-    <div key={activeTab} className="workspace-main view-enter">
-      {activeSession && (
-        <div className="resume-strip" role="region" aria-label="Sesi tryout tersimpan">
-          <div>
-            <h2>Sesi Aktif Belum Dikumpulkan: {activeSession.title}</h2>
-            <p>
-              Progres tersimpan otomatis ({activeAnswered}/{activeSession.slots.length} soal
-              terisi, {activeSession.flaggedIds.length} ditandai ragu-ragu).
-            </p>
+  const totalUnique = getTotalAvailableUniqueQuestions();
+  const seenCount = Object.values(mastery).filter((m) => m.seenCount > 0).length;
+
+  const renderPaketCard = (paket: PaketDef) => {
+    const doneAttempt = history.find((h) => h.paketId === paket.id);
+    return (
+      <article key={paket.id} className="kartu kartu-hover paket-card">
+        <div className="paket-card-badges">
+          <span className="chip chip-emerald">✓ Terbuka · Bebas akses</span>
+          <span className={`chip ${paket.badgeTone === 'arsip' ? 'chip-fox' : 'chip-navy'}`}>
+            {paket.badge}
+          </span>
+        </div>
+
+        <div>
+          <h3 className="paket-card-title">{paket.title}</h3>
+          <p className="paket-card-desc" style={{ marginTop: '0.4rem' }}>
+            {paket.subtitle}
+          </p>
+        </div>
+
+        <div className="paket-meta-strip">
+          <div className="paket-meta-cell">
+            <span className="paket-meta-val tabular">{paket.questionCount}</span>
+            <span className="paket-meta-key">soal</span>
           </div>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button type="button" className="btn btn-signal" onClick={onResumeActive}>
-              Lanjutkan Sesi
-            </button>
-            <button type="button" className="btn" onClick={onDiscardActive}>
-              Buang Sesi
-            </button>
+          <div className="paket-meta-cell">
+            <span className="paket-meta-val tabular">{paket.durationMinutes}</span>
+            <span className="paket-meta-key">menit</span>
+          </div>
+          <div className="paket-meta-cell">
+            <span className="paket-meta-val">
+              <FileText size={15} style={{ display: 'inline' }} aria-hidden="true" />
+            </span>
+            <span className="paket-meta-key">pembahasan</span>
           </div>
         </div>
-      )}
 
-      {activeTab === 'overview' && (
-        <section className="overview-grid" aria-labelledby="hero-title">
-          <div className="stage-left">
+        <div>
+          <div className="paket-highlights-lbl">Materi antara lain</div>
+          <ul className="paket-highlights">
+            {paket.highlights.map((item) => (
+              <li key={item}>
+                <Check size={15} style={{ color: 'var(--fox-600)', flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {doneAttempt && (
+          <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--emerald-700)' }}>
+            Skor terakhir: {doneAttempt.scaleScore}/100 ({doneAttempt.strictCorrectCount}/{doneAttempt.totalQuestions} benar)
+          </div>
+        )}
+
+        <div className="paket-card-foot">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => onOpenDetail(paket)}
+          >
+            <ArrowRight size={16} aria-hidden="true" />
+            Lihat detail &amp; mulai
+          </button>
+        </div>
+      </article>
+    );
+  };
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Top Navbar (Clean SIAPPPG Topbar) */}
+      <header className="site-nav">
+        <div className="site-nav-inner">
+          <button
+            type="button"
+            className="brand-btn"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <ArenaLogoMark />
             <div>
-              <div className="stage-kicker">
-                BIDANG STUDI {prodiConfig.label.toUpperCase()} · JUKNIS UKPPPG 2026
-              </div>
-              <h1 id="hero-title" className="stage-title">
-                Simulasi UTBK UKPPPG Calon Guru 2026
-              </h1>
-              <p className="stage-lead">
-                {pckTarget > 0
-                  ? `Menarik ${pckTarget} butir ${prodiConfig.pckBadge} dan ${puTarget} butir Pedagogi Umum selaras secara acak tanpa mengulang soal yang telah dikuasai.`
-                  : `Fokus penuh pada ${puTarget} butir Pedagogi Umum murni lintas prodi tanpa soal jurusan lain.`}{' '}
-                {prodiConfig.description}
-              </p>
+              <span className="brand-title">
+                SIAPPPG<span>2026</span>
+              </span>
+              <span className="brand-sub">TRY OUT UKPPPG</span>
             </div>
+          </button>
 
-            <VernierScaleTelemetry
-              mixOrder={mixOrder}
-              totalBank={bankSummary.total}
-              pckBank={bankSummary.pck}
-              puBank={bankSummary.pu}
-              pckTarget={pckTarget}
-              puTarget={puTarget}
-              durationMinutes={durationMinutes}
-              prodiShortLabel={prodiConfig.shortLabel}
-            />
+          <nav className="nav-links-row" aria-label="Navigasi bagian halaman">
+            <a href="#paket" className="nav-link-btn">Paket</a>
+            <button
+              type="button"
+              className="nav-link-btn"
+              onClick={() => onOpenStudio(activeProdi, 'ALL')}
+            >
+              Studio Latihan
+            </button>
+            <a href="#cara-kerja" className="nav-link-btn">Cara kerja</a>
+            <a href="#kisi-kisi" className="nav-link-btn">Kisi-kisi</a>
+            <a href="#faq" className="nav-link-btn">Tanya jawab</a>
+          </nav>
 
-            <div className="launch-controls">
-              {pckTarget > 0 && (
-                <label className="check-row">
-                  <input
-                    type="checkbox"
-                    checked={mixOrder}
-                    onChange={(e) => setMixOrder(e.target.checked)}
-                  />
-                  <span>
-                    Acak campur urutan nomor PCK &amp; Pedagogi Umum (1 s.d. {officialTotal})
+          <div className="nav-actions">
+            <button
+              type="button"
+              className="btn btn-sm btn-ghost"
+              aria-label={theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
+              onClick={onToggleTheme}
+            >
+              {theme === 'light' ? 'Gelap' : 'Terang'}
+            </button>
+            <a href="#paket" className="btn btn-sm btn-primary">
+              Lihat paket
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main style={{ flex: 1 }}>
+        {/* HERO SECTION */}
+        <section className="hero-section">
+          <div className="container-arena">
+            <div className="hero-grid">
+              <div className="view-enter">
+                <div className="eyebrow">UNTUK PESERTA PPG · TERBUKA &amp; GRATIS</div>
+                <h1 className="hero-h1">Simulasi Try Out UTBK UKPPPG 2026</h1>
+                <p className="hero-lead">
+                  Kerjakan 80 soal per paket dalam 150 menit, lihat capaian tiap kompetensi, lalu
+                  pelajari pembahasannya. Setiap Prodi diklasifikasi ketat agar soal tidak tercampur
+                  dan bebas ambiguitas.
+                </p>
+
+                <div className="hero-cta-row">
+                  <a href="#paket" className="btn btn-primary btn-lg">
+                    Lihat paket try out
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </a>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-lg"
+                    onClick={() => onOpenStudio(activeProdi, 'ALL')}
+                  >
+                    <SlidersHorizontal size={17} aria-hidden="true" />
+                    Studio Drill Custom
+                  </button>
+                </div>
+
+                <div className="hero-trust-row">
+                  <span className="hero-trust-item">
+                    <Check size={16} style={{ color: 'var(--emerald-600)' }} aria-hidden="true" />
+                    Terbuka gratis tanpa kode akses
                   </span>
-                </label>
-              )}
+                  <span className="hero-trust-item">
+                    <Check size={16} style={{ color: 'var(--emerald-600)' }} aria-hidden="true" />
+                    Tersimpan otomatis di perangkat
+                  </span>
+                  <span className="hero-trust-item">
+                    <Check size={16} style={{ color: 'var(--emerald-600)' }} aria-hidden="true" />
+                    Terpisah ketat per Prodi
+                  </span>
+                </div>
+              </div>
 
-              <div className="action-strip">
-                <button
-                  type="button"
-                  className="btn btn-primary btn-lg"
-                  onClick={() => onStartOfficial(mixOrder)}
-                >
-                  {officialTotal === 80
-                    ? 'Mulai Simulasi Resmi (80 Soal)'
-                    : pckTarget === 0
-                      ? `Mulai Simulasi Pedagogi (${officialTotal} Soal)`
-                      : `Mulai Simulasi ${prodiConfig.shortLabel} (${officialTotal} Soal)`}
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-lg"
-                  onClick={() => onChangeTab('studio')}
-                >
-                  Buka Studio Drill
-                </button>
+              <div className="view-enter">
+                <HeroExamPreviewWidget activeProdi={activeProdi} />
+              </div>
+            </div>
+
+            {/* 4-Column Stat Strip */}
+            <div className="stats-strip tabular">
+              <div className="stat-cell">
+                <span className="stat-big">{PAKET_CATALOG.length}</span>
+                <span className="stat-lbl">paket try out tersedia</span>
+              </div>
+              <div className="stat-cell">
+                <span className="stat-big">{totalUnique}</span>
+                <span className="stat-lbl">soal terkurasi per prodi</span>
+              </div>
+              <div className="stat-cell">
+                <span className="stat-big">150</span>
+                <span className="stat-lbl">menit simulasi resmi</span>
+              </div>
+              <div className="stat-cell">
+                <span className="stat-big">17</span>
+                <span className="stat-lbl">subkompetensi kisi-kisi</span>
               </div>
             </div>
           </div>
-
-          <aside className="stage-right">
-            <div>
-              <div className="pane-heading">
-                <h2>Peta Subkompetensi ({prodiConfig.shortLabel})</h2>
-                <span>Klik kode untuk drill</span>
-              </div>
-              <CompetencyMatrixPanel
-                allQuestions={prodiQuestions}
-                mastery={mastery}
-                onSelectSubcompetency={(code) =>
-                  onStartDrill({
-                    prodiFilter: prodiId,
-                    bank: 'ALL',
-                    topic: 'ALL',
-                    subkompetensi: code,
-                    type: 'ALL',
-                    count: 15,
-                    instantFeedback: true,
-                    customTitle: `Drill ${code} · ${prodiConfig.shortLabel}`,
-                  })
-                }
-              />
-            </div>
-
-            <div>
-              <div className="pane-heading">
-                <h2>Pintasan Topik Cepat ({prodiConfig.shortLabel})</h2>
-                <span>{bankSummary.total} butir selaras</span>
-              </div>
-              <div className="index-list">
-                {featuredShortcuts.map((item) => {
-                  const poolLen = filterDrillQuestions(ALL_QUESTIONS, item.config).length;
-                  return (
-                    <button
-                      key={item.label}
-                      type="button"
-                      className="index-row-btn"
-                      disabled={poolLen === 0}
-                      onClick={() => onStartDrill(item.config)}
-                    >
-                      <span className="index-row-title">{item.label}</span>
-                      <span className="index-row-meta">{poolLen} soal</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </aside>
         </section>
-      )}
 
-      {activeTab === 'studio' && (
-        <section aria-labelledby="studio-heading">
-          <div style={{ marginBottom: '1.35rem' }}>
-            <div className="stage-kicker">MODE LATIHAN TERFOKUS</div>
-            <h1 id="studio-heading" className="stage-title" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
-              Studio Filter Topik, Subkompetensi &amp; Bentuk Soal
-            </h1>
-          </div>
-
-          <div className="studio-grid">
-            <div className="flat-panel filter-block">
-              <div className="field-group">
-                <label>Lingkup Bank Prodi</label>
-                <div className="seg-pills">
-                  <button
-                    type="button"
-                    className={`seg-btn ${drillScope === 'ACTIVE' ? 'is-active' : ''}`}
-                    onClick={() => {
-                      setDrillScope('ACTIVE');
-                      setDrillTopic('ALL');
-                    }}
-                  >
-                    {prodiConfig.shortLabel} ({bankSummary.total})
-                  </button>
-                  <button
-                    type="button"
-                    className={`seg-btn ${drillScope === 'ALL_ARCHIVE' ? 'is-active' : ''}`}
-                    onClick={() => {
-                      setDrillScope('ALL_ARCHIVE');
-                      setDrillTopic('ALL');
-                    }}
-                  >
-                    Semua Prodi &amp; Lintas Mapel ({allArchiveTotal})
-                  </button>
-                </div>
-              </div>
-
-              <div className="field-group">
-                <label>Rumpun Soal</label>
-                <div className="seg-pills">
-                  {(
-                    [
-                      ['ALL', `Semua (${studioSummary.total})`],
-                      ['PCK', `PCK Bidang (${studioSummary.pck})`],
-                      ['PU', `Pedagogi (${studioSummary.pu})`],
-                    ] as const
-                  ).map(([val, label]) => (
-                    <button
-                      key={val}
-                      type="button"
-                      className={`seg-btn ${drillBank === val ? 'is-active' : ''}`}
-                      onClick={() => {
-                        setDrillBank(val);
-                        setDrillTopic('ALL');
-                      }}
-                    >
-                      {label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="field-group">
-                <label htmlFor="topic-select">Topik Bahasan</label>
-                <select
-                  id="topic-select"
-                  className="select-input"
-                  value={drillTopic}
-                  onChange={(e) => setDrillTopic(e.target.value)}
-                >
-                  <option value="ALL">Semua Topik dalam Rumpun Terpilih</option>
-                  {availableTopics.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="field-group">
-                <label htmlFor="sub-select">Subkompetensi Lampiran 4 Juknis</label>
-                <select
-                  id="sub-select"
-                  className="select-input"
-                  value={drillSub}
-                  onChange={(e) => setDrillSub(e.target.value)}
-                >
-                  <option value="ALL">Semua Subkompetensi (P.1 s.d. PF.5)</option>
-                  {JUKNIS_SUBCOMPETENCIES.map((s) => (
-                    <option key={s.code} value={s.code}>
-                      {s.code} · {s.shortTitle}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="field-group">
-                <label htmlFor="type-select">Bentuk Soal</label>
-                <select
-                  id="type-select"
-                  className="select-input"
-                  value={drillType}
-                  onChange={(e) => setDrillType(e.target.value as 'ALL' | QuestionType)}
-                >
-                  <option value="ALL">Campuran (PG, PGK Kategori, PGK MCMA)</option>
-                  <option value="PG">PG Sederhana Saja</option>
-                  <option value="PGK_KATEGORI">PGK Kategori (Tabel Pernyataan)</option>
-                  <option value="PGK_MCMA">PGK MCMA (Multi Jawaban)</option>
-                </select>
-              </div>
-
-              <div className="field-group">
-                <label>Jumlah Soal</label>
-                <div className="seg-pills">
-                  {[10, 20, 30, 50].map((num) => (
-                    <button
-                      key={num}
-                      type="button"
-                      className={`seg-btn ${drillCount === num ? 'is-active' : ''}`}
-                      onClick={() => setDrillCount(num)}
-                    >
-                      {num} Soal
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <label className="check-row">
-                <input
-                  type="checkbox"
-                  checked={instantFeedback}
-                  onChange={(e) => setInstantFeedback(e.target.checked)}
-                />
-                <span>Mode Belajar (Periksa jawaban dan pembahasan langsung per soal)</span>
-              </label>
-            </div>
-
-            <div className="blueprint-preview">
+        {/* Active Unfinished Session Notice */}
+        {activeSession && (
+          <div className="container-arena" style={{ marginTop: '1.5rem' }}>
+            <div
+              className="kartu"
+              style={{
+                padding: '1rem 1.25rem',
+                borderLeft: '4px solid var(--fox-500)',
+                backgroundColor: 'var(--sun-50)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '1rem',
+                flexWrap: 'wrap',
+              }}
+              role="region"
+              aria-label="Sesi tryout aktif"
+            >
               <div>
-                <div className="stage-kicker">SOAL COCOK DI BANK</div>
-                <div className="preview-big-num">{matchingPool.length} Butir</div>
-                <p style={{ margin: '0.35rem 0 0', fontSize: '0.86rem', color: 'var(--ink-secondary)' }}>
-                  {matchingPool.length === 0
-                    ? 'Tidak ada soal pada kombinasi filter ini. Ubah salah satu filter di kiri.'
-                    : `Sistem akan menarik acak ${Math.min(drillCount, matchingPool.length)} soal dengan durasi ${Math.max(10, Math.min(drillCount, matchingPool.length) * 2)} menit.`}
+                <div style={{ fontWeight: 800, fontSize: '0.98rem', color: 'var(--ink-900)' }}>
+                  Sesi belum selesai: {activeSession.title}
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--ink-700)' }}>
+                  {activeAnswered}/{activeSession.slots.length} soal terjawab ·{' '}
+                  {activeSession.flaggedIds.length} ditandai Ragu-ragu.
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <button type="button" className="btn btn-sm btn-accent" onClick={onResumeActive}>
+                  <Play size={14} aria-hidden="true" />
+                  Lanjutkan Sesi
+                </button>
+                <button type="button" className="btn btn-sm btn-ghost" onClick={onDiscardActive}>
+                  Buang Sesi
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PAKET TRY OUT CATALOG */}
+        <section id="paket" className="section-band">
+          <div className="container-arena">
+            <div className="group-heading-row">
+              <div>
+                <div className="eyebrow">PAKET TRY OUT</div>
+                <h2 className="judul-bagian">Pilih paket sesuai bidang studimu</h2>
+                <p className="group-sub" style={{ maxWidth: '62ch' }}>
+                  Setiap paket bidang studi hanya berisi PCK prodi tersebut dan Pedagogi Umum
+                  netral. Progres serta pembahasan tersimpan di perangkatmu.
                 </p>
               </div>
-
-              <div className="index-list">
-                <div className="history-row">
-                  <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Prodi</span>
-                  <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                    {drillScope === 'ALL_ARCHIVE' ? 'Semua Arsip' : prodiConfig.shortLabel}
-                  </span>
-                </div>
-                <div className="history-row">
-                  <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Rumpun</span>
-                  <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                    {drillBank === 'ALL' ? 'PCK + PU' : drillBank}
-                  </span>
-                </div>
-                <div className="history-row">
-                  <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Bentuk</span>
-                  <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                    {drillType}
-                  </span>
-                </div>
-                <div className="history-row">
-                  <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Evaluasi</span>
-                  <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                    {instantFeedback ? 'Cek Langsung' : 'Di Akhir Sesi'}
-                  </span>
-                </div>
-              </div>
-
               <button
                 type="button"
-                className="btn btn-primary btn-lg"
-                disabled={matchingPool.length === 0}
-                onClick={() =>
-                  onStartDrill({
-                    prodiFilter: effectiveScope,
-                    bank: drillBank,
-                    topic: drillTopic,
-                    subkompetensi: drillSub,
-                    type: drillType,
-                    count: drillCount,
-                    instantFeedback,
-                  })
-                }
+                className="btn btn-sm btn-ghost"
+                onClick={onOpenGuide}
               >
-                Mulai Drill Acak Sekarang
+                <BookOpen size={15} aria-hidden="true" />
+                Panduan Juknis 2026
               </button>
+            </div>
+
+            {/* Filter per Prodi */}
+            <div className="prodi-filter-tabs" role="tablist" aria-label="Saring paket menurut program studi">
+              {FILTER_TABS.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={prodiFilter === t.id}
+                  className={`prodi-tab-pill ${prodiFilter === t.id ? 'is-active' : ''}`}
+                  onClick={() => {
+                    setProdiFilter(t.id);
+                    if (t.id !== 'ALL') onSelectProdiTab(t.id);
+                  }}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {visibleBidangStudi.length > 0 && (
+              <div style={{ marginBottom: '2.5rem' }}>
+                <div className="group-heading-row">
+                  <div>
+                    <h3 className="group-title">Paket Bidang Studi (Terisolasi ketat per Prodi)</h3>
+                    <p className="group-sub">
+                      Soal PCK bidang studi dipadukan Pedagogi Umum murni yang selaras tanpa
+                      pencampuran jurusan lain.
+                    </p>
+                  </div>
+                </div>
+                <div className="paket-grid">{visibleBidangStudi.map(renderPaketCard)}</div>
+              </div>
+            )}
+
+            {visibleUmum.length > 0 && (
+              <div>
+                <div className="group-heading-row">
+                  <div>
+                    <h3 className="group-title">Paket Umum &amp; Pedagogi Murni</h3>
+                    <p className="group-sub">
+                      Simulasi Pedagogi Umum netral bebas konten bidang studi spesifik, serta
+                      arsip lengkap Paket Umum 1–3 referensi SIAPPPG.
+                    </p>
+                  </div>
+                </div>
+                <div className="paket-grid">{visibleUmum.map(renderPaketCard)}</div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* CARA KERJA */}
+        <section id="cara-kerja" className="section-band section-band-white">
+          <div className="container-arena">
+            <div className="eyebrow">CARA KERJA</div>
+            <h2 className="judul-bagian">Empat langkah, dari mulai sampai paham</h2>
+
+            <div className="steps-grid">
+              {[
+                {
+                  num: '01',
+                  icon: Layers,
+                  title: 'Pilih Prodi & paket',
+                  desc: 'Pilih paket Teknik Mesin SMK, PGSD, Matematika, B. Indonesia, IPA, Vokasi, atau Umum tanpa perlu kode akses.',
+                },
+                {
+                  num: '02',
+                  icon: Clock,
+                  title: 'Kerjakan seperti ujian',
+                  desc: 'Timer berjalan otomatis, lengkap dengan penanda Ragu-ragu dan navigasi nomor soal 1–80.',
+                },
+                {
+                  num: '03',
+                  icon: BarChart3,
+                  title: 'Lihat skor & prioritas',
+                  desc: 'Nilai skala 100, capaian 4 kompetensi, rincian 17 subkompetensi, serta 3 prioritas belajar terendah.',
+                },
+                {
+                  num: '04',
+                  icon: BookOpen,
+                  title: 'Pelajari pembahasan',
+                  desc: 'Baca alasan tepat maupun kurang tepat pada setiap opsi pilihan dan pernyataan Benar–Salah.',
+                },
+              ].map((st) => {
+                const IconComp = st.icon;
+                return (
+                  <div key={st.num} className="kartu step-card">
+                    <div className="step-top">
+                      <span className="step-icon-box">
+                        <IconComp size={20} aria-hidden="true" />
+                      </span>
+                      <span className="step-num tabular">{st.num}</span>
+                    </div>
+                    <h3 className="step-title">{st.title}</h3>
+                    <p className="step-desc">{st.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="notes-strip">
+              <div className="note-box is-fox">
+                <span>Tiga bentuk soal BPPP: Pilihan Ganda, PGK MCMA, dan PGK Kategori (Benar–Salah).</span>
+              </div>
+              <div className="note-box is-emerald">
+                <span>Jawaban tersimpan otomatis di peramban; aman walau tab sempat tertutup.</span>
+              </div>
+              <div className="note-box is-sun">
+                <span>Tandai Ragu-ragu dan lompat langsung lewat panel navigasi soal kapan saja.</span>
+              </div>
             </div>
           </div>
         </section>
-      )}
 
-      {activeTab === 'archive' && (
-        <section aria-labelledby="archive-heading">
-          <div style={{ marginBottom: '1.35rem' }}>
-            <div className="stage-kicker">REFERENSI RESMI &amp; REKAM JEJAK</div>
-            <h1 id="archive-heading" className="stage-title" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
-              Kisi-Kisi Juknis 2026 &amp; Arsip Hasil Tryout
-            </h1>
-          </div>
+        {/* KISI-KISI INTERACTIVE 4-TAB MATRIX */}
+        <section id="kisi-kisi" className="section-band">
+          <div className="container-arena">
+            <div className="eyebrow">KISI-KISI</div>
+            <h2 className="judul-bagian">Kisi-kisi resmi UKPPPG 2026</h2>
+            <p className="group-sub" style={{ maxWidth: '64ch' }}>
+              Empat kompetensi beserta rincian 17 subkompetensi sesuai Lampiran 4 Juknis 2026. Klik
+              tombol <strong>Latih</strong> untuk membuka Studio Drill tepat pada subkompetensi
+              tersebut.
+            </p>
 
-          <div className="archive-grid">
-            <div className="flat-panel">
-              <div className="pane-heading">
-                <h2>Riwayat Sesi Selesai</h2>
-                <span>{seenInProdi}/{bankSummary.total} soal {prodiConfig.shortLabel} ditemui</span>
+            <div className="kisi-tabs-row" role="tablist" aria-label="Pilih rumpun kompetensi kisi-kisi">
+              {KISI_GROUPS.map((g) => (
+                <button
+                  key={g.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeKisiTab === g.id}
+                  className={`prodi-tab-pill ${activeKisiTab === g.id ? 'is-active' : ''}`}
+                  onClick={() => setActiveKisiTab(g.id)}
+                >
+                  {g.tabLabel}
+                </button>
+              ))}
+            </div>
+
+            <div className="kartu kisi-table-card">
+              <div className="kisi-table-head">
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800 }}>
+                      {currentKisiGroup.heading}
+                    </h3>
+                    <span className="chip chip-navy">
+                      {currentKisiGroup.items.length} subkompetensi
+                    </span>
+                  </div>
+                  <p style={{ margin: '0.35rem 0 0', fontSize: '0.9rem', color: 'var(--ink-600)' }}>
+                    {currentKisiGroup.summary}
+                  </p>
+                </div>
               </div>
 
-              {history.length === 0 ? (
-                <div
-                  style={{
-                    padding: '1.25rem',
-                    border: '1px dashed var(--border-line)',
-                    borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.88rem',
-                    color: 'var(--ink-muted)',
-                  }}
-                >
-                  Belum ada riwayat simulasi selesai. Mulai Simulasi Resmi atau sesi Drill
-                  untuk menyimpan skor dan menelaah pembahasan.
-                </div>
-              ) : (
-                <div className="history-list">
-                  {history.slice(0, 8).map((item) => {
-                    const canInspect = item.slots && item.slots.length > 0;
-                    const tone =
-                      item.strictScore >= 75
-                        ? 'is-good'
-                        : item.strictScore >= 55
-                          ? 'is-mid'
-                          : 'is-low';
-                    return (
-                      <div key={item.id} className="history-row">
-                        <div>
-                          <div style={{ fontWeight: 600, fontSize: '0.88rem' }}>{item.title}</div>
-                          <div className="mono" style={{ fontSize: '0.73rem', color: 'var(--ink-muted)' }}>
-                            {new Date(item.completedAt).toLocaleString('id-ID', {
-                              dateStyle: 'medium',
-                              timeStyle: 'short',
-                            })}{' '}
-                            · {item.strictCorrectCount}/{item.totalQuestions} benar
-                          </div>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                          <span className={`score-pill ${tone}`}>{item.strictScore}</span>
-                          {canInspect && (
+              <div className="kisi-table-wrap">
+                <table className="kisi-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: 92 }}>Kode</th>
+                      <th>Subkompetensi Resmi</th>
+                      <th>Cakupan Materi &amp; Teori Kunci</th>
+                      <th style={{ width: 120, textAlign: 'right' }}>Latihan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentKisiGroup.items.map((row) => {
+                      const avail = ALL_QUESTIONS.filter(
+                        (q) =>
+                          q.subkompetensi === row.code &&
+                          questionMatchesProdi(q, activeProdi)
+                      ).length;
+                      return (
+                        <tr key={row.code}>
+                          <td>
+                            <span className="kisi-code-pill">{row.code}</span>
+                          </td>
+                          <td style={{ fontWeight: 500, lineHeight: 1.55 }}>{row.desc}</td>
+                          <td>
+                            <div className="kisi-tag-list">
+                              {row.tags.map((tg) => (
+                                <span key={tg} className="kisi-tag">
+                                  {tg}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+                          <td style={{ textAlign: 'right' }}>
                             <button
                               type="button"
-                              className="btn btn-sm"
-                              onClick={() => onViewHistoryResult(item)}
+                              className="btn btn-sm btn-ghost"
+                              onClick={() => onOpenStudio(activeProdi, row.code)}
                             >
-                              Telaah
+                              Latih ({avail})
                             </button>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
 
-              {Object.keys(mastery).length > 0 && !confirmReset && (
-                <div style={{ marginTop: '1rem' }}>
+              <div className="kisi-focus-foot">
+                <strong>Fokus analisis soal:</strong> {currentKisiGroup.focusTip}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* RIWAYAT TRY OUT SELESAI */}
+        {history.length > 0 && (
+          <section className="section-band section-band-white" style={{ paddingBlock: '2.5rem' }}>
+            <div className="container-arena">
+              <div className="group-heading-row" style={{ marginBottom: '1rem' }}>
+                <div>
+                  <div className="eyebrow">REKAM JEJAK PERANGKAT</div>
+                  <h2 style={{ margin: '0.25rem 0 0', fontSize: '1.35rem', fontWeight: 800 }}>
+                    Riwayat Try Out Selesai ({seenCount} soal dikuasai/ditemui)
+                  </h2>
+                </div>
+                {!confirmReset ? (
                   <button
                     type="button"
-                    className="btn btn-sm btn-subtle"
+                    className="btn btn-sm btn-ghost"
                     onClick={() => setConfirmReset(true)}
                   >
-                    Reset Progres &amp; Riwayat Lokal
+                    Reset Progres Lokal
                   </button>
-                </div>
-              )}
-
-              {confirmReset && (
-                <div
-                  style={{
-                    marginTop: '0.9rem',
-                    padding: '0.75rem',
-                    borderRadius: 'var(--radius-sm)',
-                    backgroundColor: 'var(--status-danger-soft)',
-                    border: '1px solid var(--status-danger)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '0.5rem',
-                    flexWrap: 'wrap',
-                  }}
-                >
-                  <span style={{ fontSize: '0.84rem', fontWeight: 600 }}>
-                    Hapus seluruh riwayat dan data penguasaan soal?
-                  </span>
-                  <div style={{ display: 'flex', gap: '0.45rem' }}>
+                ) : (
+                  <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.84rem', fontWeight: 700 }}>Hapus semua riwayat?</span>
                     <button
                       type="button"
                       className="btn btn-sm btn-danger"
@@ -647,35 +625,92 @@ export function HomeView({
                     >
                       Ya, Hapus
                     </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm"
-                      onClick={() => setConfirmReset(false)}
-                    >
+                    <button type="button" className="btn btn-sm btn-ghost" onClick={() => setConfirmReset(false)}>
                       Batal
                     </button>
                   </div>
-                </div>
-              )}
-            </div>
-
-            <div className="flat-panel">
-              <div className="pane-heading">
-                <h2>Tata Tertib &amp; Spesifikasi TUK LPTK</h2>
-                <span>{JUKNIS_EXAM_SPECS.platform}</span>
+                )}
               </div>
-              <div className="index-list">
-                {JUKNIS_EXAM_SPECS.checklist.map((item) => (
-                  <div key={item.title} style={{ padding: '0.65rem 0', borderBottom: '1px solid var(--border-line)', fontSize: '0.86rem' }}>
-                    <div style={{ fontWeight: 700, marginBottom: '0.15rem' }}>{item.title}</div>
-                    <div style={{ color: 'var(--ink-secondary)' }}>{item.detail}</div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))', gap: '0.85rem' }}>
+                {history.slice(0, 6).map((item) => (
+                  <div key={item.id} className="kartu" style={{ padding: '1rem 1.15rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem' }}>
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: '0.92rem' }}>{item.title}</div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--ink-500)' }}>
+                        Skor <strong>{item.scaleScore}</strong>/100 · {item.strictCorrectCount}/{item.totalQuestions} benar
+                      </div>
+                    </div>
+                    {item.slots.length > 0 && (
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-primary"
+                        onClick={() => onViewHistoryResult(item)}
+                      >
+                        Hasil
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
+          </section>
+        )}
+
+        {/* FAQ ACCORDION */}
+        <section id="faq" className="section-band">
+          <div className="container-arena">
+            <div className="eyebrow">TANYA JAWAB</div>
+            <h2 className="judul-bagian">Hal yang sering ditanyakan</h2>
+
+            <div className="faq-list">
+              {FAQ_ITEMS.map((item) => (
+                <details key={item.q} className="kartu faq-item group">
+                  <summary>
+                    <span>{item.q}</span>
+                    <ChevronDown size={18} style={{ color: 'var(--ink-500)', flexShrink: 0 }} aria-hidden="true" />
+                  </summary>
+                  <div className="faq-body">{item.a}</div>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
-      )}
+      </main>
+
+      {/* Clean Footer */}
+      <footer
+        style={{
+          backgroundColor: 'var(--surface)',
+          borderTop: '1px solid var(--ink-200)',
+          paddingBlock: '1.75rem',
+        }}
+      >
+        <div
+          className="container-arena"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '1rem',
+            flexWrap: 'wrap',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <ArenaLogoMark size={28} />
+            <div>
+              <strong style={{ fontSize: '0.9rem' }}>SIAPPPG 2026 · Multi-Prodi Try Out UTBK</strong>
+              <div style={{ fontSize: '0.78rem', color: 'var(--ink-500)' }}>
+                Terisolasi ketat per Bidang Studi sesuai kisi-kisi Juknis UKPPPG 2026.
+              </div>
+            </div>
+          </div>
+
+          <button type="button" className="btn btn-sm btn-ghost" onClick={onOpenGuide}>
+            Lihat Panduan Juknis 2026
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }

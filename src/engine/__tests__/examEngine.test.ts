@@ -1,4 +1,9 @@
 import { describe, expect, it } from 'vitest';
+import {
+  PAKET_CATALOG,
+  createSessionFromPaket,
+  getPaketById,
+} from '../../data/paketCatalog';
 import { PRODI_CONFIGS, questionMatchesProdi } from '../../data/prodiRegistry';
 import {
   ALL_QUESTIONS,
@@ -281,5 +286,24 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
     );
     expect(subSession.slots.length).toBe(8);
     expect(subSession.slots.every((s) => s.question.subkompetensi === 'P.6')).toBe(true);
+  });
+
+  it('membangun seluruh 14 Paket Tryout SIAPPPG tanpa bayar dan memisahkan Teknik Mesin Paket A vs Paket B tanpa soal ganda', () => {
+    expect(PAKET_CATALOG.length).toBe(14);
+    for (const paket of PAKET_CATALOG) {
+      const session = createSessionFromPaket(paket, {}, { rng: createSeededRng(77) });
+      expect(session.slots.length).toBe(paket.questionCount);
+      if (paket.group === 'bidang-studi') {
+        expect(
+          session.slots.every((s) => questionMatchesProdi(s.question, paket.prodiId))
+        ).toBe(true);
+      }
+    }
+
+    const pakA = createSessionFromPaket(getPaketById('teknik-mesin-paket-a')!, {});
+    const pakB = createSessionFromPaket(getPaketById('teknik-mesin-paket-b')!, {});
+    const idsA = new Set(pakA.slots.map((s) => s.question.id));
+    const overlap = pakB.slots.filter((s) => idsA.has(s.question.id));
+    expect(overlap.length).toBe(0);
   });
 });
