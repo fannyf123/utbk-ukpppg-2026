@@ -42,10 +42,13 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
 
   it('tidak memiliki ID duplikat, indeks jawaban valid, dan setiap soal memiliki prodiScope jelas', () => {
     const seenIds = new Set<string>();
+    const forbiddenPromptPattern =
+      /^(?:contoh soal|soal \d+|kasus\s*:)|sumber gambar|kumparan\.com|soal ppg prajabatan|instruksi:\s*dengarkan|membeli 4 paket buku|pola lantai/i;
     for (const q of ALL_QUESTIONS) {
       expect(seenIds.has(q.id)).toBe(false);
       seenIds.add(q.id);
       expect(q.prompt.trim().length).toBeGreaterThanOrEqual(25);
+      expect(forbiddenPromptPattern.test(q.prompt.trim())).toBe(false);
       expect(q.explanation.trim().length).toBeGreaterThanOrEqual(20);
       expect(q.subkompetensi.trim().length).toBeGreaterThanOrEqual(3);
 
@@ -172,6 +175,8 @@ describe('Randomizer & Simulasi Multi-Prodi', () => {
       const pckPool = getProdiPckBank(pid);
       // Pastikan setiap Prodi memiliki cadangan > 50 soal agar randomizer selalu bervariasi antar-percobaan
       expect(pckPool.length).toBeGreaterThanOrEqual(63);
+      expect(pckPool.filter((q) => q.type === 'PGK_KATEGORI').length).toBeGreaterThanOrEqual(5);
+      expect(pckPool.filter((q) => q.type === 'PGK_MCMA').length).toBeGreaterThanOrEqual(5);
 
       const cfg = PRODI_CONFIGS.find((p) => p.id === pid)!;
       const session = createOfficialExamSession(
@@ -367,8 +372,15 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
         const covered = new Set(session.slots.map((s) => s.question.subkompetensi));
         const missing = allSubs.filter((c) => !covered.has(c));
         expect(missing).toEqual([]);
+        expect(session.slots.filter((s) => s.question.bank === 'PCK').length).toBe(50);
+        expect(session.slots.filter((s) => s.question.bank === 'PU').length).toBe(30);
+        expect(session.slots.filter((s) => s.question.type === 'PGK_KATEGORI').length).toBeGreaterThanOrEqual(10);
+        expect(session.slots.filter((s) => s.question.type === 'PGK_MCMA').length).toBeGreaterThanOrEqual(10);
       }
     }
+
+    const pgsdIds = PAKET_CATALOG.filter((p) => p.prodiId === 'pgsd').map((p) => p.id);
+    expect(pgsdIds[0]).toBe('pgsd-acak');
 
     const catatanPaket = getPaketById('ppg-catatan-fokus')!;
     const catatanSession = createSessionFromPaket(catatanPaket, {}, { rng: createSeededRng(17) });

@@ -76,7 +76,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Apakah setiap mulai tes untuk semua Prodi soalnya diacak agar tidak sama terus?',
-    a: 'Ya. Seluruh 14 Prodi bidang studi (masing-masing punya 63 sampai 163 soal PCK murni plus 380-484 Pedagogi Umum selaras) sekarang menjalankan Simulasi Acak penuh 80 soal (50 PCK + 30 PU · 150 menit). Sistem memprioritaskan soal yang belum pernah dikerjakan atau masih keliru, mengunci cakupan 17 subkompetensi Juknis 2026, sekaligus mengacak urutan opsi dan baris tabel Benar-Salah.',
+    a: 'Ya. Seluruh 14 Prodi bidang studi (masing-masing punya 64 sampai 106 soal PCK murni plus 333-437 Pedagogi Umum selaras) sekarang menjalankan Simulasi Acak penuh 80 soal (50 PCK + 30 PU · 150 menit). Sistem memprioritaskan soal yang belum pernah dikerjakan atau masih keliru, mengunci cakupan 17 subkompetensi Juknis 2026, sekaligus mengacak urutan opsi dan baris tabel Benar-Salah.',
   },
   {
     q: 'Bagaimana sistem penghitungan skor & poin pada hasil ujian?',

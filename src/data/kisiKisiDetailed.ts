@@ -20,39 +20,40 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     id: 'Pedagogik',
     tabLabel: '1. Pedagogik',
     heading: '1. Kompetensi Pedagogik',
-    summary: 'Kemampuan mengelola pembelajaran yang berpusat pada Murid untuk mencapai tujuan pembelajaran secara bermakna.',
+    summary:
+      'Kemampuan mengelola pembelajaran yang berpusat pada Murid untuk mencapai tujuan pembelajaran atau pembimbingan.',
     focusTip:
-      'Porsi soal Pedagogik paling besar dalam UTBK UKPPPG. Perhatikan kata kunci kasus: desain pengalaman belajar (P.1), keragaman/inklusi/TaRL/UDL (P.2), iklim 3M & psikologis kelas (P.3), pemanfaatan TIK (P.4), teori & strategi belajar (P.5), atau asesmen & tindak lanjut (P.6).',
+      'Porsi soal Pedagogik dominan dalam 30 butir PU dan terintegrasi pada 50 butir PCK. Cermati kata kunci Lampiran 4: pengalaman konseptual-kontekstual-reflektif (P.1), pembelajaran responsif keragaman (P.2), berkesadaran-bermakna-menggembirakan (P.3), integrasi TIK & literasi digital (P.4), pemanfaatan sumber belajar, lingkungan & kearifan lokal (P.5), serta asesmen berkelanjutan & umpan balik (P.6).',
     items: [
       {
         code: 'P.1',
-        desc: 'Merancang dan memfasilitasi pengalaman belajar Murid yang mendorong pemahaman konseptual, penerapan kontekstual, dan refleksi bermakna.',
+        desc: 'Merancang dan memfasilitasi pengalaman belajar Murid yang mendorong pemahaman konseptual, penerapan kontekstual, dan refleksi bermakna terhadap proses pembelajaran.',
         tags: ['UbD', 'Advance Organizer (Ausubel)', 'Scaffolding ZPD (Vygotsky)', 'PBL / PjBL / Inkuiri', 'Beban Kognitif'],
       },
       {
         code: 'P.2',
-        desc: 'Melaksanakan pembelajaran yang responsif terhadap keragaman latar belakang, kesiapan, kebutuhan, dan potensi Murid.',
+        desc: 'Melaksanakan pembelajaran yang responsif terhadap keragaman latar belakang, kebutuhan, dan potensi Murid melalui berbagai model pembelajaran.',
         tags: ['TaRL', 'Universal Design for Learning (UDL)', 'Diferensiasi Konten/Proses/Produk', 'CRT', 'Pendidikan Inklusif'],
       },
       {
         code: 'P.3',
-        desc: 'Menciptakan proses pembelajaran yang berkesadaran (mindful), bermakna (meaningful), dan menggembirakan (joyful).',
+        desc: 'Menciptakan proses pembelajaran yang berkesadaran, bermakna, dan menggembirakan.',
         tags: ['Pembelajaran Mendalam (3M)', 'Hierarki Maslow', 'SDT', 'Atribusi Weiner', 'Manajemen Kelas Kounin'],
       },
       {
         code: 'P.4',
-        desc: 'Mengintegrasikan teknologi informasi dan komunikasi secara kritis dan kreatif untuk mendukung pembelajaran & literasi digital.',
+        desc: 'Mengintegrasikan teknologi informasi dan komunikasi secara kritis dan kreatif dalam pembelajaran untuk memperluas akses, memperdalam pemahaman, dan mendukung literasi digital Murid.',
         tags: ['TPACK', 'ASSURE', 'Model SAMR', 'Flipped Classroom', 'Coherence Mayer', 'Etika AI & Literasi Digital'],
       },
       {
         code: 'P.5',
-        desc: 'Menerapkan strategi pembelajaran sesuai karakteristik Murid dengan memanfaatkan sumber belajar dan konteks lingkungan/kearifan lokal.',
-        tags: ['Behavioristik (Skinner/Pavlov)', 'Bandura', 'Bruner (CRA)', 'Kolb', 'Kooperatif STAD/NHT/Jigsaw', 'CTL'],
+        desc: 'Menerapkan strategi pembelajaran atau pembimbingan yang sesuai karakteristik Murid dengan memanfaatkan sumber belajar dan mempertimbangkan potensi lingkungan dan kearifan lokal.',
+        tags: ['Sumber Belajar Kontekstual', 'Potensi Lingkungan & Kearifan Lokal', 'CTL', 'Bruner & Kolb', 'Kooperatif Jigsaw/STAD'],
       },
       {
         code: 'P.6',
-        desc: 'Melaksanakan asesmen berkelanjutan, memberi umpan balik konstruktif, dan menindaklanjuti hasil belajar Murid secara objektif.',
-        tags: ['Asesmen Diagnostik & Formatif', 'Assessment as Learning', 'Rubrik Analitik/Holistik', 'Taksonomi SOLO & Bloom', 'Hattie'],
+        desc: 'Melaksanakan asesmen untuk mengetahui kebutuhan belajar, memberikan umpan balik, dan mengukur hasil belajar Murid secara berkesinambungan dan reflektif.',
+        tags: ['Asesmen Diagnostik & Formatif', 'Assessment as Learning', 'Rubrik Analitik/Holistik', 'Taksonomi SOLO & Bloom', 'Umpan Balik'],
       },
     ],
   },
@@ -60,24 +61,25 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     id: 'Kepribadian',
     tabLabel: '2. Kepribadian',
     heading: '2. Kompetensi Kepribadian',
-    summary: 'Kematangan moral, regulasi emosi, refleksi diri, pola pikir bertumbuh, serta integritas etika profesi guru.',
+    summary:
+      'Kemampuan kepribadian yang mantap, berakhlak mulia, arif, dan berwibawa serta menjadi teladan bagi Murid, lingkungan, dan masyarakat, yang ditunjukkan dengan kematangan spiritual, moral, dan emosional, serta kebiasaan melakukan refleksi diri dalam pembelajaran.',
     focusTip:
-      'Uji skenario dilema etika (pemberian hadiah/nilai, privasi konseling murid), respons stres guru, serta perangkap growth mindset yang hanya memuji usaha tanpa umpan balik strategi.',
+      'Uji skenario dilema etis dan keteladanan dalam keberagaman (K.1), kebiasaan refleksi diri berkelanjutan & pola pikir bertumbuh/belajar sepanjang hayat (K.2), serta konsistensi keputusan mengembangkan potensi dan budaya belajar Murid (K.3).',
     items: [
       {
         code: 'K.1',
-        desc: 'Menampilkan perilaku etis dan keteladanan yang mencerminkan kematangan spiritual, moral, dan emosional.',
-        tags: ['Kode Etik Guru', 'Integritas Penilaian', 'Privasi Data Murid', 'Sistem Among (Tut Wuri Handayani)'],
+        desc: 'Menampilkan perilaku etis dan keteladanan yang mencerminkan kematangan spiritual, moral, dan emosional berdasarkan Ketuhanan Yang Maha Esa dan nilai-nilai keberagaman.',
+        tags: ['Perilaku Etis & Keteladanan', 'Kematangan Spiritual, Moral & Emosional', 'Keberagaman', 'Privasi Data Murid'],
       },
       {
         code: 'K.2',
-        desc: 'Melakukan refleksi diri berkesinambungan dan mengembangkan pola pikir bertumbuh (growth mindset).',
-        tags: ['Growth Mindset & Power of Yet', 'Neuroplastisitas', 'Siklus Gibbs', 'Model Driscoll & 4F', 'Regulasi Emosi Guru'],
+        desc: 'Melakukan refleksi diri secara berkesinambungan, mengembangkan pola pikir bertumbuh, serta belajar sepanjang hayat untuk peningkatan kualitas diri.',
+        tags: ['Growth Mindset & Power of Yet', 'Refleksi Berkesinambungan', 'Siklus Gibbs & 4F', 'Belajar Sepanjang Hayat'],
       },
       {
         code: 'K.3',
-        desc: 'Mengambil keputusan secara konsisten dalam mengembangkan budaya belajar yang aman, disiplin positif, dan anti-perundungan.',
-        tags: ['Disiplin Positif', 'Regulasi Diri (SEL CASEL)', 'Penanganan Bullying', 'Mediasi Restoratif'],
+        desc: 'Mengambil keputusan dan bertindak secara konsisten dalam mengembangkan potensi dan budaya belajar Murid.',
+        tags: ['Keputusan Konsisten', 'Budaya Belajar Murid', 'Pengembangan Potensi', 'Iklim Kelas Aman'],
       },
     ],
   },
@@ -85,43 +87,44 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     id: 'Sosial',
     tabLabel: '3. Sosial',
     heading: '3. Kompetensi Sosial',
-    summary: 'Komunikasi empatik inklusif dengan murid, kemitraan orang tua/DUDIKA, serta partisipasi aktif komunitas belajar.',
+    summary:
+      'Kemampuan berkomunikasi, berinteraksi, dan berkolaborasi secara efektif dan efisien dengan Murid, sesama Pendidik, orang tua/wali Murid, dan masyarakat dalam pengembangan pembelajaran yang berpusat pada Murid dan pengembangan profesi.',
     focusTip:
-      'Perhatikan perbedaan empati & compassion pada EMC², strategi komunikasi non-menghakimi dengan orang tua pekerja shift/nelayan, dan kolaborasi sejawat di KKG/MGMP/Kombel.',
+      'Perhatikan ragam saluran komunikasi inklusif secara lisan, tulisan, dan/atau isyarat sesuai kebutuhan Murid (S.1), kolaborasi lintas unsur termasuk Tendik selain Pendidik, orang tua/wali, dan masyarakat (S.2), serta partisipasi komunitas pembelajaran untuk PKB (S.3).',
     items: [
       {
         code: 'S.1',
-        desc: 'Berkomunikasi secara inklusif, empatik, dan efektif dengan memperhatikan keberagaman bahasa, budaya, dan kondisi murid.',
-        tags: ['CASEL Social Awareness', 'Relationship Skills', 'Empati Kognitif & Compassion (EMC²)', 'School Well-Being'],
+        desc: 'Berkomunikasi secara inklusif, empatik, dan efektif secara lisan, tulisan, dan/atau isyarat dengan memperhatikan keragaman dan kebutuhan Murid.',
+        tags: ['Komunikasi Lisan, Tulisan & Isyarat', 'Inklusif & Empatik', 'CASEL Social Awareness', 'Compassion (EMC2)'],
       },
       {
         code: 'S.2',
-        desc: 'Berkolaborasi dengan Murid, sesama pendidik, orang tua/wali, industri (DUDIKA), dan masyarakat sekitar.',
-        tags: ['Tri Pusat Pendidikan (KHD)', 'Kemitraan Orang Tua/DUDIKA', 'Kearifan Lokal', 'Komunikasi Persuasif Tanpa Menghakimi'],
+        desc: 'Berkolaborasi dengan Murid, sesama Pendidik, Tenaga Kependidikan selain Pendidik, orang tua/wali Murid, dan masyarakat untuk meningkatkan kualitas pembelajaran.',
+        tags: ['Kolaborasi Pendidik & Tendik', 'Kemitraan Orang Tua/Wali', 'Masyarakat & Dunia Kerja', 'Tri Pusat Pendidikan'],
       },
       {
         code: 'S.3',
-        desc: 'Berpartisipasi aktif dalam organisasi profesi dan komunitas belajar untuk pengembangan keprofesian berkelanjutan.',
-        tags: ['Kombel & MGMP/KKG', 'Lesson Study (Open Class)', 'Coaching TIRTA & Supervisi Klinis'],
+        desc: 'Berpartisipasi aktif dalam organisasi profesi dan komunitas pembelajaran untuk pengembangan keprofesian berkelanjutan.',
+        tags: ['Kombel & MGMP/KKG', 'Lesson Study (Open Class)', 'Organisasi Profesi & PKB'],
       },
     ],
   },
   {
     id: 'Profesional',
     tabLabel: '4. Profesional',
-    heading: '4. Kompetensi Profesional & Bidang Studi',
-    summary: 'Penguasaan struktur keilmuan bidang studi, miskonsepsi materi ajar, adaptasi kurikulum, dan inovasi praktik pendidikan.',
+    heading: '4. Kompetensi Profesional',
+    summary: 'Kemampuan penguasaan materi pelajaran secara mendalam dan kontekstual.',
     focusTip:
-      'Bagian ini memuat materi PCK khusus Prodi masing-masing (maksimal 50 butir pada simulasi prodi penuh) pada 15 Prodi: Teknik Mesin, DKV, Tata Boga, Akuntansi, SMK Vokasi, PGSD, Matematika, B. Indonesia, B. Inggris, IPA, IPS, PJOK, PPKn, dan PAI.',
+      'Menjadi porsi inti 50 butir PCK di setiap Prodi: menguasai tujuan satuan pendidikan (PF.1), disiplin ilmu materi Prodi (PF.2), potensi & kebutuhan murid berbasis karakteristik materi & konteks lokal (PF.3), kurikulum adaptif (PF.4), dan praktik profesional inovatif (PF.5).',
     items: [
       {
         code: 'PF.1',
-        desc: 'Menguasai tujuan pendidikan satuan pendidikan dan pengembangan 8 dimensi profil lulusan secara seimbang.',
-        tags: ['8 Dimensi Profil Lulusan', 'Sistem Among (Asah-Asih-Asuh)', 'Pendidikan Nilai & Holistik'],
+        desc: 'Menguasai tujuan pendidikan terutama pada Satuan Pendidikan yang diampu.',
+        tags: ['Tujuan Satuan Pendidikan (SD/SMP/SMA/SMK)', 'Permendikdasmen No. 21 Tahun 2025', 'Standar Kompetensi Lulusan'],
       },
       {
         code: 'PF.2',
-        desc: 'Menguasai disiplin ilmu, konsep inti, dan praksis pembelajaran sesuai Program Studi (PCK Bidang Studi).',
+        desc: 'Menguasai disiplin ilmu sesuai dengan materi/muatan pembelajaran atau pembimbingan.',
         tags: [
           'Teknik Mesin, DKV, Boga, Akuntansi',
           'PGSD, MTK, B.Ind, B.Ing, IPA, IPS',
@@ -130,18 +133,18 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
       },
       {
         code: 'PF.3',
-        desc: 'Memahami tahap perkembangan kognitif/moral serta miskonsepsi khas materi bidang studi.',
-        tags: ['Tahap Piaget & Erikson', 'Perkembangan Moral Kohlberg', 'Identifikasi Miskonsepsi & Diagnostik Kesulitan'],
+        desc: 'Memahami potensi dan kebutuhan belajar Murid berdasarkan karakteristik materi pembelajaran atau pembimbingan dan konteks lokal.',
+        tags: ['Karakteristik Materi Bidang Studi', 'Diagnostik Potensi & Kesulitan Murid', 'Miskonsepsi Materi & Konteks Lokal'],
       },
       {
         code: 'PF.4',
-        desc: 'Memahami, menyusun alur tujuan (ATP), KKTP, dan mengembangkan kurikulum adaptif sesuai konteks jenjang/industri.',
-        tags: ['CP ke TP & ATP', 'KKTP Deskriptif', 'Kurikulum Adaptif & Teaching Factory'],
+        desc: 'Memahami, menerapkan, dan mengembangkan kurikulum secara adaptif dan kontekstual sesuai perkembangan zaman.',
+        tags: ['CP ke TP & ATP', 'Kurikulum Adaptif', 'Kontekstualisasi & Teaching Factory'],
       },
       {
         code: 'PF.5',
-        desc: 'Mengembangkan praktik profesional pembelajaran secara reflektif, empiris (PTK), kreatif, dan inovatif.',
-        tags: ['Penelitian Tindakan Kelas (PTK)', 'Siklus Kemmis-McTaggart', 'Inovasi Media & Asesmen Praktik'],
+        desc: 'Mengembangkan praktik profesional pendidikan secara konseptual, empiris, kreatif, dan inovatif.',
+        tags: ['Penelitian Tindakan Kelas (PTK)', 'Praktik Empiris & Konseptual', 'Inovasi Media & Asesmen Praktik'],
       },
     ],
   },

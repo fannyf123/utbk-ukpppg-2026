@@ -115,6 +115,9 @@ export function PaketDetailView({
             <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
               <span className="chip chip-emerald">✓ Terbuka · Bebas akses</span>
               <span className="chip chip-navy">{paket.badge}</span>
+              {paket.recommendedLabel && (
+                <span className="chip chip-fox">★ {paket.recommendedLabel} · 50 PCK + 30 PU</span>
+              )}
             </div>
 
             <h1
@@ -241,6 +244,58 @@ export function PaketDetailView({
                   </div>
                 </div>
               </div>
+
+              {(comp.pck > 0 || comp.pu > 0) && (
+                <div
+                  style={{
+                    marginTop: '1.1rem',
+                    paddingTop: '1rem',
+                    borderTop: '1px solid var(--ink-100)',
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.06em',
+                      color: 'var(--ink-500)',
+                      marginBottom: '0.65rem',
+                    }}
+                  >
+                    MATERI UTBK JUKNIS HAL. 7
+                  </div>
+                  <div className="detail-comp-grid" style={{ gap: '0.75rem' }}>
+                    <div
+                      className="kartu"
+                      style={{
+                        boxShadow: 'none',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '0.68rem 0.9rem',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      <span>PCK Bidang Studi</span>
+                      <strong className="tabular">{comp.pck} soal</strong>
+                    </div>
+                    <div
+                      className="kartu"
+                      style={{
+                        boxShadow: 'none',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: '0.68rem 0.9rem',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      <span>Pedagogi Umum (PU)</span>
+                      <strong className="tabular">{comp.pu} soal</strong>
+                    </div>
+                  </div>
+                </div>
+              )}
             </section>
 
             {/* Materi yang diuji */}

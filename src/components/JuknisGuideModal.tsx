@@ -40,23 +40,32 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
         </div>
 
         <p style={{ marginTop: 0, fontSize: '0.9rem', color: 'var(--ink-600)' }}>
-          Mengacu pada <strong>Petunjuk Teknis UKPPPG Bagi Calon Guru Tahun 2026</strong> (Hal. 7,
-          Hal. 10–11, Hal. 34–35, dan Lampiran 4 Hal. 47).
+          Mengacu pada <strong>Petunjuk Teknis UKPPPG Bagi Calon Guru Tahun 2026</strong> (Hal. 2,
+          Hal. 7-8, Hal. 10-12, Hal. 34-35, dan Lampiran 4 Hal. 47), selaras{' '}
+          <strong>{JUKNIS_EXAM_SPECS.legalBasis}</strong>.
         </p>
 
         <h4 style={{ margin: '1rem 0 0.45rem', fontSize: '0.95rem' }}>
-          1. Struktur &amp; Bentuk Soal Resmi
+          1. Struktur Ujian Tertulis (UTBK) &amp; Bentuk Soal Resmi
         </h4>
         <div className="stem-table-wrap">
           <table className="stem-table">
             <tbody>
               <tr>
-                <th>Total Soal</th>
+                <th>Tes Objektif</th>
                 <td>80 Butir Resmi (50 PCK Bidang Studi/Prodi + 30 Pedagogi Umum)</td>
               </tr>
               <tr>
                 <th>Waktu Pengerjaan</th>
-                <td>150 Menit (Rata-rata ±1 menit 52 detik per soal)</td>
+                <td>150 Menit (Reguler maupun Berkebutuhan Khusus; rata-rata ±1 menit 52 detik/soal)</td>
+              </tr>
+              <tr>
+                <th>Jadwal Sesi TUK</th>
+                <td>{JUKNIS_EXAM_SPECS.sessionsSchedule}</td>
+              </tr>
+              <tr>
+                <th>Tes Subjektif</th>
+                <td>{JUKNIS_EXAM_SPECS.subjectiveSpec}</td>
               </tr>
               <tr>
                 <th>Aplikasi Ujian</th>

@@ -11,6 +11,8 @@ import { PCK_DKV_PART_2 } from './pckDkvPart2';
 import { WEB_CURATED_EXTRAS } from './webCuratedExtras';
 import { WEB_CURATED_EXTRAS_2026 } from './webCuratedExtras2026';
 import { PPG_CATATAN_EXTRAS } from './ppgCatatanExtras';
+import { JUKNIS_PGK_VOKASI_2026 } from './juknisPgkVokasi2026';
+import { JUKNIS_PGK_MAPEL_2026 } from './juknisPgkMapel2026';
 import { questionMatchesProdi } from './prodiRegistry';
 import type {
   ExamQuestion,
@@ -80,6 +82,8 @@ export const ALL_QUESTIONS: ExamQuestion[] = [
   ...WEB_CURATED_EXTRAS,
   ...WEB_CURATED_EXTRAS_2026,
   ...PPG_CATATAN_EXTRAS,
+  ...JUKNIS_PGK_VOKASI_2026,
+  ...JUKNIS_PGK_MAPEL_2026,
   ...EXTERNAL_HARVESTED_QUESTIONS,
   ...FUNGSIONAL_QUESTIONS,
   ...UST_QUESTIONS,
