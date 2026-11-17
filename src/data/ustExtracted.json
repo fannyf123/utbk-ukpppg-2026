@@ -114,7 +114,7 @@
   {
     "id": "ust-setuju-06",
     "bank": "PCK",
-    "topic": "SJT Vokasi · DKV SMK",
+    "topic": "PCK DKV · Teaching Factory & Kemitraan",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -130,7 +130,7 @@
     "answer": 2,
     "explanation": "Kunci C: Teaching Factory yang menghadirkan suasana dan standar proses produksi dunia kerja ke lingkungan sekolah melalui pesanan nyata, pengendalian kualitas, dan pelayanan kepada konsumen. (Topik: Implementasi Teaching Factory (TeFa)).",
     "prodiScope": [
-      "smk-vokasi"
+      "dkv"
     ]
   },
   {
@@ -353,6 +353,7 @@
     "prodiScope": [
       "lintas-mapel",
       "teknik-mesin",
+      "dkv",
       "smk-vokasi",
       "matematika",
       "bahasa-indonesia"
@@ -2786,7 +2787,7 @@
   {
     "id": "ust-dwi-ppdp-01",
     "bank": "PCK",
-    "topic": "Vokasi · DKV SMK",
+    "topic": "PCK DKV · PPDP & Manajemen Studio",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2801,13 +2802,13 @@
     "answer": 1,
     "explanation": "Kasus ini menguji pemahaman mahasiswa PPG mengenai teori perkembangan kognitif Vygotsky. Kemampuan Rian yang awalnya belum bisa mendesain mandiri tetapi bisa dengan bantuan pertanyaan pemandu menunjukkan ia berada di area ZPD-nya. Bantuan terukur yang diberikan guru dan dikurangi secara bertahap (fading) disebut scaffolding. Di SMK DKV, pendekatan ini sangat krusial saat siswa beralih dari pemahaman konseptual estetika ke eksekusi teknis software.",
     "prodiScope": [
-      "smk-vokasi"
+      "dkv"
     ]
   },
   {
     "id": "ust-dwi-ppdp-02",
     "bank": "PCK",
-    "topic": "Vokasi · DKV SMK",
+    "topic": "PCK DKV · PPDP & Manajemen Studio",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2822,13 +2823,13 @@
     "answer": 2,
     "explanation": "Jawaban C merupakan pilihan paling tepat karena mencerminkan pemanfaatan hasil profiling peserta didik sebagai dasar dalam merancang pembelajaran yang adaptif, diferensiatif, dan inklusif. Kelompok A memperoleh pendampingan untuk mengembangkan kemampuan analisis riset pasar (user persona). Kelompok B memperoleh latihan bertahap dalam penguasaan software grafis dan pengembangan kompetensi storytelling. Kelompok C memperoleh scaffolding berupa panduan visual untuk memahami konsep dasar warna dan tipografi. Pendekatan tersebut menunjukkan bahwa guru tidak memperlakukan seluruh peserta didik secara seragam, melainkan memberikan dukungan sesuai karakteristik, potensi, dan kebutuhan belajar masing-masing.",
     "prodiScope": [
-      "smk-vokasi"
+      "dkv"
     ]
   },
   {
     "id": "ust-dwi-ppdp-03",
     "bank": "PCK",
-    "topic": "Vokasi · DKV SMK",
+    "topic": "PCK DKV · PPDP & Manajemen Studio",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2844,13 +2845,13 @@
     "answer": 1,
     "explanation": "Perkembangan emosional remaja SMK membutuhkan tantangan nyata yang bermakna (kontekstual) untuk memicu motivasi intrinsik mereka. Dengan membawa masalah riil (kuliner kantin) dan memberikan ruang eksplorasi yang aman dari tekanan psikologis salah/benar (B), guru berhasil menciptakan safe learning environment. Tindakan ini selaras dengan pendekatan konstruktivistik dan humanistik dalam PPDP, di mana siswa merasa dihargai otonominya.",
     "prodiScope": [
-      "smk-vokasi"
+      "dkv"
     ]
   },
   {
     "id": "ust-dwi-ppdp-04",
     "bank": "PCK",
-    "topic": "Vokasi · DKV SMK",
+    "topic": "PCK DKV · PPDP & Manajemen Studio",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2865,7 +2866,7 @@
     "answer": 2,
     "explanation": "Jawaban C merupakan strategi paling tepat karena mengintegrasikan pemahaman terhadap perkembangan sosio-emosional dan moral peserta didik. Penanganan Beni: Guru perlu memberikan pendekatan empatik, melakukan validasi emosi, serta membimbing Beni mengembangkan kemampuan regulasi diri ketika menghadapi tekanan. Pendampingan bertahap, misalnya melalui pembuatan moodboard, dapat membantu mengatasi hambatan dalam menemukan ide visual. Penanganan Doni: Guru perlu memberikan pemahaman mengenai etika profesi desainer dan hak kekayaan intelektual (HKI). Doni diarahkan untuk menggunakan referensi secara bertanggung jawab melalui proses eksplorasi, modifikasi yang sah, dan penciptaan karya orisinal. Dengan demikian, guru tidak hanya berorientasi pada penyelesaian tugas, tetapi juga mengembangkan kematangan emosional, tanggung jawab moral, dan karakter profesional peserta didik.",
     "prodiScope": [
-      "smk-vokasi"
+      "dkv"
     ]
   }
 ]

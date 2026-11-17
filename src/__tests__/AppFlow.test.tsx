@@ -59,6 +59,14 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
       screen.queryByText(/Teknik Mesin SMK · Simulasi Resmi Acak/i)
     ).not.toBeInTheDocument();
 
+    fireEvent.click(screen.getByRole('tab', { name: 'DKV SMK' }));
+    expect(
+      screen.getByText(/DKV · Simulasi Resmi Acak 80 Soal/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/PGSD · Paket 3 Guru Kelas SD Lengkap/i)
+    ).not.toBeInTheDocument();
+
     fireEvent.click(
       screen.getAllByRole('button', { name: /Lihat detail & mulai/i })[0]
     );

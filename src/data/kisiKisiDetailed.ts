@@ -112,7 +112,7 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     heading: '4. Kompetensi Profesional & Bidang Studi',
     summary: 'Penguasaan struktur keilmuan bidang studi, miskonsepsi materi ajar, adaptasi kurikulum, dan inovasi praktik pendidikan.',
     focusTip:
-      'Bagian ini memuat materi PCK khusus Prodi masing-masing (50 butir pada simulasi prodi penuh): Teknik Mesin SMK, PGSD, Matematika, Bahasa Indonesia, atau IPA.',
+      'Bagian ini memuat materi PCK khusus Prodi masing-masing (50 butir pada simulasi prodi penuh): Teknik Mesin SMK, DKV SMK, PGSD, Matematika, Bahasa Indonesia, atau IPA.',
     items: [
       {
         code: 'PF.1',

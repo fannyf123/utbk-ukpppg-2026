@@ -4,6 +4,7 @@ export type Competency = 'Pedagogik' | 'Kepribadian' | 'Sosial' | 'Profesional';
 
 export type ProdiId =
   | 'teknik-mesin'
+  | 'dkv'
   | 'pgsd'
   | 'matematika'
   | 'bahasa-indonesia'

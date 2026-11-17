@@ -5,6 +5,7 @@ import {
   getProdiQuestions,
 } from './questionBank';
 import { getProdiConfig } from './prodiRegistry';
+import { JUKNIS_SUBCOMPETENCIES } from './juknisReference';
 import type { ExamQuestion, MasteryRecord, ProdiId } from '../types/exam';
 import {
   buildShuffledSlot,
@@ -102,6 +103,27 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     kind: 'prodi-slice',
     pckSliceOffset: 50,
     puSliceOffset: 30,
+    pckQuota: 50,
+    puQuota: 30,
+  },
+  {
+    id: 'dkv-resmi',
+    group: 'bidang-studi',
+    prodiId: 'dkv',
+    badge: 'DKV SMK',
+    badgeTone: 'prodi',
+    title: 'DKV · Simulasi Resmi Acak 80 Soal',
+    subtitle:
+      'Simulasi penuh 80 soal terisolasi untuk Desain Komunikasi Visual: 50 PCK DKV (dari pool 60 PCK murni) + 30 Pedagogi Umum selaras tanpa soal Teknik Mesin/jurusan lain.',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Tata Letak Grid, Tipografi, Warna RGB/CMYK/ICC & Pracetak',
+      'Fotografi Eksposur, Studio Lighting, Audio Visual & Motion',
+      'Branding GSM, Dieline Packaging, UI/UX & Etika AI/HKI',
+      'K3LH Studio Ergonomis, Asesmen Portofolio & SJT TeFa DKV',
+    ],
+    kind: 'prodi-random',
     pckQuota: 50,
     puQuota: 30,
   },
@@ -213,18 +235,18 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     id: 'smk-vokasi',
     group: 'bidang-studi',
     prodiId: 'smk-vokasi',
-    badge: 'SMK Vokasi',
+    badge: 'SMK Vokasi Lainnya',
     badgeTone: 'prodi',
-    title: 'SMK Vokasi Lintas Keahlian (DKV · TKJ · TKR · Boga)',
+    title: 'SMK Vokasi Lainnya (TKJ/RPL · TKR · Listrik · Boga)',
     subtitle:
-      '17 kasus kejuruan terkurasi (setiap soal mencantumkan label keahlian jelas: DKV, TKJ/RPL, TKR, TITL, Tata Boga, Akuntansi) + 30 PU Vokasi.',
-    questionCount: 47,
-    durationMinutes: 88,
+      '12 kasus kejuruan non-Mesin & non-DKV (setiap soal mencantumkan label keahlian jelas: TKJ/RPL, TKR, TITL, Tata Boga, Akuntansi, Animasi, APHP) + 30 PU Vokasi.',
+    questionCount: 42,
+    durationMinutes: 79,
     highlights: [
-      'Kasus PPDP & PMA nyata kelas X–XI SMK (DKV, TKJ, RPL)',
-      'SJT Teaching Factory & keselamatan bengkel TKR/TITL Listrik',
-      'Diferensiasi kejuruan Tata Boga, Akuntansi & Agribisnis',
-      'Proporsional 47 soal · 88 menit agar jumlah soal tetap jujur',
+      'Terpisah bersih dari Prodi Teknik Mesin & Prodi DKV',
+      'SJT Teaching Factory & keselamatan kerja TKR/TITL Listrik',
+      'Kasus PPDP & asesmen kejuruan TKJ, RPL, Tata Boga, Akuntansi',
+      'Proporsional 42 soal · 79 menit agar jumlah soal tetap jujur',
     ],
     kind: 'prodi-random',
     pckQuota: 50,
@@ -338,6 +360,87 @@ export function getPaketById(id: string): PaketDef | undefined {
   return PAKET_CATALOG.find((p) => p.id === id);
 }
 
+function fillBalancedRemaining(
+  prioritized: ExamQuestion[],
+  picked: ExamQuestion[],
+  pickedIds: Set<string>,
+  targetTotal: number
+): ExamQuestion[] {
+  if (picked.length >= targetTotal) return picked.slice(0, targetTotal);
+  const out = [...picked];
+  const minKat = Math.round(targetTotal * 0.2);
+  const minMcma = Math.round(targetTotal * 0.2);
+
+  let katCount = out.filter((q) => q.type === 'PGK_KATEGORI').length;
+  let mcmaCount = out.filter((q) => q.type === 'PGK_MCMA').length;
+
+  for (const q of prioritized) {
+    if (out.length >= targetTotal) break;
+    if (pickedIds.has(q.id)) continue;
+    if (q.type === 'PGK_KATEGORI' && katCount < minKat) {
+      out.push(q);
+      pickedIds.add(q.id);
+      katCount++;
+    } else if (q.type === 'PGK_MCMA' && mcmaCount < minMcma) {
+      out.push(q);
+      pickedIds.add(q.id);
+      mcmaCount++;
+    }
+  }
+
+  for (const q of prioritized) {
+    if (out.length >= targetTotal) break;
+    if (pickedIds.has(q.id)) continue;
+    out.push(q);
+    pickedIds.add(q.id);
+  }
+  return out;
+}
+
+function selectStratifiedRandom(
+  pckBank: readonly ExamQuestion[],
+  puBank: readonly ExamQuestion[],
+  pckQuota: number,
+  puQuota: number,
+  mastery: Record<string, MasteryRecord>,
+  rng: Rng
+): ExamQuestion[] {
+  const pckPrio = prioritizeQuestions(pckBank, mastery, rng);
+  const puPrio = prioritizeQuestions(puBank, mastery, rng);
+  const pckPicked: ExamQuestion[] = [];
+  const puPicked: ExamQuestion[] = [];
+  const pickedIds = new Set<string>();
+
+  // Pass 1: Ensure every Juknis Lampiran 4 subcompetency (P.1-PF.5) present in pool is covered
+  for (const meta of JUKNIS_SUBCOMPETENCIES) {
+    const code = meta.code;
+    const preferPckFirst = code.startsWith('PF.');
+    const order = preferPckFirst
+      ? [
+          { pool: pckPrio, target: pckPicked, cap: pckQuota },
+          { pool: puPrio, target: puPicked, cap: puQuota },
+        ]
+      : [
+          { pool: puPrio, target: puPicked, cap: puQuota },
+          { pool: pckPrio, target: pckPicked, cap: pckQuota },
+        ];
+
+    for (const bucket of order) {
+      if (bucket.target.length >= bucket.cap) continue;
+      const match = bucket.pool.find((q) => q.subkompetensi === code && !pickedIds.has(q.id));
+      if (match) {
+        bucket.target.push(match);
+        pickedIds.add(match.id);
+        break;
+      }
+    }
+  }
+
+  const finalPck = shuffleArray(fillBalancedRemaining(pckPrio, pckPicked, pickedIds, pckQuota), rng);
+  const finalPu = shuffleArray(fillBalancedRemaining(puPrio, puPicked, pickedIds, puQuota), rng);
+  return [...finalPck, ...finalPu];
+}
+
 /**
  * Mengembalikan daftar soal statis atau representatif untuk preview komposisi paket di halaman detail.
  */
@@ -358,7 +461,7 @@ export function resolvePaketQuestions(
   if (paket.kind === 'pu-random') {
     const puBank = getProdiPuBank('umum');
     const need = Math.min(paket.puQuota ?? 30, puBank.length);
-    return prioritizeQuestions(puBank, mastery, rng).slice(0, need);
+    return selectStratifiedRandom([], puBank, 0, need, mastery, rng);
   }
 
   const pckBank = getProdiPckBank(paket.prodiId);
@@ -382,10 +485,8 @@ export function resolvePaketQuestions(
     return [...pckSlice, ...puSlice];
   }
 
-  // prodi-random: prioritize unseen/weak + balance PG/Kategori/MCMA
-  const chosenPck = prioritizeQuestions(pckBank, mastery, rng).slice(0, pckQuota);
-  const chosenPu = prioritizeQuestions(puBank, mastery, rng).slice(0, puQuota);
-  return [...chosenPck, ...chosenPu];
+  // prodi-random: stratified 17 subcompetencies + balanced PG/Kategori/MCMA + unseen priority
+  return selectStratifiedRandom(pckBank, puBank, pckQuota, puQuota, mastery, rng);
 }
 
 export function createSessionFromPaket(

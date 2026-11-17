@@ -46,6 +46,7 @@ interface HomeViewProps {
 const FILTER_TABS: { id: 'ALL' | ProdiId; label: string }[] = [
   { id: 'ALL', label: 'Semua Paket' },
   { id: 'teknik-mesin', label: 'Teknik Mesin SMK' },
+  { id: 'dkv', label: 'DKV SMK' },
   { id: 'pgsd', label: 'PGSD' },
   { id: 'matematika', label: 'Matematika' },
   { id: 'bahasa-indonesia', label: 'Bahasa Indonesia' },
@@ -61,11 +62,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Apakah semua paket gratis tanpa kode akses atau biaya langganan?',
-    a: 'Ya, seluruh 14 paket simulasi maupun Studio Latihan Custom terbuka penuh secara gratis tanpa login, tanpa kode akses, dan tanpa batasan percobaan.',
+    a: `Ya, seluruh ${PAKET_CATALOG.length} paket simulasi maupun Studio Latihan Custom terbuka penuh secara gratis tanpa login, tanpa kode akses, dan tanpa batasan percobaan.`,
   },
   {
     q: 'Mengapa pada paket tertentu tersedia opsi Simulasi Acak?',
-    a: 'Untuk Prodi dengan bank soal di atas 1 paket (misalnya Teknik Mesin dengan 102 PCK murni atau PGSD dengan 61 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah Anda kerjakan atau masih keliru, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah agar Anda benar-benar memahami konsep.',
+    a: 'Untuk Prodi dengan bank soal di atas 1 paket (seperti Teknik Mesin dengan 102 PCK murni, DKV dengan 60 PCK, atau PGSD dengan 61 PCK), mode Simulasi Acak memprioritaskan soal yang belum pernah Anda kerjakan atau masih keliru, mengunci cakupan 17 subkompetensi kisi-kisi, sekaligus mengacak posisi opsi PG dan baris tabel Benar-Salah.',
   },
   {
     q: 'Bagaimana sistem penghitungan skor & poin pada hasil ujian?',
@@ -444,7 +445,7 @@ export function HomeView({
                   num: '01',
                   icon: Layers,
                   title: 'Pilih Prodi & paket',
-                  desc: 'Pilih paket Teknik Mesin SMK, PGSD, Matematika, B. Indonesia, IPA, Vokasi, atau Umum tanpa perlu kode akses.',
+                  desc: 'Pilih paket Teknik Mesin SMK, DKV SMK, PGSD, Matematika, B. Indonesia, IPA, Vokasi, atau Umum tanpa perlu kode akses.',
                 },
                 {
                   num: '02',

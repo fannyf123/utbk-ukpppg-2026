@@ -20,6 +20,15 @@ export const PRODI_CONFIGS: readonly ProdiConfig[] = [
       'Kompetensi keahlian Teknik Pemesinan/Mesin SMK (Gambar/CAD, Bubut/Frais/Gerinda, CNC, Metrologi, Material, Pengelasan, Elemen Mesin, K3LH) dipadukan Pedagogi Umum murni.',
   },
   {
+    id: 'dkv',
+    label: 'DKV · Desain Komunikasi Visual (SMK)',
+    shortLabel: 'DKV',
+    jenjang: 'SMK · Seni & Ekonomi Kreatif',
+    pckBadge: 'PCK DKV SMK',
+    description:
+      'Kompetensi keahlian Desain Komunikasi Visual SMK (Tata Letak, Tipografi, Warna RGB/CMYK, Pracetak Vektor-Bitmap, Fotografi/AV, Branding, Packaging, UI/UX, HKI & TeFa DKV) dipadukan Pedagogi Umum selaras.',
+  },
+  {
     id: 'pgsd',
     label: 'PGSD (Guru Kelas SD)',
     shortLabel: 'PGSD',
@@ -57,12 +66,12 @@ export const PRODI_CONFIGS: readonly ProdiConfig[] = [
   },
   {
     id: 'smk-vokasi',
-    label: 'SMK Vokasi (DKV · TKJ/RPL · TKR · Listrik · Boga · Akuntansi)',
+    label: 'SMK Vokasi Lainnya (TKJ/RPL · TKR · Listrik · Boga · Akuntansi)',
     shortLabel: 'SMK Vokasi',
     jenjang: 'SMK · Lintas Keahlian',
     pckBadge: 'SJT KEJURUAN VOKASI',
     description:
-      'Himpunan kasus kontekstual kejuruan DKV, TKJ, RPL, Teknik Kendaraan Ringan (TKR), TITL Listrik, Tata Boga, Akuntansi, Animasi & APHP beserta Pedagogi Umum vokasional.',
+      'Himpunan kasus kejuruan TKJ, RPL, Teknik Kendaraan Ringan (TKR), TITL Listrik, Tata Boga, Akuntansi, Animasi & APHP (terpisah dari Teknik Mesin & DKV) beserta Pedagogi Umum vokasional.',
   },
   {
     id: 'umum',

@@ -193,7 +193,7 @@ const ARENA_PRODI_MAP = {
   'arena-paket-2-68': { prodis: ['smk-vokasi'], bank: 'PCK', topic: 'Vokasi · Informatika & Berpikir Komputasional' }, // Informatika jadwal piket
   'arena-paket-2-74': { prodis: ['ipa'], bank: 'PCK' }, // mengukur pH lakmus
   'arena-paket-2-75': { prodis: ['ipa', 'pgsd'], bank: 'PCK' }, // siklus air SOLO
-  'arena-paket-2-77': { prodis: ['smk-vokasi', 'umum'] }, // pelaku UMKM mitra kewirausahaan (Cocok utk semua/vokasi)
+  'arena-paket-2-77': { prodis: ['dkv', 'smk-vokasi', 'umum'] }, // pelaku UMKM mitra kewirausahaan (Cocok utk semua/vokasi)
   // Paket 3
   'arena-paket-3-01': { prodis: ['pgsd'] }, // Dimas kelas V
   'arena-paket-3-02': { prodis: ['lintas-mapel'] }, // Prakarya SMP
@@ -483,7 +483,7 @@ const UST_SUB_TOPIC_MAP = {
   'ust-setuju-03': { prodiScope: ['teknik-mesin', 'smk-vokasi'], bank: 'PU', topic: 'PMA & Asesmen (Vokasi Mesin)' },
   'ust-setuju-04': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Akuntansi SMK' },
   'ust-setuju-05': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · TKJ / Jaringan' },
-  'ust-setuju-06': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · DKV SMK' },
+  'ust-setuju-06': { prodiScope: ['dkv'], bank: 'PCK', topic: 'PCK DKV · Teaching Factory & Kemitraan' },
   'ust-setuju-07': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Teknik Kendaraan Ringan' },
   'ust-setuju-08': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Tata Boga / Pastry' },
   'ust-setuju-09': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · RPL / Pemrograman' },
@@ -493,7 +493,7 @@ const UST_SUB_TOPIC_MAP = {
   'ust-setuju-13': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · Animasi SMK' },
   'ust-setuju-14': { prodiScope: ['teknik-mesin', 'smk-vokasi'], bank: 'PU', topic: 'PMA & Asesmen (Vokasi Mesin)' },
   'ust-setuju-15': { prodiScope: ['smk-vokasi'], bank: 'PCK', topic: 'SJT Vokasi · TKJ / Jaringan' },
-  'ust-biya-01': { prodiScope: ['lintas-mapel', 'teknik-mesin', 'smk-vokasi', 'matematika', 'bahasa-indonesia'] }, // kelas XI
+  'ust-biya-01': { prodiScope: ['lintas-mapel', 'teknik-mesin', 'dkv', 'smk-vokasi', 'matematika', 'bahasa-indonesia'] }, // kelas XI
   'ust-gm-01': { prodiScope: ['pgsd'] }, // kelas V
   'ust-gm-03': { prodiScope: ['pgsd', 'ipa'] }, // IPAS kelas VI
   'ust-gm-04': { prodiScope: ['pgsd', 'matematika'] }, // pecahan kelas V
@@ -517,7 +517,7 @@ const ustConverted = ustRaw.map((item) => {
     return { ...item, prompt: cleanPrompt, explanation: cleanExpl, bank: 'PCK', prodiScope: ['ipa'], topic: 'PCK IPA · Konsep & Asesmen SMP' };
   }
   if (item.id.startsWith('ust-dwi-ppdp-')) {
-    return { ...item, prompt: cleanPrompt, explanation: cleanExpl, bank: 'PCK', prodiScope: ['smk-vokasi'], topic: 'Vokasi · DKV SMK' };
+    return { ...item, prompt: cleanPrompt, explanation: cleanExpl, bank: 'PCK', prodiScope: ['dkv'], topic: 'PCK DKV · PPDP & Manajemen Studio' };
   }
   if (item.id.startsWith('ust-sel-sma-')) {
     return { ...item, prompt: cleanPrompt, explanation: cleanExpl, bank: 'PU', prodiScope: ['bahasa-indonesia'], topic: 'SEL & Etika (Bahasa Indonesia)' };
@@ -539,6 +539,7 @@ const ustConverted = ustRaw.map((item) => {
 // ============================================================================
 const PRODI_LIST = [
   'teknik-mesin',
+  'dkv',
   'pgsd',
   'matematika',
   'bahasa-indonesia',
@@ -547,14 +548,14 @@ const PRODI_LIST = [
   'umum',
 ];
 
-// Include 102 PCK Teknik Mesin + 18 puKat counts
+// Include 102 PCK Teknik Mesin + 55 PCK DKV + 18 puKat counts
 const puKatIds = Array.from({ length: 18 }, (_, k) => `pu-kat-${String(k + 1).padStart(2, '0')}`);
 const PU_KAT_SCOPE = {
-  'pu-kat-01': ['teknik-mesin', 'smk-vokasi'],
+  'pu-kat-01': ['teknik-mesin', 'dkv', 'smk-vokasi'],
   'pu-kat-06': ['teknik-mesin', 'smk-vokasi'],
   'pu-kat-09': ['teknik-mesin', 'smk-vokasi'],
-  'pu-kat-10': ['teknik-mesin', 'smk-vokasi'], // usia remaja SMK
-  'pu-kat-12': ['teknik-mesin', 'smk-vokasi'],
+  'pu-kat-10': ['teknik-mesin', 'dkv', 'smk-vokasi'], // usia remaja SMK
+  'pu-kat-12': ['teknik-mesin', 'dkv', 'smk-vokasi'],
   'pu-kat-13': ['teknik-mesin', 'smk-vokasi'],
   'pu-kat-14': ['teknik-mesin'], // MGMP Teknik Mesin
   'pu-kat-17': ['teknik-mesin', 'smk-vokasi'], // bengkel atau kelas
@@ -571,10 +572,11 @@ const combinedVirtual = [
   ...arenaConverted,
   ...ustConverted,
   ...Array.from({ length: 102 }, (_, i) => ({ id: `pck-mesin-${i}`, bank: 'PCK', prodiScope: ['teknik-mesin'] })),
+  ...Array.from({ length: 55 }, (_, i) => ({ id: `pck-dkv-${i}`, bank: 'PCK', prodiScope: ['dkv'] })),
   ...puKatIds.map((id) => ({ id, bank: 'PU', prodiScope: PU_KAT_SCOPE[id] || 'UMUM' })),
 ];
 
-console.log(`Total unique questions processed: ${combinedVirtual.length} (arena=${arenaConverted.length}, ust=${ustConverted.length}, mesin=102, puKat=18)`);
+console.log(`Total unique questions processed: ${combinedVirtual.length} (arena=${arenaConverted.length}, ust=${ustConverted.length}, mesin=102, dkv=55, puKat=18)`);
 console.log('\n=== PER-PRODI ELIGIBLE QUESTION POOLS ===');
 for (const pr of PRODI_LIST) {
   const pool = combinedVirtual.filter((q) => matchesProdi(q.prodiScope, pr));
