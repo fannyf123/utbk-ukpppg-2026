@@ -10,19 +10,19 @@ Selain bank soal terkurasi (SIAPPPG Arena, PPG UST, dan bank PCK Prodi internal)
 ## Klasifikasi & Isolasi Ketat 15 Program Studi (Seluruh Prodi Full 80 Soal · 150 Menit Acak Dinamis)
 Setiap Program Studi bidang studi memiliki pool **`63-163` butir PCK terisolasi** + **`380-484` Pedagogi Umum selaras** sehingga **setiap kali memulai simulasi** untuk Prodi mana pun sistem mengacak **`50 PCK + 30 PU = 80 soal` (`150 menit`)** sambil memprioritaskan soal belum dikerjakan/pernah keliru:
 - **Teknik Mesin (SMK)** *(3 paket · 80 soal / 150 menit)*: `106 PCK Teknik Mesin SMK` + `410 Pedagogi Umum` (`Simulasi Resmi Acak`, `Paket Spesial A`, `Paket Spesial B`).
-- **DKV · Desain Komunikasi Visual (SMK)** *(1 paket · 80 soal / 150 menit)*: `79 PCK DKV` + `384 Pedagogi Umum`.
-- **Tata Boga (SMK)** *(1 paket acak penuh · 80 soal / 150 menit)*: `67 PCK Tata Boga & Kuliner` + `384 Pedagogi Umum`.
-- **Akuntansi & Keuangan Lembaga (SMK)** *(1 paket acak penuh · 80 soal / 150 menit)*: `63 PCK Akuntansi & Perpajakan` + `384 Pedagogi Umum`.
-- **SMK Vokasi Lainnya** *(1 paket acak penuh · 80 soal / 150 menit)*: `73 PCK Kejuruan (Pemasaran/BDP, TKJ/RPL/Informatika, TKR Otomotif, TITL Listrik, APHP)` + `393 Pedagogi Umum`.
-- **PGSD (Guru Kelas SD)** *(2 paket · 80 soal / 150 menit)*: `88 PCK PGSD` + `484 Pedagogi Umum SD`.
-- **Matematika** *(1 paket acak penuh · 80 soal / 150 menit)*: `66 PCK Matematika` + `397 Pedagogi Umum`.
-- **Bahasa Indonesia** *(1 paket acak penuh · 80 soal / 150 menit)*: `69 PCK Bahasa Indonesia` + `434 Pedagogi Umum`.
-- **Bahasa Inggris** *(1 paket acak penuh · 80 soal / 150 menit)*: `83 PCK Bahasa Inggris` + `380 Pedagogi Umum`.
-- **IPA & IPAS Terpadu** *(1 paket acak penuh · 80 soal / 150 menit)*: `83 PCK IPA (Fisika, Biologi, Kimia)` + `403 Pedagogi Umum`.
-- **IPS Terpadu** *(1 paket acak penuh · 80 soal / 150 menit)*: `111 PCK IPS` + `380 Pedagogi Umum`.
-- **PJOK** *(1 paket acak penuh · 80 soal / 150 menit)*: `63 PCK PJOK` + `380 Pedagogi Umum`.
-- **PPKn / Pendidikan Pancasila** *(1 paket acak penuh · 80 soal / 150 menit)*: `67 PCK PPKn` + `380 Pedagogi Umum`.
-- **PAI (Pendidikan Agama Islam)** *(1 paket acak penuh · 80 soal / 150 menit)*: `163 PCK PAI` + `380 Pedagogi Umum`.
+- **DKV · Desain Komunikasi Visual (SMK)** *(1 paket · 80 soal / 150 menit)*: `79 PCK DKV` + `400 Pedagogi Umum`.
+- **Tata Boga (SMK)** *(1 paket acak penuh · 80 soal / 150 menit)*: `67 PCK Tata Boga & Kuliner` + `400 Pedagogi Umum`.
+- **Akuntansi & Keuangan Lembaga (SMK)** *(1 paket acak penuh · 80 soal / 150 menit)*: `63 PCK Akuntansi & Perpajakan` + `400 Pedagogi Umum`.
+- **SMK Vokasi Lainnya** *(1 paket acak penuh · 80 soal / 150 menit)*: `73 PCK Kejuruan (Pemasaran/BDP, TKJ/RPL/Informatika, TKR Otomotif, TITL Listrik, APHP)` + `409 Pedagogi Umum`.
+- **PGSD (Guru Kelas SD)** *(2 paket · 80 soal / 150 menit)*: `88 PCK PGSD` + `500 Pedagogi Umum SD`.
+- **Matematika** *(1 paket acak penuh · 80 soal / 150 menit)*: `66 PCK Matematika` + `413 Pedagogi Umum`.
+- **Bahasa Indonesia** *(1 paket acak penuh · 80 soal / 150 menit)*: `69 PCK Bahasa Indonesia` + `450 Pedagogi Umum`.
+- **Bahasa Inggris** *(1 paket acak penuh · 80 soal / 150 menit)*: `83 PCK Bahasa Inggris` + `396 Pedagogi Umum`.
+- **IPA & IPAS Terpadu** *(1 paket acak penuh · 80 soal / 150 menit)*: `83 PCK IPA (Fisika, Biologi, Kimia)` + `419 Pedagogi Umum`.
+- **IPS Terpadu** *(1 paket acak penuh · 80 soal / 150 menit)*: `111 PCK IPS` + `396 Pedagogi Umum`.
+- **PJOK** *(1 paket acak penuh · 80 soal / 150 menit)*: `63 PCK PJOK` + `396 Pedagogi Umum`.
+- **PPKn / Pendidikan Pancasila** *(1 paket acak penuh · 80 soal / 150 menit)*: `67 PCK PPKn` + `396 Pedagogi Umum`.
+- **PAI (Pendidikan Agama Islam)** *(1 paket acak penuh · 80 soal / 150 menit)*: `163 PCK PAI` + `396 Pedagogi Umum`.
 - **Pedagogi Umum Murni, Fokus Catatan PPG & Referensi SIAPPPG** *(6 paket)*: `394` butir Pedagogi Umum netral (`Fokus Catatan UKPPPG & Materi PPG · 80 Soal`, `Latihan Cepat 30 Soal`, & `Simulasi Penuh 80 Soal`) serta 3 paket referensi `Lintas Konteks SIAPPPG`. Seluruh `1.801` soal juga tersedia di **Studio Drill Custom**.
 
 ## Fitur Utama

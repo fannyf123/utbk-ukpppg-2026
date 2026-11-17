@@ -47,7 +47,7 @@ interface HomeViewProps {
 
 const FILTER_TABS: { id: 'ALL' | 'RECOMMENDED' | ProdiId; label: string }[] = [
   { id: 'ALL', label: 'Semua Paket' },
-  { id: 'RECOMMENDED', label: 'Rekomendasi PPG' },
+  { id: 'RECOMMENDED', label: 'Sesuai Kisi-Kisi Juknis' },
   { id: 'teknik-mesin', label: 'Teknik Mesin SMK' },
   { id: 'dkv', label: 'DKV SMK' },
   { id: 'tata-boga', label: 'Tata Boga SMK' },
@@ -160,7 +160,7 @@ export function HomeView({
               <Award size={14} aria-hidden="true" />
               {paket.recommendedLabel}
             </span>
-            <span className="paket-rec-pill">Kisi-Kisi 2026</span>
+            <span className="paket-rec-pill">50 PCK + 30 PU</span>
           </div>
         )}
 

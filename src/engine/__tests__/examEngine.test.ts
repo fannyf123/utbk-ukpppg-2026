@@ -377,6 +377,10 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
     const catatanHits = catatanSession.slots.filter((s) => s.question.id.startsWith('cat-ppg-'));
     expect(catatanHits.length).toBe(16);
 
+    const recommendedPakets = PAKET_CATALOG.filter((p) => Boolean(p.recommendedLabel));
+    expect(recommendedPakets.length).toBe(14);
+    expect(recommendedPakets.every((p) => p.kind === 'prodi-random')).toBe(true);
+
     const pakA = createSessionFromPaket(getPaketById('teknik-mesin-paket-a')!, {});
     const pakB = createSessionFromPaket(getPaketById('teknik-mesin-paket-b')!, {});
     const idsA = new Set(pakA.slots.map((s) => s.question.id));
