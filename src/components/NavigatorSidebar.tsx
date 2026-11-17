@@ -141,21 +141,21 @@ export function NavigatorSidebar({
 
       <div className="nav-legend">
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--accent-sage)' }} />
+          <span className="legend-dot" style={{ backgroundColor: 'var(--status-success)' }} />
           Terisi
         </div>
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--accent-yellow)' }} />
+          <span className="legend-dot" style={{ backgroundColor: 'var(--status-warn)' }} />
           Ragu-ragu
         </div>
         <div>
-          <span className="legend-dot" style={{ backgroundColor: 'var(--bg-canvas)' }} />
+          <span className="legend-dot" style={{ backgroundColor: 'var(--bg-surface)' }} />
           Kosong
         </div>
         <div>
           <span
             className="legend-dot"
-            style={{ backgroundColor: 'transparent', borderColor: 'var(--accent-blue)' }}
+            style={{ backgroundColor: 'transparent', borderColor: 'var(--brand-primary)' }}
           />
           Aktif
         </div>

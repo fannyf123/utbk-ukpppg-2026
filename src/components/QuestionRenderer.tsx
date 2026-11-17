@@ -248,7 +248,7 @@ export function QuestionRenderer({
         <div style={{ marginTop: '1.05rem', display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
           <button
             type="button"
-            className="btn btn-ink"
+            className="btn btn-primary"
             disabled={!ev.isComplete}
             onClick={onRevealNow}
           >

@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from '../App';
 
-describe('UI Integration Flow (Tactile Workshop)', () => {
+describe('UI Integration Flow (KALIBRASI Workstation)', () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.scrollTo = () => {};
@@ -12,13 +12,14 @@ describe('UI Integration Flow (Tactile Workshop)', () => {
     render(<App />);
 
     expect(
-      screen.getByText(/Tryout UTBK UKPPPG Calon Guru 2026/i)
+      screen.getByText(/Simulasi UTBK UKPPPG Calon Guru 2026/i)
     ).toBeInTheDocument();
 
-    // Uji interaksi selotip catatan (peelable tape)
-    const peelBtn = screen.getByRole('button', { name: /Kupas selotip catatan/i });
-    fireEvent.click(peelBtn);
-    expect(peelBtn).toHaveAttribute('aria-pressed', 'true');
+    const mixToggle = screen.getByRole('checkbox', {
+      name: /Acak campur urutan nomor PCK/i,
+    });
+    fireEvent.click(mixToggle);
+    expect(mixToggle).toBeChecked();
 
     fireEvent.click(
       screen.getByRole('button', { name: /Mulai Simulasi Resmi \(80 Soal\)/i })
@@ -40,14 +41,17 @@ describe('UI Integration Flow (Tactile Workshop)', () => {
     );
 
     expect(
-      screen.getByText(/Laporan Diagnostik UTBK UKPPPG 2026/i)
+      screen.getByText(/LAPORAN DIAGNOSTIK UTBK UKPPPG 2026/i)
     ).toBeInTheDocument();
+    expect(screen.getByText('SKOR KETAT BPPP')).toBeInTheDocument();
     expect(screen.getByText('PCK Teknik Mesin SMK')).toBeInTheDocument();
     expect(screen.getByText('Pedagogi Umum (PU)')).toBeInTheDocument();
   });
 
-  it('mendukung Mode Drill PGK Kategori dengan tombol Periksa Jawaban langsung', () => {
+  it('mendukung Mode Drill PGK Kategori via tab Studio Drill dengan cek langsung', () => {
     render(<App />);
+
+    fireEvent.click(screen.getByRole('button', { name: /Buka Studio Drill/i }));
 
     fireEvent.change(screen.getByLabelText('Bentuk Soal'), {
       target: { value: 'PGK_KATEGORI' },
@@ -76,6 +80,8 @@ describe('UI Integration Flow (Tactile Workshop)', () => {
   it('mendukung Mode Drill PGK MCMA dengan penghitung opsi terpilih', () => {
     render(<App />);
 
+    fireEvent.click(screen.getByRole('button', { name: /Buka Studio Drill/i }));
+
     fireEvent.change(screen.getByLabelText('Bentuk Soal'), {
       target: { value: 'PGK_MCMA' },
     });
@@ -88,5 +94,23 @@ describe('UI Integration Flow (Tactile Workshop)', () => {
     fireEvent.click(checkboxes[0]);
     fireEvent.click(checkboxes[1]);
     expect(screen.getByText(/Dipilih: 2/i)).toBeInTheDocument();
+  });
+
+  it('meluncurkan drill terfokus langsung dari sel Matriks Subkompetensi P.1', () => {
+    render(<App />);
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Drill Subkompetensi P\.1/i })
+    );
+    expect(screen.getByText('Soal 1 / 15')).toBeInTheDocument();
+    expect(screen.getByText(/· P\.1$/)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Kumpulkan/i }));
+    fireEvent.click(
+      screen.getByRole('button', { name: /Ya, Kumpulkan & Lihat Skor/i })
+    );
+    expect(
+      screen.getByRole('heading', { name: 'Drill Subkompetensi P.1' })
+    ).toBeInTheDocument();
   });
 });

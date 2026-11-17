@@ -57,7 +57,6 @@ export function ExamView({
     return () => window.clearInterval(timer);
   }, [session.endsAt, onSubmitExam]);
 
-  // Keyboard navigation + Escape closes open dialog/drawer
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -94,6 +93,7 @@ export function ExamView({
     (s) => evaluateQuestion(s.question, session.answers[s.question.id]).isComplete
   ).length;
   const unansweredCount = session.slots.length - answeredCount;
+  const progressPct = Math.round((answeredCount / session.slots.length) * 100);
 
   const timerClass =
     remainingSeconds <= 300
@@ -143,13 +143,16 @@ export function ExamView({
   };
 
   return (
-    <div className="app-shell">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <header className="exam-toolbar">
+        <div className="exam-progress-hairline" aria-hidden="true">
+          <div className="exam-progress-fill" style={{ width: `${progressPct}%` }} />
+        </div>
         <div className="exam-toolbar-inner">
           <div className="exam-cluster">
             <button
               type="button"
-              className="btn btn-sm"
+              className="btn btn-sm btn-subtle"
               onClick={onPauseExit}
               title="Simpan progres sementara dan kembali ke beranda"
             >
@@ -161,10 +164,10 @@ export function ExamView({
               aria-live="off"
               aria-label={`Sisa waktu ${formatCountdown(remainingSeconds)}`}
             >
-              <Clock size={16} aria-hidden="true" />
+              <Clock size={15} aria-hidden="true" />
               <span>{formatCountdown(remainingSeconds)}</span>
             </div>
-            <span className="score-tag is-good">
+            <span className="score-pill is-good">
               {answeredCount}/{session.slots.length} Terisi
             </span>
           </div>
@@ -203,7 +206,7 @@ export function ExamView({
 
             <button
               type="button"
-              className="btn btn-sm btn-primary"
+              className="btn btn-sm btn-signal"
               onClick={() => setConfirmOpen(true)}
             >
               Kumpulkan
@@ -212,8 +215,12 @@ export function ExamView({
         </div>
       </header>
 
-      <main className="exam-grid">
-        <section className="question-sheet grain-surface" aria-label={`Soal nomor ${session.currentIndex + 1}`}>
+      <main className="exam-grid" style={{ flex: 1, width: '100%' }}>
+        <section
+          key={currentQuestion.id}
+          className="question-sheet view-enter"
+          aria-label={`Soal nomor ${session.currentIndex + 1}`}
+        >
           <QuestionRenderer
             question={currentQuestion}
             index={session.currentIndex}
@@ -250,7 +257,7 @@ export function ExamView({
             {session.currentIndex < session.slots.length - 1 ? (
               <button
                 type="button"
-                className="btn btn-ink"
+                className="btn btn-primary"
                 onClick={() => handleJump(session.currentIndex + 1)}
               >
                 Selanjutnya
@@ -258,7 +265,7 @@ export function ExamView({
             ) : (
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-signal"
                 onClick={() => setConfirmOpen(true)}
               >
                 Selesai &amp; Kumpulkan
@@ -267,7 +274,7 @@ export function ExamView({
           </div>
         </section>
 
-        <aside className="nav-sidebar desktop-sidebar grain-surface" aria-label="Navigasi nomor soal">
+        <aside className="nav-sidebar desktop-sidebar" aria-label="Navigasi nomor soal">
           <NavigatorSidebar session={session} onJump={handleJump} />
         </aside>
       </main>
@@ -280,7 +287,7 @@ export function ExamView({
           aria-label="Navigasi Soal"
           onClick={() => setDrawerOpen(false)}
         >
-          <div className="drawer-panel grain-surface" onClick={(e) => e.stopPropagation()}>
+          <div className="drawer-panel" onClick={(e) => e.stopPropagation()}>
             <NavigatorSidebar
               session={session}
               onJump={handleJump}
@@ -298,26 +305,23 @@ export function ExamView({
           aria-labelledby="submit-modal-title"
           onClick={() => setConfirmOpen(false)}
         >
-          <div className="modal-box grain-surface" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h3 id="submit-modal-title">Konfirmasi Pengumpulan Jawaban</h3>
             </div>
 
-            <div
-              className="work-ticket"
-              style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: '1rem' }}
-            >
-              <div className="ticket-cell">
-                <span className="ticket-num">{answeredCount}</span>
-                <span className="ticket-lbl">Terisi Lengkap</span>
+            <div className="index-list" style={{ marginBottom: '1rem' }}>
+              <div className="history-row">
+                <span>Terisi Lengkap</span>
+                <span className="mono" style={{ fontWeight: 700 }}>{answeredCount}</span>
               </div>
-              <div className="ticket-cell">
-                <span className="ticket-num">{unansweredCount}</span>
-                <span className="ticket-lbl">Belum Selesai</span>
+              <div className="history-row">
+                <span>Belum Selesai</span>
+                <span className="mono" style={{ fontWeight: 700 }}>{unansweredCount}</span>
               </div>
-              <div className="ticket-cell">
-                <span className="ticket-num">{session.flaggedIds.length}</span>
-                <span className="ticket-lbl">Ragu-Ragu</span>
+              <div className="history-row">
+                <span>Ditandai Ragu-Ragu</span>
+                <span className="mono" style={{ fontWeight: 700 }}>{session.flaggedIds.length}</span>
               </div>
             </div>
 
@@ -326,12 +330,10 @@ export function ExamView({
                 style={{
                   padding: '0.75rem',
                   borderRadius: 'var(--radius-sm)',
-                  backgroundColor: 'var(--accent-yellow)',
-                  color: '#16281c',
-                  border: '2px solid #16281c',
+                  backgroundColor: 'var(--status-warn-soft)',
+                  border: '1px solid var(--status-warn)',
                   marginBottom: '1rem',
-                  fontSize: '0.88rem',
-                  fontWeight: 600,
+                  fontSize: '0.86rem',
                 }}
               >
                 Masih ada <strong>{unansweredCount} soal</strong> belum terisi lengkap. Pastikan
@@ -349,7 +351,7 @@ export function ExamView({
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-signal"
                 onClick={() => onSubmitExam(Date.now())}
               >
                 Ya, Kumpulkan &amp; Lihat Skor

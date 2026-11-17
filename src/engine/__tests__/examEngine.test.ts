@@ -4,6 +4,7 @@ import {
   buildShuffledSlot,
   createDrillSession,
   createOfficialExamSession,
+  filterDrillQuestions,
   prioritizeQuestions,
 } from '../randomizer';
 import { evaluateQuestion, gradeSession } from '../scoring';
@@ -185,5 +186,25 @@ describe('Scoring Engine & Drill Builder', () => {
       expect(partialEval.strictCorrect).toBe(false);
       expect(partialEval.partialRatio).toBeGreaterThan(0);
     }
+  });
+
+  it('memfilter dan membangun sesi drill khusus subkompetensi Lampiran 4 Juknis (P.6)', () => {
+    const p6Pool = filterDrillQuestions(ALL_QUESTIONS, {
+      bank: 'ALL',
+      topic: 'ALL',
+      subkompetensi: 'P.6',
+      type: 'ALL',
+    });
+    expect(p6Pool.length).toBeGreaterThan(10);
+    expect(p6Pool.every((q) => q.subkompetensi === 'P.6')).toBe(true);
+
+    const subSession = createDrillSession(
+      ALL_QUESTIONS,
+      { bank: 'ALL', topic: 'ALL', subkompetensi: 'P.6', type: 'ALL', count: 8, instantFeedback: true },
+      {},
+      { rng: createSeededRng(314) }
+    );
+    expect(subSession.slots.length).toBe(8);
+    expect(subSession.slots.every((s) => s.question.subkompetensi === 'P.6')).toBe(true);
   });
 });

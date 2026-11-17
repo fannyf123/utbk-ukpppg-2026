@@ -228,6 +228,29 @@ export function createOfficialExamSession(
 /**
  * Membangun sesi Drill Topik / Format / Review Soal Salah.
  */
+export function filterDrillQuestions(
+  allQuestions: readonly ExamQuestion[],
+  config: Pick<DrillConfig, 'bank' | 'topic' | 'subkompetensi' | 'type' | 'onlyMissedIds'>
+): ExamQuestion[] {
+  if (config.onlyMissedIds && config.onlyMissedIds.length > 0) {
+    const missedSet = new Set(config.onlyMissedIds);
+    return allQuestions.filter((q) => missedSet.has(q.id));
+  }
+  return allQuestions.filter((q) => {
+    if (config.bank !== 'ALL' && q.bank !== config.bank) return false;
+    if (config.topic !== 'ALL' && q.topic !== config.topic) return false;
+    if (
+      config.subkompetensi &&
+      config.subkompetensi !== 'ALL' &&
+      q.subkompetensi !== config.subkompetensi
+    ) {
+      return false;
+    }
+    if (config.type !== 'ALL' && q.type !== config.type) return false;
+    return true;
+  });
+}
+
 export function createDrillSession(
   allQuestions: readonly ExamQuestion[],
   config: DrillConfig,
@@ -237,21 +260,7 @@ export function createDrillSession(
   const rng = options?.rng ?? Math.random;
   const now = options?.now ?? Date.now();
 
-  let filtered = [...allQuestions];
-  if (config.onlyMissedIds && config.onlyMissedIds.length > 0) {
-    const missedSet = new Set(config.onlyMissedIds);
-    filtered = filtered.filter((q) => missedSet.has(q.id));
-  } else {
-    if (config.bank !== 'ALL') {
-      filtered = filtered.filter((q) => q.bank === config.bank);
-    }
-    if (config.topic !== 'ALL') {
-      filtered = filtered.filter((q) => q.topic === config.topic);
-    }
-    if (config.type !== 'ALL') {
-      filtered = filtered.filter((q) => q.type === config.type);
-    }
-  }
+  const filtered = filterDrillQuestions(allQuestions, config);
 
   const count = Math.min(config.count, filtered.length);
   const chosen = prioritizeQuestions(filtered, mastery, rng).slice(0, count);
@@ -266,11 +275,13 @@ export function createDrillSession(
   const durationSeconds = Math.max(10 * 60, slots.length * 120);
   const title =
     config.customTitle ??
-    (config.topic !== 'ALL'
-      ? `Drill: ${config.topic}`
-      : config.bank === 'ALL'
-        ? 'Drill Campuran PCK & Pedagogi'
-        : `Drill ${config.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'}`);
+    (config.subkompetensi && config.subkompetensi !== 'ALL'
+      ? `Drill Subkompetensi ${config.subkompetensi}`
+      : config.topic !== 'ALL'
+        ? `Drill: ${config.topic}`
+        : config.bank === 'ALL'
+          ? 'Drill Campuran PCK & Pedagogi'
+          : `Drill ${config.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'}`);
 
   return {
     id: `drill-${now}-${Math.floor(rng() * 10000)}`,

@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { JuknisGuideModal } from './components/JuknisGuideModal';
-import { WorkshopStamp } from './components/TactilePrimitives';
-import { ALL_QUESTIONS, PCK_BANK, PU_BANK } from './data/questionBank';
+import { CalibratorMark } from './components/PrecisionVisuals';
+import { ALL_QUESTIONS, PCK_BANK, PU_BANK, getBankSummary } from './data/questionBank';
 import { createDrillSession, createOfficialExamSession } from './engine/randomizer';
 import { gradeSession } from './engine/scoring';
 import {
@@ -18,7 +18,7 @@ import {
   type ThemeMode,
 } from './engine/storage';
 import { ExamView } from './pages/ExamView';
-import { HomeView } from './pages/HomeView';
+import { HomeView, type WorkspaceTab } from './pages/HomeView';
 import { ResultView } from './pages/ResultView';
 import type {
   DrillConfig,
@@ -28,6 +28,12 @@ import type {
 } from './types/exam';
 
 type ActiveRoute = 'home' | 'exam' | 'result';
+
+const NAV_TABS: { id: WorkspaceTab; idx: string; label: string }[] = [
+  { id: 'overview', idx: '01', label: 'Ruang Uji' },
+  { id: 'studio', idx: '02', label: 'Studio Drill' },
+  { id: 'archive', idx: '03', label: 'Juknis & Arsip' },
+];
 
 export function App() {
   const [prefs, setPrefs] = useState(() => loadPreferences());
@@ -40,7 +46,14 @@ export function App() {
   );
   const [currentResult, setCurrentResult] = useState<ExamResultSummary | null>(null);
   const [route, setRoute] = useState<ActiveRoute>('home');
+  const [homeTab, setHomeTab] = useState<WorkspaceTab>('overview');
   const [guideOpen, setGuideOpen] = useState(false);
+
+  const bankSummary = useMemo(() => getBankSummary(), []);
+  const seenCount = useMemo(
+    () => Object.values(mastery).filter((m) => m.seenCount > 0).length,
+    [mastery]
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = prefs.theme;
@@ -151,72 +164,158 @@ export function App() {
   }
 
   return (
-    <div className="app-shell">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <button type="button" className="brand-btn" onClick={() => setRoute('home')}>
-            <WorkshopStamp />
+    <div className={route === 'home' ? 'workspace-shell' : ''}>
+      {route === 'home' ? (
+        <>
+          {/* Left Precision Command Rail (Desktop >= 960px) */}
+          <aside className="command-rail" aria-label="Navigasi utama">
             <div>
-              <span className="brand-title">UTBK UKPPPG 2026</span>
-              <span className="brand-sub">Teknik Mesin SMK · Standar BPPP</span>
+              <button
+                type="button"
+                className="rail-brand"
+                onClick={() => setHomeTab('overview')}
+              >
+                <CalibratorMark />
+                <div>
+                  <span className="rail-brand-title">KALIBRASI UTBK</span>
+                  <span className="rail-brand-sub">UKPPPG · TEKNIK MESIN</span>
+                </div>
+              </button>
+
+              <nav className="rail-nav" role="tablist" aria-label="Menu workspace">
+                {NAV_TABS.map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={homeTab === t.id}
+                    className={`rail-nav-btn ${homeTab === t.id ? 'is-active' : ''}`}
+                    onClick={() => setHomeTab(t.id)}
+                  >
+                    <span>{t.label}</span>
+                    <span className="rail-nav-idx">{t.idx}</span>
+                  </button>
+                ))}
+              </nav>
             </div>
-          </button>
 
-          <div className="topbar-actions">
-            <button type="button" className="btn btn-sm" onClick={() => setGuideOpen(true)}>
-              Panduan Juknis
-            </button>
+            <div className="rail-footer">
+              <div className="rail-stat-line">
+                <span>TERCAKUP</span>
+                <span>
+                  {seenCount} / {bankSummary.total}
+                </span>
+              </div>
 
-            <div className="font-group" role="group" aria-label="Ukuran huruf">
-              {(['sm', 'md', 'lg'] as FontScale[]).map((sc) => (
+              <div className="rail-controls-row">
+                <div className="font-group" role="group" aria-label="Ukuran huruf">
+                  {(['sm', 'md', 'lg'] as FontScale[]).map((sc) => (
+                    <button
+                      key={sc}
+                      type="button"
+                      className={prefs.fontScale === sc ? 'is-selected' : ''}
+                      onClick={() => handleChangeFontScale(sc)}
+                      aria-label={`Ukuran font ${sc}`}
+                    >
+                      {sc === 'sm' ? 'A-' : sc === 'md' ? 'A' : 'A+'}
+                    </button>
+                  ))}
+                </div>
+
                 <button
-                  key={sc}
                   type="button"
-                  className={prefs.fontScale === sc ? 'is-selected' : ''}
-                  onClick={() => handleChangeFontScale(sc)}
-                  aria-label={`Ukuran font ${sc}`}
+                  className="btn btn-sm"
+                  aria-label={prefs.theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
+                  onClick={handleToggleTheme}
                 >
-                  {sc === 'sm' ? 'A-' : sc === 'md' ? 'A' : 'A+'}
+                  {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
+                </button>
+              </div>
+
+              <button
+                type="button"
+                className="btn btn-sm btn-subtle"
+                onClick={() => setGuideOpen(true)}
+              >
+                Panduan Juknis 2026
+              </button>
+            </div>
+          </aside>
+
+          {/* Mobile Sticky Top Navigation (< 960px) */}
+          <header className="mobile-nav-header">
+            <div className="mobile-header-top">
+              <button
+                type="button"
+                className="rail-brand"
+                onClick={() => setHomeTab('overview')}
+              >
+                <CalibratorMark size={24} />
+                <div>
+                  <span className="rail-brand-title">KALIBRASI UTBK</span>
+                </div>
+              </button>
+              <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-subtle"
+                  onClick={() => setGuideOpen(true)}
+                >
+                  Juknis
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-sm"
+                  aria-label={prefs.theme === 'light' ? 'Mode gelap mobile' : 'Mode terang mobile'}
+                  onClick={handleToggleTheme}
+                >
+                  {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
+                </button>
+              </div>
+            </div>
+            <div className="mobile-tabs" role="tablist" aria-label="Navigasi tab">
+              {NAV_TABS.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={homeTab === t.id}
+                  className={`mobile-tab-btn ${homeTab === t.id ? 'is-active' : ''}`}
+                  onClick={() => setHomeTab(t.id)}
+                >
+                  {t.idx} {t.label}
                 </button>
               ))}
             </div>
+          </header>
 
-            <button
-              type="button"
-              className="btn btn-sm"
-              aria-label={prefs.theme === 'light' ? 'Aktifkan mode gelap' : 'Aktifkan mode terang'}
-              onClick={handleToggleTheme}
-            >
-              {prefs.theme === 'light' ? 'Gelap' : 'Terang'}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {route === 'result' && currentResult ? (
-        <ResultView
-          result={currentResult}
-          onBackHome={() => setRoute('home')}
-          onStartNewOfficial={() => handleStartOfficial(false)}
-          onDrillMissed={handleDrillMissed}
-        />
+          <HomeView
+            activeTab={homeTab}
+            activeSession={activeSession}
+            history={history}
+            mastery={mastery}
+            onChangeTab={setHomeTab}
+            onStartOfficial={handleStartOfficial}
+            onStartDrill={handleStartDrill}
+            onResumeActive={() => setRoute('exam')}
+            onDiscardActive={() => setActiveSession(null)}
+            onViewHistoryResult={(res) => {
+              setCurrentResult(res);
+              setRoute('result');
+              window.scrollTo({ top: 0 });
+            }}
+            onResetProgress={handleResetProgress}
+          />
+        </>
       ) : (
-        <HomeView
-          activeSession={activeSession}
-          history={history}
-          mastery={mastery}
-          onStartOfficial={handleStartOfficial}
-          onStartDrill={handleStartDrill}
-          onResumeActive={() => setRoute('exam')}
-          onDiscardActive={() => setActiveSession(null)}
-          onViewHistoryResult={(res) => {
-            setCurrentResult(res);
-            setRoute('result');
-            window.scrollTo({ top: 0 });
-          }}
-          onResetProgress={handleResetProgress}
-          onOpenGuide={() => setGuideOpen(true)}
-        />
+        currentResult && (
+          <ResultView
+            result={currentResult}
+            onBackHome={() => setRoute('home')}
+            onStartNewOfficial={() => handleStartOfficial(false)}
+            onDrillMissed={handleDrillMissed}
+          />
+        )
       )}
 
       <JuknisGuideModal open={guideOpen} onClose={() => setGuideOpen(false)} />

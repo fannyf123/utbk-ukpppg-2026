@@ -121,6 +121,7 @@ export interface MasteryRecord {
 export interface DrillConfig {
   bank: 'ALL' | QuestionBank;
   topic: string; // 'ALL' or specific topic string
+  subkompetensi?: string; // 'ALL' or 'P.1'..'PF.5'
   type: 'ALL' | QuestionType;
   count: number;
   instantFeedback: boolean;

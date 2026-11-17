@@ -26,7 +26,7 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
       aria-labelledby="juknis-modal-title"
       onClick={onClose}
     >
-      <div className="modal-box grain-surface" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h3 id="juknis-modal-title">Panduan &amp; Kisi-Kisi UTBK UKPPPG 2026</h3>
           <button
