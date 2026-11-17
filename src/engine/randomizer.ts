@@ -1,8 +1,10 @@
+import { questionMatchesProdi } from '../data/prodiRegistry';
 import type {
   DrillConfig,
   ExamQuestion,
   ExamSession,
   MasteryRecord,
+  ProdiId,
   ShuffledSlot,
   UserAnswer,
 } from '../types/exam';
@@ -184,19 +186,32 @@ export function createInitialAnswer(question: ExamQuestion): UserAnswer {
 
 /**
  * Membangun Simulasi Resmi UTBK UKPPPG 2026 sesuai Juknis Hal. 7:
- * 80 Soal (50 PCK Teknik Mesin + 30 Pedagogi Umum) · Waktu 150 Menit (9.000 detik).
+ * Target resmi 80 Soal (50 PCK Prodi + 30 Pedagogi Umum) · Waktu 150 Menit.
+ * Bila bank PCK suatu prodi di bawah 50 (atau 0 untuk mode Umum Murni), kuota dan durasi menyesuaikan proporsional.
  */
 export function createOfficialExamSession(
   pckBank: readonly ExamQuestion[],
   puBank: readonly ExamQuestion[],
   mastery: Record<string, MasteryRecord>,
-  options?: { mixBanksOrder?: boolean; now?: number; rng?: Rng }
+  options?: {
+    mixBanksOrder?: boolean;
+    pckTarget?: number;
+    puTarget?: number;
+    prodiId?: ProdiId;
+    prodiLabel?: string;
+    title?: string;
+    now?: number;
+    rng?: Rng;
+  }
 ): ExamSession {
   const rng = options?.rng ?? Math.random;
   const now = options?.now ?? Date.now();
 
-  const chosenPck = pickBalancedByType(pckBank, 50, mastery, rng);
-  const chosenPu = pickBalancedByType(puBank, 30, mastery, rng);
+  const pckNeed = Math.min(options?.pckTarget ?? 50, pckBank.length);
+  const puNeed = Math.min(options?.puTarget ?? 30, puBank.length);
+
+  const chosenPck = pckNeed > 0 ? pickBalancedByType(pckBank, pckNeed, mastery, rng) : [];
+  const chosenPu = puNeed > 0 ? pickBalancedByType(puBank, puNeed, mastery, rng) : [];
 
   const orderedQuestions = options?.mixBanksOrder
     ? shuffleArray([...chosenPck, ...chosenPu], rng)
@@ -208,11 +223,24 @@ export function createOfficialExamSession(
     answers[slot.question.id] = createInitialAnswer(slot.question);
   }
 
-  const durationSeconds = 150 * 60;
+  const totalCount = slots.length;
+  const durationMinutes =
+    totalCount === 80 ? 150 : Math.max(30, Math.round((totalCount / 80) * 150));
+  const durationSeconds = durationMinutes * 60;
+  const prodiTag = options?.prodiLabel ? ` · ${options.prodiLabel}` : '';
+  const defaultTitle =
+    pckNeed === 50 && puNeed === 30
+      ? `Simulasi Resmi UTBK UKPPPG 2026${prodiTag} (80 Soal)`
+      : pckNeed === 0
+        ? `Simulasi Pedagogi Umum UTBK 2026 (${totalCount} Soal)`
+        : `Simulasi UTBK${prodiTag} (${totalCount} Soal)`;
+
   return {
     id: `tryout-${now}-${Math.floor(rng() * 10000)}`,
     mode: 'official',
-    title: 'Simulasi Resmi UTBK UKPPPG 2026 (80 Soal)',
+    prodiId: options?.prodiId,
+    prodiLabel: options?.prodiLabel,
+    title: options?.title ?? defaultTitle,
     instantFeedback: false,
     createdAt: now,
     durationSeconds,
@@ -226,17 +254,20 @@ export function createOfficialExamSession(
 }
 
 /**
- * Membangun sesi Drill Topik / Format / Review Soal Salah.
+ * Membangun sesi Drill Topik / Format / Prodi / Review Soal Salah.
  */
 export function filterDrillQuestions(
   allQuestions: readonly ExamQuestion[],
-  config: Pick<DrillConfig, 'bank' | 'topic' | 'subkompetensi' | 'type' | 'onlyMissedIds'>
+  config: Pick<DrillConfig, 'prodiFilter' | 'bank' | 'topic' | 'subkompetensi' | 'type' | 'onlyMissedIds'>
 ): ExamQuestion[] {
   if (config.onlyMissedIds && config.onlyMissedIds.length > 0) {
     const missedSet = new Set(config.onlyMissedIds);
     return allQuestions.filter((q) => missedSet.has(q.id));
   }
   return allQuestions.filter((q) => {
+    if (config.prodiFilter && config.prodiFilter !== 'ALL_ARCHIVE') {
+      if (!questionMatchesProdi(q, config.prodiFilter)) return false;
+    }
     if (config.bank !== 'ALL' && q.bank !== config.bank) return false;
     if (config.topic !== 'ALL' && q.topic !== config.topic) return false;
     if (
@@ -255,7 +286,7 @@ export function createDrillSession(
   allQuestions: readonly ExamQuestion[],
   config: DrillConfig,
   mastery: Record<string, MasteryRecord>,
-  options?: { now?: number; rng?: Rng }
+  options?: { prodiLabel?: string; now?: number; rng?: Rng }
 ): ExamSession {
   const rng = options?.rng ?? Math.random;
   const now = options?.now ?? Date.now();
@@ -273,19 +304,22 @@ export function createDrillSession(
 
   // ~2 menit per soal untuk simulasi drill
   const durationSeconds = Math.max(10 * 60, slots.length * 120);
+  const scopePrefix = options?.prodiLabel ? `${options.prodiLabel} · ` : '';
   const title =
     config.customTitle ??
     (config.subkompetensi && config.subkompetensi !== 'ALL'
-      ? `Drill Subkompetensi ${config.subkompetensi}`
+      ? `Drill Subkompetensi ${config.subkompetensi}${options?.prodiLabel ? ` (${options.prodiLabel})` : ''}`
       : config.topic !== 'ALL'
         ? `Drill: ${config.topic}`
         : config.bank === 'ALL'
-          ? 'Drill Campuran PCK & Pedagogi'
-          : `Drill ${config.bank === 'PCK' ? 'PCK Teknik Mesin' : 'Pedagogi Umum'}`);
+          ? `Drill Campuran ${scopePrefix}PCK & Pedagogi`
+          : `Drill ${config.bank === 'PCK' ? `PCK ${options?.prodiLabel ?? 'Prodi'}` : 'Pedagogi Umum'}`);
 
   return {
     id: `drill-${now}-${Math.floor(rng() * 10000)}`,
     mode: 'drill',
+    prodiId: config.prodiFilter && config.prodiFilter !== 'ALL_ARCHIVE' ? config.prodiFilter : undefined,
+    prodiLabel: options?.prodiLabel,
     title,
     instantFeedback: config.instantFeedback,
     createdAt: now,

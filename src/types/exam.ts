@@ -2,6 +2,18 @@ export type QuestionType = 'PG' | 'PGK_MCMA' | 'PGK_KATEGORI';
 export type QuestionBank = 'PCK' | 'PU';
 export type Competency = 'Pedagogik' | 'Kepribadian' | 'Sosial' | 'Profesional';
 
+export type ProdiId =
+  | 'teknik-mesin'
+  | 'pgsd'
+  | 'matematika'
+  | 'bahasa-indonesia'
+  | 'ipa'
+  | 'smk-vokasi'
+  | 'umum';
+
+export type QuestionProdiTag = ProdiId | 'lintas-mapel';
+export type QuestionProdiScope = 'UMUM' | QuestionProdiTag[];
+
 export type PCKFocus =
   | 'Tujuan Pembelajaran'
   | 'Metode Pengajaran'
@@ -14,6 +26,7 @@ export interface BaseQuestion {
   id: string;
   bank: QuestionBank;
   topic: string;
+  prodiScope?: QuestionProdiScope;
   pckFocus?: PCKFocus;
   source: string;
   kompetensi: Competency;
@@ -66,6 +79,8 @@ export interface ShuffledSlot {
 export interface ExamSession {
   id: string;
   mode: SessionMode;
+  prodiId?: ProdiId;
+  prodiLabel?: string;
   title: string;
   instantFeedback: boolean;
   createdAt: number;
@@ -90,6 +105,8 @@ export interface SubcompetencyScore {
 export interface ExamResultSummary {
   id: string;
   mode: SessionMode;
+  prodiId?: ProdiId;
+  prodiLabel?: string;
   title: string;
   completedAt: number;
   elapsedSeconds: number;
@@ -119,6 +136,7 @@ export interface MasteryRecord {
 }
 
 export interface DrillConfig {
+  prodiFilter?: ProdiId | 'ALL_ARCHIVE';
   bank: 'ALL' | QuestionBank;
   topic: string; // 'ALL' or specific topic string
   subkompetensi?: string; // 'ALL' or 'P.1'..'PF.5'

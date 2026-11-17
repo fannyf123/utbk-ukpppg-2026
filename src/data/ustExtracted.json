@@ -2,7 +2,7 @@
   {
     "id": "ust-setuju-01",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "topic": "PMA & Asesmen (Vokasi Mesin/TKR)",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -16,12 +16,16 @@
       "Memulai praktik secara bersamaan dan memberikan remedial hanya kepada murid yang gagal menyelesaikan tugas."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Melaksanakan asesmen awal melalui kombinasi tanya jawab, identifikasi komponen, demonstrasi sederhana, dan penjelasan lisan untuk memetakan kesiapan belajar murid. (Topik: Asesmen Awal dan Pemetaan Kemampuan Murid)."
+    "explanation": "Kunci C: Melaksanakan asesmen awal melalui kombinasi tanya jawab, identifikasi komponen, demonstrasi sederhana, dan penjelasan lisan untuk memetakan kesiapan belajar murid. (Topik: Asesmen Awal dan Pemetaan Kemampuan Murid).",
+    "prodiScope": [
+      "teknik-mesin",
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-02",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Tata Boga / Kuliner",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -35,12 +39,15 @@
       "Memberikan tes tertulis sebagai satu-satunya dasar penilaian kemampuan seluruh murid."
     ],
     "answer": 1,
-    "explanation": "Kunci B: Menyajikan materi melalui video, gambar, dan demonstrasi langsung; memberikan pilihan praktik atau simulasi; serta menyediakan kesempatan bagi murid untuk menunjukkan kompetensinya melalui demonstrasi, gambar, atau penjelasan lisan. (Topik: Desain Universal untuk Pembelajaran (DUP))."
+    "explanation": "Kunci B: Menyajikan materi melalui video, gambar, dan demonstrasi langsung; memberikan pilihan praktik atau simulasi; serta menyediakan kesempatan bagi murid untuk menunjukkan kompetensinya melalui demonstrasi, gambar, atau penjelasan lisan. (Topik: Desain Universal untuk Pembelajaran (DUP)).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-03",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "topic": "PMA & Asesmen (Vokasi Mesin)",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -54,12 +61,16 @@
       "Memberikan ujian praktik pada akhir pembelajaran tanpa memberikan umpan balik selama proses berlangsung."
     ],
     "answer": 3,
-    "explanation": "Kunci D: Mengajak murid menganalisis kasus kegagalan hasil pembubutan, menguji hubungan parameter mesin dengan kualitas produk, menerapkan prosedur keselamatan, dan merefleksikan hasil praktik. (Topik: Prinsip Pembelajaran Mendalam)."
+    "explanation": "Kunci D: Mengajak murid menganalisis kasus kegagalan hasil pembubutan, menguji hubungan parameter mesin dengan kualitas produk, menerapkan prosedur keselamatan, dan merefleksikan hasil praktik. (Topik: Prinsip Pembelajaran Mendalam).",
+    "prodiScope": [
+      "teknik-mesin",
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-04",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Akuntansi SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -73,12 +84,15 @@
       "Pembelajaran mendalam hanya tercapai apabila murid dapat menyelesaikan seluruh tugas tanpa bantuan guru."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Murid mengalami proses memahami, mengaplikasi, dan merefleksi sehingga mampu menghubungkan pengetahuan dengan konteks nyata. (Topik: Pengalaman Belajar Memahami, Mengaplikasi, dan Merefleksi)."
+    "explanation": "Kunci C: Murid mengalami proses memahami, mengaplikasi, dan merefleksi sehingga mampu menghubungkan pengetahuan dengan konteks nyata. (Topik: Pengalaman Belajar Memahami, Mengaplikasi, dan Merefleksi).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-05",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · TKJ / Jaringan",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -92,12 +106,15 @@
       "Pembelajaran individual, karena pemecahan masalah jaringan tidak membutuhkan kolaborasi."
     ],
     "answer": 1,
-    "explanation": "Kunci B: Problem Based Learning (PBL), karena murid memulai pembelajaran dari permasalahan autentik, melakukan investigasi, dan mengembangkan alternatif solusi. (Topik: Pemilihan Model Pembelajaran Kontekstual: PBL dan PjBL)."
+    "explanation": "Kunci B: Problem Based Learning (PBL), karena murid memulai pembelajaran dari permasalahan autentik, melakukan investigasi, dan mengembangkan alternatif solusi. (Topik: Pemilihan Model Pembelajaran Kontekstual: PBL dan PjBL).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-06",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · DKV SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -111,12 +128,15 @@
       "Praktik mandiri tanpa keterlibatan guru, konsumen, maupun mitra industri."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Teaching Factory yang menghadirkan suasana dan standar proses produksi dunia kerja ke lingkungan sekolah melalui pesanan nyata, pengendalian kualitas, dan pelayanan kepada konsumen. (Topik: Implementasi Teaching Factory (TeFa))."
+    "explanation": "Kunci C: Teaching Factory yang menghadirkan suasana dan standar proses produksi dunia kerja ke lingkungan sekolah melalui pesanan nyata, pengendalian kualitas, dan pelayanan kepada konsumen. (Topik: Implementasi Teaching Factory (TeFa)).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-07",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Teknik Kendaraan Ringan",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -130,12 +150,15 @@
       "Menilai hasil pekerjaan berdasarkan kecepatan menyelesaikan praktik saja."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Menggunakan asesmen unjuk kerja melalui simulasi diagnosis dan perbaikan, observasi penerapan keselamatan kerja, laporan hasil diagnosis, serta penjelasan alasan prosedur yang digunakan. (Topik: Asesmen Autentik dalam Pembelajaran Mendalam)."
+    "explanation": "Kunci C: Menggunakan asesmen unjuk kerja melalui simulasi diagnosis dan perbaikan, observasi penerapan keselamatan kerja, laporan hasil diagnosis, serta penjelasan alasan prosedur yang digunakan. (Topik: Asesmen Autentik dalam Pembelajaran Mendalam).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-08",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Tata Boga / Pastry",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -149,12 +172,15 @@
       "Menentukan aktivitas yang menyenangkan tanpa mempertimbangkan bukti ketercapaian kompetensi."
     ],
     "answer": 1,
-    "explanation": "Kunci B: Menentukan tujuan dan hasil belajar yang diharapkan, menetapkan bukti asesmen yang menunjukkan ketercapaian tujuan, kemudian merancang pengalaman belajar. (Topik: Understanding by Design (UbD))."
+    "explanation": "Kunci B: Menentukan tujuan dan hasil belajar yang diharapkan, menetapkan bukti asesmen yang menunjukkan ketercapaian tujuan, kemudian merancang pengalaman belajar. (Topik: Understanding by Design (UbD)).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-09",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · RPL / Pemrograman",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -168,12 +194,15 @@
       "Assessment as Learning, Assessment for Learning, Assessment of Learning."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Assessment for Learning, Assessment as Learning, Assessment of Learning. (Topik: Assessment for Learning, Assessment as Learning, dan Assessment of Learning)."
+    "explanation": "Kunci C: Assessment for Learning, Assessment as Learning, Assessment of Learning. (Topik: Assessment for Learning, Assessment as Learning, dan Assessment of Learning).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-10",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · TITL / Listrik",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -187,12 +216,15 @@
       "Meminta murid yang belum menguasai kompetensi mengulang seluruh materi secara mandiri tanpa pendampingan."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Menggunakan hasil asesmen awal untuk mengelompokkan kebutuhan belajar sementara, memberikan pembelajaran sesuai tingkat penguasaan, melakukan asesmen formatif, dan menyesuaikan kelompok berdasarkan perkembangan murid. (Topik: Teaching at the Right Level (TaRL))."
+    "explanation": "Kunci C: Menggunakan hasil asesmen awal untuk mengelompokkan kebutuhan belajar sementara, memberikan pembelajaran sesuai tingkat penguasaan, melakukan asesmen formatif, dan menyesuaikan kelompok berdasarkan perkembangan murid. (Topik: Teaching at the Right Level (TaRL)).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-11",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Agribisnis (APHP)",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -206,12 +238,15 @@
       "Menggunakan pengalaman keluarga murid sebagai bahan hiburan sebelum memulai pembelajaran yang sebenarnya."
     ],
     "answer": 1,
-    "explanation": "Kunci B: Menggunakan pengalaman dan pengetahuan lokal murid tentang pengolahan singkong sebagai titik awal pembelajaran, kemudian mengajak mereka menganalisis kualitas, keamanan pangan, nilai gizi, dan peluang pengembangan produk berdasarkan standar industri. (Topik: Culturally Responsive Teaching (CRT))."
+    "explanation": "Kunci B: Menggunakan pengalaman dan pengetahuan lokal murid tentang pengolahan singkong sebagai titik awal pembelajaran, kemudian mengajak mereka menganalisis kualitas, keamanan pangan, nilai gizi, dan peluang pengembangan produk berdasarkan standar industri. (Topik: Culturally Responsive Teaching (CRT)).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-12",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · TKR Motor Injeksi",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -225,12 +260,15 @@
       "Memberikan tes akhir terlebih dahulu untuk menentukan murid yang berhak mengikuti praktik."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Melakukan asesmen awal untuk memetakan penguasaan kompetensi, mengelompokkan murid secara fleksibel sesuai kebutuhannya, memanfaatkan pengalaman lokal sebagai konteks pembelajaran, dan mengarahkan seluruh murid mencapai standar kompetensi perawatan motor injeksi. (Topik: Integrasi TaRL dan CRT)."
+    "explanation": "Kunci C: Melakukan asesmen awal untuk memetakan penguasaan kompetensi, mengelompokkan murid secara fleksibel sesuai kebutuhannya, memanfaatkan pengalaman lokal sebagai konteks pembelajaran, dan mengarahkan seluruh murid mencapai standar kompetensi perawatan motor injeksi. (Topik: Integrasi TaRL dan CRT).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-13",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · Animasi SMK",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -244,12 +282,15 @@
       "Extended Abstract, karena murid sudah mampu mentransfer pengetahuannya ke dalam konteks baru."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Multistruktural, karena murid telah menguasai beberapa aspek secara terpisah tetapi belum mampu menghubungkannya. (Topik: Taksonomi SOLO dalam Evaluasi Pembelajaran)."
+    "explanation": "Kunci C: Multistruktural, karena murid telah menguasai beberapa aspek secara terpisah tetapi belum mampu menghubungkannya. (Topik: Taksonomi SOLO dalam Evaluasi Pembelajaran).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-14",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "topic": "PMA & Asesmen (Vokasi Mesin)",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -263,12 +304,16 @@
       "Meminta murid menghafalkan kembali seluruh parameter mesin bubut sebelum melakukan praktik berikutnya."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Memberikan umpan balik bahwa beberapa prosedur sudah dikuasai, kemudian memberikan tugas analisis hubungan antarparameter pemesinan dan kualitas produk agar murid berkembang menuju pemahaman relasional. (Topik: Pemaknaan Hasil Asesmen dan Umpan Balik)."
+    "explanation": "Kunci C: Memberikan umpan balik bahwa beberapa prosedur sudah dikuasai, kemudian memberikan tugas analisis hubungan antarparameter pemesinan dan kualitas produk agar murid berkembang menuju pemahaman relasional. (Topik: Pemaknaan Hasil Asesmen dan Umpan Balik).",
+    "prodiScope": [
+      "teknik-mesin",
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-setuju-15",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Vokasi)",
+    "bank": "PCK",
+    "topic": "SJT Vokasi · TKJ / Jaringan",
     "source": "Tryout PMA Dr. Setuju",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -282,7 +327,10 @@
       "Memberikan tes tertulis tambahan tanpa melakukan analisis terhadap proses pembelajaran yang telah berlangsung."
     ],
     "answer": 2,
-    "explanation": "Kunci C: Menganalisis data asesmen proses dan hasil, mengidentifikasi kesulitan konseptual maupun keterampilan, memberikan intervensi sesuai kebutuhan, serta merancang tantangan lanjutan untuk murid yang sudah menguasai kompetensi. (Topik: Evaluasi, Refleksi, dan Tindak Lanjut Pembelajaran)."
+    "explanation": "Kunci C: Menganalisis data asesmen proses dan hasil, mengidentifikasi kesulitan konseptual maupun keterampilan, memberikan intervensi sesuai kebutuhan, serta merancang tantangan lanjutan untuk murid yang sudah menguasai kompetensi. (Topik: Evaluasi, Refleksi, dan Tindak Lanjut Pembelajaran).",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-biya-01",
@@ -301,7 +349,14 @@
       "Memindahkan Raka ke kelas dengan capaian akademik lebih rendah agar ia lebih mudah menyesuaikan diri."
     ],
     "answer": 1,
-    "explanation": "Menganalisis kebutuhan adaptasi murid berdasarkan filosofi menuntun."
+    "explanation": "Menganalisis kebutuhan adaptasi murid berdasarkan filosofi menuntun.",
+    "prodiScope": [
+      "lintas-mapel",
+      "teknik-mesin",
+      "smk-vokasi",
+      "matematika",
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-biya-02",
@@ -320,7 +375,8 @@
       "Membebaskan murid memilih sumber daring tentang pertanian dan menilai daya tarik presentasinya."
     ],
     "answer": 3,
-    "explanation": "Mengevaluasi rancangan yang memadukan kodrat alam dan kodrat zaman."
+    "explanation": "Mengevaluasi rancangan yang memadukan kodrat alam dan kodrat zaman.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-03",
@@ -343,7 +399,8 @@
       2,
       4
     ],
-    "explanation": "Menilai tindakan yang menghidupkan nilai ketuhanan dan kemanusiaan dalam keberagaman."
+    "explanation": "Menilai tindakan yang menghidupkan nilai ketuhanan dan kemanusiaan dalam keberagaman.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-04",
@@ -362,7 +419,8 @@
       "Usul perlu ditunda sampai tersedia bukti bahwa kegiatan seni meningkatkan skor tes secara langsung."
     ],
     "answer": 0,
-    "explanation": "Mengevaluasi kebijakan sekolah terhadap tujuan pendidikan yang utuh."
+    "explanation": "Mengevaluasi kebijakan sekolah terhadap tujuan pendidikan yang utuh.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-05",
@@ -381,7 +439,8 @@
       "Menelaah instruksi dan pembagian peran, meminta penjelasan murid, lalu menguji perbaikan diskusi dengan memantau kualitas alasan individual."
     ],
     "answer": 4,
-    "explanation": "Menganalisis respons guru terhadap kegagalan strategi pembelajaran."
+    "explanation": "Menganalisis respons guru terhadap kegagalan strategi pembelajaran.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-06",
@@ -404,7 +463,8 @@
       3,
       4
     ],
-    "explanation": "Menilai umpan balik yang menghubungkan kesalahan, strategi, dan perbaikan."
+    "explanation": "Menilai umpan balik yang menghubungkan kesalahan, strategi, dan perbaikan.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-07",
@@ -423,7 +483,8 @@
       "Meminta anak yang berminat mengikuti kelas secara terpisah tanpa melibatkan warga agar inovasi dapat segera dimulai."
     ],
     "answer": 2,
-    "explanation": "Mengevaluasi kemitraan pendidikan yang adaptif terhadap tradisi dan kebutuhan komunitas."
+    "explanation": "Mengevaluasi kemitraan pendidikan yang adaptif terhadap tradisi dan kebutuhan komunitas.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-08",
@@ -442,7 +503,8 @@
       "Pengawasan perlu diperketat dan hasil tes digunakan sebagai bukti bahwa pembelajaran nilai telah tuntas."
     ],
     "answer": 3,
-    "explanation": "Menganalisis bukti pengetahuan nilai dan konsistensi perilaku."
+    "explanation": "Menganalisis bukti pengetahuan nilai dan konsistensi perilaku.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-09",
@@ -465,7 +527,8 @@
       2,
       3
     ],
-    "explanation": "Memilih strategi untuk memperkuat internalisasi nilai tanggung jawab."
+    "explanation": "Memilih strategi untuk memperkuat internalisasi nilai tanggung jawab.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-10",
@@ -484,7 +547,8 @@
       "Menyampaikan keputusan guru sejak awal, kemudian meminta murid menyusun argumen yang mendukung keputusan tersebut."
     ],
     "answer": 0,
-    "explanation": "Mengevaluasi fasilitasi dilema moral berdasarkan alasan dan dampak pilihan."
+    "explanation": "Mengevaluasi fasilitasi dilema moral berdasarkan alasan dan dampak pilihan.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-11",
@@ -503,7 +567,8 @@
       "Memberikan tes istilah gotong royong untuk memastikan anggota yang kurang aktif tetap memahami tujuan program."
     ],
     "answer": 2,
-    "explanation": "Mengevaluasi bukti dampak program pendidikan nilai dan kemitraannya."
+    "explanation": "Mengevaluasi bukti dampak program pendidikan nilai dan kemitraannya.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-12",
@@ -526,7 +591,8 @@
       3,
       4
     ],
-    "explanation": "Menilai penggunaan data murid berdasarkan privasi dan kepentingan pendidikan."
+    "explanation": "Menilai penggunaan data murid berdasarkan privasi dan kepentingan pendidikan.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-13",
@@ -545,7 +611,8 @@
       "Menaikkan nilai semua murid satu tingkat agar perubahan tidak hanya menguntungkan anak penyumbang."
     ],
     "answer": 1,
-    "explanation": "Mengevaluasi keputusan penilaian saat menghadapi konflik kepentingan."
+    "explanation": "Mengevaluasi keputusan penilaian saat menghadapi konflik kepentingan.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-14",
@@ -564,7 +631,8 @@
       "Menetapkan target jeda respons dan pemerataan partisipasi, meminta kolega komunitas mengobservasi dengan persetujuan yang relevan, lalu membandingkan data sebelum dan sesudah perbaikan."
     ],
     "answer": 4,
-    "explanation": "Menganalisis refleksi berbasis data untuk pengembangan profesional berkelanjutan."
+    "explanation": "Menganalisis refleksi berbasis data untuk pengembangan profesional berkelanjutan.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-biya-15",
@@ -574,7 +642,7 @@
     "type": "PGK_MCMA",
     "kompetensi": "Kepribadian",
     "subkompetensi": "K.3",
-    "prompt": "Guru melihat koleganya berulang kali mengejek kemampuan seorang murid di depan kelas. Murid mulai menolak berbicara dan mengatakan takut mengikuti pelajaran. Koleganya meminta masalah diselesaikan sebagai urusan pribadi antar guru. Sekolah memiliki prosedur penanganan perilaku yang membahayakan kesejahteraan murid.\n\nTindakan mana yang tepat untuk melindungi murid sekaligus menjaga penanganan profesional? Pilih semua jawaban yang benar.\n\nKunci dan pembahasan\n\nKunci: A, C, E\n\nA mendahulukan keselamatan psikologis dan dukungan murid. C memungkinkan penanganan berbasis fakta dengan kerahasiaan yang proporsional. E menghubungkan respons kasus dengan pemulihan dan pencegahan berulang. B menunda perlindungan meskipun dampak telah terlihat; D membuka identitas dan mengganti penanganan profesional dengan tekanan publik. Kolegialitas tidak membenarkan pembiaran tindakan yang merugikan murid.\n\nPemetaan: K.3 (utama); K.1; S.2 (pendukung). CPMK 7.a; 2.c; 8.a.\n\nDasar materi: M4; T4 slide 8–10 dan 16–17.\n\nRekapitulasi kunci jawaban\n\nSumber bahan dan penelusuran\n\nSeluruh rujukan berikut adalah berkas yang diberikan pengampu. Nomor halaman modul di bawah adalah halaman tercetak; nomor PDF dicantumkan dalam kurung. Rujukan dimaksudkan sebagai dasar konseptual, bukan klaim bahwa soal tercantum pada sumber.\n\nK1 — Kisi-kisi umum Calon Guru Tahun 2026 (2) (1).pdf. Lampiran 4 Kisi-Kisi UBTK UKPPPG, halaman tercetak 47 (PDF 1). Sumber kode P, K, S, dan PF.\n\nR1 — [MK Inti_Selektif]_RPS_FPPN.pdf. CPMK dan Sub-CPMK pada PDF 2–3; pemetaan dan rencana pembelajaran pada PDF 6–10.\n\nM1 — 7 - Inti - Filosofi Pendidikan dan Pendidikan Nilai.pdf, Topik 1, halaman 5–38 (PDF 20–53). Konsep tuntunan terutama halaman 13–15 (PDF 28–30); kodrat alam dan zaman halaman 28–30 (PDF 43–45).\n\nM2 — Modul yang sama, Topik 2, halaman 39–63 (PDF 54–78), tentang pola pikir bertumbuh, filosofi KHD, refleksi, dan kasus Sokola Rimba.\n\nM3 — Modul yang sama, Topik 3, halaman 64–96 (PDF 79–111). Strategi internalisasi dan pengembangan nilai terutama halaman 79–82 (PDF 94–97).\n\nM4 — Modul yang sama, Topik 4 mulai halaman 97 (PDF 112). Prinsip etika terhadap pengetahuan, murid, dan profesi pada halaman 107–109 (PDF 122–124).\n\nT1 — Topik 1 (3).pptx, Landasan Filosofi Pendidikan Nasional. Terutama slide 7, 11–16, dan 17–20.\n\nT2 — Topik 2 (1).pptx, Pola Pikir Bertumbuh dalam Pendidikan Nasional. Terutama slide 5–15 dan 18–21.\n\nT3 — Topik 3 (1).pptx, Pendidikan Nilai dalam Kerangka Pendidikan Nasional. Terutama slide 7–15 dan 18–21.\n\nT4 — Topik 4 (1).pptx, Kode Etik Guru. Terutama slide 8–10 dan 16–17.\n\nSoal etika menggunakan prinsip yang dibahas dalam bahan ajar dan tidak meminta peserta menentukan pasal, sanksi hukum, atau status mutakhir regulasi. Jika pengampu menambahkan pertanyaan mengenai ketentuan hukum tertentu, verifikasi naskah dan keberlakuan regulasi sebelum penggunaan.",
+    "prompt": "Guru melihat koleganya berulang kali mengejek kemampuan seorang murid di depan kelas. Murid mulai menolak berbicara dan mengatakan takut mengikuti pelajaran. Koleganya meminta masalah diselesaikan sebagai urusan pribadi antar guru. Sekolah memiliki prosedur penanganan perilaku yang membahayakan kesejahteraan murid.\n\nTindakan mana yang tepat untuk melindungi murid sekaligus menjaga penanganan profesional? Pilih semua jawaban yang benar.\n\nKunci dan pembahasan\n\nKunci: A, C, E\n\nA mendahulukan keselamatan psikologis dan dukungan murid. C memungkinkan penanganan berbasis fakta dengan kerahasiaan yang proporsional. E menghubungkan respons kasus dengan pemulihan dan pencegahan berulang. B menunda perlindungan meskipun dampak telah terlihat; D membuka identitas dan mengganti penanganan profesional dengan tekanan publik. Kolegialitas tidak membenarkan pembiaran tindakan yang merugikan murid.\n\nPemetaan: K.3 (utama); K.1; S.2 (pendukung). CPMK 7.a; 2.c; 8.a.\n\nDasar materi: M4; T4 slide 8–10 dan 16–17.\n\nRekapitulasi kunci jawaban\n\nSumber bahan dan penelusuran\n\nSeluruh rujukan berikut adalah berkas yang diberikan pengampu. Nomor halaman modul di bawah adalah halaman tercetak; nomor PDF dicantumkan dalam kurung. Rujukan dimaksudkan sebagai dasar konseptual, bukan klaim bahwa soal tercantum pada sumber.\n\nK1  -  Kisi-kisi umum Calon Guru Tahun 2026 (2) (1).pdf. Lampiran 4 Kisi-Kisi UBTK UKPPPG, halaman tercetak 47 (PDF 1). Sumber kode P, K, S, dan PF.\n\nR1  -  [MK Inti_Selektif]_RPS_FPPN.pdf. CPMK dan Sub-CPMK pada PDF 2–3; pemetaan dan rencana pembelajaran pada PDF 6–10.\n\nM1  -  7 - Inti - Filosofi Pendidikan dan Pendidikan Nilai.pdf, Topik 1, halaman 5–38 (PDF 20–53). Konsep tuntunan terutama halaman 13–15 (PDF 28–30); kodrat alam dan zaman halaman 28–30 (PDF 43–45).\n\nM2  -  Modul yang sama, Topik 2, halaman 39–63 (PDF 54–78), tentang pola pikir bertumbuh, filosofi KHD, refleksi, dan kasus Sokola Rimba.\n\nM3  -  Modul yang sama, Topik 3, halaman 64–96 (PDF 79–111). Strategi internalisasi dan pengembangan nilai terutama halaman 79–82 (PDF 94–97).\n\nM4  -  Modul yang sama, Topik 4 mulai halaman 97 (PDF 112). Prinsip etika terhadap pengetahuan, murid, dan profesi pada halaman 107–109 (PDF 122–124).\n\nT1  -  Topik 1 (3).pptx, Landasan Filosofi Pendidikan Nasional. Terutama slide 7, 11–16, dan 17–20.\n\nT2  -  Topik 2 (1).pptx, Pola Pikir Bertumbuh dalam Pendidikan Nasional. Terutama slide 5–15 dan 18–21.\n\nT3  -  Topik 3 (1).pptx, Pendidikan Nilai dalam Kerangka Pendidikan Nasional. Terutama slide 7–15 dan 18–21.\n\nT4  -  Topik 4 (1).pptx, Kode Etik Guru. Terutama slide 8–10 dan 16–17.\n\nSoal etika menggunakan prinsip yang dibahas dalam bahan ajar dan tidak meminta peserta menentukan pasal, sanksi hukum, atau status mutakhir regulasi. Jika pengampu menambahkan pertanyaan mengenai ketentuan hukum tertentu, verifikasi naskah dan keberlakuan regulasi sebelum penggunaan.",
     "options": [
       "Menghentikan ejekan secara aman dan memastikan murid memperoleh dukungan melalui pihak sekolah yang relevan.",
       "Menunggu perubahan perilaku kolega setelah percakapan pribadi sebelum menggunakan prosedur sekolah, meskipun ejekan terus berulang.",
@@ -587,12 +655,13 @@
       2,
       4
     ],
-    "explanation": "Menilai prioritas perlindungan murid dan penanganan perilaku tidak etis kolega."
+    "explanation": "Menilai prioritas perlindungan murid dan penanganan perilaku tidak etis kolega.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-ipa-01",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -606,12 +675,15 @@
       "Memberikan eksperimen yang sama kepada seluruh siswa tanpa mempertimbangkan perbedaan pemahaman awal."
     ],
     "answer": 2,
-    "explanation": "Asesmen diagnostik Guru perlu mengidentifikasi pemahaman awal dan miskonsepsi siswa sebelum menentukan strategi pembelajaran. Demonstrasi dan pertanyaan konseptual dapat memberikan informasi lebih bermakna daripada langsung melakukan tes sumatif. Hasilnya menjadi dasar penyesuaian pembelajaran."
+    "explanation": "Asesmen diagnostik Guru perlu mengidentifikasi pemahaman awal dan miskonsepsi siswa sebelum menentukan strategi pembelajaran. Demonstrasi dan pertanyaan konseptual dapat memberikan informasi lebih bermakna daripada langsung melakukan tes sumatif. Hasilnya menjadi dasar penyesuaian pembelajaran.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-02",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -625,12 +697,15 @@
       "Mengulang penjelasan materi secara klasikal sampai seluruh siswa memperoleh nilai yang sama."
     ],
     "answer": 1,
-    "explanation": "TaRL TaRL mengarahkan pembelajaran sesuai tingkat kemampuan aktual siswa, bukan semata-mata berdasarkan kelas atau nilai rapor. Pengelompokan bersifat fleksibel dan perlu disertai asesmen ulang agar siswa dapat berpindah kelompok sesuai perkembangan belajarnya."
+    "explanation": "TaRL TaRL mengarahkan pembelajaran sesuai tingkat kemampuan aktual siswa, bukan semata-mata berdasarkan kelas atau nilai rapor. Pengelompokan bersifat fleksibel dan perlu disertai asesmen ulang agar siswa dapat berpindah kelompok sesuai perkembangan belajarnya.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-03",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -644,12 +719,15 @@
       "Memisahkan siswa berdasarkan kemampuan dan memberikan materi yang berbeda secara permanen."
     ],
     "answer": 3,
-    "explanation": "DUP/UDL Pilihan D menyediakan beragam cara untuk mengakses informasi dan menunjukkan pemahaman. Hal ini mengakomodasi keragaman kebutuhan belajar tanpa menghilangkan tujuan pembelajaran yang sama."
+    "explanation": "DUP/UDL Pilihan D menyediakan beragam cara untuk mengakses informasi dan menunjukkan pemahaman. Hal ini mengakomodasi keragaman kebutuhan belajar tanpa menghilangkan tujuan pembelajaran yang sama.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-04",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -663,12 +741,15 @@
       "Mengganti seluruh materi IPA dengan cerita pengalaman masyarakat pesisir."
     ],
     "answer": 2,
-    "explanation": "CRT Pengetahuan dan pengalaman lokal siswa dijadikan titik awal pembelajaran. Fenomena mangrove kemudian dikaji menggunakan konsep dan bukti ilmiah. Pendekatan ini menghubungkan pengalaman budaya dengan pembentukan pemahaman sains."
+    "explanation": "CRT Pengetahuan dan pengalaman lokal siswa dijadikan titik awal pembelajaran. Fenomena mangrove kemudian dikaji menggunakan konsep dan bukti ilmiah. Pendekatan ini menghubungkan pengalaman budaya dengan pembentukan pemahaman sains.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-05",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -682,12 +763,15 @@
       "Menggunakan fenomena sungai setempat, mengelompokkan siswa berdasarkan kesiapan belajar, menyediakan beragam sumber dan dukungan belajar, serta memberi pilihan produk untuk menunjukkan pemahaman."
     ],
     "answer": 4,
-    "explanation": "Integrasi DUP, TaRL, dan CRT Pilihan E mengintegrasikan tiga pendekatan secara utuh: konteks lokal sungai (CRT), pengelompokan sesuai kesiapan (TaRL), dan penyediaan variasi sumber, dukungan, serta produk belajar (DUP)."
+    "explanation": "Integrasi DUP, TaRL, dan CRT Pilihan E mengintegrasikan tiga pendekatan secara utuh: konteks lokal sungai (CRT), pengelompokan sesuai kesiapan (TaRL), dan penyediaan variasi sumber, dukungan, serta produk belajar (DUP).",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-06",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -723,12 +807,15 @@
         "Menghubungkan pola makan dengan kesehatan",
         "35%"
       ]
+    ],
+    "prodiScope": [
+      "ipa"
     ]
   },
   {
     "id": "ust-ipa-07",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -742,12 +829,15 @@
       "“Jawaban yang benar adalah logam memiliki suhu lebih rendah karena menghantarkan kalor lebih cepat.”"
     ],
     "answer": 3,
-    "explanation": "Umpan balik formatif Umpan balik yang efektif tidak hanya menyatakan benar atau salah, tetapi mengarahkan siswa untuk meninjau asumsi, menghubungkan konsep, dan membangun penjelasan ilmiah. Pilihan D mendorong proses berpikir tanpa langsung memberikan jawaban."
+    "explanation": "Umpan balik formatif Umpan balik yang efektif tidak hanya menyatakan benar atau salah, tetapi mengarahkan siswa untuk meninjau asumsi, menghubungkan konsep, dan membangun penjelasan ilmiah. Pilihan D mendorong proses berpikir tanpa langsung memberikan jawaban.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-08",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -761,12 +851,15 @@
       "Penilaian berdasarkan presentasi kelompok tanpa memeriksa data eksperimen."
     ],
     "answer": 0,
-    "explanation": "Asesmen autentik Rubrik tersebut menilai proses dan produk secara menyeluruh. Dalam proyek IPA, penilaian tidak cukup hanya melihat hasil akhir; proses investigasi, pengolahan data, dan refleksi juga merupakan bukti kompetensi."
+    "explanation": "Asesmen autentik Rubrik tersebut menilai proses dan produk secara menyeluruh. Dalam proyek IPA, penilaian tidak cukup hanya melihat hasil akhir; proses investigasi, pengolahan data, dan refleksi juga merupakan bukti kompetensi.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-09",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -780,12 +873,15 @@
       "Kesimpulan salah karena tanaman selalu tumbuh lebih tinggi di tempat terang."
     ],
     "answer": 2,
-    "explanation": "Validitas eksperimen Volume air merupakan variabel yang dapat memengaruhi pertumbuhan tanaman. Karena perlakuan cahaya dan volume air berbeda sekaligus, siswa belum dapat mengisolasi pengaruh cahaya. Eksperimen perlu mengendalikan variabel lain agar kesimpulan lebih valid."
+    "explanation": "Validitas eksperimen Volume air merupakan variabel yang dapat memengaruhi pertumbuhan tanaman. Karena perlakuan cahaya dan volume air berbeda sekaligus, siswa belum dapat mengisolasi pengaruh cahaya. Eksperimen perlu mengendalikan variabel lain agar kesimpulan lebih valid.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-10",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -799,12 +895,15 @@
       "Mengajak siswa menganalisis kasus pengereman kendaraan, mengidentifikasi faktor yang memengaruhi jarak berhenti, menggunakan data atau simulasi, lalu merancang rekomendasi keselamatan berbasis konsep gaya dan gerak."
     ],
     "answer": 4,
-    "explanation": "Pembelajaran mendalam Aktivitas tersebut menghubungkan konsep gaya dan gerak dengan masalah autentik. Siswa menggunakan data atau simulasi, menganalisis fenomena, dan merancang solusi. Proses ini mendorong penerapan konsep, bukan sekadar hafalan."
+    "explanation": "Pembelajaran mendalam Aktivitas tersebut menghubungkan konsep gaya dan gerak dengan masalah autentik. Siswa menggunakan data atau simulasi, menganalisis fenomena, dan merancang solusi. Proses ini mendorong penerapan konsep, bukan sekadar hafalan.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-11",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -818,12 +917,15 @@
       "Berapa jumlah paragraf dalam berita tersebut?"
     ],
     "answer": 3,
-    "explanation": "Literasi sains Literasi sains melibatkan kemampuan mengevaluasi klaim, menggunakan bukti, mempertimbangkan faktor lain, dan menjelaskan fenomena ilmiah. Pertanyaan D mengukur kemampuan tersebut secara lebih mendalam daripada pertanyaan faktual."
+    "explanation": "Literasi sains Literasi sains melibatkan kemampuan mengevaluasi klaim, menggunakan bukti, mempertimbangkan faktor lain, dan menjelaskan fenomena ilmiah. Pertanyaan D mengukur kemampuan tersebut secara lebih mendalam daripada pertanyaan faktual.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-12",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -837,12 +939,15 @@
       "Memberikan soal yang lebih mudah daripada soal siswa lainnya tanpa mempertimbangkan tujuan pembelajaran."
     ],
     "answer": 1,
-    "explanation": "Diferensiasi asesmen Tujuan pengukuran tetap pada pemahaman struktur dan fungsi sel, tetapi cara menunjukkan pemahaman dapat bervariasi. Diagram, model, dan penjelasan lisan dapat menjadi bentuk asesmen alternatif dengan kriteria konseptual yang setara."
+    "explanation": "Diferensiasi asesmen Tujuan pengukuran tetap pada pemahaman struktur dan fungsi sel, tetapi cara menunjukkan pemahaman dapat bervariasi. Diagram, model, dan penjelasan lisan dapat menjadi bentuk asesmen alternatif dengan kriteria konseptual yang setara.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-13",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -856,12 +961,15 @@
       "Mengurangi pembahasan dampak perubahan iklim karena dianggap terlalu sulit."
     ],
     "answer": 2,
-    "explanation": "Tindak lanjut asesmen Asesmen menunjukkan kesenjangan spesifik pada kemampuan menjelaskan dampak. Pembelajaran berikutnya sebaiknya menargetkan kesenjangan tersebut melalui analisis data, grafik, dan hubungan sebab-akibat dalam konteks lokal."
+    "explanation": "Tindak lanjut asesmen Asesmen menunjukkan kesenjangan spesifik pada kemampuan menjelaskan dampak. Pembelajaran berikutnya sebaiknya menargetkan kesenjangan tersebut melalui analisis data, grafik, dan hubungan sebab-akibat dalam konteks lokal.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-14",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -875,12 +983,15 @@
       "Menelaah kesesuaian tujuan, aktivitas, dan asesmen, kemudian memperbaiki pembelajaran dengan kegiatan evaluasi solusi berbasis data dan bukti."
     ],
     "answer": 4,
-    "explanation": "Refleksi profesional Refleksi berbasis bukti mempertimbangkan lebih dari sekadar peningkatan nilai. Guru perlu menganalisis kesesuaian tujuan, aktivitas, dan asesmen serta memperbaiki bagian pembelajaran yang belum mengembangkan kemampuan evaluasi berbasis bukti."
+    "explanation": "Refleksi profesional Refleksi berbasis bukti mempertimbangkan lebih dari sekadar peningkatan nilai. Guru perlu menganalisis kesesuaian tujuan, aktivitas, dan asesmen serta memperbaiki bagian pembelajaran yang belum mengembangkan kemampuan evaluasi berbasis bukti.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-15",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -894,12 +1005,15 @@
       "Menilai presentasi kelompok tanpa meminta siswa melakukan pengujian."
     ],
     "answer": 3,
-    "explanation": "Asesmen proyek IPA dan tanggung jawab sosial Pilihan D menilai keterampilan investigasi, pemahaman konsep, evaluasi hasil, argumentasi berbasis data, serta refleksi tanggung jawab sosial. Asesmen tersebut juga memperhatikan keterbatasan penyaringan air sederhana: air yang tampak jernih belum tentu aman diminum."
+    "explanation": "Asesmen proyek IPA dan tanggung jawab sosial Pilihan D menilai keterampilan investigasi, pemahaman konsep, evaluasi hasil, argumentasi berbasis data, serta refleksi tanggung jawab sosial. Asesmen tersebut juga memperhatikan keterbatasan penyaringan air sederhana: air yang tampak jernih belum tentu aman diminum.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-16",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PGK_MCMA",
     "kompetensi": "Pedagogik",
@@ -917,12 +1031,15 @@
       1,
       3
     ],
-    "explanation": "A benar: Asesmen diagnostik digunakan untuk mengidentifikasi pemahaman awal dan miskonsepsi siswa. B benar: Demonstrasi benda berbeda bahan pada suhu yang sama dapat membantu siswa menguji persepsi tentang sensasi dingin. D benar: Prediksi, observasi, dan penjelasan berbasis konsep mendorong siswa membangun pemahaman melalui bukti. C salah karena tes sumatif tidak menjadi langkah utama untuk mengungkap miskonsepsi awal. E salah karena hafalan definisi tidak cukup untuk memperbaiki miskonsepsi konseptual."
+    "explanation": "A benar: Asesmen diagnostik digunakan untuk mengidentifikasi pemahaman awal dan miskonsepsi siswa. B benar: Demonstrasi benda berbeda bahan pada suhu yang sama dapat membantu siswa menguji persepsi tentang sensasi dingin. D benar: Prediksi, observasi, dan penjelasan berbasis konsep mendorong siswa membangun pemahaman melalui bukti. C salah karena tes sumatif tidak menjadi langkah utama untuk mengungkap miskonsepsi awal. E salah karena hafalan definisi tidak cukup untuk memperbaiki miskonsepsi konseptual.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-17",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PGK_MCMA",
     "kompetensi": "Pedagogik",
@@ -940,12 +1057,15 @@
       2,
       3
     ],
-    "explanation": "A benar: Konteks mangrove menghubungkan pembelajaran IPA dengan lingkungan dan pengalaman siswa. C benar: TaRL menyesuaikan aktivitas pembelajaran dengan tingkat kesiapan siswa. D benar: DUP menyediakan variasi representasi dan cara menunjukkan pemahaman. B salah karena mengabaikan perbedaan kesiapan belajar. E salah karena pengetahuan lokal tetap perlu dikaji dan diperkuat melalui bukti ilmiah."
+    "explanation": "A benar: Konteks mangrove menghubungkan pembelajaran IPA dengan lingkungan dan pengalaman siswa. C benar: TaRL menyesuaikan aktivitas pembelajaran dengan tingkat kesiapan siswa. D benar: DUP menyediakan variasi representasi dan cara menunjukkan pemahaman. B salah karena mengabaikan perbedaan kesiapan belajar. E salah karena pengetahuan lokal tetap perlu dikaji dan diperkuat melalui bukti ilmiah.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-18",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PGK_MCMA",
     "kompetensi": "Pedagogik",
@@ -964,12 +1084,15 @@
       2,
       4
     ],
-    "explanation": "A benar: Variabel yang tidak dikendalikan dapat menjadi faktor pengganggu. B benar: Variabel selain jenis pupuk perlu dibuat konsisten agar perbandingan lebih valid. C benar: Pengukuran berkala memungkinkan analisis pola pertumbuhan. E benar: Pengulangan dengan prosedur terkontrol meningkatkan kualitas bukti. D salah karena durasi pengamatan yang sama tidak menjamin eksperimen valid apabila variabel lain berbeda."
+    "explanation": "A benar: Variabel yang tidak dikendalikan dapat menjadi faktor pengganggu. B benar: Variabel selain jenis pupuk perlu dibuat konsisten agar perbandingan lebih valid. C benar: Pengukuran berkala memungkinkan analisis pola pertumbuhan. E benar: Pengulangan dengan prosedur terkontrol meningkatkan kualitas bukti. D salah karena durasi pengamatan yang sama tidak menjamin eksperimen valid apabila variabel lain berbeda.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-19",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PGK_MCMA",
     "kompetensi": "Pedagogik",
@@ -987,12 +1110,15 @@
       2,
       3
     ],
-    "explanation": "A benar: Umpan balik perlu membantu siswa mengembangkan hubungan konseptual. C benar: Data empiris memberikan dasar untuk analisis perubahan frekuensi pernapasan. D benar: Diskusi berbasis bukti mendukung pembelajaran mendalam dan penalaran ilmiah. B salah karena kesulitan siswa terletak pada penjelasan hubungan, bukan hafalan organ. E salah karena kemampuan mengidentifikasi organ belum menunjukkan pemahaman mekanisme pernapasan."
+    "explanation": "A benar: Umpan balik perlu membantu siswa mengembangkan hubungan konseptual. C benar: Data empiris memberikan dasar untuk analisis perubahan frekuensi pernapasan. D benar: Diskusi berbasis bukti mendukung pembelajaran mendalam dan penalaran ilmiah. B salah karena kesulitan siswa terletak pada penjelasan hubungan, bukan hafalan organ. E salah karena kemampuan mengidentifikasi organ belum menunjukkan pemahaman mekanisme pernapasan.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-ipa-20",
-    "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "bank": "PCK",
+    "topic": "PCK IPA · Konsep & Asesmen SMP",
     "source": "Tryout UTBK UST 2026",
     "type": "PGK_MCMA",
     "kompetensi": "Pedagogik",
@@ -1011,7 +1137,10 @@
       3,
       4
     ],
-    "explanation": "A benar: Perumusan masalah dan prosedur merupakan bagian penting keterampilan investigasi ilmiah. C benar: Analisis data menilai kemampuan siswa menggunakan bukti. D benar: Argumentasi berbasis bukti mengukur berpikir kritis. E benar: Refleksi mengukur kesadaran dan tanggung jawab terhadap lingkungan. B salah karena tampilan fisik produk saja tidak cukup untuk menggambarkan kompetensi proses dan pemahaman ilmiah."
+    "explanation": "A benar: Perumusan masalah dan prosedur merupakan bagian penting keterampilan investigasi ilmiah. C benar: Analisis data menilai kemampuan siswa menggunakan bukti. D benar: Argumentasi berbasis bukti mengukur berpikir kritis. E benar: Refleksi mengukur kesadaran dan tanggung jawab terhadap lingkungan. B salah karena tampilan fisik produk saja tidak cukup untuk menggambarkan kompetensi proses dan pemahaman ilmiah.",
+    "prodiScope": [
+      "ipa"
+    ]
   },
   {
     "id": "ust-gm-01",
@@ -1030,7 +1159,10 @@
       "Kesiapan mengerjakan soal baru bergantung pada banyaknya contoh yang sudah ia pelajari."
     ],
     "answer": 2,
-    "explanation": "Rani menafsirkan kebutuhan akan bantuan sebagai bukti bahwa dirinya kurang pintar. Keyakinan bahwa kemampuan bersifat tetap membuat soal baru terasa mengancam citranya sebagai murid berprestasi. Pilihan D menjelaskan keputusan berdasarkan efisiensi belajar, sedangkan ucapan Rani menunjukkan kekhawatiran tentang bagaimana kemampuannya dinilai."
+    "explanation": "Rani menafsirkan kebutuhan akan bantuan sebagai bukti bahwa dirinya kurang pintar. Keyakinan bahwa kemampuan bersifat tetap membuat soal baru terasa mengancam citranya sebagai murid berprestasi. Pilihan D menjelaskan keputusan berdasarkan efisiensi belajar, sedangkan ucapan Rani menunjukkan kekhawatiran tentang bagaimana kemampuannya dinilai.",
+    "prodiScope": [
+      "pgsd"
+    ]
   },
   {
     "id": "ust-gm-02",
@@ -1049,7 +1181,8 @@
       "Revisi dengan peta alur merupakan action, dan draf yang lebih mudah dipahami merupakan result yang membantu Ayu meninjau keyakinan awalnya."
     ],
     "answer": 4,
-    "explanation": "Penggunaan peta alur dan revisi merupakan tindakan. Draf yang lebih mudah dipahami pembaca merupakan hasil. Ketika Ayu menggunakan hasil itu untuk meninjau keyakinan awalnya, siklus MAR terbentuk. Pilihan D melewatkan bukti kemajuan yang sudah terlihat sebelum pemberian nilai akhir."
+    "explanation": "Penggunaan peta alur dan revisi merupakan tindakan. Draf yang lebih mudah dipahami pembaca merupakan hasil. Ketika Ayu menggunakan hasil itu untuk meninjau keyakinan awalnya, siklus MAR terbentuk. Pilihan D melewatkan bukti kemajuan yang sudah terlihat sebelum pemberian nilai akhir.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-gm-03",
@@ -1068,7 +1201,11 @@
       "Bima menghindari risiko salah dengan hanya menerima jawaban yang disepakati mayoritas."
     ],
     "answer": 3,
-    "explanation": "Berpikir kritis berarti mempertanyakan klaim, mencari bukti, dan mempertimbangkan kemungkinan lain. Siswa dengan pola pikir bertumbuh memandang kemampuan berpikir sebagai sesuatu yang dapat dilatih, sehingga proses yang menantang justru dihargai. Pilihan A dan C menunjukkan motif membuktikan kecerdasan, yang merupakan ciri pola pikir tetap. Pilihan B menekankan kepatuhan pada prosedur, bukan penggalian gagasan. Pilihan E adalah konformitas dan bertolak belakang dengan sikap Bima."
+    "explanation": "Berpikir kritis berarti mempertanyakan klaim, mencari bukti, dan mempertimbangkan kemungkinan lain. Siswa dengan pola pikir bertumbuh memandang kemampuan berpikir sebagai sesuatu yang dapat dilatih, sehingga proses yang menantang justru dihargai. Pilihan A dan C menunjukkan motif membuktikan kecerdasan, yang merupakan ciri pola pikir tetap. Pilihan B menekankan kepatuhan pada prosedur, bukan penggalian gagasan. Pilihan E adalah konformitas dan bertolak belakang dengan sikap Bima.",
+    "prodiScope": [
+      "pgsd",
+      "ipa"
+    ]
   },
   {
     "id": "ust-gm-04",
@@ -1087,7 +1224,11 @@
       "Mendampingi Raka menemukan makna konsep melalui eksplorasi, umpan balik pada proses, dan refleksi, sehingga kesalahan menjadi bahan belajar."
     ],
     "answer": 4,
-    "explanation": "Dalam pembelajaran mendalam, guru merancang aktivitas eksploratif dan pertanyaan terbuka, memberi umpan balik yang membangun, serta menumbuhkan budaya refleksi dan kegigihan. Tindakan Pak Agus mencakup semuanya, dan membantu Raka melihat kesalahan sebagai kesempatan berkembang. Pilihan A dan B melindungi Siswa dari tantangan sehingga mengurangi peluang bertumbuh. Pilihan C berfokus pada hasil, bukan proses. Pilihan D menggunakan kesalahan untuk melabeli kemampuan Siswa, yang sejalan dengan pola pikir tetap."
+    "explanation": "Dalam pembelajaran mendalam, guru merancang aktivitas eksploratif dan pertanyaan terbuka, memberi umpan balik yang membangun, serta menumbuhkan budaya refleksi dan kegigihan. Tindakan Pak Agus mencakup semuanya, dan membantu Raka melihat kesalahan sebagai kesempatan berkembang. Pilihan A dan B melindungi Siswa dari tantangan sehingga mengurangi peluang bertumbuh. Pilihan C berfokus pada hasil, bukan proses. Pilihan D menggunakan kesalahan untuk melabeli kemampuan Siswa, yang sejalan dengan pola pikir tetap.",
+    "prodiScope": [
+      "pgsd",
+      "matematika"
+    ]
   },
   {
     "id": "ust-gm-05",
@@ -1106,7 +1247,10 @@
       "Memberikan penilaian hanya berdasarkan kemampuan awal mahasiswa menggunakan teknologi."
     ],
     "answer": 1,
-    "explanation": "Menunjukkan bahwa kemampuan mahasiswa dalam memanfaatkan teknologi digital dapat dikembangkan melalui proses belajar dan pengalaman. Kesulitan menggunakan aplikasi penyunting video bukan menjadi penghalang untuk menghasilkan karya yang baik. Mahasiswa perlu berani mencoba, mempelajari teknologi baru, bekerja sama, dan mengevaluasi hasil pekerjaannya. Sikap tersebut mencerminkan growth mindset, yaitu keyakinan bahwa kemampuan dapat terus ditingkatkan melalui usaha, ketekunan, dan kemauan untuk belajar."
+    "explanation": "Menunjukkan bahwa kemampuan mahasiswa dalam memanfaatkan teknologi digital dapat dikembangkan melalui proses belajar dan pengalaman. Kesulitan menggunakan aplikasi penyunting video bukan menjadi penghalang untuk menghasilkan karya yang baik. Mahasiswa perlu berani mencoba, mempelajari teknologi baru, bekerja sama, dan mengevaluasi hasil pekerjaannya. Sikap tersebut mencerminkan growth mindset, yaitu keyakinan bahwa kemampuan dapat terus ditingkatkan melalui usaha, ketekunan, dan kemauan untuk belajar.",
+    "prodiScope": [
+      "lintas-mapel"
+    ]
   },
   {
     "id": "ust-gm-06",
@@ -1125,7 +1269,8 @@
       "Mempertahankan pendapat tanpa mempertimbangkan masukan orang lain."
     ],
     "answer": 3,
-    "explanation": "Menerima kritik merupakan salah satu bentuk penerapan growth mindset. Dalam kegiatan diskusi, kritik dapat membantu mahasiswa mengetahui kekurangan dan memperbaiki kualitas pemikirannya. Dina perlu menjadikan masukan dari teman-temannya sebagai bahan evaluasi untuk memperkuat argumentasi dengan bukti dan referensi yang relevan. Sikap tersebut menunjukkan keterbukaan untuk belajar, kemampuan mengevaluasi diri, dan kemauan untuk terus berkembang."
+    "explanation": "Menerima kritik merupakan salah satu bentuk penerapan growth mindset. Dalam kegiatan diskusi, kritik dapat membantu mahasiswa mengetahui kekurangan dan memperbaiki kualitas pemikirannya. Dina perlu menjadikan masukan dari teman-temannya sebagai bahan evaluasi untuk memperkuat argumentasi dengan bukti dan referensi yang relevan. Sikap tersebut menunjukkan keterbukaan untuk belajar, kemampuan mengevaluasi diri, dan kemauan untuk terus berkembang.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-gm-07",
@@ -1144,7 +1289,8 @@
       "Memberikan tugas tambahan hanya kepada peserta didik yang memiliki nilai tertinggi agar kemampuannya semakin berkembang."
     ],
     "answer": 3,
-    "explanation": "Target pembelajaran (learning goals) berorientasi pada penguasaan keterampilan dan pengetahuan melalui usaha, latihan, dan proses belajar. Guru perlu mengakomodasi keragaman peserta didik melalui personalisasi tugas, fleksibilitas waktu, dan pemberian umpan balik. Keberhasilan tidak hanya dilihat dari nilai akhir, tetapi juga dari perkembangan kemampuan peserta didik."
+    "explanation": "Target pembelajaran (learning goals) berorientasi pada penguasaan keterampilan dan pengetahuan melalui usaha, latihan, dan proses belajar. Guru perlu mengakomodasi keragaman peserta didik melalui personalisasi tugas, fleksibilitas waktu, dan pemberian umpan balik. Keberhasilan tidak hanya dilihat dari nilai akhir, tetapi juga dari perkembangan kemampuan peserta didik.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-gm-08",
@@ -1163,7 +1309,10 @@
       "Performance Target, yaitu menetapkan standar hasil karya yang harus dicapai oleh seluruh peserta didik."
     ],
     "answer": 1,
-    "explanation": "Scaffolding merupakan strategi pemberian dukungan sementara dan terstruktur kepada peserta didik dalam menyelesaikan tugas yang kompleks. Tahapannya meliputi pemodelan (modeling), latihan terbimbing (guided practice), praktik mandiri dengan umpan balik, dan pengurangan bantuan secara bertahap (fading support). Tujuan akhirnya adalah agar peserta didik mampu menyelesaikan tugas secara mandiri."
+    "explanation": "Scaffolding merupakan strategi pemberian dukungan sementara dan terstruktur kepada peserta didik dalam menyelesaikan tugas yang kompleks. Tahapannya meliputi pemodelan (modeling), latihan terbimbing (guided practice), praktik mandiri dengan umpan balik, dan pengurangan bantuan secara bertahap (fading support). Tujuan akhirnya adalah agar peserta didik mampu menyelesaikan tugas secara mandiri.",
+    "prodiScope": [
+      "lintas-mapel"
+    ]
   },
   {
     "id": "ust-gm-09",
@@ -1182,7 +1331,10 @@
       "Menyamakan beban kerja dengan meminta semua siswa mengerjakan bagian yang persis sama dengan lainnya."
     ],
     "answer": 1,
-    "explanation": "Pernyataan Salsa menunjukkan keyakinan bahwa kemampuan menggambar itu tetap dan tidak bisa diubah. Dengan mengajak siswa mengomunikasikan kekuatan dan kesulitannya, lalu saling memberi masukan, Bu Wulan menumbuhkan kolaborasi yang dilandasi kepercayaan pada proses belajar bersama. Pilihan A dan D berorientasi pada hasil dan efisiensi, serta membagi peran berdasarkan kemampuan saat ini, yang justru memperkuat anggapan bahwa kemampuan itu tetap. Pilihan C mempertegas label \"berbakat\" dan \"tidak berbakat\". Pilihan E tidak menjawab persoalan keyakinan Salsa."
+    "explanation": "Pernyataan Salsa menunjukkan keyakinan bahwa kemampuan menggambar itu tetap dan tidak bisa diubah. Dengan mengajak siswa mengomunikasikan kekuatan dan kesulitannya, lalu saling memberi masukan, Bu Wulan menumbuhkan kolaborasi yang dilandasi kepercayaan pada proses belajar bersama. Pilihan A dan D berorientasi pada hasil dan efisiensi, serta membagi peran berdasarkan kemampuan saat ini, yang justru memperkuat anggapan bahwa kemampuan itu tetap. Pilihan C mempertegas label \"berbakat\" dan \"tidak berbakat\". Pilihan E tidak menjawab persoalan keyakinan Salsa.",
+    "prodiScope": [
+      "pgsd"
+    ]
   },
   {
     "id": "ust-gm-10",
@@ -1201,7 +1353,10 @@
       "\"Ternyata kamu memiliki kemampuan menggambar yang luar biasa sejak awal.\""
     ],
     "answer": 2,
-    "explanation": "Pujian proses (process praise) menekankan usaha, strategi, ketekunan, dan tindakan yang dilakukan peserta didik dalam mencapai keberhasilan. Pujian ini membantu peserta didik memahami bahwa kemampuan dapat berkembang melalui proses belajar, bukan semata-mata karena bakat bawaan. Sebaliknya, pujian yang berorientasi pada kecerdasan atau bakat dapat membuat peserta didik takut menghadapi tantangan yang berpotensi menghasilkan kegagalan."
+    "explanation": "Pujian proses (process praise) menekankan usaha, strategi, ketekunan, dan tindakan yang dilakukan peserta didik dalam mencapai keberhasilan. Pujian ini membantu peserta didik memahami bahwa kemampuan dapat berkembang melalui proses belajar, bukan semata-mata karena bakat bawaan. Sebaliknya, pujian yang berorientasi pada kecerdasan atau bakat dapat membuat peserta didik takut menghadapi tantangan yang berpotensi menghasilkan kegagalan.",
+    "prodiScope": [
+      "lintas-mapel"
+    ]
   },
   {
     "id": "ust-hermar-ppdp-01",
@@ -1220,7 +1375,11 @@
       "Memfokuskan pembelajaran kepada siswa yang mengalami kesulitan agar ketertinggalan dapat segera diatasi."
     ],
     "answer": 2,
-    "explanation": "Guru perlu memahami karakteristik peserta didik secara holistik dan menerapkan pembelajaran terdiferensiasi. Variasi aktivitas, media, dan produk pembelajaran memungkinkan kebutuhan, minat, serta profil belajar siswa terakomodasi. Hal ini terutama mencerminkan kompetensi pedagogik, dengan dukungan kompetensi profesional dalam memilih strategi pembelajaran yang tepat."
+    "explanation": "Guru perlu memahami karakteristik peserta didik secara holistik dan menerapkan pembelajaran terdiferensiasi. Variasi aktivitas, media, dan produk pembelajaran memungkinkan kebutuhan, minat, serta profil belajar siswa terakomodasi. Hal ini terutama mencerminkan kompetensi pedagogik, dengan dukungan kompetensi profesional dalam memilih strategi pembelajaran yang tepat.",
+    "prodiScope": [
+      "pgsd",
+      "ipa"
+    ]
   },
   {
     "id": "ust-hermar-ppdp-02",
@@ -1239,7 +1398,11 @@
       "Perkembangan moral menurut Kohlberg."
     ],
     "answer": 1,
-    "explanation": "Vygotsky menjelaskan bahwa ZPD merupakan jarak antara kemampuan aktual dan kemampuan potensial yang dapat dicapai melalui bantuan. Guru memberikan scaffolding sesuai kebutuhan, kemudian mengurangi bantuan secara bertahap (fading) agar siswa mencapai kemandirian. Kasus ini menguji kompetensi pedagogik dalam menerapkan teori perkembangan ke praktik pembelajaran."
+    "explanation": "Vygotsky menjelaskan bahwa ZPD merupakan jarak antara kemampuan aktual dan kemampuan potensial yang dapat dicapai melalui bantuan. Guru memberikan scaffolding sesuai kebutuhan, kemudian mengurangi bantuan secara bertahap (fading) agar siswa mencapai kemandirian. Kasus ini menguji kompetensi pedagogik dalam menerapkan teori perkembangan ke praktik pembelajaran.",
+    "prodiScope": [
+      "pgsd",
+      "matematika"
+    ]
   },
   {
     "id": "ust-hermar-ppdp-03",
@@ -1258,7 +1421,8 @@
       "Meminta siswa menghafalkan materi sebelum pembelajaran dimulai."
     ],
     "answer": 2,
-    "explanation": "Pembelajaran konstruktivistik menempatkan siswa sebagai pembangun pengetahuan, sedangkan pendekatan humanistik menekankan otonomi, motivasi intrinsik, dan lingkungan belajar yang aman. Guru berperan sebagai fasilitator yang membantu siswa membangun pemahaman bermakna. Kasus ini terutama berkaitan dengan kompetensi pedagogik dan kepribadian guru dalam menghargai potensi peserta didik."
+    "explanation": "Pembelajaran konstruktivistik menempatkan siswa sebagai pembangun pengetahuan, sedangkan pendekatan humanistik menekankan otonomi, motivasi intrinsik, dan lingkungan belajar yang aman. Guru berperan sebagai fasilitator yang membantu siswa membangun pemahaman bermakna. Kasus ini terutama berkaitan dengan kompetensi pedagogik dan kepribadian guru dalam menghargai potensi peserta didik.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-hermar-ppdp-04",
@@ -1282,7 +1446,10 @@
       2,
       4
     ],
-    "explanation": "Profiling peserta didik merupakan proses sistematis untuk mengumpulkan informasi tentang karakteristik, potensi, dan kebutuhan siswa. Modul menyebutkan tes diagnostik, observasi, dan wawancara sebagai instrumen asesmen awal. Hasilnya digunakan untuk menyesuaikan strategi pembelajaran. Kasus ini terutama mengukur kompetensi pedagogik, sekaligus profesional dalam menggunakan informasi untuk mengambil keputusan pembelajaran."
+    "explanation": "Profiling peserta didik merupakan proses sistematis untuk mengumpulkan informasi tentang karakteristik, potensi, dan kebutuhan siswa. Modul menyebutkan tes diagnostik, observasi, dan wawancara sebagai instrumen asesmen awal. Hasilnya digunakan untuk menyesuaikan strategi pembelajaran. Kasus ini terutama mengukur kompetensi pedagogik, sekaligus profesional dalam menggunakan informasi untuk mengambil keputusan pembelajaran.",
+    "prodiScope": [
+      "pgsd"
+    ]
   },
   {
     "id": "ust-hermar-ppdp-05",
@@ -1306,12 +1473,13 @@
       3,
       4
     ],
-    "explanation": "Guru perlu memahami karakteristik sosial-emosional dan potensi siswa. Adi perlu dibimbing untuk mengembangkan tanggung jawab, sedangkan Mario perlu belajar memberi kesempatan kepada teman. Pembagian peran, apresiasi terhadap proses, dan aktivitas yang beragam membantu menciptakan lingkungan belajar inklusif. Kasus ini mengintegrasikan kompetensi pedagogik, sosial, dan kepribadian guru."
+    "explanation": "Guru perlu memahami karakteristik sosial-emosional dan potensi siswa. Adi perlu dibimbing untuk mengembangkan tanggung jawab, sedangkan Mario perlu belajar memberi kesempatan kepada teman. Pembagian peran, apresiasi terhadap proses, dan aktivitas yang beragam membantu menciptakan lingkungan belajar inklusif. Kasus ini mengintegrasikan kompetensi pedagogik, sosial, dan kepribadian guru.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-sel-sma-01",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1325,12 +1493,15 @@
       "Mengabaikan kejadian karena perbedaan logat merupakan hal biasa"
     ],
     "answer": 1,
-    "explanation": "Kesadaran sosial mencakup empati, pengambilan perspektif, dan penghargaan terhadap keberagaman. Guru perlu menolong siswa memahami dampak ejekan serta membangun norma komunikasi yang menghormati latar bahasa dan identitas teman. Beban penyesuaian tidak boleh diletakkan pada siswa yang menjadi sasaran ejekan."
+    "explanation": "Kesadaran sosial mencakup empati, pengambilan perspektif, dan penghargaan terhadap keberagaman. Guru perlu menolong siswa memahami dampak ejekan serta membangun norma komunikasi yang menghormati latar bahasa dan identitas teman. Beban penyesuaian tidak boleh diletakkan pada siswa yang menjadi sasaran ejekan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-02",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Kepribadian",
@@ -1344,12 +1515,15 @@
       "Memberi nilai rendah kepada Damar tanpa membahas perilakunya"
     ],
     "answer": 2,
-    "explanation": "Pengelolaan diri meliputi kesadaran atas emosi, pengendalian impuls, dan penggunaan strategi untuk merespons situasi. Guru tidak sekadar menghentikan konflik, tetapi membimbing siswa mengelola rasa kecewa dan mengungkapkan pendapat secara asertif serta santun."
+    "explanation": "Pengelolaan diri meliputi kesadaran atas emosi, pengendalian impuls, dan penggunaan strategi untuk merespons situasi. Guru tidak sekadar menghentikan konflik, tetapi membimbing siswa mengelola rasa kecewa dan mengungkapkan pendapat secara asertif serta santun.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-03",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1363,12 +1537,15 @@
       "Meminta siswa menjelaskan keadaan ekonomi keluarganya di depan kelas"
     ],
     "answer": 1,
-    "explanation": "Guru menunjukkan empati dan kepedulian dengan mencari solusi yang menjaga privasi serta memberi akses belajar yang setara. Alternatif dapat berupa penggunaan perangkat sekolah, pengerjaan luring, atau pembagian peran yang tetap bermakna. Dukungan tidak boleh membuat siswa dipermalukan atau dikeluarkan dari kegiatan."
+    "explanation": "Guru menunjukkan empati dan kepedulian dengan mencari solusi yang menjaga privasi serta memberi akses belajar yang setara. Alternatif dapat berupa penggunaan perangkat sekolah, pengerjaan luring, atau pembagian peran yang tetap bermakna. Dukungan tidak boleh membuat siswa dipermalukan atau dikeluarkan dari kegiatan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-04",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1382,12 +1559,15 @@
       "Membatalkan proyek podcast seluruh kelas"
     ],
     "answer": 2,
-    "explanation": "Keterampilan berelasi mencakup komunikasi, mendengarkan aktif, kerja sama, dan penyelesaian konflik secara konstruktif. Dialog terfasilitasi membantu siswa berfokus pada tujuan bersama dan kriteria mutu karya, bukan menyerang pribadi."
+    "explanation": "Keterampilan berelasi mencakup komunikasi, mendengarkan aktif, kerja sama, dan penyelesaian konflik secara konstruktif. Dialog terfasilitasi membantu siswa berfokus pada tujuan bersama dan kriteria mutu karya, bukan menyerang pribadi.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-05",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Kepribadian",
@@ -1401,12 +1581,15 @@
       "Meminta siswa melupakan kejadian tanpa penjelasan"
     ],
     "answer": 0,
-    "explanation": "Guru menjadi model pembelajaran sosial emosional. Mengenali pemicu emosi, bertanggung jawab atas perilaku, dan memperbaiki cara merespons menunjukkan kesadaran diri serta pengelolaan diri. Permintaan maaf yang proporsional tidak menghilangkan kewibawaan guru, justru memberi contoh tanggung jawab."
+    "explanation": "Guru menjadi model pembelajaran sosial emosional. Mengenali pemicu emosi, bertanggung jawab atas perilaku, dan memperbaiki cara merespons menunjukkan kesadaran diri serta pengelolaan diri. Permintaan maaf yang proporsional tidak menghilangkan kewibawaan guru, justru memberi contoh tanggung jawab.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-06",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Kepribadian",
@@ -1420,12 +1603,15 @@
       "“Biar Ibu/Bapak saja yang memperbaiki seluruh tulisanmu.”"
     ],
     "answer": 1,
-    "explanation": "Umpan balik yang berorientasi pada proses menekankan strategi, usaha yang terarah, dan kemajuan. Kata 'belum' membuka ruang perkembangan, sedangkan arahan spesifik—memperjelas tesis dan memperkuat bukti—membantu siswa mengetahui langkah perbaikan yang dapat dilakukan."
+    "explanation": "Umpan balik yang berorientasi pada proses menekankan strategi, usaha yang terarah, dan kemajuan. Kata 'belum' membuka ruang perkembangan, sedangkan arahan spesifik - memperjelas tesis dan memperkuat bukti - membantu siswa mengetahui langkah perbaikan yang dapat dilakukan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-07",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1439,12 +1625,15 @@
       "Membatasi wawancara pada orang yang memiliki pekerjaan formal"
     ],
     "answer": 1,
-    "explanation": "Kegiatan wawancara memberi pengalaman untuk melatih empati, menyimak aktif, rasa ingin tahu, dan penghargaan terhadap beragam pengalaman. Refleksi membantu siswa menyadari bahwa setiap narasumber memiliki perspektif dan kontribusi yang patut dihargai."
+    "explanation": "Kegiatan wawancara memberi pengalaman untuk melatih empati, menyimak aktif, rasa ingin tahu, dan penghargaan terhadap beragam pengalaman. Refleksi membantu siswa menyadari bahwa setiap narasumber memiliki perspektif dan kontribusi yang patut dihargai.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-08",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1458,12 +1647,15 @@
       "Meminta siswa mengerjakan soal struktur teks secara individu sepanjang pembelajaran"
     ],
     "answer": 1,
-    "explanation": "Kompetensi Bahasa Indonesia dapat dipadukan dengan SEL melalui kegiatan autentik. Siswa menggunakan keterampilan memahami isu, menyusun teks persuasi, berkolaborasi, mempertimbangkan dampak pesan, dan memilih bahasa yang tidak mempermalukan atau memperuncing konflik."
+    "explanation": "Kompetensi Bahasa Indonesia dapat dipadukan dengan SEL melalui kegiatan autentik. Siswa menggunakan keterampilan memahami isu, menyusun teks persuasi, berkolaborasi, mempertimbangkan dampak pesan, dan memilih bahasa yang tidak mempermalukan atau memperuncing konflik.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-09",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1477,12 +1669,15 @@
       "Melarang semua siswa menggunakan media digital untuk kegiatan belajar"
     ],
     "answer": 0,
-    "explanation": "Pengambilan keputusan bertanggung jawab mempertimbangkan etika, privasi, keselamatan, konsekuensi, dan pihak yang terdampak. Tindakan korektif perlu disertai pemahaman dan pemulihan, bukan mempermalukan pelaku atau membalas pelanggaran dengan pelanggaran lain."
+    "explanation": "Pengambilan keputusan bertanggung jawab mempertimbangkan etika, privasi, keselamatan, konsekuensi, dan pihak yang terdampak. Tindakan korektif perlu disertai pemahaman dan pemulihan, bukan mempermalukan pelaku atau membalas pelanggaran dengan pelanggaran lain.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-10",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1496,12 +1691,15 @@
       "Banyaknya aturan tertulis tentang penggunaan bahasa"
     ],
     "answer": 1,
-    "explanation": "School well-being berkaitan dengan rasa aman, relasi positif, keterlibatan, dukungan, dan kesempatan berkembang. Dalam pembelajaran Bahasa Indonesia, siswa perlu merasa aman untuk membaca, menulis, berbicara, dan menyampaikan tafsir tanpa takut direndahkan."
+    "explanation": "School well-being berkaitan dengan rasa aman, relasi positif, keterlibatan, dukungan, dan kesempatan berkembang. Dalam pembelajaran Bahasa Indonesia, siswa perlu merasa aman untuk membaca, menulis, berbicara, dan menyampaikan tafsir tanpa takut direndahkan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-11",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Kepribadian",
@@ -1515,12 +1713,15 @@
       "Menghentikan proyek karena pembagian tugas belum seimbang"
     ],
     "answer": 0,
-    "explanation": "Pembagian peran yang inklusif menumbuhkan rasa memiliki, tanggung jawab, dan kepercayaan diri. Peran dapat disesuaikan dengan kesiapan, tetapi tetap harus bermakna dan memberi kesempatan berkembang kepada semua anggota."
+    "explanation": "Pembagian peran yang inklusif menumbuhkan rasa memiliki, tanggung jawab, dan kepercayaan diri. Peran dapat disesuaikan dengan kesiapan, tetapi tetap harus bermakna dan memberi kesempatan berkembang kepada semua anggota.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-12",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1534,12 +1735,15 @@
       "Memberi hukuman kepada siswa yang memainkan peran dengan tuntutan paling kuat"
     ],
     "answer": 1,
-    "explanation": "Refleksi menghubungkan pengalaman bermain peran dengan emosi, perspektif, konsekuensi, dan pilihan perilaku. Siswa belajar bahwa negosiasi bukan sekadar memenangkan tuntutan, melainkan mencari kesepakatan yang mempertimbangkan kepentingan para pihak."
+    "explanation": "Refleksi menghubungkan pengalaman bermain peran dengan emosi, perspektif, konsekuensi, dan pilihan perilaku. Siswa belajar bahwa negosiasi bukan sekadar memenangkan tuntutan, melainkan mencari kesepakatan yang mempertimbangkan kepentingan para pihak.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-13",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1553,12 +1757,15 @@
       "Menyimpulkan bahwa siswa tidak memiliki rasa percaya diri tanpa mencari informasi lebih lanjut"
     ],
     "answer": 1,
-    "explanation": "Kemitraan guru dan orang tua dilakukan secara komunikatif, menjaga kerahasiaan, dan berorientasi pada kebutuhan siswa. Dukungan dapat disepakati secara bertahap, misalnya latihan dalam kelompok kecil sebelum tampil di depan kelas, dengan tetap menghargai kesiapan siswa."
+    "explanation": "Kemitraan guru dan orang tua dilakukan secara komunikatif, menjaga kerahasiaan, dan berorientasi pada kebutuhan siswa. Dukungan dapat disepakati secara bertahap, misalnya latihan dalam kelompok kecil sebelum tampil di depan kelas, dengan tetap menghargai kesiapan siswa.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-14",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Kepribadian",
@@ -1572,12 +1779,15 @@
       "Meminta ketua kelas menentukan siswa yang paling baik secara subjektif"
     ],
     "answer": 1,
-    "explanation": "Perkembangan SEL tampak dalam perilaku dan interaksi, bukan hanya pengetahuan definisional. Beragam bukti—observasi, refleksi, umpan balik, dan dokumentasi—memberi gambaran yang lebih utuh tentang kemampuan menyimak, menghargai pendapat, mengelola perbedaan, dan bekerja sama."
+    "explanation": "Perkembangan SEL tampak dalam perilaku dan interaksi, bukan hanya pengetahuan definisional. Beragam bukti - observasi, refleksi, umpan balik, dan dokumentasi - memberi gambaran yang lebih utuh tentang kemampuan menyimak, menghargai pendapat, mengelola perbedaan, dan bekerja sama.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-15",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PG",
     "kompetensi": "Sosial",
@@ -1591,12 +1801,15 @@
       "Mengikuti usulan siswa yang berbicara paling keras"
     ],
     "answer": 0,
-    "explanation": "Musyawarah memberi kesempatan siswa mempertimbangkan kebutuhan bersama, konsekuensi, keadilan, dan tanggung jawab. Kesepakatan yang baik menjaga umpan balik tetap spesifik dan membantu perbaikan karya tanpa menyerang pribadi penulis."
+    "explanation": "Musyawarah memberi kesempatan siswa mempertimbangkan kebutuhan bersama, konsekuensi, keadilan, dan tanggung jawab. Kesepakatan yang baik menjaga umpan balik tetap spesifik dan membantu perbaikan karya tanpa menyerang pribadi penulis.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-16",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PGK_MCMA",
     "kompetensi": "Sosial",
@@ -1614,12 +1827,15 @@
       1,
       3
     ],
-    "explanation": "Empati, norma saling menghargai, dan pengenalan keragaman bahasa mendukung kesadaran sosial. Guru perlu membedakan pembelajaran ragam bahasa baku sesuai konteks dengan tindakan merendahkan logat atau identitas penutur. Siswa yang menjadi sasaran tidak boleh dibebani untuk mengubah identitasnya demi diterima."
+    "explanation": "Empati, norma saling menghargai, dan pengenalan keragaman bahasa mendukung kesadaran sosial. Guru perlu membedakan pembelajaran ragam bahasa baku sesuai konteks dengan tindakan merendahkan logat atau identitas penutur. Siswa yang menjadi sasaran tidak boleh dibebani untuk mengubah identitasnya demi diterima.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-17",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PGK_MCMA",
     "kompetensi": "Sosial",
@@ -1637,12 +1853,15 @@
       1,
       3
     ],
-    "explanation": "Giliran berbicara, menyimak aktif, tanggapan santun, dan refleksi kelompok merupakan strategi konkret untuk mengembangkan komunikasi dan kolaborasi. Dominasi tidak diselesaikan dengan membiarkannya atau langsung membubarkan kelompok, melainkan dengan struktur partisipasi dan evaluasi proses."
+    "explanation": "Giliran berbicara, menyimak aktif, tanggapan santun, dan refleksi kelompok merupakan strategi konkret untuk mengembangkan komunikasi dan kolaborasi. Dominasi tidak diselesaikan dengan membiarkannya atau langsung membubarkan kelompok, melainkan dengan struktur partisipasi dan evaluasi proses.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-18",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PGK_MCMA",
     "kompetensi": "Sosial",
@@ -1660,12 +1879,15 @@
       1,
       2
     ],
-    "explanation": "Respons yang mendukung pola pikir bertumbuh menekankan proses, strategi, kemajuan, dan keyakinan bahwa kemampuan dapat berkembang. Petunjuk teks dan membaca ulang adalah strategi yang dapat dipelajari. Perbandingan sosial dan penghindaran tantangan justru dapat menguatkan keyakinan negatif siswa."
+    "explanation": "Respons yang mendukung pola pikir bertumbuh menekankan proses, strategi, kemajuan, dan keyakinan bahwa kemampuan dapat berkembang. Petunjuk teks dan membaca ulang adalah strategi yang dapat dipelajari. Perbandingan sosial dan penghindaran tantangan justru dapat menguatkan keyakinan negatif siswa.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-19",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PGK_MCMA",
     "kompetensi": "Sosial",
@@ -1683,12 +1905,15 @@
       1,
       2
     ],
-    "explanation": "Pengalaman belajar yang bermakna mencakup persiapan, keterlibatan langsung, dan refleksi. Pertanyaan etis, sikap hormat, serta perhatian terhadap perspektif narasumber mengembangkan empati dan menghasilkan laporan yang lebih cermat. Jumlah foto bukan ukuran utama kualitas pengalaman atau pemahaman."
+    "explanation": "Pengalaman belajar yang bermakna mencakup persiapan, keterlibatan langsung, dan refleksi. Pertanyaan etis, sikap hormat, serta perhatian terhadap perspektif narasumber mengembangkan empati dan menghasilkan laporan yang lebih cermat. Jumlah foto bukan ukuran utama kualitas pengalaman atau pemahaman.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-sel-sma-20",
     "bank": "PU",
-    "topic": "Sosial-Emosional (SEL)",
+    "topic": "SEL & Etika (Bahasa Indonesia)",
     "source": "Latihan SEL SMP/SMA Dr. Kristanto",
     "type": "PGK_MCMA",
     "kompetensi": "Sosial",
@@ -1706,7 +1931,10 @@
       1,
       2
     ],
-    "explanation": "Kesejahteraan sekolah dibangun melalui rasa aman, relasi positif, suara siswa, keterlibatan, dan lingkungan inklusif. Pembelajaran Bahasa Indonesia dapat mendukungnya dengan ruang ekspresi yang aman, budaya literasi yang menghargai proses, dan kesempatan berpartisipasi yang beragam. Program tidak semestinya hanya berorientasi pada nilai atau siswa berprestasi tinggi."
+    "explanation": "Kesejahteraan sekolah dibangun melalui rasa aman, relasi positif, suara siswa, keterlibatan, dan lingkungan inklusif. Pembelajaran Bahasa Indonesia dapat mendukungnya dengan ruang ekspresi yang aman, budaya literasi yang menghargai proses, dan kesempatan berpartisipasi yang beragam. Program tidak semestinya hanya berorientasi pada nilai atau siswa berprestasi tinggi.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-yuli-sel-01",
@@ -1725,7 +1953,8 @@
       "Responsible decision making, karena guru perlu menentukan strategi pembelajaran yang paling sesuai dengan kebutuhan peserta didik"
     ],
     "answer": 1,
-    "explanation": "Self-awareness merupakan kemampuan memahami emosi, pemikiran, dan nilai-nilai yang memengaruhi perilaku seseorang. Dalam kasus ini, guru terlebih dahulu menyadari bahwa respons negatifnya terhadap jawaban peserta didik dapat memengaruhi keberanian mereka untuk berpendapat. Self-management memang berkaitan dengan pengendalian emosi, tetapi tahap awal yang ditunjukkan dalam kasus adalah mengenali dan memahami pola perilaku diri sendiri. Oleh karena itu, jawaban paling tepat adalah B."
+    "explanation": "Self-awareness merupakan kemampuan memahami emosi, pemikiran, dan nilai-nilai yang memengaruhi perilaku seseorang. Dalam kasus ini, guru terlebih dahulu menyadari bahwa respons negatifnya terhadap jawaban peserta didik dapat memengaruhi keberanian mereka untuk berpendapat. Self-management memang berkaitan dengan pengendalian emosi, tetapi tahap awal yang ditunjukkan dalam kasus adalah mengenali dan memahami pola perilaku diri sendiri. Oleh karena itu, jawaban paling tepat adalah B.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-02",
@@ -1744,7 +1973,8 @@
       "Responsible decision making, karena guru memilih tindakan yang mempertimbangkan dampak terhadap kelas"
     ],
     "answer": 3,
-    "explanation": "Self-management adalah kemampuan mengatur emosi, pemikiran, dan perilaku secara efektif dalam berbagai situasi. Indikator utama pada kasus adalah kemampuan guru mengendalikan kemarahan dan tidak bereaksi secara impulsif. Jawaban E memang tampak relevan karena guru mempertimbangkan dampak tindakannya. Namun, fokus utama stimulus adalah pengelolaan emosi sebelum memberikan respons."
+    "explanation": "Self-management adalah kemampuan mengatur emosi, pemikiran, dan perilaku secara efektif dalam berbagai situasi. Indikator utama pada kasus adalah kemampuan guru mengendalikan kemarahan dan tidak bereaksi secara impulsif. Jawaban E memang tampak relevan karena guru mempertimbangkan dampak tindakannya. Namun, fokus utama stimulus adalah pengelolaan emosi sebelum memberikan respons.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-03",
@@ -1763,7 +1993,8 @@
       "Responsible decision making, karena peserta didik harus memilih anggota kelompok berdasarkan kemampuan akademik"
     ],
     "answer": 2,
-    "explanation": "Social awareness merupakan kemampuan memahami perspektif yang berbeda, termasuk berempati terhadap individu dengan latar belakang yang berbeda. Guru mengarahkan peserta didik agar tidak hanya menilai kemampuan akademik, tetapi juga memahami kondisi dan perasaan orang lain. Relationship skills juga berhubungan dengan interaksi sosial, tetapi inti kasus ini adalah pengembangan empati dan penerimaan terhadap perbedaan perspektif."
+    "explanation": "Social awareness merupakan kemampuan memahami perspektif yang berbeda, termasuk berempati terhadap individu dengan latar belakang yang berbeda. Guru mengarahkan peserta didik agar tidak hanya menilai kemampuan akademik, tetapi juga memahami kondisi dan perasaan orang lain. Relationship skills juga berhubungan dengan interaksi sosial, tetapi inti kasus ini adalah pengembangan empati dan penerimaan terhadap perbedaan perspektif.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-04",
@@ -1782,7 +2013,8 @@
       "Responsible decision making"
     ],
     "answer": 3,
-    "explanation": "Relationship skills merupakan kemampuan membangun dan mempertahankan hubungan yang sehat dan efektif dengan individu dari berbagai latar belakang. Kemampuan komunikasi, mendengarkan secara aktif, bekerja sama, dan menyelesaikan konflik merupakan bagian dari kompetensi ini. Kasus menekankan kemampuan peserta didik membangun kesepakatan dan memperbaiki hubungan setelah terjadi konflik."
+    "explanation": "Relationship skills merupakan kemampuan membangun dan mempertahankan hubungan yang sehat dan efektif dengan individu dari berbagai latar belakang. Kemampuan komunikasi, mendengarkan secara aktif, bekerja sama, dan menyelesaikan konflik merupakan bagian dari kompetensi ini. Kasus menekankan kemampuan peserta didik membangun kesepakatan dan memperbaiki hubungan setelah terjadi konflik.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-05",
@@ -1801,7 +2033,8 @@
       "Responsible decision making, yaitu mempertimbangkan nilai, konsekuensi, dan tanggung jawab sebelum menentukan tindakan"
     ],
     "answer": 4,
-    "explanation": "Responsible decision making adalah kemampuan membuat pilihan yang tepat dan konstruktif dalam situasi tertentu. Keputusan harus mempertimbangkan etika, keselamatan, konsekuensi, dan tanggung jawab terhadap diri sendiri maupun orang lain. Kasus ini merupakan dilema yang membutuhkan pertimbangan nilai dan konsekuensi, sehingga jawaban E paling tepat."
+    "explanation": "Responsible decision making adalah kemampuan membuat pilihan yang tepat dan konstruktif dalam situasi tertentu. Keputusan harus mempertimbangkan etika, keselamatan, konsekuensi, dan tanggung jawab terhadap diri sendiri maupun orang lain. Kasus ini merupakan dilema yang membutuhkan pertimbangan nilai dan konsekuensi, sehingga jawaban E paling tepat.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-06",
@@ -1820,7 +2053,8 @@
       "Evaluasi formatif untuk mengetahui tingkat motivasi belajar peserta didik"
     ],
     "answer": 1,
-    "explanation": "Modul menjelaskan bahwa caring relationship merupakan dasar pembelajaran. Hubungan kepedulian memungkinkan peserta didik merasa aman untuk mengeksplorasi, bertanya, menyampaikan pendapat, dan mengekspresikan diri. Guru tidak langsung memberikan penilaian, tetapi berusaha memahami kondisi peserta didik dan memberikan dukungan. Inilah bentuk caring relationship."
+    "explanation": "Modul menjelaskan bahwa caring relationship merupakan dasar pembelajaran. Hubungan kepedulian memungkinkan peserta didik merasa aman untuk mengeksplorasi, bertanya, menyampaikan pendapat, dan mengekspresikan diri. Guru tidak langsung memberikan penilaian, tetapi berusaha memahami kondisi peserta didik dan memberikan dukungan. Inilah bentuk caring relationship.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-07",
@@ -1839,7 +2073,8 @@
       "Menyerahkan pengembangan keterampilan komunikasi kepada guru bimbingan dan konseling"
     ],
     "answer": 2,
-    "explanation": "Guru merupakan teladan dalam pembelajaran sosial emosional. Nilai yang diajarkan harus tercermin dalam perilaku guru, baik ketika berinteraksi dengan peserta didik maupun rekan sejawat. Guru perlu mengembangkan kompetensi sosial emosional pada dirinya terlebih dahulu agar dapat memberikan keteladanan yang konsisten."
+    "explanation": "Guru merupakan teladan dalam pembelajaran sosial emosional. Nilai yang diajarkan harus tercermin dalam perilaku guru, baik ketika berinteraksi dengan peserta didik maupun rekan sejawat. Guru perlu mengembangkan kompetensi sosial emosional pada dirinya terlebih dahulu agar dapat memberikan keteladanan yang konsisten.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-08",
@@ -1858,7 +2093,8 @@
       "Self-management, karena guru mengendalikan emosi ketika menghadapi masalah peserta didik"
     ],
     "answer": 3,
-    "explanation": "Empathy adalah kemampuan memahami orang lain, khususnya bagaimana mereka berpikir dan merasa. Modul juga menjelaskan cognitive empathy sebagai kemampuan memahami pikiran dan keyakinan orang lain. Fokus stimulus adalah memahami pengalaman emosional peserta didik dari perspektif peserta didik itu sendiri, sehingga jawaban D paling tepat."
+    "explanation": "Empathy adalah kemampuan memahami orang lain, khususnya bagaimana mereka berpikir dan merasa. Modul juga menjelaskan cognitive empathy sebagai kemampuan memahami pikiran dan keyakinan orang lain. Fokus stimulus adalah memahami pengalaman emosional peserta didik dari perspektif peserta didik itu sendiri, sehingga jawaban D paling tepat.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-09",
@@ -1877,7 +2113,8 @@
       "Cognitive empathy, karena guru mampu mengetahui penyebab permasalahan keluarga peserta didik"
     ],
     "answer": 1,
-    "explanation": "Compassion tidak hanya berkaitan dengan memahami penderitaan orang lain, tetapi juga kemampuan memberikan respons kepedulian secara tepat tanpa mengalami tekanan emosional berlebihan. Modul menekankan bahwa empati perlu diimbangi compassion agar individu dapat membantu secara objektif dan mengurangi personal distress."
+    "explanation": "Compassion tidak hanya berkaitan dengan memahami penderitaan orang lain, tetapi juga kemampuan memberikan respons kepedulian secara tepat tanpa mengalami tekanan emosional berlebihan. Modul menekankan bahwa empati perlu diimbangi compassion agar individu dapat membantu secara objektif dan mengurangi personal distress.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-10",
@@ -1896,7 +2133,8 @@
       "Relationship skills"
     ],
     "answer": 2,
-    "explanation": "Mindfulness merupakan kemampuan menyadari pengalaman yang sedang dialami dan menerima situasi tanpa menghakimi diri sendiri. Dalam kasus ini, guru menyadari kondisi emosinya, tidak langsung bereaksi, dan memilih respons yang lebih tepat. Mindfulness membantu guru mengurangi respons impulsif dan menjaga kualitas interaksi pembelajaran."
+    "explanation": "Mindfulness merupakan kemampuan menyadari pengalaman yang sedang dialami dan menerima situasi tanpa menghakimi diri sendiri. Dalam kasus ini, guru menyadari kondisi emosinya, tidak langsung bereaksi, dan memilih respons yang lebih tepat. Mindfulness membantu guru mengurangi respons impulsif dan menjaga kualitas interaksi pembelajaran.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-11",
@@ -1915,7 +2153,8 @@
       "Self-awareness"
     ],
     "answer": 3,
-    "explanation": "Critical inquiry merupakan kemampuan berpikir kritis dan melakukan penyelidikan terhadap suatu permasalahan. Guru tidak menerima asumsi bahwa peserta didik malas, tetapi mencari bukti melalui berbagai sumber informasi sebelum mengambil kesimpulan. Hal ini menunjukkan bahwa keputusan pedagogis harus didasarkan pada informasi dan analisis, bukan prasangka."
+    "explanation": "Critical inquiry merupakan kemampuan berpikir kritis dan melakukan penyelidikan terhadap suatu permasalahan. Guru tidak menerima asumsi bahwa peserta didik malas, tetapi mencari bukti melalui berbagai sumber informasi sebelum mengambil kesimpulan. Hal ini menunjukkan bahwa keputusan pedagogis harus didasarkan pada informasi dan analisis, bukan prasangka.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-12",
@@ -1934,7 +2173,8 @@
       "Generalization"
     ],
     "answer": 3,
-    "explanation": "Concrete experience adalah tahap ketika peserta didik memperoleh pengalaman secara langsung. Dalam ilustrasi tersebut, simulasi merupakan pengalaman konkret yang menjadi dasar bagi proses refleksi dan pembentukan konsep. Urutan siklus Experiential Learning adalah: Concrete experience. Reflective observation. Abstract conceptualization. Active experimentation."
+    "explanation": "Concrete experience adalah tahap ketika peserta didik memperoleh pengalaman secara langsung. Dalam ilustrasi tersebut, simulasi merupakan pengalaman konkret yang menjadi dasar bagi proses refleksi dan pembentukan konsep. Urutan siklus Experiential Learning adalah: Concrete experience. Reflective observation. Abstract conceptualization. Active experimentation.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-13",
@@ -1953,7 +2193,8 @@
       "Self-management, karena peserta didik mengendalikan perilaku selama kegiatan"
     ],
     "answer": 1,
-    "explanation": "Reflective observation merupakan tahap mengamati dan merefleksikan pengalaman yang telah terjadi. Peserta didik tidak sekadar mengingat kegiatan, tetapi menganalisis apa yang dialami, bagaimana perasaannya, dan mengapa suatu peristiwa terjadi."
+    "explanation": "Reflective observation merupakan tahap mengamati dan merefleksikan pengalaman yang telah terjadi. Peserta didik tidak sekadar mengingat kegiatan, tetapi menganalisis apa yang dialami, bagaimana perasaannya, dan mengapa suatu peristiwa terjadi.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-14",
@@ -1972,7 +2213,8 @@
       "Emotional regulation"
     ],
     "answer": 2,
-    "explanation": "Abstract conceptualization merupakan tahap ketika peserta didik membangun konsep, prinsip, atau pemahaman berdasarkan pengalaman dan hasil refleksi. Pada kasus ini, peserta didik sudah bergerak dari pengalaman konkret menuju perumusan prinsip komunikasi efektif."
+    "explanation": "Abstract conceptualization merupakan tahap ketika peserta didik membangun konsep, prinsip, atau pemahaman berdasarkan pengalaman dan hasil refleksi. Pada kasus ini, peserta didik sudah bergerak dari pengalaman konkret menuju perumusan prinsip komunikasi efektif.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-15",
@@ -1991,7 +2233,8 @@
       "Self-awareness"
     ],
     "answer": 3,
-    "explanation": "Active experimentation merupakan tahap penerapan konsep atau prinsip yang telah dipelajari ke dalam situasi atau pengalaman berikutnya. Peserta didik tidak hanya memahami komunikasi asertif, tetapi menguji dan menerapkannya secara langsung dalam interaksi sosial."
+    "explanation": "Active experimentation merupakan tahap penerapan konsep atau prinsip yang telah dipelajari ke dalam situasi atau pengalaman berikutnya. Peserta didik tidak hanya memahami komunikasi asertif, tetapi menguji dan menerapkannya secara langsung dalam interaksi sosial.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-16",
@@ -2010,7 +2253,10 @@
       "Pembelajaran sosial emosional melalui penegakan tata tertib sekolah."
     ],
     "answer": 1,
-    "explanation": "Modul menjelaskan bahwa SEL dapat diterapkan secara rutin, terintegrasi dalam mata pelajaran, dan melalui budaya sekolah. Dalam kasus ini, kompetensi sosial emosional dikembangkan melalui aktivitas akademik berupa analisis kasus, diskusi, pengambilan perspektif, dan penyusunan rekomendasi. Oleh karena itu, jawabannya adalah B."
+    "explanation": "Modul menjelaskan bahwa SEL dapat diterapkan secara rutin, terintegrasi dalam mata pelajaran, dan melalui budaya sekolah. Dalam kasus ini, kompetensi sosial emosional dikembangkan melalui aktivitas akademik berupa analisis kasus, diskusi, pengambilan perspektif, dan penyusunan rekomendasi. Oleh karena itu, jawabannya adalah B.",
+    "prodiScope": [
+      "lintas-mapel"
+    ]
   },
   {
     "id": "ust-yuli-sel-17",
@@ -2029,7 +2275,8 @@
       "Pembelajaran sosial emosional melalui program remedial"
     ],
     "answer": 2,
-    "explanation": "SEL sebagai budaya sekolah berarti nilai-nilai sosial emosional menjadi kebiasaan dan praktik bersama dalam lingkungan sekolah. Penerapannya tidak terbatas pada kegiatan pembelajaran di kelas, tetapi menjadi bagian dari kehidupan seluruh warga sekolah."
+    "explanation": "SEL sebagai budaya sekolah berarti nilai-nilai sosial emosional menjadi kebiasaan dan praktik bersama dalam lingkungan sekolah. Penerapannya tidak terbatas pada kegiatan pembelajaran di kelas, tetapi menjadi bagian dari kehidupan seluruh warga sekolah.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-18",
@@ -2048,7 +2295,8 @@
       "Relationship skills, karena berkaitan dengan kemampuan membangun hubungan sosial."
     ],
     "answer": 3,
-    "explanation": "Dimensi having dalam model School Well being Konu dan Rimpela berkaitan dengan kondisi dan situasi sekolah, termasuk lingkungan fisik dan fasilitas yang mendukung kegiatan belajar. Dimensi health memang berkaitan dengan kesehatan secara umum, tetapi stimulus secara khusus menekankan kondisi fasilitas dan lingkungan sekolah. Karena itu, having merupakan jawaban paling tepat."
+    "explanation": "Dimensi having dalam model School Well being Konu dan Rimpela berkaitan dengan kondisi dan situasi sekolah, termasuk lingkungan fisik dan fasilitas yang mendukung kegiatan belajar. Dimensi health memang berkaitan dengan kesehatan secara umum, tetapi stimulus secara khusus menekankan kondisi fasilitas dan lingkungan sekolah. Karena itu, having merupakan jawaban paling tepat.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-19",
@@ -2067,7 +2315,8 @@
       "Academic achievement"
     ],
     "answer": 1,
-    "explanation": "Loving berkaitan dengan hubungan sosial dalam lingkungan sekolah, termasuk interaksi antara peserta didik, guru, dan warga sekolah lainnya. Masalah utama pada kasus bukan fasilitas fisik, melainkan kualitas hubungan sosial dan rasa diterima. Oleh karena itu, dimensi loving perlu menjadi prioritas."
+    "explanation": "Loving berkaitan dengan hubungan sosial dalam lingkungan sekolah, termasuk interaksi antara peserta didik, guru, dan warga sekolah lainnya. Masalah utama pada kasus bukan fasilitas fisik, melainkan kualitas hubungan sosial dan rasa diterima. Oleh karena itu, dimensi loving perlu menjadi prioritas.",
+    "prodiScope": "UMUM"
   },
   {
     "id": "ust-yuli-sel-20",
@@ -2086,12 +2335,18 @@
       "Memilih peserta didik yang memiliki masalah perilaku untuk mengikuti program pengembangan sosial emosional"
     ],
     "answer": 2,
-    "explanation": "Modul menekankan pentingnya pemetaan kompetensi sosial emosional dengan mempertimbangkan latar belakang, kebutuhan, dan tahap perkembangan peserta didik. Setelah pemetaan dilakukan, guru perlu menetapkan tujuan pengembangan, merancang indikator perkembangan, memilih strategi, dan mengevaluasi keberhasilan program. Program SEL harus memperhatikan perbedaan individual, bukan menerapkan satu pendekatan secara seragam."
+    "explanation": "Modul menekankan pentingnya pemetaan kompetensi sosial emosional dengan mempertimbangkan latar belakang, kebutuhan, dan tahap perkembangan peserta didik. Setelah pemetaan dilakukan, guru perlu menetapkan tujuan pengembangan, merancang indikator perkembangan, memilih strategi, dan mengevaluasi keberhasilan program. Program SEL harus memperhatikan perbedaan individual, bukan menerapkan satu pendekatan secara seragam.",
+    "prodiScope": [
+      "lintas-mapel",
+      "ipa",
+      "matematika",
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-01",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2105,12 +2360,15 @@
       "Memberikan daftar kosakata indrawi lalu meminta murid menyisipkannya ke dalam tulisan pertama."
     ],
     "answer": 2,
-    "explanation": "KURANG TEPAT. Penambahan kata sifat belum menjamin penggambaran yang konkret.\nKURANG TEPAT. Analisis contoh bermanfaat, tetapi peniruan tidak memastikan penerapan dan refleksi.\nTEPAT. Mengintegrasikan perbandingan konsep, pengalaman nyata, revisi, dan refleksi berbukti. Opsi C memungkinkan murid membangun konsep melalui perbandingan, menerapkannya dalam pengamatan taman dan revisi, serta menjelaskan alasan diksi.\nKURANG TEPAT. Pengamatan kontekstual tepat, tetapi tidak disertai evaluasi kualitas tulisan.\nKURANG TEPAT. Bank kata membantu diksi, tetapi tidak menggantikan penalaran memilih detail."
+    "explanation": "KURANG TEPAT. Penambahan kata sifat belum menjamin penggambaran yang konkret.\nKURANG TEPAT. Analisis contoh bermanfaat, tetapi peniruan tidak memastikan penerapan dan refleksi.\nTEPAT. Mengintegrasikan perbandingan konsep, pengalaman nyata, revisi, dan refleksi berbukti. Opsi C memungkinkan murid membangun konsep melalui perbandingan, menerapkannya dalam pengamatan taman dan revisi, serta menjelaskan alasan diksi.\nKURANG TEPAT. Pengamatan kontekstual tepat, tetapi tidak disertai evaluasi kualitas tulisan.\nKURANG TEPAT. Bank kata membantu diksi, tetapi tidak menggantikan penalaran memilih detail.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-02",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2124,12 +2382,15 @@
       "Memberi contoh pidato guru, lalu meminta semua murid membacanya dengan intonasi seragam."
     ],
     "answer": 3,
-    "explanation": "KURANG TEPAT. Kompetisi spontan berisiko memperbesar rasa takut dan tidak memusatkan perhatian pada argumentasi.\nKURANG TEPAT. Mengurangi tuntutan memahami audiens dan tujuan persuasif.\nKURANG TEPAT. Menghindari, bukan memfasilitasi, kompetensi berbicara yang dituju.\nTEPAT. Memadukan kesadaran diri, konteks autentik, keamanan psikologis, dan kemajuan bertahap. Pada opsi D murid menetapkan sasaran, berlatih dengan dukungan, menyampaikan pesan bagi audiens nyata, dan memperbaiki performa; ini mendekati ketiga prinsip sekaligus.\nKURANG TEPAT. Model dapat membantu, tetapi penyeragaman tidak membangun pilihan dan kepemilikan pesan."
+    "explanation": "KURANG TEPAT. Kompetisi spontan berisiko memperbesar rasa takut dan tidak memusatkan perhatian pada argumentasi.\nKURANG TEPAT. Mengurangi tuntutan memahami audiens dan tujuan persuasif.\nKURANG TEPAT. Menghindari, bukan memfasilitasi, kompetensi berbicara yang dituju.\nTEPAT. Memadukan kesadaran diri, konteks autentik, keamanan psikologis, dan kemajuan bertahap. Pada opsi D murid menetapkan sasaran, berlatih dengan dukungan, menyampaikan pesan bagi audiens nyata, dan memperbaiki performa; ini mendekati ketiga prinsip sekaligus.\nKURANG TEPAT. Model dapat membantu, tetapi penyeragaman tidak membangun pilihan dan kepemilikan pesan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-03",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2143,12 +2404,15 @@
       "Membolehkan murid memilih moda jawaban, tetapi memberi skor lebih tinggi untuk jawaban tertulis."
     ],
     "answer": 0,
-    "explanation": "TEPAT. Kebutuhan dipetakan, akses diperluas, tantangan disesuaikan, dan konstruk simpulan tetap terjaga. Opsi A memadukan diagnosis, representasi aksesibel, dukungan bertahap, dan kriteria simpulan yang tetap berfokus pada bukti teks. Dalam DUP, akses tidak berarti standar pemahaman diturunkan secara otomatis.\nKURANG TEPAT. Keseragaman waktu tidak mengatasi hambatan akses teks.\nKURANG TEPAT. Mengurangi tuntutan esensial tanpa dasar.\nKURANG TEPAT. Kelompok tetap berisiko memberi label dan mengabaikan perkembangan.\nKURANG TEPAT. Pilihan moda menjadi tidak setara bila skor dipengaruhi moda yang bukan tujuan."
+    "explanation": "TEPAT. Kebutuhan dipetakan, akses diperluas, tantangan disesuaikan, dan konstruk simpulan tetap terjaga. Opsi A memadukan diagnosis, representasi aksesibel, dukungan bertahap, dan kriteria simpulan yang tetap berfokus pada bukti teks. Dalam DUP, akses tidak berarti standar pemahaman diturunkan secara otomatis.\nKURANG TEPAT. Keseragaman waktu tidak mengatasi hambatan akses teks.\nKURANG TEPAT. Mengurangi tuntutan esensial tanpa dasar.\nKURANG TEPAT. Kelompok tetap berisiko memberi label dan mengabaikan perkembangan.\nKURANG TEPAT. Pilihan moda menjadi tidak setara bila skor dipengaruhi moda yang bukan tujuan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-04",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2162,12 +2426,15 @@
       "Memeriksa alasan jawaban, membentuk kelompok sementara sesuai miskonsepsi, memberikan pengayaan evaluasi bukti, lalu mengecek ulang kemajuan."
     ],
     "answer": 4,
-    "explanation": "KURANG TEPAT. Tidak menargetkan perbedaan antara urutan peristiwa dan hubungan kausal.\nKURANG TEPAT. Asesmen awal tidak digunakan untuk keputusan pengajaran.\nKURANG TEPAT. Produk poster tidak langsung menjawab kelemahan penalaran kausal.\nKURANG TEPAT. Tutor sebaya dapat membantu, tetapi tidak menggantikan diagnosis dan dukungan terarah.\nTEPAT. Mengaitkan diagnosis, diferensiasi sementara, pengayaan, dan pemantauan perubahan. Sebaran hasil menunjukkan kebutuhan berbeda: membedakan kronologi dan sebab-akibat, menggunakan bukti kausal, atau mengevaluasi kecukupan bukti. Opsi E menggunakan kelompok sementara dan cek ulang perkembangan; ini sejalan dengan asesmen awal dalam modul dan prinsip TaRL. Jangan menjadikan label kemampuan permanen berdasarkan satu tugas."
+    "explanation": "KURANG TEPAT. Tidak menargetkan perbedaan antara urutan peristiwa dan hubungan kausal.\nKURANG TEPAT. Asesmen awal tidak digunakan untuk keputusan pengajaran.\nKURANG TEPAT. Produk poster tidak langsung menjawab kelemahan penalaran kausal.\nKURANG TEPAT. Tutor sebaya dapat membantu, tetapi tidak menggantikan diagnosis dan dukungan terarah.\nTEPAT. Mengaitkan diagnosis, diferensiasi sementara, pengayaan, dan pemantauan perubahan. Sebaran hasil menunjukkan kebutuhan berbeda: membedakan kronologi dan sebab-akibat, menggunakan bukti kausal, atau mengevaluasi kecukupan bukti. Opsi E menggunakan kelompok sementara dan cek ulang perkembangan; ini sejalan dengan asesmen awal dalam modul dan prinsip TaRL. Jangan menjadikan label kemampuan permanen berdasarkan satu tugas.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-05",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2181,12 +2448,15 @@
       "Membagikan contoh laporan jadi, kemudian mengarahkan murid menyalin struktur dan kalimatnya."
     ],
     "answer": 1,
-    "explanation": "KURANG TEPAT. Keautentikan konteks tidak cukup tanpa verifikasi dan ketepatan genre.\nTEPAT. Menghubungkan sumber lokal, objektivitas, pengolahan bukti, dan revisi. Istilah komunitas pesisir dihargai sebagai pengetahuan yang membantu observasi, tetapi pembelajaran tetap mengharuskan fakta yang dapat diperiksa dan klasifikasi yang objektif. Opsi B menghubungkan konteks lokal dengan penalaran genre; menghafal istilah atau menyalin laporan tidak memenuhi tujuan.\nKURANG TEPAT. Menambah pengetahuan konteks, tetapi belum mengembangkan penulisan laporan.\nKURANG TEPAT. Bukti visual dapat berguna, namun estetika bukan sasaran utama.\nKURANG TEPAT. Contoh dapat menjadi penyangga, tetapi menyalin tidak menunjukkan kemandirian."
+    "explanation": "KURANG TEPAT. Keautentikan konteks tidak cukup tanpa verifikasi dan ketepatan genre.\nTEPAT. Menghubungkan sumber lokal, objektivitas, pengolahan bukti, dan revisi. Istilah komunitas pesisir dihargai sebagai pengetahuan yang membantu observasi, tetapi pembelajaran tetap mengharuskan fakta yang dapat diperiksa dan klasifikasi yang objektif. Opsi B menghubungkan konteks lokal dengan penalaran genre; menghafal istilah atau menyalin laporan tidak memenuhi tujuan.\nKURANG TEPAT. Menambah pengetahuan konteks, tetapi belum mengembangkan penulisan laporan.\nKURANG TEPAT. Bukti visual dapat berguna, namun estetika bukan sasaran utama.\nKURANG TEPAT. Contoh dapat menjadi penyangga, tetapi menyalin tidak menunjukkan kemandirian.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-06",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2200,12 +2470,15 @@
       "Menghindari seluruh sumber digital agar tidak muncul persoalan biaya maupun privasi."
     ],
     "answer": 3,
-    "explanation": "KURANG TEPAT. Popularitas dan fitur tidak mengatasi persoalan data serta akses.\nKURANG TEPAT. Kecepatan interaksi tidak identik dengan literasi kritis.\nKURANG TEPAT. Asumsi akses rumah tidak adil untuk semua murid.\nTEPAT. Mengintegrasikan tujuan, privasi, pemerataan akses, dan validitas bukti literasi. Kinerja yang dinilai adalah memverifikasi klaim lintas sumber, bukan kecepatan klik atau frekuensi penggunaan aplikasi. Opsi D juga menghindari pengumpulan data yang tidak perlu dan menyediakan akses non-digital yang sepadan. Prinsip ini sejalan dengan rancangan lingkungan belajar dan penggunaan teknologi yang mendukung kedalaman belajar; rincian teknis privasi adalah penerapan profesional, bukan pasal regulasi dalam modul.\nKURANG TEPAT. Menutup kesempatan melatih evaluasi informasi digital."
+    "explanation": "KURANG TEPAT. Popularitas dan fitur tidak mengatasi persoalan data serta akses.\nKURANG TEPAT. Kecepatan interaksi tidak identik dengan literasi kritis.\nKURANG TEPAT. Asumsi akses rumah tidak adil untuk semua murid.\nTEPAT. Mengintegrasikan tujuan, privasi, pemerataan akses, dan validitas bukti literasi. Kinerja yang dinilai adalah memverifikasi klaim lintas sumber, bukan kecepatan klik atau frekuensi penggunaan aplikasi. Opsi D juga menghindari pengumpulan data yang tidak perlu dan menyediakan akses non-digital yang sepadan. Prinsip ini sejalan dengan rancangan lingkungan belajar dan penggunaan teknologi yang mendukung kedalaman belajar; rincian teknis privasi adalah penerapan profesional, bukan pasal regulasi dalam modul.\nKURANG TEPAT. Menutup kesempatan melatih evaluasi informasi digital.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-07",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2219,7 +2492,10 @@
       "Menugaskan kampanye digital tanpa menyediakan waktu untuk menelaah ketepatan isi dan dampaknya."
     ],
     "answer": 2,
-    "explanation": "KURANG TEPAT. Penguasaan ciri belum menunjukkan penerapan dan refleksi.\nKURANG TEPAT. Penilaian visual dapat membantu, tetapi tidak menguji alasan dan bukti persuasi.\nTEPAT. Tepat: murid memahami contoh, menerapkan konsep pada kebutuhan nyata, dan merefleksikan kualitas pesan. Pengalaman belajar mendalam tidak selesai saat murid dapat mengenali ajakan dan bukti dalam contoh. Jawaban C meminta penerapan pada warga sekolah serta telaah respons, kecukupan alasan, dan revisi; dengan demikian ada transfer dan refleksi\nKURANG TEPAT. Peniruan mengurangi kesempatan murid membuat keputusan dan memberi alasan.\nKURANG TEPAT. Produk kampanye belum cukup membuktikan pemahaman bila klaim tidak diperiksa."
+    "explanation": "KURANG TEPAT. Penguasaan ciri belum menunjukkan penerapan dan refleksi.\nKURANG TEPAT. Penilaian visual dapat membantu, tetapi tidak menguji alasan dan bukti persuasi.\nTEPAT. Tepat: murid memahami contoh, menerapkan konsep pada kebutuhan nyata, dan merefleksikan kualitas pesan. Pengalaman belajar mendalam tidak selesai saat murid dapat mengenali ajakan dan bukti dalam contoh. Jawaban C meminta penerapan pada warga sekolah serta telaah respons, kecukupan alasan, dan revisi; dengan demikian ada transfer dan refleksi\nKURANG TEPAT. Peniruan mengurangi kesempatan murid membuat keputusan dan memberi alasan.\nKURANG TEPAT. Produk kampanye belum cukup membuktikan pemahaman bila klaim tidak diperiksa.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-08",
@@ -2238,12 +2514,15 @@
       "Pernyataan murid bahwa kampanye telah berhasil karena semua anggota setuju."
     ],
     "answer": 2,
-    "explanation": "KURANG TEPAT. Keindahan visual bukan bukti validitas klaim.\nKURANG TEPAT. Kuantitas slogan tidak menunjukkan penalaran berbasis bukti.\nTEPAT. Menunjukkan pemeriksaan fakta, penerapan hasil, dan refleksi atas perubahan.\nKURANG TEPAT. Popularitas unggahan dipengaruhi faktor lain.\nKURANG TEPAT. Kesepakatan kelompok tidak menggantikan bukti perubahan pemahaman."
+    "explanation": "KURANG TEPAT. Keindahan visual bukan bukti validitas klaim.\nKURANG TEPAT. Kuantitas slogan tidak menunjukkan penalaran berbasis bukti.\nTEPAT. Menunjukkan pemeriksaan fakta, penerapan hasil, dan refleksi atas perubahan.\nKURANG TEPAT. Popularitas unggahan dipengaruhi faktor lain.\nKURANG TEPAT. Kesepakatan kelompok tidak menggantikan bukti perubahan pemahaman.",
+    "prodiScope": [
+      "umum"
+    ]
   },
   {
     "id": "ust-desy-pma-09",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2257,12 +2536,15 @@
       "“Tanyakan kepada teman apakah mereka menyukai pendapatmu dan sesuaikan dengan suara terbanyak.”"
     ],
     "answer": 0,
-    "explanation": "TEPAT. Memuat kekuatan, kesenjangan spesifik, strategi perbaikan, dan pemeriksaan hasil revisi. Opsi A menghubungkan keberhasilan awal (posisi sudah jelas), kesenjangan utama (belum ada relasi klaim–alasan–bukti), langkah revisi (memilih bukti terverifikasi), dan pemeriksaan kemajuan (membandingkan draf). Komentar umum atau sekadar angka tidak memberikan jalur perbaikan.\nKURANG TEPAT. Saran umum tanpa petunjuk aspek yang perlu diperbaiki.\nKURANG TEPAT. Nilai saja tidak memberi arah tindakan formatif.\nKURANG TEPAT. Aspek penyajian bukan kelemahan utama yang ditemukan.\nKURANG TEPAT. Kesukaan mayoritas bukan ukuran kekuatan argumen."
+    "explanation": "TEPAT. Memuat kekuatan, kesenjangan spesifik, strategi perbaikan, dan pemeriksaan hasil revisi. Opsi A menghubungkan keberhasilan awal (posisi sudah jelas), kesenjangan utama (belum ada relasi klaim–alasan–bukti), langkah revisi (memilih bukti terverifikasi), dan pemeriksaan kemajuan (membandingkan draf). Komentar umum atau sekadar angka tidak memberikan jalur perbaikan.\nKURANG TEPAT. Saran umum tanpa petunjuk aspek yang perlu diperbaiki.\nKURANG TEPAT. Nilai saja tidak memberi arah tindakan formatif.\nKURANG TEPAT. Aspek penyajian bukan kelemahan utama yang ditemukan.\nKURANG TEPAT. Kesukaan mayoritas bukan ukuran kekuatan argumen.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-10",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2276,12 +2558,15 @@
       "Meminta murid memilih peristiwa pengubah sikap tokoh, menyertakan kutipan pendukung kemudian memakai hasilnya untuk diskusi ulang."
     ],
     "answer": 4,
-    "explanation": "KURANG TEPAT. Panjang tulisan bukan bukti penalaran perubahan tokoh.\nKURANG TEPAT. Respons afektif bermakna, tetapi belum menunjukkan penafsiran berbukti.\nKURANG TEPAT. Pernyataan diri tidak cukup memvalidasi pemahaman.\nKURANG TEPAT. Informasi faktual cerita tidak sama dengan hubungan sebab-akibat tindakan tokoh.\nTEPAT. Menuntut klaim interpretatif, bukti teks, dan tindak lanjut. Pernyataan “sudah paham” adalah laporan persepsi, bukan bukti cukup tentang interpretasi. Opsi E menuntut peristiwa pemicu, bukti kutipan, dan interpretasi perubahan tokoh; respons kemudian dipakai untuk umpan balik. Perasaan murid bernilai, namun belum menjawab target analisis tokoh tanpa rujukan teks."
+    "explanation": "KURANG TEPAT. Panjang tulisan bukan bukti penalaran perubahan tokoh.\nKURANG TEPAT. Respons afektif bermakna, tetapi belum menunjukkan penafsiran berbukti.\nKURANG TEPAT. Pernyataan diri tidak cukup memvalidasi pemahaman.\nKURANG TEPAT. Informasi faktual cerita tidak sama dengan hubungan sebab-akibat tindakan tokoh.\nTEPAT. Menuntut klaim interpretatif, bukti teks, dan tindak lanjut. Pernyataan “sudah paham” adalah laporan persepsi, bukan bukti cukup tentang interpretasi. Opsi E menuntut peristiwa pemicu, bukti kutipan, dan interpretasi perubahan tokoh; respons kemudian dipakai untuk umpan balik. Perasaan murid bernilai, namun belum menjawab target analisis tokoh tanpa rujukan teks.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-11",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2295,7 +2580,10 @@
       "Membebaskan kelompok memilih format pementasan dan memberi nilai hanya pada kreativitas."
     ],
     "answer": 3,
-    "explanation": "KURANG TEPAT. Kostum/dekorasi bukan ukuran utama pemahaman puisi.\nKURANG TEPAT. Apresiasi penonton tidak membuktikan capaian tiap individu.\nKURANG TEPAT. Hafalan dapat mendukung tampil, tetapi bukan sasaran interpretasi.\nTEPAT. Tujuan, proses, ekspresi, dan bukti individual diselaraskan. Jika tujuan menafsirkan makna dan bukti bahasa puisi, asesmen harus mengukur tafsir, penggunaan bukti diksi/citraan, justifikasi ekspresi, dan kontribusi individu. Opsi D membuat bukti belajar relevan sebelum menilai faktor panggung yang sekunder. Ini merefleksikan tiga tahap UbD: tujuan, bukti asesmen, kegiatan.\nKURANG TEPAT. Kreativitas penting, namun harus dibatasi kriteria kompetensi yang dinilai."
+    "explanation": "KURANG TEPAT. Kostum/dekorasi bukan ukuran utama pemahaman puisi.\nKURANG TEPAT. Apresiasi penonton tidak membuktikan capaian tiap individu.\nKURANG TEPAT. Hafalan dapat mendukung tampil, tetapi bukan sasaran interpretasi.\nTEPAT. Tujuan, proses, ekspresi, dan bukti individual diselaraskan. Jika tujuan menafsirkan makna dan bukti bahasa puisi, asesmen harus mengukur tafsir, penggunaan bukti diksi/citraan, justifikasi ekspresi, dan kontribusi individu. Opsi D membuat bukti belajar relevan sebelum menilai faktor panggung yang sekunder. Ini merefleksikan tiga tahap UbD: tujuan, bukti asesmen, kegiatan.\nKURANG TEPAT. Kreativitas penting, namun harus dibatasi kriteria kompetensi yang dinilai.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-12",
@@ -2314,12 +2602,15 @@
       "Menugaskan refleksi pribadi satu kali tanpa melihat rekaman proses kerja sama."
     ],
     "answer": 0,
-    "explanation": "TEPAT. Bukti berulang dan beragam sumber menggambarkan proses individu serta memungkinkan perbaikan. Produk debat kuat bukan bukti bahwa setiap anggota berkolaborasi dengan baik. Jawaban A menilai kontribusi individu melalui observasi berkriteria, refleksi, dan bukti antarteman yang ditelaah silang. Konsistensi indikator membantu mutu keputusan; jumlah waktu berbicara hanya salah satu data, bukan ukuran tunggal.\nKURANG TEPAT. Mutu produk tidak otomatis menunjukkan kolaborasi per anggota.\nKURANG TEPAT. Frekuensi bicara dapat menutupi tugas riset dan mendengarkan.\nKURANG TEPAT. Durasi bicara bukan satu-satunya dimensi kerja sama.\nKURANG TEPAT. Refleksi diri berguna tetapi memerlukan triangulasi."
+    "explanation": "TEPAT. Bukti berulang dan beragam sumber menggambarkan proses individu serta memungkinkan perbaikan. Produk debat kuat bukan bukti bahwa setiap anggota berkolaborasi dengan baik. Jawaban A menilai kontribusi individu melalui observasi berkriteria, refleksi, dan bukti antarteman yang ditelaah silang. Konsistensi indikator membantu mutu keputusan; jumlah waktu berbicara hanya salah satu data, bukan ukuran tunggal.\nKURANG TEPAT. Mutu produk tidak otomatis menunjukkan kolaborasi per anggota.\nKURANG TEPAT. Frekuensi bicara dapat menutupi tugas riset dan mendengarkan.\nKURANG TEPAT. Durasi bicara bukan satu-satunya dimensi kerja sama.\nKURANG TEPAT. Refleksi diri berguna tetapi memerlukan triangulasi.",
+    "prodiScope": [
+      "umum"
+    ]
   },
   {
     "id": "ust-desy-pma-13",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2333,12 +2624,15 @@
       "Mewajibkan respons esai panjang bagi semua murid sekalipun tujuan utamanya mengevaluasi argumen."
     ],
     "answer": 3,
-    "explanation": "KURANG TEPAT. Membuat skor dipengaruhi moda bukan kompetensi evaluasi.\nKURANG TEPAT. Mengubah tuntutan keterampilan bagi pengguna audio.\nKURANG TEPAT. Kesamaan tema tidak menjamin kesepadanan kompleksitas bahan.\nTEPAT. Menjaga kesetaraan stimulus, konstruk, kriteria, dan akses respons. Jawaban D menjaga kesepadanan isi dan kesulitan editorial pada tiap moda serta menggunakan kriteria penilaian yang sama atas evaluasi bukti. Jika kemampuan membaca teks cetak secara spesifik sedang diukur, perubahan moda harus ditinjau ulang; dalam kasus ini targetnya mengevaluasi argumentasi, sehingga hambatan akses tidak seharusnya mendistorsi skor.\nKURANG TEPAT. Bentuk respons tunggal bisa menambah hambatan yang tidak relevan."
+    "explanation": "KURANG TEPAT. Membuat skor dipengaruhi moda bukan kompetensi evaluasi.\nKURANG TEPAT. Mengubah tuntutan keterampilan bagi pengguna audio.\nKURANG TEPAT. Kesamaan tema tidak menjamin kesepadanan kompleksitas bahan.\nTEPAT. Menjaga kesetaraan stimulus, konstruk, kriteria, dan akses respons. Jawaban D menjaga kesepadanan isi dan kesulitan editorial pada tiap moda serta menggunakan kriteria penilaian yang sama atas evaluasi bukti. Jika kemampuan membaca teks cetak secara spesifik sedang diukur, perubahan moda harus ditinjau ulang; dalam kasus ini targetnya mengevaluasi argumentasi, sehingga hambatan akses tidak seharusnya mendistorsi skor.\nKURANG TEPAT. Bentuk respons tunggal bisa menambah hambatan yang tidak relevan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-14",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2352,12 +2646,15 @@
       "Mengganti tugas memahami podcast dengan penampilan pidato bebas."
     ],
     "answer": 1,
-    "explanation": "KURANG TEPAT. Kelantangan bukan konstruk utama asesmen pemahaman isi.\nTEPAT. Memfokuskan bukti pada konstruk target sambil meminimalkan hambatan performa yang tak relevan.\nKURANG TEPAT. Mencampur kesulitan berbicara dengan ketepatan menyimak.\nKURANG TEPAT. Penilaian teman saja belum menjamin reliabilitas dan validitas.\nKURANG TEPAT. Mengganti kompetensi yang dinilai."
+    "explanation": "KURANG TEPAT. Kelantangan bukan konstruk utama asesmen pemahaman isi.\nTEPAT. Memfokuskan bukti pada konstruk target sambil meminimalkan hambatan performa yang tak relevan.\nKURANG TEPAT. Mencampur kesulitan berbicara dengan ketepatan menyimak.\nKURANG TEPAT. Penilaian teman saja belum menjamin reliabilitas dan validitas.\nKURANG TEPAT. Mengganti kompetensi yang dinilai.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-15",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2371,12 +2668,15 @@
       "Memberi A contoh dan noncontoh kritik sosial, B latihan kutipan serta alasan, C perbandingan kritik dua teks, lalu menilai ulang dan mengubah kelompok sesuai kemajuan."
     ],
     "answer": 4,
-    "explanation": "KURANG TEPAT. Keseragaman latihan tidak sesuai pola kekeliruan yang terdiagnosis.\nKURANG TEPAT. Tidak menargetkan kelemahan B dan mengabaikan pengayaan C.\nKURANG TEPAT. Pengelompokan permanen tidak responsif terhadap perkembangan.\nKURANG TEPAT. Tugas seragam tanpa penyangga tidak menutup kesenjangan spesifik.\nTEPAT. Diferensiasi berlandas bukti dengan pengelompokan fleksibel dan asesmen ulang. Tiga kelompok dalam stimulus memiliki hambatan yang berlainan, sehingga jawaban E memasangkan intervensi berbeda dengan indikator yang spesifik. Cek ulang penting agar dukungan bergeser ketika murid telah berkembang; seluruh murid tetap ditantang memahami kritik sosial melalui bukti tekstual."
+    "explanation": "KURANG TEPAT. Keseragaman latihan tidak sesuai pola kekeliruan yang terdiagnosis.\nKURANG TEPAT. Tidak menargetkan kelemahan B dan mengabaikan pengayaan C.\nKURANG TEPAT. Pengelompokan permanen tidak responsif terhadap perkembangan.\nKURANG TEPAT. Tugas seragam tanpa penyangga tidak menutup kesenjangan spesifik.\nTEPAT. Diferensiasi berlandas bukti dengan pengelompokan fleksibel dan asesmen ulang. Tiga kelompok dalam stimulus memiliki hambatan yang berlainan, sehingga jawaban E memasangkan intervensi berbeda dengan indikator yang spesifik. Cek ulang penting agar dukungan bergeser ketika murid telah berkembang; seluruh murid tetap ditantang memahami kritik sosial melalui bukti tekstual.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-16",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2390,12 +2690,15 @@
       "Membebaskan murid yang pernah ditertawakan dari kegiatan berbagi gagasan sepanjang semester."
     ],
     "answer": 0,
-    "explanation": "TEPAT. Pengalaman dan identitas budaya menjadi sumber untuk mencapai tujuan analisis dan kreasi dengan lingkungan aman. Jawaban A tidak berhenti pada “menghadirkan legenda”, tetapi menjamin aman dari ejekan logat, mengundang perbandingan cerita antarkomunitas, dan menuntun penerapan analisis pada genre yang dipelajari. CRT menghubungkan pengalaman budaya dengan pengetahuan akademik sekaligus membantu guru mengenali bias bahasa dan partisipasi.\nKURANG TEPAT. Dominasi satu budaya mengabaikan pengetahuan dan identitas murid lain.\nKURANG TEPAT. Kewajiban moda bahasa tidak otomatis responsif dan dapat mengaburkan tujuan.\nKURANG TEPAT. Budaya hanya menjadi dekorasi, belum terintegrasi dalam proses belajar.\nKURANG TEPAT. Mengurangi partisipasi murid tanpa memperbaiki rasa aman dan penghargaan."
+    "explanation": "TEPAT. Pengalaman dan identitas budaya menjadi sumber untuk mencapai tujuan analisis dan kreasi dengan lingkungan aman. Jawaban A tidak berhenti pada “menghadirkan legenda”, tetapi menjamin aman dari ejekan logat, mengundang perbandingan cerita antarkomunitas, dan menuntun penerapan analisis pada genre yang dipelajari. CRT menghubungkan pengalaman budaya dengan pengetahuan akademik sekaligus membantu guru mengenali bias bahasa dan partisipasi.\nKURANG TEPAT. Dominasi satu budaya mengabaikan pengetahuan dan identitas murid lain.\nKURANG TEPAT. Kewajiban moda bahasa tidak otomatis responsif dan dapat mengaburkan tujuan.\nKURANG TEPAT. Budaya hanya menjadi dekorasi, belum terintegrasi dalam proses belajar.\nKURANG TEPAT. Mengurangi partisipasi murid tanpa memperbaiki rasa aman dan penghargaan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-17",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2409,12 +2712,15 @@
       "Meminta sembilan murid yang mahir menyelesaikan semua tugas penyimpulan milik teman lainnya."
     ],
     "answer": 2,
-    "explanation": "KURANG TEPAT. Tantangan seragam tanpa dukungan dapat mengabaikan kesiapan aktual.\nKURANG TEPAT. TaRL menuntut penyesuaian dinamis, bukan pelabelan permanen.\nTEPAT. Tingkat tugas ditentukan oleh capaian aktual, disertai pemantauan dan pengelompokan fleksibel. Jawaban C mengawali tindakan dari keterampilan yang terbukti: fakta/opini, klasifikasi, dan simpulan berbukti. Bantuan serta pengayaan disusun berjenjang; asesmen singkat menentukan perpindahan dukungan. Pengelompokan TaRL harus dapat diperbarui, tidak mengekalkan identitas “lemah”/“pandai”.\nKURANG TEPAT. Mengabaikan murid yang sudah siap belajar lebih jauh.\nKURANG TEPAT. Bantuan sejawat boleh digunakan, tetapi bukan penggantian kerja dan capaian individual."
+    "explanation": "KURANG TEPAT. Tantangan seragam tanpa dukungan dapat mengabaikan kesiapan aktual.\nKURANG TEPAT. TaRL menuntut penyesuaian dinamis, bukan pelabelan permanen.\nTEPAT. Tingkat tugas ditentukan oleh capaian aktual, disertai pemantauan dan pengelompokan fleksibel. Jawaban C mengawali tindakan dari keterampilan yang terbukti: fakta/opini, klasifikasi, dan simpulan berbukti. Bantuan serta pengayaan disusun berjenjang; asesmen singkat menentukan perpindahan dukungan. Pengelompokan TaRL harus dapat diperbarui, tidak mengekalkan identitas “lemah”/“pandai”.\nKURANG TEPAT. Mengabaikan murid yang sudah siap belajar lebih jauh.\nKURANG TEPAT. Bantuan sejawat boleh digunakan, tetapi bukan penggantian kerja dan capaian individual.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-18",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2428,12 +2734,15 @@
       "Menghapus seluruh tugas evaluasi dan menggantinya dengan permainan memilih gambar agar kelas menyenangkan."
     ],
     "answer": 3,
-    "explanation": "KURANG TEPAT. Moda tunggal berpotensi menciptakan hambatan akses yang tidak relevan.\nKURANG TEPAT. Standar inti penalaran tidak semestinya diturunkan hanya karena hambatan akses.\nKURANG TEPAT. Pilihan yang tidak sepadan mengurangi keterbandingan bukti capaian.\nTEPAT. Tepat: menggabungkan variasi representasi, aksi/ekspresi, dan keterlibatan dengan tujuan serta kriteria tetap. Pilihan D menghadirkan beragam representasi materi, cara terlibat, dan ekspresi penalaran, tetapi tetap menilai relasi klaim–bukti–simpulan. Catatan kunci: alternatif respons dapat diterima jika tidak mengganti kompetensi yang diuji. Aksesibilitas sebaiknya dirancang sejak awal, bukan respons darurat setelah sebagian murid tertinggal.\nKURANG TEPAT. Keterlibatan saja tanpa bukti evaluasi tidak memenuhi tujuan."
+    "explanation": "KURANG TEPAT. Moda tunggal berpotensi menciptakan hambatan akses yang tidak relevan.\nKURANG TEPAT. Standar inti penalaran tidak semestinya diturunkan hanya karena hambatan akses.\nKURANG TEPAT. Pilihan yang tidak sepadan mengurangi keterbandingan bukti capaian.\nTEPAT. Tepat: menggabungkan variasi representasi, aksi/ekspresi, dan keterlibatan dengan tujuan serta kriteria tetap. Pilihan D menghadirkan beragam representasi materi, cara terlibat, dan ekspresi penalaran, tetapi tetap menilai relasi klaim–bukti–simpulan. Catatan kunci: alternatif respons dapat diterima jika tidak mengganti kompetensi yang diuji. Aksesibilitas sebaiknya dirancang sejak awal, bukan respons darurat setelah sebagian murid tertinggal.\nKURANG TEPAT. Keterlibatan saja tanpa bukti evaluasi tidak memenuhi tujuan.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-19",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2447,12 +2756,15 @@
       "Memilih delapan murid termahir untuk menyelesaikan contoh paragraf bagi seluruh kelas."
     ],
     "answer": 1,
-    "explanation": "A KURANG TEPAT. Asesmen awal utamanya menjadi dasar perencanaan, bukan otomatis nilai akhir. B TEPAT. Keputusan menggabungkan data kognitif dan kondisi belajar untuk peta kebutuhan yang adaptif. Tulisan awal perlu ditelaah berdasarkan unsur argumentasi yang berbeda, bukan dijadikan satu skor tanpa diagnosis. Jawaban B menggunakan peta kesenjangan dan kebutuhan untuk menyusun bantuan serta pengayaan, sambil mempertimbangkan informasi pendukung yang relevan secara etis. C KURANG TEPAT. Pengelompokan tetap tidak responsif terhadap perkembangan. D KURANG TEPAT. Pengulangan seragam tidak menanggapi perbedaan kesulitan. E KURANG TEPAT. Contoh teman bisa membantu, tetapi tidak menggantikan pemetaan kebutuhan semua murid."
+    "explanation": "A KURANG TEPAT. Asesmen awal utamanya menjadi dasar perencanaan, bukan otomatis nilai akhir. B TEPAT. Keputusan menggabungkan data kognitif dan kondisi belajar untuk peta kebutuhan yang adaptif. Tulisan awal perlu ditelaah berdasarkan unsur argumentasi yang berbeda, bukan dijadikan satu skor tanpa diagnosis. Jawaban B menggunakan peta kesenjangan dan kebutuhan untuk menyusun bantuan serta pengayaan, sambil mempertimbangkan informasi pendukung yang relevan secara etis. C KURANG TEPAT. Pengelompokan tetap tidak responsif terhadap perkembangan. D KURANG TEPAT. Pengulangan seragam tidak menanggapi perbedaan kesulitan. E KURANG TEPAT. Contoh teman bisa membantu, tetapi tidak menggantikan pemetaan kebutuhan semua murid.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-desy-pma-20",
     "bank": "PU",
-    "topic": "PMA & Asesmen (Umum)",
+    "topic": "PMA & Asesmen (Bahasa Indonesia)",
     "source": "Pendalaman PMA Bu Desy",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2466,12 +2778,15 @@
       "Menganalisis bersama alasan murid memilih sumber, merevisi penyangga pemeriksaan klaim–bukti, menguji ulang, lalu membandingkan kualitas justifikasi sebelum dan sesudah perbaikan."
     ],
     "answer": 4,
-    "explanation": "A. KURANG TEPAT. Peningkatan frekuensi menyebut nama situs adalah bukti aktivitas, bukan bukti mutu evaluasi sumber; refleksi belum menguji tujuan.\nB. KURANG TEPAT. Pengulangan prosedur tanpa diagnosis tidak menjawab masalah utama, yakni penalaran tentang kredibilitas bukti.\nC. KURANG TEPAT. Praktik kolega dapat dipelajari, tetapi penerapan tanpa menelaah konteks dan data murid bukan inkuiri kolaboratif.\nD. KURANG TEPAT. Mengubah target menjadi pengenalan media akan mengabaikan kemampuan memeriksa klaim dan sumber.\nE. TEPAT. Tim mengidentifikasi bukti kesulitan, merancang perbaikan, menerapkan strategi, mengukur perubahan kualitas alasan murid, dan merefleksikan tindak lanjut. Inkuiri kolaboratif tidak berhenti pada rapat atau berbagi metode. Guru menelaah data murid, merancang perbaikan, menerapkan, mengukur dampak, dan menyesuaikan strategi dalam siklus berikutnya."
+    "explanation": "A. KURANG TEPAT. Peningkatan frekuensi menyebut nama situs adalah bukti aktivitas, bukan bukti mutu evaluasi sumber; refleksi belum menguji tujuan.\nB. KURANG TEPAT. Pengulangan prosedur tanpa diagnosis tidak menjawab masalah utama, yakni penalaran tentang kredibilitas bukti.\nC. KURANG TEPAT. Praktik kolega dapat dipelajari, tetapi penerapan tanpa menelaah konteks dan data murid bukan inkuiri kolaboratif.\nD. KURANG TEPAT. Mengubah target menjadi pengenalan media akan mengabaikan kemampuan memeriksa klaim dan sumber.\nE. TEPAT. Tim mengidentifikasi bukti kesulitan, merancang perbaikan, menerapkan strategi, mengukur perubahan kualitas alasan murid, dan merefleksikan tindak lanjut. Inkuiri kolaboratif tidak berhenti pada rapat atau berbagi metode. Guru menelaah data murid, merancang perbaikan, menerapkan, mengukur dampak, dan menyesuaikan strategi dalam siklus berikutnya.",
+    "prodiScope": [
+      "bahasa-indonesia"
+    ]
   },
   {
     "id": "ust-dwi-ppdp-01",
-    "bank": "PU",
-    "topic": "PPDP (Perkembangan Murid)",
+    "bank": "PCK",
+    "topic": "Vokasi · DKV SMK",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2484,12 +2799,15 @@
       "Teori Belajar Sibernetik yang menekankan pada kecepatan pemrosesan sistem memori komputer grafis."
     ],
     "answer": 1,
-    "explanation": "Kasus ini menguji pemahaman mahasiswa PPG mengenai teori perkembangan kognitif Vygotsky. Kemampuan Rian yang awalnya belum bisa mendesain mandiri tetapi bisa dengan bantuan pertanyaan pemandu menunjukkan ia berada di area ZPD-nya. Bantuan terukur yang diberikan guru dan dikurangi secara bertahap (fading) disebut scaffolding. Di SMK DKV, pendekatan ini sangat krusial saat siswa beralih dari pemahaman konseptual estetika ke eksekusi teknis software."
+    "explanation": "Kasus ini menguji pemahaman mahasiswa PPG mengenai teori perkembangan kognitif Vygotsky. Kemampuan Rian yang awalnya belum bisa mendesain mandiri tetapi bisa dengan bantuan pertanyaan pemandu menunjukkan ia berada di area ZPD-nya. Bantuan terukur yang diberikan guru dan dikurangi secara bertahap (fading) disebut scaffolding. Di SMK DKV, pendekatan ini sangat krusial saat siswa beralih dari pemahaman konseptual estetika ke eksekusi teknis software.",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-dwi-ppdp-02",
-    "bank": "PU",
-    "topic": "PPDP (Perkembangan Murid)",
+    "bank": "PCK",
+    "topic": "Vokasi · DKV SMK",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2502,12 +2820,15 @@
       "Memusatkan pembelajaran pada peserta didik Kelompok A dan B yang memiliki kemampuan lebih menonjol agar target penyelesaian projek Branding Produk UMKM dapat tercapai tepat waktu."
     ],
     "answer": 2,
-    "explanation": "Jawaban C merupakan pilihan paling tepat karena mencerminkan pemanfaatan hasil profiling peserta didik sebagai dasar dalam merancang pembelajaran yang adaptif, diferensiatif, dan inklusif. Kelompok A memperoleh pendampingan untuk mengembangkan kemampuan analisis riset pasar (user persona). Kelompok B memperoleh latihan bertahap dalam penguasaan software grafis dan pengembangan kompetensi storytelling. Kelompok C memperoleh scaffolding berupa panduan visual untuk memahami konsep dasar warna dan tipografi. Pendekatan tersebut menunjukkan bahwa guru tidak memperlakukan seluruh peserta didik secara seragam, melainkan memberikan dukungan sesuai karakteristik, potensi, dan kebutuhan belajar masing-masing."
+    "explanation": "Jawaban C merupakan pilihan paling tepat karena mencerminkan pemanfaatan hasil profiling peserta didik sebagai dasar dalam merancang pembelajaran yang adaptif, diferensiatif, dan inklusif. Kelompok A memperoleh pendampingan untuk mengembangkan kemampuan analisis riset pasar (user persona). Kelompok B memperoleh latihan bertahap dalam penguasaan software grafis dan pengembangan kompetensi storytelling. Kelompok C memperoleh scaffolding berupa panduan visual untuk memahami konsep dasar warna dan tipografi. Pendekatan tersebut menunjukkan bahwa guru tidak memperlakukan seluruh peserta didik secara seragam, melainkan memberikan dukungan sesuai karakteristik, potensi, dan kebutuhan belajar masing-masing.",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-dwi-ppdp-03",
-    "bank": "PU",
-    "topic": "PPDP (Perkembangan Murid)",
+    "bank": "PCK",
+    "topic": "Vokasi · DKV SMK",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2521,12 +2842,15 @@
       "Meminta siswa menghafalkan seluruh isi buku manual kamera DSLR sebelum diizinkan menyentuh perangkat kamera studio."
     ],
     "answer": 1,
-    "explanation": "Perkembangan emosional remaja SMK membutuhkan tantangan nyata yang bermakna (kontekstual) untuk memicu motivasi intrinsik mereka. Dengan membawa masalah riil (kuliner kantin) dan memberikan ruang eksplorasi yang aman dari tekanan psikologis salah/benar (B), guru berhasil menciptakan safe learning environment. Tindakan ini selaras dengan pendekatan konstruktivistik dan humanistik dalam PPDP, di mana siswa merasa dihargai otonominya."
+    "explanation": "Perkembangan emosional remaja SMK membutuhkan tantangan nyata yang bermakna (kontekstual) untuk memicu motivasi intrinsik mereka. Dengan membawa masalah riil (kuliner kantin) dan memberikan ruang eksplorasi yang aman dari tekanan psikologis salah/benar (B), guru berhasil menciptakan safe learning environment. Tindakan ini selaras dengan pendekatan konstruktivistik dan humanistik dalam PPDP, di mana siswa merasa dihargai otonominya.",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   },
   {
     "id": "ust-dwi-ppdp-04",
-    "bank": "PU",
-    "topic": "PPDP (Perkembangan Murid)",
+    "bank": "PCK",
+    "topic": "Vokasi · DKV SMK",
     "source": "Soal PPDP SMK Pak Dwi",
     "type": "PG",
     "kompetensi": "Pedagogik",
@@ -2539,6 +2863,9 @@
       "Memisahkan Beni dan Doni dari kegiatan projek kelompok agar keduanya dapat menyelesaikan permasalahan masing-masing tanpa mengganggu proses pembelajaran peserta didik lainnya."
     ],
     "answer": 2,
-    "explanation": "Jawaban C merupakan strategi paling tepat karena mengintegrasikan pemahaman terhadap perkembangan sosio-emosional dan moral peserta didik. Penanganan Beni: Guru perlu memberikan pendekatan empatik, melakukan validasi emosi, serta membimbing Beni mengembangkan kemampuan regulasi diri ketika menghadapi tekanan. Pendampingan bertahap, misalnya melalui pembuatan moodboard, dapat membantu mengatasi hambatan dalam menemukan ide visual. Penanganan Doni: Guru perlu memberikan pemahaman mengenai etika profesi desainer dan hak kekayaan intelektual (HKI). Doni diarahkan untuk menggunakan referensi secara bertanggung jawab melalui proses eksplorasi, modifikasi yang sah, dan penciptaan karya orisinal. Dengan demikian, guru tidak hanya berorientasi pada penyelesaian tugas, tetapi juga mengembangkan kematangan emosional, tanggung jawab moral, dan karakter profesional peserta didik."
+    "explanation": "Jawaban C merupakan strategi paling tepat karena mengintegrasikan pemahaman terhadap perkembangan sosio-emosional dan moral peserta didik. Penanganan Beni: Guru perlu memberikan pendekatan empatik, melakukan validasi emosi, serta membimbing Beni mengembangkan kemampuan regulasi diri ketika menghadapi tekanan. Pendampingan bertahap, misalnya melalui pembuatan moodboard, dapat membantu mengatasi hambatan dalam menemukan ide visual. Penanganan Doni: Guru perlu memberikan pemahaman mengenai etika profesi desainer dan hak kekayaan intelektual (HKI). Doni diarahkan untuk menggunakan referensi secara bertanggung jawab melalui proses eksplorasi, modifikasi yang sah, dan penciptaan karya orisinal. Dengan demikian, guru tidak hanya berorientasi pada penyelesaian tugas, tetapi juga mengembangkan kematangan emosional, tanggung jawab moral, dan karakter profesional peserta didik.",
+    "prodiScope": [
+      "smk-vokasi"
+    ]
   }
 ]

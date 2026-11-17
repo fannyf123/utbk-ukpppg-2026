@@ -52,7 +52,7 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
             <tbody>
               <tr>
                 <th>Total Soal</th>
-                <td>80 Butir (50 PCK Teknik Mesin + 30 Pedagogi Umum)</td>
+                <td>80 Butir Resmi (50 PCK Bidang Studi/Prodi + 30 Pedagogi Umum)</td>
               </tr>
               <tr>
                 <th>Waktu Pengerjaan</th>

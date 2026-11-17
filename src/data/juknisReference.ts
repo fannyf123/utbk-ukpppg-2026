@@ -95,37 +95,37 @@ export const JUKNIS_SUBCOMPETENCIES: SubcompetencyMeta[] = [
   {
     code: 'PF.1',
     kompetensi: 'Profesional',
-    shortTitle: 'Tujuan Pendidikan Satuan Pendidikan (SMK)',
+    shortTitle: 'Tujuan Pendidikan Satuan Pendidikan',
     description:
-      'Menguasai tujuan pendidikan terutama pada Satuan Pendidikan yang diampu (kesiapan kerja, wirausaha, dan lanjut studi SMK).',
+      'Menguasai tujuan pendidikan terutama pada Satuan Pendidikan yang diampu sesuai profil lulusan dan konteks jenjang.',
   },
   {
     code: 'PF.2',
     kompetensi: 'Profesional',
-    shortTitle: 'Penguasaan Disiplin Ilmu Teknik Mesin',
+    shortTitle: 'Penguasaan Materi Bidang Studi',
     description:
-      'Menguasai disiplin ilmu Teknik Mesin secara mendalam dan kontekstual (Gambar/CAD, Pemesinan, CNC, Metrologi, Material, Pengelasan, K3LH).',
+      'Menguasai struktur keilmuan, konsep esensial, serta literasi/keterampilan bidang studi secara mendalam dan kontekstual.',
   },
   {
     code: 'PF.3',
     kompetensi: 'Profesional',
     shortTitle: 'Karakteristik Materi & Kebutuhan Murid',
     description:
-      'Memahami potensi dan kebutuhan belajar Murid berdasarkan karakteristik konsep keteknikmesinan dan konteks lokal.',
+      'Memahami potensi dan kebutuhan belajar Murid berdasarkan karakteristik konsep materi ajar dan konteks lokal.',
   },
   {
     code: 'PF.4',
     kompetensi: 'Profesional',
-    shortTitle: 'Kurikulum Adaptif & Perkembangan Industri',
+    shortTitle: 'Kurikulum Adaptif & Perkembangan Bidang',
     description:
-      'Memahami, menerapkan, dan mengembangkan kurikulum SMK/TeFa secara adaptif sesuai perkembangan teknologi manufaktur.',
+      'Memahami, menerapkan, dan mengembangkan kurikulum serta alur tujuan pembelajaran secara adaptif sesuai perkembangan zaman/industri.',
   },
   {
     code: 'PF.5',
     kompetensi: 'Profesional',
-    shortTitle: 'Inovasi Praktik Pendidikan Keteknikan',
+    shortTitle: 'Inovasi Praktik Pendidikan Profesional',
     description:
-      'Mengembangkan praktik profesional pendidikan keteknikan secara konseptual, empiris, kreatif, dan inovatif.',
+      'Mengembangkan praktik profesional pembelajaran secara konseptual, empiris (PTK/reflektif), kreatif, dan inovatif.',
   },
 ];
 

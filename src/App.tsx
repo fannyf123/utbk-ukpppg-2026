@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { JuknisGuideModal } from './components/JuknisGuideModal';
 import { CalibratorMark } from './components/PrecisionVisuals';
-import { ALL_QUESTIONS, PCK_BANK, PU_BANK, getBankSummary } from './data/questionBank';
+import { PRODI_CONFIGS, getProdiConfig } from './data/prodiRegistry';
+import {
+  ALL_QUESTIONS,
+  getProdiPckBank,
+  getProdiPuBank,
+  getProdiQuestions,
+} from './data/questionBank';
 import { createDrillSession, createOfficialExamSession } from './engine/randomizer';
 import { gradeSession } from './engine/scoring';
 import {
@@ -25,6 +31,7 @@ import type {
   ExamResultSummary,
   ExamSession,
   MasteryRecord,
+  ProdiId,
 } from './types/exam';
 
 type ActiveRoute = 'home' | 'exam' | 'result';
@@ -49,10 +56,16 @@ export function App() {
   const [homeTab, setHomeTab] = useState<WorkspaceTab>('overview');
   const [guideOpen, setGuideOpen] = useState(false);
 
-  const bankSummary = useMemo(() => getBankSummary(), []);
-  const seenCount = useMemo(
-    () => Object.values(mastery).filter((m) => m.seenCount > 0).length,
-    [mastery]
+  const activeProdi = prefs.prodi;
+  const prodiConfig = useMemo(() => getProdiConfig(activeProdi), [activeProdi]);
+  const prodiQuestions = useMemo(() => getProdiQuestions(activeProdi), [activeProdi]);
+  const prodiSeenCount = useMemo(
+    () =>
+      prodiQuestions.filter((q) => {
+        const m = mastery[q.id];
+        return m && m.seenCount > 0;
+      }).length,
+    [prodiQuestions, mastery]
   );
 
   useEffect(() => {
@@ -76,27 +89,44 @@ export function App() {
     setPrefs((prev) => ({ ...prev, fontScale }));
   }, []);
 
+  const handleChangeProdi = useCallback((prodi: ProdiId) => {
+    setPrefs((prev) => ({ ...prev, prodi }));
+  }, []);
+
   const handleStartOfficial = useCallback(
-    (mixBanksOrder: boolean) => {
-      const next = createOfficialExamSession(PCK_BANK, PU_BANK, mastery, {
+    (mixBanksOrder: boolean, targetProdi: ProdiId = activeProdi) => {
+      const cfg = getProdiConfig(targetProdi);
+      const pckBank = getProdiPckBank(targetProdi);
+      const puBank = getProdiPuBank(targetProdi);
+      const next = createOfficialExamSession(pckBank, puBank, mastery, {
         mixBanksOrder,
+        prodiId: targetProdi,
+        prodiLabel: cfg.shortLabel,
       });
       setActiveSession(next);
       setRoute('exam');
       window.scrollTo({ top: 0 });
     },
-    [mastery]
+    [activeProdi, mastery]
   );
 
   const handleStartDrill = useCallback(
     (config: DrillConfig) => {
-      const next = createDrillSession(ALL_QUESTIONS, config, mastery);
+      const prodiFilter = config.prodiFilter ?? activeProdi;
+      const cfg =
+        prodiFilter !== 'ALL_ARCHIVE' ? getProdiConfig(prodiFilter) : null;
+      const next = createDrillSession(
+        ALL_QUESTIONS,
+        { ...config, prodiFilter },
+        mastery,
+        { prodiLabel: cfg?.shortLabel ?? 'Lintas Prodi' }
+      );
       if (next.slots.length === 0) return;
       setActiveSession(next);
       setRoute('exam');
       window.scrollTo({ top: 0 });
     },
-    [mastery]
+    [activeProdi, mastery]
   );
 
   const handleUpdateSession = useCallback(
@@ -125,6 +155,7 @@ export function App() {
   const handleDrillMissed = useCallback(
     (missedIds: string[]) => {
       handleStartDrill({
+        prodiFilter: 'ALL_ARCHIVE',
         bank: 'ALL',
         topic: 'ALL',
         type: 'ALL',
@@ -178,9 +209,29 @@ export function App() {
                 <CalibratorMark />
                 <div>
                   <span className="rail-brand-title">KALIBRASI UTBK</span>
-                  <span className="rail-brand-sub">UKPPPG · TEKNIK MESIN</span>
+                  <span className="rail-brand-sub">
+                    UKPPPG · {prodiConfig.shortLabel.toUpperCase()}
+                  </span>
                 </div>
               </button>
+
+              <div className="rail-prodi-block">
+                <label htmlFor="prodi-select" className="rail-prodi-label">
+                  PRODI / BIDANG STUDI
+                </label>
+                <select
+                  id="prodi-select"
+                  className="rail-prodi-select"
+                  value={activeProdi}
+                  onChange={(e) => handleChangeProdi(e.target.value as ProdiId)}
+                >
+                  {PRODI_CONFIGS.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <nav className="rail-nav" role="tablist" aria-label="Menu workspace">
                 {NAV_TABS.map((t) => (
@@ -203,7 +254,7 @@ export function App() {
               <div className="rail-stat-line">
                 <span>TERCAKUP</span>
                 <span>
-                  {seenCount} / {bankSummary.total}
+                  {prodiSeenCount} / {prodiQuestions.length}
                 </span>
               </div>
 
@@ -273,6 +324,23 @@ export function App() {
                 </button>
               </div>
             </div>
+
+            <div className="mobile-prodi-strip">
+              <label htmlFor="prodi-select-mobile">PRODI</label>
+              <select
+                id="prodi-select-mobile"
+                className="rail-prodi-select"
+                value={activeProdi}
+                onChange={(e) => handleChangeProdi(e.target.value as ProdiId)}
+              >
+                {PRODI_CONFIGS.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="mobile-tabs" role="tablist" aria-label="Navigasi tab">
               {NAV_TABS.map((t) => (
                 <button
@@ -291,6 +359,7 @@ export function App() {
 
           <HomeView
             activeTab={homeTab}
+            prodiId={activeProdi}
             activeSession={activeSession}
             history={history}
             mastery={mastery}
@@ -312,7 +381,9 @@ export function App() {
           <ResultView
             result={currentResult}
             onBackHome={() => setRoute('home')}
-            onStartNewOfficial={() => handleStartOfficial(false)}
+            onStartNewOfficial={() =>
+              handleStartOfficial(false, currentResult.prodiId ?? activeProdi)
+            }
             onDrillMissed={handleDrillMissed}
           />
         )

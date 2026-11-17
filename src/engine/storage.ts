@@ -1,7 +1,9 @@
+import { isValidProdiId } from '../data/prodiRegistry';
 import type {
   ExamResultSummary,
   ExamSession,
   MasteryRecord,
+  ProdiId,
 } from '../types/exam';
 import { evaluateQuestion } from './scoring';
 
@@ -16,6 +18,7 @@ export type FontScale = 'sm' | 'md' | 'lg';
 export interface UserPreferences {
   theme: ThemeMode;
   fontScale: FontScale;
+  prodi: ProdiId;
 }
 
 function safeParse<T>(raw: string | null, fallback: T): T {
@@ -139,9 +142,10 @@ export function loadPreferences(): UserPreferences {
       theme: parsed.theme === 'dark' ? 'dark' : 'light',
       fontScale:
         parsed.fontScale === 'sm' || parsed.fontScale === 'lg' ? parsed.fontScale : 'md',
+      prodi: isValidProdiId(parsed.prodi) ? parsed.prodi : 'teknik-mesin',
     };
   } catch {
-    return { theme: 'light', fontScale: 'md' };
+    return { theme: 'light', fontScale: 'md', prodi: 'teknik-mesin' };
   }
 }
 

@@ -33,33 +33,57 @@ interface VernierScaleProps {
   totalBank: number;
   pckBank: number;
   puBank: number;
+  pckTarget: number;
+  puTarget: number;
+  durationMinutes: number;
+  prodiShortLabel: string;
 }
 
 /**
- * Instrumen Skala Kalibrasi Interaktif 0–80 Soal sesuai Juknis 2026:
- * Menampilkan proporsi 50 PCK Teknik Mesin (62.5%) vs 30 PU (37.5%) dalam format mikrometer/caliper.
+ * Instrumen Skala Kalibrasi Interaktif sesuai komposisi Prodi terpilih & Juknis 2026:
+ * menampilkan proporsi PCK Prodi vs Pedagogi Umum dalam format jangka sorong mekanik.
  */
 export function VernierScaleTelemetry({
   mixOrder,
   totalBank,
   pckBank,
   puBank,
+  pckTarget,
+  puTarget,
+  durationMinutes,
+  prodiShortLabel,
 }: VernierScaleProps) {
-  const ticks = Array.from({ length: 81 }, (_, i) => i);
+  const totalTarget = Math.max(1, pckTarget + puTarget);
+  const tickStep = totalTarget <= 40 ? 5 : 10;
+  const ticks = Array.from({ length: totalTarget + 1 }, (_, i) => i);
   const startX = 18;
   const trackW = 684;
-  const pckW = (50 / 80) * trackW;
-  const puW = (30 / 80) * trackW;
+  const pckRatio = pckTarget / totalTarget;
+  const pckW = pckRatio * trackW;
+  const puW = trackW - pckW;
   const splitX = startX + pckW;
+  const jawX =
+    pckTarget === 0
+      ? startX + trackW
+      : mixOrder
+        ? startX + trackW / 2
+        : splitX;
+  const pckPct = Math.round(pckRatio * 1000) / 10;
+  const puPct = Math.round((100 - pckPct) * 10) / 10;
+  const avgSec = Math.round(((durationMinutes * 60) / totalTarget) * 10) / 10;
 
   return (
     <div className="vernier-instrument">
       <div className="vernier-head">
         <span className="mono vernier-caption">
-          SKALA KOMPOSISI RESMI (N = 80 BUTIR / 150 MENIT)
+          SKALA KOMPOSISI {prodiShortLabel.toUpperCase()} (N = {totalTarget} BUTIR / {durationMinutes} MENIT)
         </span>
         <span className="mono vernier-caption" style={{ color: 'var(--signal-accent)' }}>
-          {mixOrder ? 'MODE: 1-80 CAMPUR ACAK' : 'MODE: 1-50 PCK | 51-80 PU'}
+          {pckTarget === 0
+            ? `MODE: 1-${totalTarget} PEDAGOGI UMUM`
+            : mixOrder
+              ? `MODE: 1-${totalTarget} CAMPUR ACAK`
+              : `MODE: 1-${pckTarget} PCK | ${pckTarget + 1}-${totalTarget} PU`}
         </span>
       </div>
 
@@ -67,22 +91,24 @@ export function VernierScaleTelemetry({
         viewBox="0 0 720 116"
         className="vernier-svg"
         role="img"
-        aria-label="Diagram skala komposisi 50 soal PCK Teknik Mesin dan 30 soal Pedagogi Umum"
+        aria-label={`Diagram skala komposisi ${pckTarget} soal PCK ${prodiShortLabel} dan ${puTarget} soal Pedagogi Umum`}
       >
         {/* Rail background */}
         <rect x={startX} y="36" width={trackW} height="10" fill="var(--bg-inset)" />
-        {/* PCK 50 span */}
-        <rect
-          x={startX}
-          y="36"
-          width={pckW}
-          height="10"
-          className="vernier-bar-pck"
-          style={{
-            opacity: mixOrder ? 0.45 : 1,
-          }}
-        />
-        {/* PU 30 span */}
+        {/* PCK span */}
+        {pckW > 0 && (
+          <rect
+            x={startX}
+            y="36"
+            width={pckW}
+            height="10"
+            className="vernier-bar-pck"
+            style={{
+              opacity: mixOrder ? 0.45 : 1,
+            }}
+          />
+        )}
+        {/* PU span */}
         <rect
           x={splitX}
           y="36"
@@ -96,6 +122,7 @@ export function VernierScaleTelemetry({
 
         {/* Mix mode alternating weave indicator */}
         {mixOrder &&
+          pckTarget > 0 &&
           Array.from({ length: 16 }, (_, idx) => (
             <rect
               key={idx}
@@ -109,9 +136,9 @@ export function VernierScaleTelemetry({
 
         {/* Precision ruler ticks */}
         {ticks.map((t) => {
-          const x = startX + (t / 80) * trackW;
-          const isMajor = t % 10 === 0;
-          const isMid = t % 5 === 0 && !isMajor;
+          const x = startX + (t / totalTarget) * trackW;
+          const isMajor = t % tickStep === 0 || t === totalTarget;
+          const isMid = !isMajor && t % 5 === 0;
           const yTop = isMajor ? 18 : isMid ? 24 : 29;
           return (
             <g key={t}>
@@ -138,17 +165,17 @@ export function VernierScaleTelemetry({
           );
         })}
 
-        {/* Sliding Signal Jaw Cursor at 50/80 boundary or spread center */}
+        {/* Sliding Signal Jaw Cursor */}
         <g
           className="vernier-cursor"
           style={{
-            transform: mixOrder ? `translateX(${startX + trackW / 2}px)` : `translateX(${splitX}px)`,
+            transform: `translateX(${jawX}px)`,
           }}
         >
           <line x1="0" y1="14" x2="0" y2="66" stroke="var(--signal-accent)" strokeWidth="2.2" />
           <polygon points="-5,15 5,15 0,22" fill="var(--signal-accent)" />
           <rect
-            x="-40"
+            x={pckTarget === 0 ? -78 : -40}
             y="66"
             width="80"
             height="24"
@@ -156,28 +183,34 @@ export function VernierScaleTelemetry({
             fill="var(--signal-accent)"
           />
           <text
-            x="0"
+            x={pckTarget === 0 ? -38 : 0}
             y="82"
             textAnchor="middle"
             fill="#ffffff"
             className="vernier-cursor-text"
           >
-            {mixOrder ? 'ACAK 80' : 'BATAS 50'}
+            {pckTarget === 0
+              ? `UMUM ${totalTarget}`
+              : mixOrder
+                ? `ACAK ${totalTarget}`
+                : `BATAS ${pckTarget}`}
           </text>
         </g>
 
         {/* Bottom Span Legends */}
         <text x={startX} y="109" className="vernier-span-label">
-          PCK MESIN ({pckBank}) · 62.5%
+          {pckTarget > 0
+            ? `PCK ${prodiShortLabel.toUpperCase()} (${pckBank}) · ${pckPct}%`
+            : `FOKUS UMUM (0 PCK) · 0%`}
         </text>
         <text x={startX + trackW} y="109" textAnchor="end" className="vernier-span-label">
-          PEDAGOGI UMUM ({puBank}) · 37.5%
+          PEDAGOGI UMUM ({puBank}) · {puPct}%
         </text>
       </svg>
 
       <div className="vernier-foot mono">
-        <span>POOL: {totalBank} SOAL</span>
-        <span>112.5 DTK/SOAL</span>
+        <span>POOL PRODI: {totalBank} SOAL</span>
+        <span>{avgSec} DTK/SOAL</span>
         <span>PG · KATEGORI · MCMA</span>
       </div>
     </div>

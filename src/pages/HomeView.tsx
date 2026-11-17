@@ -4,7 +4,13 @@ import {
   VernierScaleTelemetry,
 } from '../components/PrecisionVisuals';
 import { JUKNIS_EXAM_SPECS, JUKNIS_SUBCOMPETENCIES } from '../data/juknisReference';
-import { ALL_QUESTIONS, getBankSummary, getBankTopics } from '../data/questionBank';
+import { getProdiConfig } from '../data/prodiRegistry';
+import {
+  ALL_QUESTIONS,
+  getBankSummary,
+  getBankTopics,
+  getProdiQuestions,
+} from '../data/questionBank';
 import { filterDrillQuestions } from '../engine/randomizer';
 import { evaluateQuestion } from '../engine/scoring';
 import type {
@@ -12,6 +18,7 @@ import type {
   ExamResultSummary,
   ExamSession,
   MasteryRecord,
+  ProdiId,
   QuestionBank,
   QuestionType,
 } from '../types/exam';
@@ -20,6 +27,7 @@ export type WorkspaceTab = 'overview' | 'studio' | 'archive';
 
 interface HomeViewProps {
   activeTab: WorkspaceTab;
+  prodiId: ProdiId;
   activeSession: ExamSession | null;
   history: ExamResultSummary[];
   mastery: Record<string, MasteryRecord>;
@@ -32,83 +40,9 @@ interface HomeViewProps {
   onResetProgress: () => void;
 }
 
-const FEATURED_SHORTCUTS: { label: string; config: DrillConfig }[] = [
-  {
-    label: 'Pemrograman CNC & Simulator',
-    config: {
-      bank: 'PCK',
-      topic: 'Pemrograman CNC & Simulator',
-      type: 'ALL',
-      count: 15,
-      instantFeedback: true,
-    },
-  },
-  {
-    label: 'Metrologi Presisi & Pengukuran',
-    config: {
-      bank: 'PCK',
-      topic: 'Metrologi Presisi & Pengukuran',
-      type: 'ALL',
-      count: 15,
-      instantFeedback: true,
-    },
-  },
-  {
-    label: 'Pemesinan Bubut, Frais & Gerinda',
-    config: {
-      bank: 'PCK',
-      topic: 'Pemesinan Bubut, Frais & Gerinda',
-      type: 'ALL',
-      count: 20,
-      instantFeedback: true,
-    },
-  },
-  {
-    label: 'Gambar Teknik, Proyeksi & CAD',
-    config: {
-      bank: 'PCK',
-      topic: 'Gambar Teknik, Proyeksi & CAD',
-      type: 'ALL',
-      count: 15,
-      instantFeedback: true,
-    },
-  },
-  {
-    label: 'K3LH & Teaching Factory',
-    config: {
-      bank: 'PCK',
-      topic: 'K3LH & Teaching Factory',
-      type: 'ALL',
-      count: 15,
-      instantFeedback: true,
-    },
-  },
-  {
-    label: 'Khusus PGK Kategori (Tabel Benar/Salah)',
-    config: {
-      bank: 'ALL',
-      topic: 'ALL',
-      type: 'PGK_KATEGORI',
-      count: 20,
-      instantFeedback: true,
-      customTitle: 'Drill PGK Kategori (Tabel Pernyataan)',
-    },
-  },
-  {
-    label: 'Khusus PGK MCMA (Multi Jawaban)',
-    config: {
-      bank: 'ALL',
-      topic: 'ALL',
-      type: 'PGK_MCMA',
-      count: 20,
-      instantFeedback: true,
-      customTitle: 'Drill PGK MCMA (Multi Jawaban)',
-    },
-  },
-];
-
 export function HomeView({
   activeTab,
+  prodiId,
   activeSession,
   history,
   mastery,
@@ -120,9 +54,15 @@ export function HomeView({
   onViewHistoryResult,
   onResetProgress,
 }: HomeViewProps) {
-  const bankSummary = useMemo(() => getBankSummary(), []);
+  const prodiConfig = useMemo(() => getProdiConfig(prodiId), [prodiId]);
+  const prodiQuestions = useMemo(() => getProdiQuestions(prodiId), [prodiId]);
+  const bankSummary = useMemo(() => getBankSummary(prodiId), [prodiId]);
+  const allArchiveTotal = ALL_QUESTIONS.length;
+
+  const [prevProdi, setPrevProdi] = useState<ProdiId>(prodiId);
   const [mixOrder, setMixOrder] = useState(false);
 
+  const [drillScope, setDrillScope] = useState<'ACTIVE' | 'ALL_ARCHIVE'>('ACTIVE');
   const [drillBank, setDrillBank] = useState<'ALL' | QuestionBank>('ALL');
   const [drillTopic, setDrillTopic] = useState<string>('ALL');
   const [drillSub, setDrillSub] = useState<string>('ALL');
@@ -131,23 +71,128 @@ export function HomeView({
   const [instantFeedback, setInstantFeedback] = useState<boolean>(true);
   const [confirmReset, setConfirmReset] = useState(false);
 
-  const availableTopics = useMemo(() => getBankTopics(drillBank), [drillBank]);
+  if (prevProdi !== prodiId) {
+    setPrevProdi(prodiId);
+    setDrillTopic('ALL');
+    setDrillBank('ALL');
+  }
+
+  const effectiveScope: ProdiId | 'ALL_ARCHIVE' =
+    drillScope === 'ALL_ARCHIVE' ? 'ALL_ARCHIVE' : prodiId;
+
+  const studioSummary = useMemo(
+    () => getBankSummary(effectiveScope),
+    [effectiveScope]
+  );
+
+  const availableTopics = useMemo(
+    () => getBankTopics(drillBank, effectiveScope),
+    [drillBank, effectiveScope]
+  );
 
   const matchingPool = useMemo(
     () =>
       filterDrillQuestions(ALL_QUESTIONS, {
+        prodiFilter: effectiveScope,
         bank: drillBank,
         topic: drillTopic,
         subkompetensi: drillSub,
         type: drillType,
       }),
-    [drillBank, drillTopic, drillSub, drillType]
+    [effectiveScope, drillBank, drillTopic, drillSub, drillType]
   );
 
-  const seenCount = useMemo(
-    () => Object.values(mastery).filter((m) => m.seenCount > 0).length,
-    [mastery]
+  const pckTarget = Math.min(50, bankSummary.pck);
+  const puTarget = Math.min(30, bankSummary.pu);
+  const officialTotal = pckTarget + puTarget;
+  const durationMinutes =
+    officialTotal === 80 ? 150 : Math.max(30, Math.round((officialTotal / 80) * 150));
+
+  const seenInProdi = useMemo(
+    () =>
+      prodiQuestions.filter((q) => {
+        const m = mastery[q.id];
+        return m && m.seenCount > 0;
+      }).length,
+    [prodiQuestions, mastery]
   );
+
+  // Build contextual topic shortcuts specifically tailored for active Prodi
+  const featuredShortcuts = useMemo<{ label: string; config: DrillConfig }[]>(() => {
+    const pckCounts = new Map<string, number>();
+    for (const q of prodiQuestions) {
+      if (q.bank === 'PCK') {
+        pckCounts.set(q.topic, (pckCounts.get(q.topic) ?? 0) + 1);
+      }
+    }
+    const topPckTopics: { label: string; config: DrillConfig }[] = Array.from(
+      pckCounts.entries()
+    )
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, pckCounts.size > 0 ? 5 : 0)
+      .map(([topicName]) => ({
+        label: topicName,
+        config: {
+          prodiFilter: prodiId,
+          bank: 'PCK',
+          topic: topicName,
+          type: 'ALL',
+          count: 15,
+          instantFeedback: true,
+        },
+      }));
+
+    if (topPckTopics.length === 0) {
+      // Pedagogi Umum Murni: surface top PU topics instead
+      const puCounts = new Map<string, number>();
+      for (const q of prodiQuestions) {
+        puCounts.set(q.topic, (puCounts.get(q.topic) ?? 0) + 1);
+      }
+      for (const [topicName] of Array.from(puCounts.entries())
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)) {
+        topPckTopics.push({
+          label: topicName,
+          config: {
+            prodiFilter: prodiId,
+            bank: 'PU',
+            topic: topicName,
+            type: 'ALL',
+            count: 15,
+            instantFeedback: true,
+          },
+        });
+      }
+    }
+
+    return [
+      ...topPckTopics,
+      {
+        label: 'Khusus PGK Kategori (Tabel Benar/Salah)',
+        config: {
+          prodiFilter: prodiId,
+          bank: 'ALL' as const,
+          topic: 'ALL',
+          type: 'PGK_KATEGORI' as const,
+          count: 20,
+          instantFeedback: true,
+          customTitle: `Drill PGK Kategori · ${prodiConfig.shortLabel}`,
+        },
+      },
+      {
+        label: 'Khusus PGK MCMA (Multi Jawaban)',
+        config: {
+          prodiFilter: prodiId,
+          bank: 'ALL' as const,
+          topic: 'ALL',
+          type: 'PGK_MCMA' as const,
+          count: 20,
+          instantFeedback: true,
+          customTitle: `Drill PGK MCMA · ${prodiConfig.shortLabel}`,
+        },
+      },
+    ];
+  }, [prodiId, prodiConfig.shortLabel, prodiQuestions]);
 
   const activeAnswered = activeSession
     ? activeSession.slots.filter((s) =>
@@ -182,15 +227,16 @@ export function HomeView({
           <div className="stage-left">
             <div>
               <div className="stage-kicker">
-                BIDANG STUDI TEKNIK MESIN SMK · JUKNIS UKPPPG 2026
+                BIDANG STUDI {prodiConfig.label.toUpperCase()} · JUKNIS UKPPPG 2026
               </div>
               <h1 id="hero-title" className="stage-title">
                 Simulasi UTBK UKPPPG Calon Guru 2026
               </h1>
               <p className="stage-lead">
-                Menarik 50 butir PCK Teknik Mesin dan 30 butir Pedagogi Umum secara acak dengan
-                algoritma prioritas soal belum dikerjakan atau masih keliru. Posisi opsi PG/MCMA
-                serta baris pernyataan PGK Kategori ikut teracak di setiap sesi baru.
+                {pckTarget > 0
+                  ? `Menarik ${pckTarget} butir ${prodiConfig.pckBadge} dan ${puTarget} butir Pedagogi Umum selaras secara acak tanpa mengulang soal yang telah dikuasai.`
+                  : `Fokus penuh pada ${puTarget} butir Pedagogi Umum murni lintas prodi tanpa soal jurusan lain.`}{' '}
+                {prodiConfig.description}
               </p>
             </div>
 
@@ -199,17 +245,25 @@ export function HomeView({
               totalBank={bankSummary.total}
               pckBank={bankSummary.pck}
               puBank={bankSummary.pu}
+              pckTarget={pckTarget}
+              puTarget={puTarget}
+              durationMinutes={durationMinutes}
+              prodiShortLabel={prodiConfig.shortLabel}
             />
 
             <div className="launch-controls">
-              <label className="check-row">
-                <input
-                  type="checkbox"
-                  checked={mixOrder}
-                  onChange={(e) => setMixOrder(e.target.checked)}
-                />
-                <span>Acak campur urutan nomor PCK &amp; Pedagogi Umum (1 s.d. 80)</span>
-              </label>
+              {pckTarget > 0 && (
+                <label className="check-row">
+                  <input
+                    type="checkbox"
+                    checked={mixOrder}
+                    onChange={(e) => setMixOrder(e.target.checked)}
+                  />
+                  <span>
+                    Acak campur urutan nomor PCK &amp; Pedagogi Umum (1 s.d. {officialTotal})
+                  </span>
+                </label>
+              )}
 
               <div className="action-strip">
                 <button
@@ -217,7 +271,11 @@ export function HomeView({
                   className="btn btn-primary btn-lg"
                   onClick={() => onStartOfficial(mixOrder)}
                 >
-                  Mulai Simulasi Resmi (80 Soal)
+                  {officialTotal === 80
+                    ? 'Mulai Simulasi Resmi (80 Soal)'
+                    : pckTarget === 0
+                      ? `Mulai Simulasi Pedagogi (${officialTotal} Soal)`
+                      : `Mulai Simulasi ${prodiConfig.shortLabel} (${officialTotal} Soal)`}
                 </button>
                 <button
                   type="button"
@@ -233,21 +291,22 @@ export function HomeView({
           <aside className="stage-right">
             <div>
               <div className="pane-heading">
-                <h2>Peta Subkompetensi Juknis</h2>
+                <h2>Peta Subkompetensi ({prodiConfig.shortLabel})</h2>
                 <span>Klik kode untuk drill</span>
               </div>
               <CompetencyMatrixPanel
-                allQuestions={ALL_QUESTIONS}
+                allQuestions={prodiQuestions}
                 mastery={mastery}
                 onSelectSubcompetency={(code) =>
                   onStartDrill({
+                    prodiFilter: prodiId,
                     bank: 'ALL',
                     topic: 'ALL',
                     subkompetensi: code,
                     type: 'ALL',
                     count: 15,
                     instantFeedback: true,
-                    customTitle: `Drill Subkompetensi ${code}`,
+                    customTitle: `Drill ${code} · ${prodiConfig.shortLabel}`,
                   })
                 }
               />
@@ -255,17 +314,18 @@ export function HomeView({
 
             <div>
               <div className="pane-heading">
-                <h2>Pintasan Topik Cepat</h2>
-                <span>{bankSummary.total} butir tersedia</span>
+                <h2>Pintasan Topik Cepat ({prodiConfig.shortLabel})</h2>
+                <span>{bankSummary.total} butir selaras</span>
               </div>
               <div className="index-list">
-                {FEATURED_SHORTCUTS.map((item) => {
+                {featuredShortcuts.map((item) => {
                   const poolLen = filterDrillQuestions(ALL_QUESTIONS, item.config).length;
                   return (
                     <button
                       key={item.label}
                       type="button"
                       className="index-row-btn"
+                      disabled={poolLen === 0}
                       onClick={() => onStartDrill(item.config)}
                     >
                       <span className="index-row-title">{item.label}</span>
@@ -291,13 +351,39 @@ export function HomeView({
           <div className="studio-grid">
             <div className="flat-panel filter-block">
               <div className="field-group">
+                <label>Lingkup Bank Prodi</label>
+                <div className="seg-pills">
+                  <button
+                    type="button"
+                    className={`seg-btn ${drillScope === 'ACTIVE' ? 'is-active' : ''}`}
+                    onClick={() => {
+                      setDrillScope('ACTIVE');
+                      setDrillTopic('ALL');
+                    }}
+                  >
+                    {prodiConfig.shortLabel} ({bankSummary.total})
+                  </button>
+                  <button
+                    type="button"
+                    className={`seg-btn ${drillScope === 'ALL_ARCHIVE' ? 'is-active' : ''}`}
+                    onClick={() => {
+                      setDrillScope('ALL_ARCHIVE');
+                      setDrillTopic('ALL');
+                    }}
+                  >
+                    Semua Prodi &amp; Lintas Mapel ({allArchiveTotal})
+                  </button>
+                </div>
+              </div>
+
+              <div className="field-group">
                 <label>Rumpun Soal</label>
                 <div className="seg-pills">
                   {(
                     [
-                      ['ALL', `Semua (${bankSummary.total})`],
-                      ['PCK', `PCK Mesin (${bankSummary.pck})`],
-                      ['PU', `Pedagogi (${bankSummary.pu})`],
+                      ['ALL', `Semua (${studioSummary.total})`],
+                      ['PCK', `PCK Bidang (${studioSummary.pck})`],
+                      ['PU', `Pedagogi (${studioSummary.pu})`],
                     ] as const
                   ).map(([val, label]) => (
                     <button
@@ -403,6 +489,12 @@ export function HomeView({
 
               <div className="index-list">
                 <div className="history-row">
+                  <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Prodi</span>
+                  <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
+                    {drillScope === 'ALL_ARCHIVE' ? 'Semua Arsip' : prodiConfig.shortLabel}
+                  </span>
+                </div>
+                <div className="history-row">
                   <span style={{ fontSize: '0.84rem', color: 'var(--ink-secondary)' }}>Rumpun</span>
                   <span className="mono" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
                     {drillBank === 'ALL' ? 'PCK + PU' : drillBank}
@@ -428,6 +520,7 @@ export function HomeView({
                 disabled={matchingPool.length === 0}
                 onClick={() =>
                   onStartDrill({
+                    prodiFilter: effectiveScope,
                     bank: drillBank,
                     topic: drillTopic,
                     subkompetensi: drillSub,
@@ -457,20 +550,20 @@ export function HomeView({
             <div className="flat-panel">
               <div className="pane-heading">
                 <h2>Riwayat Sesi Selesai</h2>
-                <span>{seenCount}/{bankSummary.total} soal ditemui</span>
+                <span>{seenInProdi}/{bankSummary.total} soal {prodiConfig.shortLabel} ditemui</span>
               </div>
 
               {history.length === 0 ? (
                 <div
                   style={{
-                    padding: '1.15rem',
+                    padding: '1.25rem',
                     border: '1px dashed var(--border-line)',
                     borderRadius: 'var(--radius-sm)',
                     fontSize: '0.88rem',
                     color: 'var(--ink-muted)',
                   }}
                 >
-                  Belum ada riwayat simulasi selesai. Mulai Simulasi Resmi 80 Soal atau sesi Drill
+                  Belum ada riwayat simulasi selesai. Mulai Simulasi Resmi atau sesi Drill
                   untuk menyimpan skor dan menelaah pembahasan.
                 </div>
               ) : (
@@ -513,7 +606,7 @@ export function HomeView({
                 </div>
               )}
 
-              {seenCount > 0 && !confirmReset && (
+              {Object.keys(mastery).length > 0 && !confirmReset && (
                 <div style={{ marginTop: '1rem' }}>
                   <button
                     type="button"

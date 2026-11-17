@@ -106,7 +106,7 @@ export function ResultView({
             </button>
           )}
           <button type="button" className="btn btn-primary" onClick={onStartNewOfficial}>
-            Simulasi Acak Baru (80 Soal)
+            Simulasi Acak Baru
           </button>
         </div>
       </div>
@@ -119,7 +119,9 @@ export function ResultView({
         />
 
         <div className="kpi-cell">
-          <span className="kpi-cell-lbl">PCK TEKNIK MESIN</span>
+          <span className="kpi-cell-lbl">
+            {result.prodiLabel ? `PCK ${result.prodiLabel.toUpperCase()}` : 'KOMPETENSI PRODI (PCK)'}
+          </span>
           <span className="kpi-cell-num">
             {result.pckTotal > 0 ? `${result.pckCorrect}/${result.pckTotal}` : '-'}
           </span>
@@ -168,7 +170,9 @@ export function ResultView({
           {result.pckTotal > 0 && (
             <div className="bar-row">
               <div className="bar-row-head">
-                <span>PCK Teknik Mesin SMK</span>
+                <span>
+                  {result.prodiLabel ? `PCK ${result.prodiLabel}` : 'Kompetensi Bidang Studi (PCK)'}
+                </span>
                 <span className="mono">
                   {result.pckCorrect}/{result.pckTotal} ({pckPct}%)
                 </span>

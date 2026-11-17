@@ -178,6 +178,8 @@ export function gradeSession(
   return {
     id: session.id,
     mode: session.mode,
+    prodiId: session.prodiId,
+    prodiLabel: session.prodiLabel,
     title: session.title,
     completedAt,
     elapsedSeconds,
