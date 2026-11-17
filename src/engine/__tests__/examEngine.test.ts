@@ -351,8 +351,8 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
     expect(subSession.slots.every((s) => s.question.subkompetensi === 'P.6')).toBe(true);
   });
 
-  it('membangun seluruh 22 Paket Tryout SIAPPPG tanpa bayar, mengunci 17 subkompetensi pada semua paket prodi resmi, dan memisahkan Teknik Mesin Paket A vs B', () => {
-    expect(PAKET_CATALOG.length).toBe(22);
+  it('membangun seluruh 23 Paket Tryout SIAPPPG tanpa bayar, mengunci 17 subkompetensi pada semua paket prodi resmi, dan menguji Paket Fokus Catatan PPG', () => {
+    expect(PAKET_CATALOG.length).toBe(23);
     const allSubs = JUKNIS_SUBCOMPETENCIES.map((s) => s.code);
 
     for (const paket of PAKET_CATALOG) {
@@ -369,6 +369,13 @@ describe('Scoring Engine & Drill Builder Multi-Prodi', () => {
         expect(missing).toEqual([]);
       }
     }
+
+    const catatanPaket = getPaketById('ppg-catatan-fokus')!;
+    const catatanSession = createSessionFromPaket(catatanPaket, {}, { rng: createSeededRng(17) });
+    expect(catatanSession.slots.length).toBe(80);
+    expect(catatanSession.slots.every((s) => s.question.prodiScope === 'UMUM')).toBe(true);
+    const catatanHits = catatanSession.slots.filter((s) => s.question.id.startsWith('cat-ppg-'));
+    expect(catatanHits.length).toBe(16);
 
     const pakA = createSessionFromPaket(getPaketById('teknik-mesin-paket-a')!, {});
     const pakB = createSessionFromPaket(getPaketById('teknik-mesin-paket-b')!, {});

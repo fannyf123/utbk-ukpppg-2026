@@ -24,17 +24,19 @@ export interface PaketDef {
   prodiId: ProdiId;
   badge: string;
   badgeTone: 'prodi' | 'umum' | 'arsip';
+  recommendedLabel?: string;
   title: string;
   subtitle: string;
   questionCount: number;
   durationMinutes: number;
   highlights: string[];
-  kind: 'prodi-random' | 'fixed-ids' | 'prodi-slice' | 'pu-random';
+  kind: 'prodi-random' | 'fixed-ids' | 'prodi-slice' | 'pu-random' | 'pu-focus';
   pckSliceOffset?: number;
   puSliceOffset?: number;
   pckQuota?: number;
   puQuota?: number;
   fixedPrefix?: string;
+  focusPattern?: RegExp;
 }
 
 export const PAKET_CATALOG: readonly PaketDef[] = [
@@ -45,9 +47,10 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     prodiId: 'teknik-mesin',
     badge: 'Teknik Mesin SMK',
     badgeTone: 'prodi',
+    recommendedLabel: 'Rekomendasi #1 · Prodi Anda',
     title: 'Teknik Mesin SMK · Simulasi Resmi Acak',
     subtitle:
-      'Simulasi 80 soal terkalibrasi Juknis: 50 PCK Teknik Mesin murni + 30 Pedagogi Umum bebas soal jurusan lain, memprioritaskan soal belum dikerjakan.',
+      'Simulasi 80 soal terkalibrasi Juknis: 50 PCK Teknik Mesin murni (dari pool 106 butir) + 30 Pedagogi Umum selaras (394 butir), memprioritaskan soal belum dikerjakan.',
     questionCount: 80,
     durationMinutes: 150,
     highlights: [
@@ -402,6 +405,29 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
 
   // === GROUP 2: PEDAGOGI UMUM & ARSIP UMUM ===
   {
+    id: 'ppg-catatan-fokus',
+    group: 'pedagogi-umum',
+    prodiId: 'umum',
+    badge: 'Fokus Materi PPG',
+    badgeTone: 'umum',
+    recommendedLabel: 'Rekomendasi #2 · Catatan & MK PPG',
+    title: 'Fokus Catatan UKPPPG & Materi PPG · 80 Soal',
+    subtitle:
+      'Kurasi acak 80 soal yang difokuskan pada Asesmen Formatif, Tokoh (Ausubel, Piaget, Bruner, Gagne, Vygotsky), 4 Aliran Belajar, Berpikir Konkret-Deduktif-Induktif-Abstrak, Diferensiasi, Gaya Belajar (VARK, Audiovisual, Write), serta MK PPG (UbD, PM, CASEL, EMC2, Growth Mindset).',
+    questionCount: 80,
+    durationMinutes: 150,
+    highlights: [
+      'Lengkap 5 Tokoh (Ausubel, Piaget, Bruner, Gagne, Vygotsky ZPD/Scaffolding)',
+      'Asesmen Formatif, 4 Aliran Teori Belajar & Berpikir Induktif-Deduktif',
+      'Diferensiasi Konten-Proses-Produk & Gaya Belajar Audiovisual-Write-VARK',
+      'SEL CASEL, EMC2, Growth Mindset, UDL & 4 Kompetensi Guru',
+    ],
+    kind: 'pu-focus',
+    puQuota: 80,
+    focusPattern:
+      /formatif|ausubel|piaget|bruner|gagne|vygotsky|zpd|scaffolding|konstruktivis|kognitivis|behavioris|humanis|deduktif|induktif|abstrak|konkret|diferensiasi|visual|auditor|kinestetik|audiovisual|vark|\bubd\b|pembelajaran mendalam|deep learning|casel|emc|growth mindset|udl|tarl|kompetensi/i,
+  },
+  {
     id: 'pu-murni-30',
     group: 'pedagogi-umum',
     prodiId: 'umum',
@@ -409,7 +435,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     badgeTone: 'umum',
     title: 'Pedagogi Umum Murni · Latihan Cepat 30 Soal',
     subtitle:
-      '30 soal Pedagogi Umum netral (porsi standar PU dalam UTBK) yang ditarik secara acak dari 378 butir murni bebas nama jurusan atau mata pelajaran spesifik.',
+      '30 soal Pedagogi Umum netral (porsi standar PU dalam UTBK) yang ditarik secara acak dari 394 butir murni bebas nama jurusan atau mata pelajaran spesifik.',
     questionCount: 30,
     durationMinutes: 56,
     highlights: [
@@ -427,6 +453,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     prodiId: 'umum',
     badge: 'Umum Murni',
     badgeTone: 'umum',
+    recommendedLabel: 'Rekomendasi #5 · MK PPG Umum Netral',
     title: 'Pedagogi Umum Murni · Simulasi Penuh 80 Soal',
     subtitle:
       'Simulasi maraton 80 soal dalam 150 menit yang seluruhnya berisi Pedagogi Umum murni, Kepribadian, Sosial & Filosofi Pendidikan.',
@@ -447,6 +474,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     prodiId: 'umum',
     badge: 'Lintas Konteks · Paket 1',
     badgeTone: 'arsip',
+    recommendedLabel: 'Rekomendasi #3 · Tokoh & Teori Belajar',
     title: 'Try Out Umum SIAPPPG · Paket 1',
     subtitle:
       'Paket pembuka SIAPPPG untuk mengenal bentuk soal dan ritme ujian (memakai ilustrasi kelas lintas mapel sebagai studi kasus pedagogik).',
@@ -487,6 +515,7 @@ export const PAKET_CATALOG: readonly PaketDef[] = [
     prodiId: 'umum',
     badge: 'Lintas Konteks · Paket 3',
     badgeTone: 'arsip',
+    recommendedLabel: 'Rekomendasi #4 · Formatif, 4 Aliran & PGK',
     title: 'Try Out Umum SIAPPPG · Paket 3',
     subtitle:
       'Paket bergaya simulasi dengan lebih banyak soal benar–salah berlapis dan pilihan ganda kompleks serta pembahasan lengkap tiap opsi.',
@@ -603,6 +632,39 @@ export function resolvePaketQuestions(
       const tail = q.id.slice(prefix.length);
       return /^\d+$/.test(tail);
     }).sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
+  }
+
+  if (paket.kind === 'pu-focus') {
+    const puBank = getProdiPuBank('umum');
+    const rx =
+      paket.focusPattern ??
+      /formatif|ausubel|piaget|bruner|gagne|vygotsky|zpd|scaffolding/i;
+    const catatanFirst = prioritizeQuestions(
+      puBank.filter((q) => q.id.startsWith('cat-ppg-')),
+      mastery,
+      rng
+    );
+    const matchingRest = prioritizeQuestions(
+      puBank.filter(
+        (q) =>
+          !q.id.startsWith('cat-ppg-') &&
+          rx.test(`${q.topic} ${q.prompt} ${q.explanation}`)
+      ),
+      mastery,
+      rng
+    );
+    const need = Math.min(paket.puQuota ?? 80, puBank.length);
+    const picked = [...catatanFirst];
+    const pickedIds = new Set(picked.map((q) => q.id));
+    const balanced = fillBalancedRemaining(matchingRest, picked, pickedIds, need);
+    if (balanced.length >= need) {
+      return shuffleArray(balanced.slice(0, need), rng);
+    }
+    const restPool = prioritizeQuestions(puBank, mastery, rng);
+    return shuffleArray(
+      fillBalancedRemaining(restPool, balanced, pickedIds, need),
+      rng
+    );
   }
 
   if (paket.kind === 'pu-random') {

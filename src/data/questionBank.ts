@@ -10,6 +10,7 @@ import { PCK_DKV_PART_1 } from './pckDkvPart1';
 import { PCK_DKV_PART_2 } from './pckDkvPart2';
 import { WEB_CURATED_EXTRAS } from './webCuratedExtras';
 import { WEB_CURATED_EXTRAS_2026 } from './webCuratedExtras2026';
+import { PPG_CATATAN_EXTRAS } from './ppgCatatanExtras';
 import { questionMatchesProdi } from './prodiRegistry';
 import type {
   ExamQuestion,
@@ -78,6 +79,7 @@ export const ALL_QUESTIONS: ExamQuestion[] = [
   ...PCK_DKV_BANK,
   ...WEB_CURATED_EXTRAS,
   ...WEB_CURATED_EXTRAS_2026,
+  ...PPG_CATATAN_EXTRAS,
   ...EXTERNAL_HARVESTED_QUESTIONS,
   ...FUNGSIONAL_QUESTIONS,
   ...UST_QUESTIONS,

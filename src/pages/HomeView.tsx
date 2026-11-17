@@ -43,8 +43,9 @@ interface HomeViewProps {
   onResetProgress: () => void;
 }
 
-const FILTER_TABS: { id: 'ALL' | ProdiId; label: string }[] = [
+const FILTER_TABS: { id: 'ALL' | 'RECOMMENDED' | ProdiId; label: string }[] = [
   { id: 'ALL', label: 'Semua Paket' },
+  { id: 'RECOMMENDED', label: 'Rekomendasi PPG' },
   { id: 'teknik-mesin', label: 'Teknik Mesin SMK' },
   { id: 'dkv', label: 'DKV SMK' },
   { id: 'tata-boga', label: 'Tata Boga SMK' },
@@ -101,7 +102,7 @@ export function HomeView({
   onViewHistoryResult,
   onResetProgress,
 }: HomeViewProps) {
-  const [prodiFilter, setProdiFilter] = useState<'ALL' | ProdiId>('ALL');
+  const [prodiFilter, setProdiFilter] = useState<'ALL' | 'RECOMMENDED' | ProdiId>('ALL');
   const [activeKisiTab, setActiveKisiTab] = useState<Competency>('Pedagogik');
   const [confirmReset, setConfirmReset] = useState(false);
 
@@ -110,7 +111,9 @@ export function HomeView({
       PAKET_CATALOG.filter(
         (p) =>
           p.group === 'bidang-studi' &&
-          (prodiFilter === 'ALL' || p.prodiId === prodiFilter)
+          (prodiFilter === 'RECOMMENDED'
+            ? Boolean(p.recommendedLabel)
+            : prodiFilter === 'ALL' || p.prodiId === prodiFilter)
       ),
     [prodiFilter]
   );
@@ -120,7 +123,9 @@ export function HomeView({
       PAKET_CATALOG.filter(
         (p) =>
           p.group === 'pedagogi-umum' &&
-          (prodiFilter === 'ALL' || prodiFilter === 'umum')
+          (prodiFilter === 'RECOMMENDED'
+            ? Boolean(p.recommendedLabel)
+            : prodiFilter === 'ALL' || prodiFilter === 'umum')
       ),
     [prodiFilter]
   );
@@ -148,6 +153,9 @@ export function HomeView({
           <span className={`chip ${paket.badgeTone === 'arsip' ? 'chip-fox' : 'chip-navy'}`}>
             {paket.badge}
           </span>
+          {paket.recommendedLabel && (
+            <span className="chip chip-fox">★ {paket.recommendedLabel}</span>
+          )}
         </div>
 
         <div>
@@ -400,7 +408,7 @@ export function HomeView({
                   className={`prodi-tab-pill ${prodiFilter === t.id ? 'is-active' : ''}`}
                   onClick={() => {
                     setProdiFilter(t.id);
-                    if (t.id !== 'ALL') onSelectProdiTab(t.id);
+                    if (t.id !== 'ALL' && t.id !== 'RECOMMENDED') onSelectProdiTab(t.id);
                   }}
                 >
                   {t.label}
