@@ -133,4 +133,22 @@ describe('UI Integration Flow (SIAPPPG 2026 Multi-Prodi Open Access)', () => {
 
     expect(screen.getByText(/Soal 1\b/i)).toBeInTheDocument();
   });
+
+  it('membuka Kamus Istilah & Pegangan Cepat UTBK PPG, menyaring kategori, dan mencari kata kunci', () => {
+    render(<App />);
+
+    fireEvent.click(screen.getAllByRole('button', { name: /Kamus Istilah PPG/i })[0]);
+    expect(screen.getByText(/Kamus Istilah & Pegangan Cepat UTBK PPG/i)).toBeInTheDocument();
+
+    const searchInput = screen.getByRole('searchbox', { name: /Cari istilah atau tokoh PPG/i });
+    fireEvent.change(searchInput, { target: { value: 'Vygotsky' } });
+    expect(screen.getByText(/Lev Vygotsky \(ZPD & Scaffolding\)/i)).toBeInTheDocument();
+
+    fireEvent.change(searchInput, { target: { value: '' } });
+    fireEvent.click(screen.getByRole('tab', { name: 'Asesmen & Tindak Lanjut' }));
+    expect(screen.getByText(/Assessment for \(AfL\), as \(AaL\), dan of Learning \(AoL\)/i)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Tutup kamus istilah/i }));
+    expect(screen.queryByText(/Kamus Istilah & Pegangan Cepat UTBK PPG/i)).not.toBeInTheDocument();
+  });
 });

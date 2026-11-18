@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Award,
   BarChart3,
+  BookMarked,
   BookOpen,
   Check,
   ChevronDown,
@@ -39,6 +40,7 @@ interface HomeViewProps {
   onOpenDetail: (paket: PaketDef) => void;
   onOpenStudio: (prodi?: ProdiId | 'ALL_ARCHIVE', subCode?: string) => void;
   onOpenGuide: () => void;
+  onOpenGlossary: () => void;
   onResumeActive: () => void;
   onDiscardActive: () => void;
   onViewHistoryResult: (result: ExamResultSummary) => void;
@@ -99,6 +101,7 @@ export function HomeView({
   onOpenDetail,
   onOpenStudio,
   onOpenGuide,
+  onOpenGlossary,
   onResumeActive,
   onDiscardActive,
   onViewHistoryResult,
@@ -266,6 +269,13 @@ export function HomeView({
             </button>
             <a href="#cara-kerja" className="nav-link-btn">Cara kerja</a>
             <a href="#kisi-kisi" className="nav-link-btn">Kisi-kisi</a>
+            <button
+              type="button"
+              className="nav-link-btn"
+              onClick={onOpenGlossary}
+            >
+              Kamus Istilah
+            </button>
             <a href="#faq" className="nav-link-btn">Tanya jawab</a>
           </nav>
 
@@ -311,6 +321,14 @@ export function HomeView({
                   >
                     <SlidersHorizontal size={17} aria-hidden="true" />
                     Studio Drill Custom
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-lg"
+                    onClick={onOpenGlossary}
+                  >
+                    <BookMarked size={17} aria-hidden="true" />
+                    Kamus Istilah PPG
                   </button>
                 </div>
 
@@ -536,13 +554,21 @@ export function HomeView({
         {/* KISI-KISI INTERACTIVE 4-TAB MATRIX */}
         <section id="kisi-kisi" className="section-band">
           <div className="container-arena">
-            <div className="eyebrow">KISI-KISI</div>
-            <h2 className="judul-bagian">Kisi-kisi resmi UKPPPG 2026</h2>
-            <p className="group-sub" style={{ maxWidth: '64ch' }}>
-              Empat kompetensi beserta rincian 17 subkompetensi sesuai Lampiran 4 Juknis 2026. Klik
-              tombol <strong>Latih</strong> untuk membuka Studio Drill tepat pada subkompetensi
-              tersebut.
-            </p>
+            <div className="group-heading-row">
+              <div>
+                <div className="eyebrow">KISI-KISI</div>
+                <h2 className="judul-bagian">Kisi-kisi resmi UKPPPG 2026</h2>
+                <p className="group-sub" style={{ maxWidth: '64ch' }}>
+                  Empat kompetensi beserta rincian 17 subkompetensi sesuai Lampiran 4 Juknis 2026. Klik
+                  tombol <strong>Latih</strong> untuk membuka Studio Drill tepat pada subkompetensi
+                  tersebut.
+                </p>
+              </div>
+              <button type="button" className="btn btn-sm btn-ghost" onClick={onOpenGlossary}>
+                <BookMarked size={15} aria-hidden="true" />
+                Kamus Istilah &amp; Kata Kunci
+              </button>
+            </div>
 
             <div className="kisi-tabs-row" role="tablist" aria-label="Pilih rumpun kompetensi kisi-kisi">
               {KISI_GROUPS.map((g) => (
@@ -758,9 +784,14 @@ export function HomeView({
             </div>
           </div>
 
-          <button type="button" className="btn btn-sm btn-ghost" onClick={onOpenGuide}>
-            Lihat Panduan Juknis 2026
-          </button>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <button type="button" className="btn btn-sm btn-ghost" onClick={onOpenGlossary}>
+              Kamus Istilah PPG
+            </button>
+            <button type="button" className="btn btn-sm btn-ghost" onClick={onOpenGuide}>
+              Lihat Panduan Juknis 2026
+            </button>
+          </div>
         </div>
       </footer>
     </div>

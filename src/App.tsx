@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { GlossaryModal } from './components/GlossaryModal';
 import { JuknisGuideModal } from './components/JuknisGuideModal';
 import { StudioDrillModal } from './components/StudioDrillModal';
 import {
@@ -51,6 +52,7 @@ export function App() {
   const [currentResult, setCurrentResult] = useState<ExamResultSummary | null>(null);
   const [route, setRoute] = useState<ActiveRoute>('home');
   const [guideOpen, setGuideOpen] = useState(false);
+  const [glossaryOpen, setGlossaryOpen] = useState(false);
   const [studioOpen, setStudioOpen] = useState(false);
   const [studioPreset, setStudioPreset] = useState<{
     prodi: ProdiId | 'ALL_ARCHIVE';
@@ -198,6 +200,7 @@ export function App() {
             setStudioOpen(true);
           }}
           onOpenGuide={() => setGuideOpen(true)}
+          onOpenGlossary={() => setGlossaryOpen(true)}
           onResumeActive={() => setRoute('exam')}
           onDiscardActive={() => setActiveSession(null)}
           onViewHistoryResult={(res) => {
@@ -250,6 +253,15 @@ export function App() {
       />
 
       <JuknisGuideModal open={guideOpen} onClose={() => setGuideOpen(false)} />
+      <GlossaryModal
+        open={glossaryOpen}
+        onClose={() => setGlossaryOpen(false)}
+        onPractice={() => {
+          setGlossaryOpen(false);
+          setStudioPreset({ prodi: prefs.prodi, sub: 'ALL' });
+          setStudioOpen(true);
+        }}
+      />
     </>
   );
 }

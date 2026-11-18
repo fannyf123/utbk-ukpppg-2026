@@ -1790,6 +1790,117 @@ summary {
   font-weight: 800;
 }
 
+.glossary-modal-box {
+  max-width: 840px;
+}
+
+.glossary-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.glossary-search-wrap {
+  position: relative;
+}
+
+.glossary-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-500);
+  pointer-events: none;
+}
+
+.glossary-search-input {
+  width: 100%;
+  padding: 0.62rem 0.9rem 0.62rem 2.35rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--ink-200);
+  background-color: var(--surface-alt);
+  color: var(--ink-900);
+  font-size: 0.88rem;
+}
+
+.glossary-search-input:focus {
+  outline: 2px solid var(--fox-500);
+  outline-offset: 1px;
+  background-color: var(--surface);
+}
+
+.glossary-cat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.glossary-count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--ink-600);
+}
+
+.glossary-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.glossary-card {
+  padding: 0.95rem 1.05rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--ink-200);
+  background-color: var(--surface-alt);
+}
+
+.glossary-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.glossary-card-head h4 {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.glossary-card-summary {
+  margin: 0 0 0.55rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-700);
+}
+
+.glossary-cue {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  background-color: var(--fox-50);
+  border: 1px solid var(--fox-200);
+  font-size: 0.81rem;
+  line-height: 1.45;
+  color: var(--ink-900);
+}
+
+.glossary-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  border: 1px dashed var(--ink-200);
+  color: var(--ink-600);
+  font-size: 0.88rem;
+}
+
 .drawer-backdrop {
   position: fixed;
   inset: 0;
