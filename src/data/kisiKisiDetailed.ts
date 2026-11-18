@@ -11,6 +11,7 @@ export interface KisiKompetensiGroup {
   tabLabel: string;
   heading: string;
   summary: string;
+  mainTopics: string[];
   focusTip: string;
   items: KisiSubItem[];
 }
@@ -22,6 +23,31 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     heading: '1. Kompetensi Pedagogik',
     summary:
       'Kemampuan mengelola pembelajaran yang berpusat pada Murid untuk mencapai tujuan pembelajaran atau pembimbingan.',
+    mainTopics: [
+      'Karakteristik peserta didik',
+      'Analisis kebutuhan peserta didik',
+      'Motivasi belajar',
+      'Teori perkembangan (kognitif, psikososial, emosional)',
+      'Teori-teori belajar',
+      'Teori belajar',
+      'Pendekatan dan metode pembelajaran',
+      'Perencanaan pembelajaran/modul ajar',
+      'Pembelajaran kontekstual',
+      'Teaching at the right level',
+      'Analisis lingkungan belajar',
+      'Lingkungan belajar yang aman',
+      'Perencanaan dan asesmen pembelajaran',
+      'Perspektif capaian pembelajaran',
+      'Desain pembelajaran (perencanaan, implementasi, pembelajaran inklusif, individualisasi)',
+      'Pemanfaatan pembelajaran',
+      'Pengembangan bahan ajar dan media pembelajaran',
+      'Bentuk hasil pengembangan perangkat pembelajaran',
+      'Pengembangan teknologi dan media pembelajaran',
+      'Pemanfaatan teknologi dan media pembelajaran',
+      'Penggunaan isu pemanfaatan informasi',
+      'Evaluasi hasil belajar',
+      'Literasi dasar dalam pembelajaran',
+    ],
     focusTip:
       'Porsi soal Pedagogik dominan dalam 30 butir PU dan terintegrasi pada 50 butir PCK. Cermati kata kunci Lampiran 4: pengalaman konseptual-kontekstual-reflektif (P.1), pembelajaran responsif keragaman (P.2), berkesadaran-bermakna-menggembirakan (P.3), integrasi TIK & literasi digital (P.4), pemanfaatan sumber belajar, lingkungan & kearifan lokal (P.5), serta asesmen berkelanjutan & umpan balik (P.6).',
     items: [
@@ -63,6 +89,20 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     heading: '2. Kompetensi Kepribadian',
     summary:
       'Kemampuan kepribadian yang mantap, berakhlak mulia, arif, dan berwibawa serta menjadi teladan bagi Murid, lingkungan, dan masyarakat, yang ditunjukkan dengan kematangan spiritual, moral, dan emosional, serta kebiasaan melakukan refleksi diri dalam pembelajaran.',
+    mainTopics: [
+      'Profil Pelajar Pancasila',
+      'Filsafat pendidikan',
+      'Filosofi pendidikan Ki Hajar Dewantara',
+      'Lima kompetensi sosial-emosional',
+      'Asesmen SEL pada peserta didik',
+      'Pengembangan kesadaran diri',
+      'Refleksi pengalaman belajar mata kuliah inti',
+      'Perencanaan dan asesmen pembelajaran',
+      'Teaching at the right level',
+      'Pendidikan yang berpihak pada anak',
+      'Analisis karakteristik peserta didik',
+      'Lingkungan belajar yang aman',
+    ],
     focusTip:
       'Uji skenario dilema etis dan keteladanan dalam keberagaman (K.1), kebiasaan refleksi diri berkelanjutan & pola pikir bertumbuh/belajar sepanjang hayat (K.2), serta konsistensi keputusan mengembangkan potensi dan budaya belajar Murid (K.3).',
     items: [
@@ -89,6 +129,17 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     heading: '3. Kompetensi Sosial',
     summary:
       'Kemampuan berkomunikasi, berinteraksi, dan berkolaborasi secara efektif dan efisien dengan Murid, sesama Pendidik, orang tua/wali Murid, dan masyarakat dalam pengembangan pembelajaran yang berpusat pada Murid dan pengembangan profesi.',
+    mainTopics: [
+      'Dasar-dasar kepemimpinan',
+      'Kepemimpinan pendidikan (pengambilan keputusan yang bertanggung jawab)',
+      'Mengidentifikasi persoalan pendidikan di komunitas',
+      'Melaksanakan kegiatan penyelesaian masalah pendidikan di komunitas',
+      'Mengevaluasi dan merefleksikan pelaksanaan kegiatan',
+      'Karakteristik peserta didik',
+      'Lima kompetensi sosial-emosional',
+      'Filosofi pendidikan Ki Hajar Dewantara',
+      'Teaching at the right level',
+    ],
     focusTip:
       'Perhatikan ragam saluran komunikasi inklusif secara lisan, tulisan, dan/atau isyarat sesuai kebutuhan Murid (S.1), kolaborasi lintas unsur termasuk Tendik selain Pendidik, orang tua/wali, dan masyarakat (S.2), serta partisipasi komunitas pembelajaran untuk PKB (S.3).',
     items: [
@@ -114,6 +165,31 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
     tabLabel: '4. Profesional',
     heading: '4. Kompetensi Profesional',
     summary: 'Kemampuan penguasaan materi pelajaran secara mendalam dan kontekstual.',
+    mainTopics: [
+      'Perumusan capaian pembelajaran',
+      'Perencanaan pembelajaran',
+      'Pelaksanaan dan asesmen pembelajaran',
+      'Desain pembelajaran (perencanaan, pelaksanaan, dan penilaian, model pembelajaran)',
+      'Produk hasil pengembangan perangkat pembelajaran',
+      'Pengembangan bahan ajar dan media pembelajaran',
+      'Teori perkembangan (kognitif, psikososial, emosional)',
+      'Karakteristik peserta didik',
+      'Analisis karakteristik peserta didik',
+      'Teori belajar',
+      'Teknologi belajar',
+      'Motivasi belajar',
+      'Teaching at the right level',
+      'Pendekatan dan metode pembelajaran',
+      'Implementasi budaya yang aman',
+      'Lima kompetensi sosial-emosional',
+      'Analisis lingkungan belajar',
+      'Pendidikan dan kebudayaan',
+      'Pemanfaatan hasil asesmen/XXI',
+      'Asesmen SEL pada peserta didik',
+      'Data dan analisis hasil pengamatan',
+      'Evaluasi hasil belajar',
+      'Konsep literasi',
+    ],
     focusTip:
       'Menjadi porsi inti 50 butir PCK di setiap Prodi: menguasai tujuan satuan pendidikan (PF.1), disiplin ilmu materi Prodi (PF.2), potensi & kebutuhan murid berbasis karakteristik materi & konteks lokal (PF.3), kurikulum adaptif (PF.4), dan praktik profesional inovatif (PF.5).',
     items: [
@@ -126,9 +202,9 @@ export const KISI_GROUPS: KisiKompetensiGroup[] = [
         code: 'PF.2',
         desc: 'Menguasai disiplin ilmu sesuai dengan materi/muatan pembelajaran atau pembimbingan.',
         tags: [
-          'Teknik Mesin, DKV, Boga, Akuntansi',
-          'PGSD, MTK, B.Ind, B.Ing, IPA, IPS',
-          'PJOK, PPKn, PAI, & SMK Vokasi',
+          'Konsep Esensial & Miskonsepsi Bidang Studi',
+          'Asesmen Diagnostik & Umpan Balik Materi',
+          'Pembelajaran Mendalam Konteks Prodi',
         ],
       },
       {

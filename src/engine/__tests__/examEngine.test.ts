@@ -79,6 +79,13 @@ describe('Bank Soal UTBK UKPPPG 2026 & Integritas Multi-Prodi', () => {
     }
   });
 
+  it('bebas soal hafalan kode operator, rumus teknik murni, maupun hitungan angka teknis', () => {
+    const techJunkRe =
+      /\b(?:G0[0-3]|G4[012]|G54|G71|G90|G91|M0[3568]|M30|G00–G99|E6013|ER4043|E7018|DCEN|DCEP|Rp12\.000\.000|Rp15\.000\.000|Rp24\.000\.000|Rp60\.000\.000|14,78|400 rpm|H7\/[gp]6|150–450\s*°C|820\s*°C|300 dpi|#39FF14|thimble|sleeve|ST\s*37)\b/i;
+    const hits = ALL_QUESTIONS.filter((q) => techJunkRe.test(JSON.stringify(q))).map((q) => q.id);
+    expect(hits).toEqual([]);
+  });
+
   it('menjamin isolasi prodi pada seluruh 15 Prodi agar tidak terjadi kebocoran soal lintas jurusan', () => {
     expect(PRODI_CONFIGS.length).toBe(15);
 

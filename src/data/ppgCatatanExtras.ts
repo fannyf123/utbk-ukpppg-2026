@@ -456,17 +456,17 @@ export const PPG_CATATAN_EXTRAS: ExamQuestion[] = [
     kompetensi: 'Profesional',
     subkompetensi: 'PF.3',
     prompt:
-      'Banyak siswa kelas XI Teknik Pemesinan hanya menghafal rumus putaran spindel `n = (1000 x Cs) / (pi x d)` tanpa memahami mengapa benda kerja baja karbon cepat tumpul atau permukaannya kasar saat `n` keliru. Untuk memadukan **penalaran induktif** dan **deduktif** secara bermakna, strategi terbaik guru di bengkel adalah ....',
+      'Banyak siswa kelas XI Teknik Pemesinan hanya menghafal rumus penentuan kecepatan putar mesin tanpa memahami hubungan antara diameter benda kerja, jenis bahan, dan kehalusan permukaan. Untuk memadukan **penalaran induktif** dan **deduktif** secara bermakna, strategi terbaik guru di bengkel adalah ....',
     options: [
-      'Menyuruh siswa menyalin rumus `n` sebanyak 25 kali di buku catatan tanpa menyalakan mesin bubut.',
-      'Mengajak siswa menguji variasi putaran rendah-sedang-tinggi pada sampel material berbeda dan mengamati bentuk tatal (*chip*) serta kehalusan permukaan untuk menyimpulkan pola hubungan (*induktif*), baru memverifikasi serta menghitung `n` pakai rumus standar untuk benda kerja berikutnya (*deduktif*).',
-      'Melarang siswa melihat tabel kecepatan potong (*cutting speed*) dan membiarkan pahat HSS terbakar agar jera.',
-      'Hanya memberi soal hitung angka di papan tulis menggunakan diameter imajiner 10 meter.',
-      'Menetapkan satu kecepatan spindel tunggal konstan untuk seluruh jenis diameter dan bahan.',
+      'Menyuruh siswa menyalin rumus kecepatan putar sebanyak 25 kali di buku catatan tanpa praktik.',
+      'Mengajak siswa mengamati dan membandingkan hasil permukaan benda kerja pada beberapa variasi ukuran benda dan kecepatan (*induktif*), lalu merumuskan prinsip umumnya dan menerapkannya pada perencanaan job sheet berikutnya (*deduktif*).',
+      'Melarang siswa melihat tabel panduan pemesinan dan membiarkan benda kerja gagal total agar jera.',
+      'Hanya memberi soal hitung angka di papan tulis tanpa diskusi makna konsepnya.',
+      'Menetapkan satu pengaturan kecepatan tunggal untuk seluruh ukuran dan jenis bahan tanpa penjelasan.',
     ],
     answer: 1,
     explanation:
-      'Mengamati fakta fisik warna tatal/kehalusan di berbagai kondisi praktik untuk menemukan pola hubungan (*induktif*) lalu menerapkannya menggunakan kaidah hukum pemesinan `n = (1000.Cs)/(pi.d)` ke benda kerja spesifik (*deduktif*) membuat teori pemesinan bermakna.',
+      'Mengamati fakta fisik di lapangan untuk menemukan pola hubungan (*induktif*) lalu menerapkan kaidah prinsip tersebut ke tugas baru (*deduktif*) membangun pemahaman konseptual yang bermakna, bukan hafalan prosedur semata.',
   },
   {
     id: 'cat-tm-03',

@@ -173,7 +173,7 @@ export const PU_KATEGORI_ADDITIONS: KategoriQuestion[] = [
       },
     ],
     explanation:
-      'Kompetensi SEL (CASEL) bekerja optimal ketika menjadi budaya kelas sehari-hari—dimulai dari keteladanan regulasi emosi pendidik sendiri hingga integrasi kolaborasi dan refleksi murid.',
+      'Kompetensi SEL (CASEL) bekerja optimal ketika menjadi budaya kelas sehari-hari, dimulai dari keteladanan regulasi emosi pendidik sendiri hingga integrasi kolaborasi dan refleksi murid.',
   },
   {
     id: 'pu-kat-06',
@@ -193,7 +193,7 @@ export const PU_KATEGORI_ADDITIONS: KategoriQuestion[] = [
         reason: 'Memuji kecerdasan bawaan tetap dan menyarankan menyerah adalah ciri fixed mindset.',
       },
       {
-        text: '"Langkahmu pada konversi satuan belum tepat di bagian ini—mari cek strategi mana yang bisa kita coba ulang supaya otakmu makin terlatih."',
+        text: '"Langkahmu pada konversi satuan belum tepat di bagian ini, mari cek strategi mana yang bisa kita coba ulang supaya otakmu makin terlatih."',
         answer: 0,
         reason: 'Menyoroti proses, strategi spesifik, dan keyakinan bahwa kemampuan dapat berkembang melalui latihan terarah.',
       },
@@ -400,7 +400,7 @@ export const PU_KATEGORI_ADDITIONS: KategoriQuestion[] = [
       },
     ],
     explanation:
-      'Integrasi TIK pada level transformasi (TPACK & SAMR) memperluas eksplorasi konsep, meningkatkan keselamatan eksperimen, dan mendorong murid berpikir kritis—bukan sekadar digitasi ceramah.',
+      'Integrasi TIK pada level transformasi (TPACK & SAMR) memperluas eksplorasi konsep, meningkatkan keselamatan eksperimen, dan mendorong murid berpikir kritis, bukan sekadar digitasi ceramah.',
   },
   {
     id: 'pu-kat-13',
@@ -546,7 +546,7 @@ export const PU_KATEGORI_ADDITIONS: KategoriQuestion[] = [
       {
         text: 'Menertawakan murid yang keliru membaca skala alat ukur di depan kelas agar ingatannya menjadi kuat karena malu.',
         answer: 1,
-        reason: 'Rasa takut dipermalukan mendorong murid menyembunyikan kebingungan—yang di bengkel justru sangat berbahaya.',
+        reason: 'Rasa takut dipermalukan mendorong murid menyembunyikan kebingungan, yang di bengkel justru sangat berbahaya.',
       },
       {
         text: 'Membiasakan rutinitas "tanya sebelum tekan tombol mulai" tanpa cemoohan saat murid ragu memeriksa setting mesin.',

@@ -56,6 +56,14 @@ export function JuknisGuideModal({ open, onClose }: JuknisGuideModalProps) {
                 <td>80 Butir Resmi (50 PCK Bidang Studi/Prodi + 30 Pedagogi Umum)</td>
               </tr>
               <tr>
+                <th>Karakteristik Soal</th>
+                <td>
+                  Studi kasus 4 Kompetensi Guru &amp; materi inti LMS PPG (asesmen, miskonsepsi,
+                  TaRL, UDL, diferensiasi, UbD, SEL/KSE, Growth Mindset; bebas hitungan rumus
+                  teknis atau kode operator murni)
+                </td>
+              </tr>
+              <tr>
                 <th>Waktu Pengerjaan</th>
                 <td>150 Menit (Reguler maupun Berkebutuhan Khusus; rata-rata ±1 menit 52 detik/soal)</td>
               </tr>

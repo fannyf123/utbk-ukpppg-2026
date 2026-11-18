@@ -11,6 +11,9 @@ import { PCK_DKV_PART_2 } from './pckDkvPart2';
 import { WEB_CURATED_EXTRAS } from './webCuratedExtras';
 import { WEB_CURATED_EXTRAS_2026 } from './webCuratedExtras2026';
 import { PPG_CATATAN_EXTRAS } from './ppgCatatanExtras';
+import { UST_EXTRA_2026 } from './ustExtra2026';
+import { LMS_PPG_DKV_BOGA_2026 } from './lmsPpgDkvBoga2026';
+import { LMS_PPG_AKT_VOK_PPKN_2026 } from './lmsPpgAktVokPpkn2026';
 import { JUKNIS_PGK_VOKASI_2026 } from './juknisPgkVokasi2026';
 import { JUKNIS_PGK_MAPEL_2026 } from './juknisPgkMapel2026';
 import { questionMatchesProdi } from './prodiRegistry';
@@ -82,6 +85,9 @@ export const ALL_QUESTIONS: ExamQuestion[] = [
   ...WEB_CURATED_EXTRAS,
   ...WEB_CURATED_EXTRAS_2026,
   ...PPG_CATATAN_EXTRAS,
+  ...UST_EXTRA_2026,
+  ...LMS_PPG_DKV_BOGA_2026,
+  ...LMS_PPG_AKT_VOK_PPKN_2026,
   ...JUKNIS_PGK_VOKASI_2026,
   ...JUKNIS_PGK_MAPEL_2026,
   ...EXTERNAL_HARVESTED_QUESTIONS,

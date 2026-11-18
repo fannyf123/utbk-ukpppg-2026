@@ -999,6 +999,33 @@ summary {
   color: var(--ink-700);
 }
 
+.kisi-topics-box {
+  padding: 1rem 1.5rem 1.1rem;
+  border-top: 1px solid var(--ink-200);
+  background-color: var(--surface);
+}
+
+.kisi-topics-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.84rem;
+  color: var(--ink-900);
+}
+
+.kisi-topics-head span {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink-700);
+  background-color: var(--surface-alt);
+  border: 1px solid var(--ink-200);
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+}
+
 .kisi-focus-foot {
   padding: 1rem 1.5rem;
   background-color: var(--fox-50);
