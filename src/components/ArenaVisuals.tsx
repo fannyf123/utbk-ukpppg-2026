@@ -32,12 +32,12 @@ const PREVIEW_SAMPLES: Record<
 > = {
   'teknik-mesin': {
     header: 'Try Out UKPPPG · Teknik Mesin SMK',
-    stem: 'Pada pembubutan ulir metrik M12 × 1,75 dengan eretan kombinasi, siswa memundurkan pahat dengan membalik putaran spindel sambil melepas half-nut. Akibat yang terjadi adalah ....',
+    stem: 'Saat belajar membaca gambar proyeksi di bengkel, mayoritas murid cepat menghafal definisi simbol, tetapi keliru menafsirkan tampak benda nyata ketika posisi berubah. Langkah guru paling tepat adalah ....',
     opts: [
-      'Alur puncak ulir menjadi semakin halus',
-      'Pahat kehilangan sinkronisasi pitch dan memotong ulir ganda (double thread)',
-      'Diameter mayor ulir mengecil 0,5 mm secara otomatis',
-      'Leadscrew berhenti berputar tanpa memengaruhi pahat',
+      'Menambah soal latihan pilihan ganda menghafal istilah simbol.',
+      'Mendiagnosis letak miskonsepsi lalu membimbing murid memakai model benda konkret atau simulasi visual bertahap.',
+      'Membiarkan murid menyalin contoh gambar jadi agar tugas cepat terkumpul.',
+      'Menguji ulang definisi hafalan di papan tulis sebelum memberi umpan balik.',
     ],
     answer: 1,
   },
